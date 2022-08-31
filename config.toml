@@ -1,4 +1,4 @@
-baseURL = "dinaarch.netlify.app"
+baseURL = "https://www.dina-arch.com"
 theme = "hugo-apero"
 languageCode = "en"
 title = "Hugo Apéro"
