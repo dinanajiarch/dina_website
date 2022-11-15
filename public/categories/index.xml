@@ -6,7 +6,25 @@
     <description>Recent content in Categories on Hugo Apéro</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 28 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R</title>
+      <link>https://www.dina-arch.com/categories/r/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>statistics</title>
+      <link>https://www.dina-arch.com/categories/statistics/</link>
+      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/categories/statistics/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Theme Features</title>
       <link>https://www.dina-arch.com/categories/theme-features/</link>
@@ -31,15 +49,6 @@
       <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/categories/workshop/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>R</title>
-      <link>https://www.dina-arch.com/categories/r/</link>
-      <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/categories/r/</guid>
       <description></description>
     </item>
     

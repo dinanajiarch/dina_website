@@ -1,8 +1,8 @@
 baseURL = "https://www.dina-arch.com"
 theme = "hugo-apero"
 languageCode = "en"
-title = "Hugo Apéro"
-author = "Alison Hill"
+title = "Dina Arch"
+author = "Dina Arch"
 copyright = "" # set to override the auto generated copyright using org info and now year
 googleAnalytics = ""
 disqusShortname = "" # see params.utterances to use utterances instead of Disqus
@@ -132,7 +132,7 @@ enableEmoji = true
   [[menu.header]]
     name = "CV"
     title = "CV"
-    url = "https://ucsb.box.com/s/ezcjo8a3b51ke9xxcpd5p6qhes9vfjpr"
+    url = "https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73"
     weight = 3
 #  [[menu.header]]
 #    name = "A collection"

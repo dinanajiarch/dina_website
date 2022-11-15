@@ -38,13 +38,43 @@
     <loc>https://www.dina-arch.com/collection/day02/03-blogdown/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/blog/</loc>
-    <lastmod>2021-01-28T00:00:00+00:00</lastmod>
+    <loc>https://www.dina-arch.com/project/binarylog/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/binary-regression/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/categories/</loc>
-    <lastmod>2021-01-28T00:00:00+00:00</lastmod>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/classification/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/labs/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/odds-ratios/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/categories/r/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/r-markdown/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/project/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/categories/statistics/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/</loc>
+    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/blog/</loc>
     <lastmod>2021-01-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/blog/social/</loc>
@@ -60,9 +90,6 @@
     <lastmod>2021-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/blog/fonts/</loc>
-    <lastmod>2021-01-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/</loc>
     <lastmod>2021-01-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/collection/</loc>
@@ -92,9 +119,6 @@
     <loc>https://www.dina-arch.com/tags/hugo-site/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/categories/r/</loc>
-    <lastmod>2021-01-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.dina-arch.com/series/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
@@ -112,9 +136,6 @@
   </url><url>
     <loc>https://www.dina-arch.com/talk/seedling/</loc>
     <lastmod>2020-01-13T14:15:59-06:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/project/</loc>
-    <lastmod>2019-07-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/categories/package/</loc>
     <lastmod>2019-07-03T00:00:00+00:00</lastmod>
