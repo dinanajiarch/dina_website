@@ -18,6 +18,11 @@ categories:
 editor_options:
   markdown:
     wrap: sentence
+links:
+- icon: github
+  icon_pack: fab
+  name: code and dataset
+  url: https://github.com/dinanajiarch/dina_website/tree/main/content/collection/machine_learning    
 ---
 
 
@@ -119,7 +124,7 @@ Variable descriptions are given in the `metadata` file. The variables shown abov
 census_meta %>% head() 
 ```
 
-\newpage
+
 ## Data preprocessing
 
 5. Separate the rows of `election_raw` into separate federal-, state-, and county-level data frames:

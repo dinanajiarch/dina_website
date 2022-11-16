@@ -16,6 +16,6 @@ links:
 - icon: github
   icon_pack: fab
   name: code and datasets
-  url: https://github.com/dinanajiarch/dina_website/tree/main/content/collection/day01
+  url: https://github.com/dinanajiarch/dina_website/tree/main/content/collection/linear-models
 ---
 

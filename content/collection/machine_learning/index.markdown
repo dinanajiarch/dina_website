@@ -18,6 +18,11 @@ categories:
 editor_options:
   markdown:
     wrap: sentence
+links:
+- icon: github
+  icon_pack: fab
+  name: code and dataset
+  url: https://github.com/dinanajiarch/dina_website/tree/main/content/collection/machine_learning    
 ---
 
 
@@ -156,7 +161,7 @@ census_meta %>% head()
 ## 6 "Women "       " Number of women "             " numeric "
 ```
 
-\newpage
+
 ## Data preprocessing
 
 5. Separate the rows of `election_raw` into separate federal-, state-, and county-level data frames:
