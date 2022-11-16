@@ -108,6 +108,32 @@
   
   <div class="measure-wide center mb4 mb5-l">
     <header>
+      <h1 class="f3 mt0 mb2 lh-title underline fw4"><a href="/collection/tips-and-tricks-in-r/" class="db">Data Wrangling in R</a></h1>
+      
+    </header>
+      
+      <p class="lh-copy mb4">library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let’s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp; Gorman KB, 2020)
+Read in and view data data(&quot;penguins&quot;) head(penguins_raw) # reads first 6 rows ## # A tibble: 6 × 17## studyName <code>Sample Number</code> Species Region Island Stage <code>Individual ID</code>## &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; ## 1 PAL0708 1 Adelie Penguin … Anvers Torge… Adul… N1A1 ## 2 PAL0708 2 Adelie Penguin … Anvers Torge… Adul… N1A2 ## 3 PAL0708 3 Adelie Penguin … Anvers Torge… Adul… N2A1 ## 4 PAL0708 4 Adelie Penguin … Anvers Torge… Adul… N2A2 ## 5 PAL0708 5 Adelie Penguin … Anvers Torge… Adul… N3A1 ## 6 PAL0708 6 Adelie Penguin … Anvers Torge… Adul… N3A2 ## # … with 10 more variables: <code>Clutch Completion</code> &lt;chr&gt;, <code>Date Egg</code> &lt;date&gt;,## # <code>Culmen Length (mm)</code> &lt;dbl&gt;, <code>Culmen Depth (mm)</code> &lt;dbl&gt;,## # <code>Flipper Length (mm)</code> &lt;dbl&gt;, <code>Body Mass (g)</code> &lt;dbl&gt;, Sex &lt;chr&gt;,## # <code>Delta 15 N (o/oo)</code> &lt;dbl&gt;, <code>Delta 13 C (o/oo)</code> &lt;dbl&gt;, Comments &lt;chr&gt; names(penguins_raw) # lists variable names ## [1] &quot;studyName&quot; &quot;Sample Number&quot; &quot;Species&quot; ## [4] &quot;Region&quot; &quot;Island&quot; &quot;Stage&quot; ## [7] &quot;Individual ID&quot; &quot;Clutch Completion&quot; &quot;Date Egg&quot; ## [10] &quot;Culmen Length (mm)&quot; &quot;Culmen Depth (mm)&quot; &quot;Flipper Length (mm)&quot;## [13] &quot;Body Mass (g)&quot; &quot;Sex&quot; &quot;Delta 15 N (o/oo)&quot; ## [16] &quot;Delta 13 C (o/oo)&quot; &quot;Comments&quot; summary(penguins_raw) # provides some descriptive statistics for each variable ## studyName Sample Number Species Region ## Length:344 Min.</p>
+    <footer>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+  
+    
+                               
+     
+     
+<article class="mv4 mv5-l bb">
+
+  
+  
+  <div class="measure-wide center mb4 mb5-l">
+    <header>
       <h1 class="f3 mt0 mb2 lh-title underline fw4"><a href="/project/binarylog/" class="db">Binary Logistic Regression</a></h1>
       
     </header>
@@ -139,32 +165,6 @@
       
       <p class="lh-copy mb4">Background The U.S. presidential election in 2012 did not come as a surprise. Some correctly predicted the outcome of the election correctly including Nate Silver, and many speculated about his approach.
 Despite the success in 2012, the 2016 presidential election came as a big surprise to many, and it underscored that predicting voter behavior is complicated for many reasons despite the tremendous effort in collecting, analyzing, and understanding many available datasets.</p>
-    <footer>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-  
-    
-                               
-     
-     
-<article class="mv4 mv5-l bb">
-
-  
-  
-  <div class="measure-wide center mb4 mb5-l">
-    <header>
-      <h1 class="f3 mt0 mb2 lh-title underline fw4"><a href="/collection/tips-and-tricks-in-r/" class="db">Data Wrangling in R</a></h1>
-      
-    </header>
-      
-      <p class="lh-copy mb4">library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let’s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp; Gorman KB, 2020)
-Read in and view data data(&quot;penguins&quot;) head(penguins_raw) # reads first 6 rows ## # A tibble: 6 × 17## studyName <code>Sample Number</code> Species Region Island Stage <code>Individual ID</code>## &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; ## 1 PAL0708 1 Adelie Penguin … Anvers Torge… Adul… N1A1 ## 2 PAL0708 2 Adelie Penguin … Anvers Torge… Adul… N1A2 ## 3 PAL0708 3 Adelie Penguin … Anvers Torge… Adul… N2A1 ## 4 PAL0708 4 Adelie Penguin … Anvers Torge… Adul… N2A2 ## 5 PAL0708 5 Adelie Penguin … Anvers Torge… Adul… N3A1 ## 6 PAL0708 6 Adelie Penguin … Anvers Torge… Adul… N3A2 ## # … with 10 more variables: <code>Clutch Completion</code> &lt;chr&gt;, <code>Date Egg</code> &lt;date&gt;,## # <code>Culmen Length (mm)</code> &lt;dbl&gt;, <code>Culmen Depth (mm)</code> &lt;dbl&gt;,## # <code>Flipper Length (mm)</code> &lt;dbl&gt;, <code>Body Mass (g)</code> &lt;dbl&gt;, Sex &lt;chr&gt;,## # <code>Delta 15 N (o/oo)</code> &lt;dbl&gt;, <code>Delta 13 C (o/oo)</code> &lt;dbl&gt;, Comments &lt;chr&gt; names(penguins_raw) # lists variable names ## [1] &quot;studyName&quot; &quot;Sample Number&quot; &quot;Species&quot; ## [4] &quot;Region&quot; &quot;Island&quot; &quot;Stage&quot; ## [7] &quot;Individual ID&quot; &quot;Clutch Completion&quot; &quot;Date Egg&quot; ## [10] &quot;Culmen Length (mm)&quot; &quot;Culmen Depth (mm)&quot; &quot;Flipper Length (mm)&quot;## [13] &quot;Body Mass (g)&quot; &quot;Sex&quot; &quot;Delta 15 N (o/oo)&quot; ## [16] &quot;Delta 13 C (o/oo)&quot; &quot;Comments&quot; summary(penguins_raw) # provides some descriptive statistics for each variable ## studyName Sample Number Species Region ## Length:344 Min.</p>
     <footer>
       
       

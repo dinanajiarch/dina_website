@@ -45,8 +45,8 @@
     
   <meta itemprop="name" content="Data Wrangling in R">
 <meta itemprop="description" content="library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let&rsquo;s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp; Gorman KB, 2020)
-Read in and view data data(&#34;penguins&#34;) head(penguins_raw) # reads first 6 rows ## # A tibble: 6 × 17## studyName `Sample Number` Species Region Island Stage `Individual ID`## &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; ## 1 PAL0708 1 Adelie Penguin … Anvers Torge… Adul… N1A1 ## 2 PAL0708 2 Adelie Penguin … Anvers Torge… Adul… N1A2 ## 3 PAL0708 3 Adelie Penguin … Anvers Torge… Adul… N2A1 ## 4 PAL0708 4 Adelie Penguin … Anvers Torge… Adul… N2A2 ## 5 PAL0708 5 Adelie Penguin … Anvers Torge… Adul… N3A1 ## 6 PAL0708 6 Adelie Penguin … Anvers Torge… Adul… N3A2 ## # … with 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,## # `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,## # `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,## # `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt; names(penguins_raw) # lists variable names ## [1] &#34;studyName&#34; &#34;Sample Number&#34; &#34;Species&#34; ## [4] &#34;Region&#34; &#34;Island&#34; &#34;Stage&#34; ## [7] &#34;Individual ID&#34; &#34;Clutch Completion&#34; &#34;Date Egg&#34; ## [10] &#34;Culmen Length (mm)&#34; &#34;Culmen Depth (mm)&#34; &#34;Flipper Length (mm)&#34;## [13] &#34;Body Mass (g)&#34; &#34;Sex&#34; &#34;Delta 15 N (o/oo)&#34; ## [16] &#34;Delta 13 C (o/oo)&#34; &#34;Comments&#34; summary(penguins_raw) # provides some descriptive statistics for each variable ## studyName Sample Number Species Region ## Length:344 Min.">
-
+Read in and view data data(&#34;penguins&#34;) head(penguins_raw) # reads first 6 rows ## # A tibble: 6 × 17## studyName `Sample Number` Species Region Island Stage `Individual ID`## &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; ## 1 PAL0708 1 Adelie Penguin … Anvers Torge… Adul… N1A1 ## 2 PAL0708 2 Adelie Penguin … Anvers Torge… Adul… N1A2 ## 3 PAL0708 3 Adelie Penguin … Anvers Torge… Adul… N2A1 ## 4 PAL0708 4 Adelie Penguin … Anvers Torge… Adul… N2A2 ## 5 PAL0708 5 Adelie Penguin … Anvers Torge… Adul… N3A1 ## 6 PAL0708 6 Adelie Penguin … Anvers Torge… Adul… N3A2 ## # … with 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,## # `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,## # `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,## # `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt; names(penguins_raw) # lists variable names ## [1] &#34;studyName&#34; &#34;Sample Number&#34; &#34;Species&#34; ## [4] &#34;Region&#34; &#34;Island&#34; &#34;Stage&#34; ## [7] &#34;Individual ID&#34; &#34;Clutch Completion&#34; &#34;Date Egg&#34; ## [10] &#34;Culmen Length (mm)&#34; &#34;Culmen Depth (mm)&#34; &#34;Flipper Length (mm)&#34;## [13] &#34;Body Mass (g)&#34; &#34;Sex&#34; &#34;Delta 15 N (o/oo)&#34; ## [16] &#34;Delta 13 C (o/oo)&#34; &#34;Comments&#34; summary(penguins_raw) # provides some descriptive statistics for each variable ## studyName Sample Number Species Region ## Length:344 Min."><meta itemprop="datePublished" content="2021-12-14T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-12-14T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1990">
 <meta itemprop="keywords" content="r markdown,machine learning,visualization,classification,principal components," />
   
@@ -132,6 +132,24 @@ Read in and view data data(&#34;penguins&#34;) head(penguins_raw) # reads first 
         
         
         
+      
+      <div class="ph0 pt5">
+        
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+      
+  <a class="btn-links mr2 ba dib" href="https://github.com/dinanajiarch/dina_website/tree/main/content/collection/tips-and-tricks-in-r" target="_blank" rel="noopener"><i class="fab fa-github fa-lg fa-fw mr2"></i>code</a>
+
+
+      </div>
       
         
       </header>
@@ -593,6 +611,9 @@ It only allows us to make a more meaningful comparison.</p>
         <div class="post-pagination dt w-100 mt4 mb2">
   
   
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://www.dina-arch.com/collection/intro-r-mplus/">&larr; Introduction to R, Mplus, and MplusAutomation</a>
+  
   
   
     <a class="next dtc pl2 tr v-top fw6"
@@ -656,6 +677,13 @@ It only allows us to make a more meaningful comparison.</p>
               <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
             
           </details>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/intro-r-mplus/">
+            <a href="https://www.dina-arch.com/collection/intro-r-mplus/">Introduction to R, Mplus, and MplusAutomation</a></li>
           
           </li>
         

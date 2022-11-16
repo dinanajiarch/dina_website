@@ -6,22 +6,76 @@
     <description>Recent content in Tags on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>classification</title>
+      <link>https://www.dina-arch.com/tags/classification/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/classification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>introduction</title>
+      <link>https://www.dina-arch.com/tags/introduction/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/introduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>https://www.dina-arch.com/tags/machine-learning/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mplus</title>
+      <link>https://www.dina-arch.com/tags/mplus/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/mplus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>principal components</title>
+      <link>https://www.dina-arch.com/tags/principal-components/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/principal-components/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r markdown</title>
+      <link>https://www.dina-arch.com/tags/r-markdown/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visualization</title>
+      <link>https://www.dina-arch.com/tags/visualization/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/visualization/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>binary regression</title>
       <link>https://www.dina-arch.com/tags/binary-regression/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/binary-regression/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>classification</title>
-      <link>https://www.dina-arch.com/tags/classification/</link>
-      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/classification/</guid>
       <description></description>
     </item>
     
@@ -40,15 +94,6 @@
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/odds-ratios/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r markdown</title>
-      <link>https://www.dina-arch.com/tags/r-markdown/</link>
-      <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
       <description></description>
     </item>
     
@@ -139,33 +184,6 @@
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/hugo-site/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>machine learning</title>
-      <link>https://www.dina-arch.com/tags/machine-learning/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/machine-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>principal components</title>
-      <link>https://www.dina-arch.com/tags/principal-components/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/principal-components/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>visualization</title>
-      <link>https://www.dina-arch.com/tags/visualization/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/visualization/</guid>
       <description></description>
     </item>
     

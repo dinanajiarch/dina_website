@@ -1,9 +1,9 @@
 ---
 title: "Data Wrangling in R"
-date: "November 15, 2022"
+date: 2021-12-14
 author: 'Dina Arch'
 subtitle: Completion of a final project for PSTAT 231 at UC Santa Barbara.
-weight: 2
+weight: 3
 draft: false
 images: 
 series: 
@@ -18,6 +18,11 @@ categories:
 editor_options:
   markdown:
     wrap: sentence
+links:
+- icon: github
+  icon_pack: fab
+  name: code
+  url: https://github.com/dinanajiarch/dina_website/tree/main/content/collection/tips-and-tricks-in-r
 ---
 
 

@@ -11,6 +11,9 @@
     <loc>https://www.dina-arch.com/blog/spoonful-series/01-spoonful/</loc>
     <lastmod>2021-01-01T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://www.dina-arch.com/collection/intro-r-mplus/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.dina-arch.com/collection/linear-models/02-slr/</loc>
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
   </url><url>
@@ -18,6 +21,7 @@
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/collection/linear-models/03-moderation/</loc>
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
@@ -26,6 +30,7 @@
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/collection/machine_learning/</loc>
+    <lastmod>2021-05-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/collection/linear-models/04-mediation/</loc>
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
@@ -39,16 +44,40 @@
     <loc>https://www.dina-arch.com/collection/</loc>
     <lastmod>2022-11-15T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://www.dina-arch.com/categories/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/classification/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/introduction/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/machine-learning/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/mplus/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/principal-components/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/r-markdown/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/categories/r-project/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/visualization/</loc>
+    <lastmod>2021-12-14T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.dina-arch.com/project/binarylog/</loc>
     <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/tags/binary-regression/</loc>
-    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/categories/</loc>
-    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/classification/</loc>
     <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/tags/labs/</loc>
@@ -60,16 +89,10 @@
     <loc>https://www.dina-arch.com/categories/r/</loc>
     <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/tags/r-markdown/</loc>
-    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.dina-arch.com/project/</loc>
     <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/categories/statistics/</loc>
-    <lastmod>2021-05-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/</loc>
     <lastmod>2021-05-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/categories/data-analysis/</loc>
@@ -191,13 +214,5 @@
     <loc>https://www.dina-arch.com/contributors/</loc>
   </url><url>
     <loc>https://www.dina-arch.com/license/</loc>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/machine-learning/</loc>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/principal-components/</loc>
-  </url><url>
-    <loc>https://www.dina-arch.com/categories/r-project/</loc>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/visualization/</loc>
   </url>
 </urlset>

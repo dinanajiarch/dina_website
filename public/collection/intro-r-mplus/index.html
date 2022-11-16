@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.102.1" />
+<title>Introduction to R, Mplus, and MplusAutomation | Dina Arch</title>
+
+
+<meta property="twitter:site" content="@dnajiarch">
+<meta property="twitter:creator" content="@dnajiarch">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="An overview of using the MplusAutomation package in R.">
+
+
+<meta property="og:site_name" content="Dina Arch">
+<meta property="og:title" content="Introduction to R, Mplus, and MplusAutomation | Dina Arch">
+<meta property="og:description" content="An overview of using the MplusAutomation package in R." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://www.dina-arch.com/collection/intro-r-mplus/" />
+<meta property="og:locale" content="en">
+
+
+
+
+    
+        <meta property="og:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+    
+    
+  <meta itemprop="name" content="Introduction to R, Mplus, and MplusAutomation">
+<meta itemprop="description" content="Please note that this document walks through AppStream which provides to access Mplus at UC Santa Barbara. If you already own Mplus, then you can ignore that part (i.e., you do not need to link your Google Drive to AppStream).
+For Part 1, we will first walk through how to run basic descriptive statistics using only Mplus. Then in the in the second part, we will use an R package called MplusAutomation to run the same analysis as part 1, only this time using only RStudio."><meta itemprop="datePublished" content="2021-12-14T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-12-14T00:00:00+00:00" />
+<meta itemprop="wordCount" content="4336">
+<meta itemprop="keywords" content="r markdown,introduction,mplus," />
+  
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
+  <link rel="icon" href="/img/cat.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.5550fcfd017088ccae55298dd74a3b7d7bfe6cc577b648c443d001196a798ca6.js" type="text/javascript"></script>
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+      <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/collection/" title="Project Portfolio">R Projects</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73" title="CV">CV</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+<main class="page-main ph4 pt4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h4 class="breadcrumb pb5">
+
+  
+    
+      
+  
+    
+      
+  
+
+    
+    
+      <a href="/collection/">R Projects</a>
+    
+  
+
+    
+    
+      Introduction to R, Mplus, and MplusAutomation
+    
+  
+
+</h4>
+
+
+
+
+        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Introduction to R, Mplus, and MplusAutomation</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">An overview of using the MplusAutomation package in R.</h4>
+        
+        
+        
+        
+      
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        <p>Please note that this document walks through AppStream which provides to access Mplus at UC Santa Barbara.
+If you already own Mplus, then you can ignore that part (i.e., you do not need to link your Google Drive to AppStream).</p>
+<p>For Part 1, we will first walk through how to run basic descriptive statistics using only Mplus.
+Then in the in the second part, we will use an R package called <code>MplusAutomation</code> to run the same analysis as part 1, only this time using only RStudio.</p>
+
+
+
+
+<h2 id="part-1underline-introduction-to-mplus">[PART 1]{.underline}: Introduction to Mplus
+  <a href="#part-1underline-introduction-to-mplus"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="step-1-open-appstream">Step 1: Open AppStream
+  <a href="#step-1-open-appstream"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/appstream.jpg" alt=""></p>
+<p>Follow 
+<a href="https://docs.google.com/document/d/1ligSL9zj7lZIK6VDhF1dLScArrufTd6vLFgcOm05M-4/edit?usp=sharing" target="_blank" rel="noopener">these</a> steps to get access to Mplus and RStudio (<em>Note</em>: These steps are not necessary if you already own Mplus).
+When you get access to the AppStream space, it takes about two minutes to begin the session.
+It would be a good idea to get it open before labs start that way you&rsquo;re not behind.</p>
+
+
+
+
+<h3 id="step-2-open-mplus-in-appstream">Step 2: Open Mplus in AppStream
+  <a href="#step-2-open-mplus-in-appstream"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/mplus.jpg" alt=""></p>
+<p>This is the Mplus interface.
+Even though we will NOT be working directly in Mplus for the rest of the quarter, it is good to get an idea of how Mplus works.</p>
+
+
+
+
+<h3 id="step-3-link-your-google-drive-to-appstream">Step 3: Link your Google Drive to AppStream
+  <a href="#step-3-link-your-google-drive-to-appstream"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/gd.jpg" alt=""></p>
+<p>AppStream uses GoogleDrive to access and save all your files that you work with.
+It is <strong>important</strong> to save your files before you close AppStream as there is no cloud storage.
+Everything is stored locally during your session, but upon closing AppStream, your data is cleared.</p>
+
+
+
+
+<h3 id="step-4-create-a-google-drive-folder-for-this-class-and-import-lab-material">Step 4: Create a Google Drive folder for this class and import lab material
+  <a href="#step-4-create-a-google-drive-folder-for-this-class-and-import-lab-material"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/import.jpg" alt=""></p>
+<p>Open up a new browser (not in AppStream) and log in to your Google Drive.
+Create a new folder for this class so we can start importing and save into your Google Drive.
+Go to GauchoSpace and download the lab materials for this class and import it into this new folder you created.
+<em>Note:</em> As we go forward with this lab, the location of this folder will change, just a heads up.</p>
+
+
+
+
+<h3 id="step-5-import-syntax-into-mplus-from-google-drive">Step 5: Import syntax into Mplus from Google Drive
+  <a href="#step-5-import-syntax-into-mplus-from-google-drive"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/inp.gif" alt=""></p>
+<p>All syntax or input files for Mplus are a <em>.inp</em> file.
+You may also create a new <em>.inp</em> file directly in Mplus and populate the syntax there.
+For now, we can use one that is already complete.</p>
+<ul>
+<li>
+<p>Basic skeleton of an Mplus <em>.inp</em> syntax</p>
+<ul>
+<li>
+<p><strong>TITLE:</strong> title of our document</p>
+</li>
+<li>
+<p><strong>DATA:</strong> data file (must be in the same folder as the <em>.inp</em>)</p>
+</li>
+<li>
+<p><strong>VARIABLE:</strong></p>
+<ul>
+<li>
+<p><strong>NAMES =</strong> names of each variable in order of each column</p>
+</li>
+<li>
+<p><strong>MISSING</strong> = what the missing data is labeled as</p>
+</li>
+<li>
+<p><strong>USEVAR =</strong> names of the variable actually being used in the analysis</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>ANALYSIS:</strong></p>
+<ul>
+<li><strong>TYPE =</strong> this section is what will change constantly based on your model. For now, we are running &ldquo;type = basic&rdquo; which will provide us descriptive statistics of our variables.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>NOTE:</strong> Please view the data file that is provided in this lab (basic_Lab1_DEMO.dat).
+Mplus works with .dat files to run analyses.
+The dataset must also be formatted in certain way in order for Mplus to read it.
+Please see &ldquo;Mplus Basics&rdquo; on GauchoSpace under Mplus Resources for more information.
+There is also a codebook that provides some information on the items on Gauchospace (&ldquo;Lab 1 Codebook&rdquo;).</p>
+
+
+
+
+<h3 id="step-6-click-run">Step 6: Click Run
+  <a href="#step-6-click-run"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/out.gif" alt=""></p>
+<p>This will run our &ldquo;type=basic&rdquo; analysis which will provide us a <em>.out</em> file that contains variables descriptive statistics of our variables.
+AppStream will save this <em>.out</em> file in your current GoogleDrive folder.
+All <em>.out</em> and <em>.inp</em> files can be open as a text file if you want to access them off AppStream/Mplus.</p>
+<hr>
+
+
+
+
+<h2 id="part-2underline-introduction-to-rstudio">[PART 2]{.underline}: Introduction to RStudio
+  <a href="#part-2underline-introduction-to-rstudio"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Now, we will be obtaining the same <em>.out</em> file that we produced above using RStudio (and never having to open Mplus!).
+This is done using the 
+<a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/viewer.html?pdfurl=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2FMplusAutomation%2FMplusAutomation.pdf&amp;clen=322228&amp;chunk=true"><code>MplusAutomation</code></a> package (Hallquist &amp; WIley, 2018).
+This R package communicates with Mplus to replicate the process we went through above using Rstudio and R language.
+While this course expects you to have some R knowledge, I will go through some basics here.
+Please see &ldquo;R-Studio Basics&rdquo; on GauchoSpace under R Resources for R tips.</p>
+
+
+
+
+<h3 id="what-is-mplusautomation--why-should-we-use-it">WHAT is <code>MplusAutomation</code> &amp; WHY should we use it?
+  <a href="#what-is-mplusautomation--why-should-we-use-it"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><strong>WHAT?</strong></p>
+<ul>
+<li><code>MplusAutomation</code> is an <code>R</code> package</li>
+<li>It &ldquo;wraps around&rdquo; the <code>Mplus</code> program</li>
+<li>Requires both <code>R</code> &amp; <code>Mplus</code> software</li>
+<li>Requires learning some basics of 2 programming languages</li>
+<li>Car metaphor: R/Rstudio is the <em>steering wheel or dashboard</em> &amp; Mplus is the <em>engine</em></li>
+</ul>
+<p><strong>WHY?</strong></p>
+<ul>
+<li>As a data analyst using Mplus to analyze projects that often span multiple years I realized a need for clearly organized work procedures in which every research decision can be documented in a single place.</li>
+<li>The motivation for using this method is to increase reproducibility, organization, efficiency, and transparency</li>
+</ul>
+<p><strong>HOW?</strong></p>
+<ul>
+<li>We will interface entirely within R-Studio.</li>
+<li>The code presented will be very repetitive by design. Creating a consistent routine is key!</li>
+</ul>
+
+
+
+
+<h3 id="step-1-open-rstudio-in-appstream">Step 1: Open RStudio in AppStream
+  <a href="#step-1-open-rstudio-in-appstream"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/rstudio.gif" alt=""></p>
+<p>Open R studio within AppStream.
+You don&rsquo;t need to close Mplus.
+<strong>IMPORTANT</strong>: Because we are using a package that communicates with Mplus, we <em>must</em> use the AppStream interface to run Rstudio (unless you already have Mplus available on your personal computer).</p>
+
+
+
+
+<h3 id="step-2-create-a-new-r-project">Step 2: Create a new R-project
+  <a href="#step-2-create-a-new-r-project"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/rproject.gif" alt=""></p>
+<p>R-projects help us organize our folders , filepaths, and scripts.
+To create a new R project:</p>
+<ul>
+<li>File &ndash;&gt; New Project&hellip;</li>
+</ul>
+<p>Click &ldquo;New Directory&rdquo; &ndash;&gt; New Project &ndash;&gt; Name your project (Perhaps &ldquo;lab1&rdquo;)</p>
+<p>Before you click &ldquo;Create Project,&rdquo; save your project under &ldquo;My Drive&rdquo;.
+<strong>THIS IS IMPORTANT.</strong> If your file path is too long (longer than 90 characters), then Mplus cuts off the filepath and will not run your syntax.
+Move all your Lab 1 Materials into this new project folder you have created.</p>
+
+
+
+
+<h3 id="step-3-create-an-r-markdown-document">Step 3: Create an R-markdown document
+  <a href="#step-3-create-an-r-markdown-document"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><img src="figures/rmarkdown.gif" alt=""></p>
+<p>An R-markdown file provides an authoring framework for data science that allows us to organize our reports using texts and code chunks.
+This document you are reading was made using R-markdown!
+Lets create an R-markdown and write script to run a &ldquo;type=basic&rdquo; analysis using the R package, <code>MplusAutomation</code>.</p>
+<p>To create an R-markdown:</p>
+<ul>
+<li>File &ndash;&gt; New File &ndash;&gt; R Markdown&hellip;</li>
+</ul>
+<p><strong>Note</strong>: AppStream may ask you to update R markdown.
+Click &ldquo;Yes.&rdquo;</p>
+<p>In the window that pops up, give the R-markdown a title such as &ldquo;<strong>Lab 1 - Introduction to RStudio.</strong>&rdquo; Click &ldquo;OK.&rdquo; You should see a new markdown with some example text and code chunks.
+We want a clean document to start off with so delete everything from line 10 down.
+Go ahead and save this document to your Google Drive folder.</p>
+
+
+
+
+<h3 id="step-4-load-packages">Step 4: Load packages
+  <a href="#step-4-load-packages"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Your first code chunk in any given markdown should be the packages you will be using.
+To insert a code chunk, etiher use the keyboard shortcut ctrl + alt + i or Code &ndash;&gt; Insert Chunk or click the green box with the letter C on it.
+There are a few packages we want our markdown to read in:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(MplusAutomation)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse) <span style="color:#998;font-style:italic">#collection of R packages designed for data science</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(here) <span style="color:#998;font-style:italic">#helps with filepaths</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(haven) <span style="color:#998;font-style:italic"># read_sav()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic"># describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ggpubr) <span style="color:#998;font-style:italic"># ggdensity() and ggqqplot()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(corrplot) <span style="color:#998;font-style:italic"># corrplot()</span>
+</span></span><span style="display:flex;"><span>here<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">i_am</span>(<span style="color:#d14">&#34;index.Rmarkdown&#34;</span>)
+</span></span></code></pre></div><p>As a reminder, if a function does not work and you receive an error like this: <code>could not find function &quot;random_function&quot;</code>; or if you try to load a package and you receive an error like this: <code>there is no package called `random_package`</code> , then you will need to install the package using <code>install.packages(&quot;random_package&quot;)</code> in the console (the bottom-left window in R studio).
+Once you have installed the package you will <em>never</em> need to install it again, however you must <em>always</em> load in the packages at the beginning of your R markdown using <code>library(random_package)</code>, as shown in this document.</p>
+<p><strong>NOTE</strong>: With AppStream, we pre-installed most packages.
+However, there may be some we missed and those may need to be installed with each session.
+If you are using R studio on your personal computer, then once it is installed, it doesn&rsquo;t need to be installed again.</p>
+
+
+
+
+<h3 id="step-5-read-in-data-set">Step 5: Read in data set
+  <a href="#step-5-read-in-data-set"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Recall that our data set that we used earlier is a <em>.dat</em> file with no variable names.
+Remember that this is a data set specifically designed for Mplus.
+Let grab the original one (an SPSS file) in the <code>data</code> folder within the <code>part2_rstudio</code> folder.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>data <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;explore_lab_data.sav&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Ways to view data in R:</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 1. click on the data in your Global Environment (upper right pane) or use...</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">View</span>(data)
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 2. summary() gives basic summary statistics &amp; shows number of NA values</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># *great for checking that data has been read in correctly*</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(data)
+</span></span></code></pre></div><pre tabindex="0"><code>##      item1            item2            item3            item4       
+##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000  
+##  Median : 4.000   Median : 5.000   Median : 5.000   Median : 5.000  
+##  Mean   : 4.508   Mean   : 4.856   Mean   : 4.706   Mean   : 4.815  
+##  3rd Qu.: 6.000   3rd Qu.: 7.000   3rd Qu.: 7.000   3rd Qu.: 7.000  
+##  Max.   :10.000   Max.   :10.000   Max.   :10.000   Max.   :10.000  
+##                   NA&#39;s   :1                                         
+##      item5            item6           item7            item8       
+##  Min.   : 1.000   Min.   : 1.00   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 2.000   1st Qu.: 2.00   1st Qu.: 1.000   1st Qu.: 1.000  
+##  Median : 3.000   Median : 5.00   Median : 3.000   Median : 3.000  
+##  Mean   : 4.169   Mean   : 4.72   Mean   : 3.689   Mean   : 3.915  
+##  3rd Qu.: 6.000   3rd Qu.: 7.00   3rd Qu.: 5.000   3rd Qu.: 6.000  
+##  Max.   :25.000   Max.   :10.00   Max.   :10.000   Max.   :10.000  
+##  NA&#39;s   :1        NA&#39;s   :1                        NA&#39;s   :1       
+##      item9            female      
+##  Min.   : 1.000   Min.   :0.0000  
+##  1st Qu.: 4.000   1st Qu.:0.0000  
+##  Median : 6.000   Median :1.0000  
+##  Mean   : 5.857   Mean   :0.6807  
+##  3rd Qu.: 8.000   3rd Qu.:1.0000  
+##  Max.   :10.000   Max.   :1.0000  
+## 
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 3. names() provides a list of column names. Very useful if you don&#39;t have them memorized!</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(data)
+</span></span></code></pre></div><pre tabindex="0"><code>##  [1] &#34;item1&#34;  &#34;item2&#34;  &#34;item3&#34;  &#34;item4&#34;  &#34;item5&#34;  &#34;item6&#34;  &#34;item7&#34;  &#34;item8&#34; 
+##  [9] &#34;item9&#34;  &#34;female&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 4. head() prints the top x rows of the dataframe</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(data)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 10
+##   item1 item2 item3 item4 item5 item6 item7 item8 item9     female
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl+lbl&gt;
+## 1     2     1     1     1     1     1     1     1     1 1 [female]
+## 2     2     2     1     1     1     2     1     1     1 1 [female]
+## 3     3     2     3     3     1     2     1     1     1 1 [female]
+## 4     1     2     1     1     1     4     1     1     1 0 [male]  
+## 5     2     1     1     3     1     1     2     1     1 1 [female]
+## 6     3     1     2     1     3     2     2     2     1 1 [female]
+</code></pre><p>You can also look at the dataframe with labels and response scale meta-data:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>sjPlot<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">view_df</span>(data)
+</span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
+<caption>Data frame: data</caption>
+<tr>
+<th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">ID</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Name</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Label</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Values</th><th style="border-bottom:double; font-style:italic; font-weight:normal; padding:0.2cm; text-align:left; vertical-align:top;">Value Labels</th>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">1</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">item1</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 1.0-10.0</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">item2</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 1-10</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">3</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">item3</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 1-10</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">4</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">item4</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 1-10</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">5</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">item5</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 1-25</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">6</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">item6</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 1-10</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">7</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">item7</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 1-10</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">8</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">item8</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee" colspan="2"><em>range: 1-10</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">9</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;">item9</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;"></td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top;" colspan="2"><em>range: 1-10</em></td>
+</tr>
+<tr>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">10</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">female</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">Student gender</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">0<br>1</td>
+<td style="padding:0.2cm; text-align:left; vertical-align:top; background-color:#eeeeee">male<br>female</td>
+</tr>
+</table>
+<p>This SPSS dataset gives us more information than the <em>.dat</em> one.
+We are able to see the variable names, and descriptions.</p>
+<p><strong>Convert from <em>.sav</em> to <em>.csv</em></strong></p>
+<p>It&rsquo;s a good idea to convert <em>.sav</em> files to <em>.csv</em>.
+Here is how to convert the <em><strong>.sav</strong></em> <strong>to <em>.csv</em></strong>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># write_csv saves a .csv version of your dataset to your working directory.</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Enter the name of the object that contains your data set (in this case, &#34;exp_lab1_data.csv&#34;), then enter the name you want to save your dataset as. We can call it the same thing: &#34;screen1.csv&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write_csv</span>(data, <span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;exp_lab1_data.csv&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># read the unlabeled data back into R</span>
+</span></span><span style="display:flex;"><span>data_csv <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;exp_lab1_data.csv&#34;</span>))
+</span></span></code></pre></div><p><strong>Optional: Convert from <em>.csv</em> to Mplus <em>.dat</em> file</strong></p>
+<p>Say you want an Mplus .dat file and don&rsquo;t want to go through the hassle of deleting rows and manual conversion to <em>.dat</em>.
+You can use the <code>prepareMplusData()</code> function to convert from <em>.csv</em> to <em>.dat</em>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">prepareMplusData</span>(data_csv, <span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;exp_lab1_data.dat&#34;</span>))
+</span></span></code></pre></div><pre tabindex="0"><code>## TITLE: Your title goes here
+## DATA: FILE = &#34;C:/Users/Dina Arch/Box/Dina&#39;s Website/dina_website/content/collection/intro-r-mplus/part2_rstudio/data/exp_lab1_data.dat&#34;;
+## VARIABLE: 
+## NAMES = item1 item2 item3 item4 item5 item6 item7 item8 item9 female; 
+## MISSING=.;
+</code></pre>
+
+
+
+<h3 id="step-6-using-mplusautomation">Step 6: Using <code>MplusAutomation</code>
+  <a href="#step-6-using-mplusautomation"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>To run a basic model using <code>MplusAutomation</code> we used the <code>mplusObject()</code> function and the <code>mplusModeler()</code> function.</p>
+<p><strong>What does the</strong> <code>mplusObject()</code> <strong>function do?</strong></p>
+<p>1.
+It generates an Mplus input file (does not need full variable name list, its automated for you!) 2.
+It generates a datafile specific to each model 3.
+It runs or estimates the model (hopefully) producing the correct output.
+Always check!</p>
+<p><strong>What does the</strong> <code>mplusModeler()</code> <strong>function do?</strong></p>
+<ol>
+<li>Creates, runs, and reads Mplus models created using <code>mplusObject()</code></li>
+<li>You can specify where you want the <em>.out</em> file saved</li>
+<li><code>check=TRUE</code> checks for missing semicolons, <code>run=TRUE</code> runs the model, <code>hashfilename=FALSE</code> does not add a hash of the raw data to the datafile name.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m_basic  <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusObject</span>(
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  TITLE <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;PRACTICE 01 - Explore TYPE = BASIC;&#34;</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  VARIABLE <span style="color:#000;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span> <span style="color:#d14">&#34;usevar= item1 item2 item3 item4 item5 item6 item7 item8 item9 female;&#34;</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  ANALYSIS <span style="color:#000;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span> <span style="color:#d14">&#34;type = basic; &#34;</span>,
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  usevariables <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(data_csv), 
+</span></span><span style="display:flex;"><span>  rdata <span style="color:#000;font-weight:bold">=</span> data_csv)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>m_basic_fit <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusModeler</span>(m_basic, 
+</span></span><span style="display:flex;"><span>               dataout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;basic.dat&#34;</span>),
+</span></span><span style="display:flex;"><span>               modelout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;basic.inp&#34;</span>),
+</span></span><span style="display:flex;"><span>               check<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">TRUE</span>, run <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, hashfilename <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>)
+</span></span></code></pre></div><p><strong>NOTE</strong>: You don&rsquo;t need to specify <code>MISSING</code> here since it automatically detects the missing value from the data set.
+You also don&rsquo;t need <code>NAMES</code> as it detects the names from the data set.</p>
+<p><strong>Optional: Subsetting observations</strong></p>
+<p>You can use Mplus syntax to explore descriptives for observations reported as &ldquo;female.&rdquo;</p>
+<p>Add line of syntax: <code>useobs = female == 1;</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fem_basic  <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusObject</span>(
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  TITLE <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;PRACTICE 02 - Explore female observations only;&#34;</span>, 
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  VARIABLE <span style="color:#000;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d14">&#34;usevar = item1 item2 item3 item4 item5 item6 item7 item8 item9;
+</span></span></span><span style="display:flex;"><span><span style="color:#d14">  useobs = female == 1; !include observations that report female in analysis&#34;</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  ANALYSIS <span style="color:#000;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#d14">&#34;type = basic;&#34;</span>,
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>  usevariables <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(data_csv), 
+</span></span><span style="display:flex;"><span>  rdata <span style="color:#000;font-weight:bold">=</span> data_csv)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>fem_basic_fit <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusModeler</span>(fem_basic, 
+</span></span><span style="display:flex;"><span>               dataout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;fem_basic.dat&#34;</span>),
+</span></span><span style="display:flex;"><span>               modelout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;fem_basic.inp&#34;</span>),
+</span></span><span style="display:flex;"><span>               check<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">TRUE</span>, run <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, hashfilename <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>)
+</span></span></code></pre></div><hr>
+
+
+
+
+<h2 id="part-3underline-data-cleaning--screening">[PART 3]{.underline}: Data Cleaning &amp; Screening
+  <a href="#part-3underline-data-cleaning--screening"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>It&rsquo;s important to explore your variables before running a factor analysis.
+First, lets rename our variables to something more meaningful using <code>rename()</code>.
+As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of functions, you can use the shortcut crt + shift + m:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">&lt;-</span> data_csv <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">rename</span>(school_motiv1 <span style="color:#000;font-weight:bold">=</span> item1,
+</span></span><span style="display:flex;"><span>         school_motiv2 <span style="color:#000;font-weight:bold">=</span> item2,
+</span></span><span style="display:flex;"><span>         school_motiv3 <span style="color:#000;font-weight:bold">=</span> item3,
+</span></span><span style="display:flex;"><span>         school_comp1 <span style="color:#000;font-weight:bold">=</span> item4,
+</span></span><span style="display:flex;"><span>         school_comp2 <span style="color:#000;font-weight:bold">=</span> item5,
+</span></span><span style="display:flex;"><span>         school_comp3 <span style="color:#000;font-weight:bold">=</span> item6,
+</span></span><span style="display:flex;"><span>         school_belif1 <span style="color:#000;font-weight:bold">=</span> item7,
+</span></span><span style="display:flex;"><span>         school_belif2 <span style="color:#000;font-weight:bold">=</span> item8,
+</span></span><span style="display:flex;"><span>         school_belif3 <span style="color:#000;font-weight:bold">=</span> item9)
+</span></span></code></pre></div>
+
+
+
+<h3 id="descriptive-statistics">Descriptive Statistics
+  <a href="#descriptive-statistics"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s look at descriptive statistics for each variable using <code>summary()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##  school_motiv1    school_motiv2    school_motiv3     school_comp1   
+##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000  
+##  Median : 4.000   Median : 5.000   Median : 5.000   Median : 5.000  
+##  Mean   : 4.508   Mean   : 4.856   Mean   : 4.706   Mean   : 4.815  
+##  3rd Qu.: 6.000   3rd Qu.: 7.000   3rd Qu.: 7.000   3rd Qu.: 7.000  
+##  Max.   :10.000   Max.   :10.000   Max.   :10.000   Max.   :10.000  
+##                   NA&#39;s   :1                                         
+##   school_comp2     school_comp3   school_belif1    school_belif2   
+##  Min.   : 1.000   Min.   : 1.00   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 2.000   1st Qu.: 2.00   1st Qu.: 1.000   1st Qu.: 1.000  
+##  Median : 3.000   Median : 5.00   Median : 3.000   Median : 3.000  
+##  Mean   : 4.169   Mean   : 4.72   Mean   : 3.689   Mean   : 3.915  
+##  3rd Qu.: 6.000   3rd Qu.: 7.00   3rd Qu.: 5.000   3rd Qu.: 6.000  
+##  Max.   :25.000   Max.   :10.00   Max.   :10.000   Max.   :10.000  
+##  NA&#39;s   :1        NA&#39;s   :1                        NA&#39;s   :1       
+##  school_belif3        female      
+##  Min.   : 1.000   Min.   :0.0000  
+##  1st Qu.: 4.000   1st Qu.:0.0000  
+##  Median : 6.000   Median :1.0000  
+##  Mean   : 5.857   Mean   :0.6807  
+##  3rd Qu.: 8.000   3rd Qu.:1.0000  
+##  Max.   :10.000   Max.   :1.0000  
+## 
+</code></pre><p>Alternatively, we can use the <code>psych::describe()</code> function to give more information:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>##               vars   n mean   sd median trimmed  mad min max range  skew
+## school_motiv1    1 119 4.51 2.64      4    4.36 2.97   1  10     9  0.31
+## school_motiv2    2 118 4.86 2.72      5    4.76 2.97   1  10     9  0.14
+## school_motiv3    3 119 4.71 2.74      5    4.56 2.97   1  10     9  0.31
+## school_comp1     4 119 4.82 2.80      5    4.71 2.97   1  10     9  0.18
+## school_comp2     5 118 4.17 3.31      3    3.79 2.97   1  25    24  2.30
+## school_comp3     6 118 4.72 2.69      5    4.66 4.45   1  10     9  0.14
+## school_belif1    7 119 3.69 2.80      3    3.36 2.97   1  10     9  0.87
+## school_belif2    8 118 3.92 2.85      3    3.65 2.97   1  10     9  0.62
+## school_belif3    9 119 5.86 2.68      6    5.90 2.97   1  10     9 -0.19
+## female          10 119 0.68 0.47      1    0.72 0.00   0   1     1 -0.77
+##               kurtosis   se
+## school_motiv1    -0.91 0.24
+## school_motiv2    -1.13 0.25
+## school_motiv3    -1.02 0.25
+## school_comp1     -1.22 0.26
+## school_comp2     11.15 0.30
+## school_comp3     -1.29 0.25
+## school_belif1    -0.58 0.26
+## school_belif2    -0.96 0.26
+## school_belif3    -1.08 0.25
+## female           -1.43 0.04
+</code></pre><p>What if we want to look at a subset of the data?
+For example, what if we want to see those who identify as female?
+We can use <code>tidyverse::filter()</code> to subset the data using certain criteria.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(female <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">1</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>##               vars  n mean   sd median trimmed  mad min max range  skew
+## school_motiv1    1 81 4.61 2.60    4.5    4.48 3.71   1  10     9  0.29
+## school_motiv2    2 80 4.92 2.62    5.0    4.88 2.97   1  10     9  0.06
+## school_motiv3    3 81 4.85 2.80    5.0    4.74 2.97   1  10     9  0.21
+## school_comp1     4 81 4.93 2.75    5.0    4.86 2.97   1  10     9  0.13
+## school_comp2     5 80 4.19 3.49    3.0    3.75 2.97   1  25    24  2.75
+## school_comp3     6 80 4.74 2.69    5.0    4.70 4.45   1  10     9  0.06
+## school_belif1    7 81 3.77 2.86    3.0    3.42 2.97   1  10     9  0.82
+## school_belif2    8 80 3.90 2.90    3.0    3.59 2.97   1  10     9  0.64
+## school_belif3    9 81 5.68 2.86    6.0    5.69 2.97   1  10     9 -0.06
+## female          10 81 1.00 0.00    1.0    1.00 0.00   1   1     0   NaN
+##               kurtosis   se
+## school_motiv1    -0.87 0.29
+## school_motiv2    -1.07 0.29
+## school_motiv3    -1.18 0.31
+## school_comp1     -1.24 0.31
+## school_comp2     13.33 0.39
+## school_comp3     -1.39 0.30
+## school_belif1    -0.69 0.32
+## school_belif2    -0.97 0.32
+## school_belif3    -1.27 0.32
+## female             NaN 0.00
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#You can use any operator to filter: &gt;, &lt;, ==, &gt;=, etc.</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="missing-values">Missing Values
+  <a href="#missing-values"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s check for missing values.
+First, how are missing values identified?
+They could be <code>-999</code>, <code>NA</code>, or literally anything else.
+The simplest way to do this is to look back at the <code>summary()</code> function.
+There are four variables with one missing value.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##  school_motiv1    school_motiv2    school_motiv3     school_comp1   
+##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000  
+##  Median : 4.000   Median : 5.000   Median : 5.000   Median : 5.000  
+##  Mean   : 4.508   Mean   : 4.856   Mean   : 4.706   Mean   : 4.815  
+##  3rd Qu.: 6.000   3rd Qu.: 7.000   3rd Qu.: 7.000   3rd Qu.: 7.000  
+##  Max.   :10.000   Max.   :10.000   Max.   :10.000   Max.   :10.000  
+##                   NA&#39;s   :1                                         
+##   school_comp2     school_comp3   school_belif1    school_belif2   
+##  Min.   : 1.000   Min.   : 1.00   Min.   : 1.000   Min.   : 1.000  
+##  1st Qu.: 2.000   1st Qu.: 2.00   1st Qu.: 1.000   1st Qu.: 1.000  
+##  Median : 3.000   Median : 5.00   Median : 3.000   Median : 3.000  
+##  Mean   : 4.169   Mean   : 4.72   Mean   : 3.689   Mean   : 3.915  
+##  3rd Qu.: 6.000   3rd Qu.: 7.00   3rd Qu.: 5.000   3rd Qu.: 6.000  
+##  Max.   :25.000   Max.   :10.00   Max.   :10.000   Max.   :10.000  
+##  NA&#39;s   :1        NA&#39;s   :1                        NA&#39;s   :1       
+##  school_belif3        female      
+##  Min.   : 1.000   Min.   :0.0000  
+##  1st Qu.: 4.000   1st Qu.:0.0000  
+##  Median : 6.000   Median :1.0000  
+##  Mean   : 5.857   Mean   :0.6807  
+##  3rd Qu.: 8.000   3rd Qu.:1.0000  
+##  Max.   :10.000   Max.   :1.0000  
+## 
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># summary(new_names)</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="recode-continuous-variable-into-factor">Recode Continuous Variable into Factor
+  <a href="#recode-continuous-variable-into-factor"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>What if you want to recode a continuous variable into different levels (e.g., high, medium, and low)?
+Let&rsquo;s use the variable <code>school_belief1</code> as an example.
+First, let&rsquo;s recall the descriptives:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(school_belif1) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##  school_belif1   
+##  Min.   : 1.000  
+##  1st Qu.: 1.000  
+##  Median : 3.000  
+##  Mean   : 3.689  
+##  3rd Qu.: 5.000  
+##  Max.   :10.000
+</code></pre><p>Here, we can see that the values range from 1 - 10.
+Lets recode the variable to look like this:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>1 - 3</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>4 - 6</td>
+</tr>
+<tr>
+<td>High</td>
+<td>7 - 10</td>
+</tr>
+</tbody>
+</table>
+<p>We use <code>cut()</code> to divide continuous variables into intervals:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>school_factor <span style="color:#000;font-weight:bold">&lt;-</span> new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(school_factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cut</span>(school_belif1,
+</span></span><span style="display:flex;"><span>                      breaks <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">0</span>, <span style="color:#099">3</span>, <span style="color:#099">6</span>, <span style="color:#099">10</span>), <span style="color:#998;font-style:italic">#Use 0 at the beginning to ensure that 1 is included in the first break, then break by last number in each section (3, 6, 10) </span>
+</span></span><span style="display:flex;"><span>                      labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;low&#34;</span>, <span style="color:#d14">&#34;medium&#34;</span>, <span style="color:#d14">&#34;high&#34;</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># View summary</span>
+</span></span><span style="display:flex;"><span>school_factor <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(school_belif1, school_factor) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##  school_belif1    school_factor
+##  Min.   : 1.000   low   :72    
+##  1st Qu.: 1.000   medium:21    
+##  Median : 3.000   high  :26    
+##  Mean   : 3.689                
+##  3rd Qu.: 5.000                
+##  Max.   :10.000
+</code></pre>
+
+
+
+<h3 id="normality-and-distributions">Normality and Distributions
+  <a href="#normality-and-distributions"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>It&rsquo;s important to inspect our data to see if it is normally distributed.
+Many analyses are sensitive to violations of normality so in order to make sure we are confident that our data are normal, there are several things we can look at: density plots, histograms, QQ plots, box plots, scatterplots, and the descriptives such as skewness and kurtosis.
+Normally, we would want to inspect every variable, but for demonstration purposes, lets focus on the <code>school_belif1</code> variable.</p>
+
+
+
+
+<h4 id="density-plots">Density Plots
+  <a href="#density-plots"></a>
+</h4>
+<p>A density plot is a visualization of the data over a continuous interval.
+As we can see by this density plot, the variable <code>school_belif1</code> is positively skewed.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+
+
+
+
+<h4 id="histogram">Histogram
+  <a href="#histogram"></a>
+</h4>
+<p>A histogram provides the same information as the density plot but provides a count instead of density on the x-axis.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">hist</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1, col <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;lightgray&#39;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+
+
+
+
+<h4 id="qq-plots">QQ Plots
+  <a href="#qq-plots"></a>
+</h4>
+<p>QQ plot, or quantile-quantile plot, is a plot of the correlation between a sample and the normal distribution.
+In a QQ plot, each observation is plotted as a single dot.
+If the data are normal, the dots should form a straight line.
+If the data are skewed, you will see either a downward curve (negatively skewed) or upward curve (positively skewed).</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggqqplot</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<p>As you can see in this QQ plot, there is an upward curve, which further tells us that we have a positively skewed variable.</p>
+
+
+
+
+<h4 id="box-plots">Box Plots
+  <a href="#box-plots"></a>
+</h4>
+<p>Box plot can show us distributions, specifically the minimum, first quartile, median, third quartile, and maximum.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic"># </span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(y <span style="color:#000;font-weight:bold">=</span> school_belif1)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_boxplot</span>() 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+
+
+
+
+<h4 id="bivariate-scatterplots">Bivariate Scatterplots
+  <a href="#bivariate-scatterplots"></a>
+</h4>
+<p>We can use <code>pairs()</code> to look at bivariate scatterplots.
+Do the relationships look linear?:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">pairs</span>(new_names)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Or we can look at individual scatterplots:</span>
+</span></span><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(school_belif1, school_belif2)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_smooth</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lm&#34;</span>, se <span style="color:#000;font-weight:bold">=</span><span style="color:#999">F</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_minimal</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-19-2.png" width="672" />
+<p>We can also use <code>cor()</code> to look at bivariate correlations for the entire data set (Note: Missing values are not allowed in correlation analyses, use <code>drop_na()</code> to do listwise deletion):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#remove missing data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">cor</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;pearson&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">round</span>(<span style="color:#099">2</span>) <span style="color:#998;font-style:italic"># round to 2 decimal places </span>
+</span></span></code></pre></div><pre tabindex="0"><code>##               school_motiv1 school_motiv2 school_motiv3 school_comp1
+## school_motiv1          1.00          0.82          0.74         0.64
+## school_motiv2          0.82          1.00          0.60         0.68
+## school_motiv3          0.74          0.60          1.00         0.52
+## school_comp1           0.64          0.68          0.52         1.00
+## school_comp2           0.59          0.53          0.41         0.55
+## school_comp3           0.61          0.69          0.57         0.71
+## school_belif1          0.54          0.50          0.56         0.57
+## school_belif2          0.63          0.55          0.58         0.67
+## school_belif3          0.40          0.37          0.52         0.43
+## female                 0.04          0.04          0.07         0.04
+##               school_comp2 school_comp3 school_belif1 school_belif2
+## school_motiv1         0.59         0.61          0.54          0.63
+## school_motiv2         0.53         0.69          0.50          0.55
+## school_motiv3         0.41         0.57          0.56          0.58
+## school_comp1          0.55         0.71          0.57          0.67
+## school_comp2          1.00         0.63          0.62          0.63
+## school_comp3          0.63         1.00          0.65          0.68
+## school_belif1         0.62         0.65          1.00          0.81
+## school_belif2         0.63         0.68          0.81          1.00
+## school_belif3         0.29         0.44          0.37          0.39
+## female                0.00         0.01          0.04          0.00
+##               school_belif3 female
+## school_motiv1          0.40   0.04
+## school_motiv2          0.37   0.04
+## school_motiv3          0.52   0.07
+## school_comp1           0.43   0.04
+## school_comp2           0.29   0.00
+## school_comp3           0.44   0.01
+## school_belif1          0.37   0.04
+## school_belif2          0.39   0.00
+## school_belif3          1.00  -0.09
+## female                -0.09   1.00
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># A colorful plot:</span>
+</span></span><span style="display:flex;"><span>f_cor <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">cor</span>(new_names, use <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;pairwise.complete.obs&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">corrplot</span>(f_cor,
+</span></span><span style="display:flex;"><span>         method<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;number&#34;</span>,
+</span></span><span style="display:flex;"><span>         type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;upper&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Fun tip: `apa.cor.table()` creates an APA formated correlation matrix and saves it to your computer</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#apa.cor.table(physics, filename = &#34;cor_table.doc&#34;)</span>
+</span></span></code></pre></div>
+
+
+
+<h4 id="skewness-and-kurtosis">Skewness and Kurtosis
+  <a href="#skewness-and-kurtosis"></a>
+</h4>
+<p>One final thing to look are the skewness and kurtosis values in the descriptive statistics provided earlier.
+There are many different sources that provide different cut-off values, but as a general rule of thumb, skewness and kurtosis values greater than +3/-3 indicate a non-normal distribution.
+Positive skew values indicate positively skewed variables and negative skew values indicate negatively skewed variables.
+Positive values of kurtosis indicate leptokurtic distributions, or higher peaks with taller tails than a normal distribution.
+Negative values of kurtosis indicate platykurtic distributions, or flat peaks with thin tails.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1)
+</span></span></code></pre></div><pre tabindex="0"><code>##    vars   n mean  sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 119 3.69 2.8      3    3.36 2.97   1  10     9 0.87    -0.58 0.26
+</code></pre><p>Here we can see that the <em>skew</em> value is less than 3 and the <em>kurtosis</em> value is less than 3, indicating a normal distribution.</p>
+<hr>
+
+
+
+
+<h2 id="references">References
+  <a href="#references"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Hallquist, M. N.
+&amp; Wiley, J. F.
+(2018).
+MplusAutomation: An R Package for Facilitating Large-Scale Latent Variable Analyses in Mplus.
+Structural Equation Modeling, 25, 621-638.
+doi: 10.1080/10705511.2017.1402334.</p>
+<p>Muthén, L.K.
+and Muthén, B.O.
+(1998-2017).
+Mplus User&rsquo;s Guide.
+Eighth Edition.
+Los Angeles, CA: Muthén &amp; Muthén</p>
+<p>R Core Team (2017).
+R: A language and environment for statistical computing.
+R Foundation for Statistical Computing, Vienna, Austria.
+URL 
+<a href="http://www.R-project.org/" target="_blank" rel="noopener">http://www.R-project.org/</a></p>
+<p>Wickham et al., (2019).
+Welcome to the tidyverse.
+Journal of Open Source Software, 4(43), 1686, 
+<a href="https://doi.org/10.21105/joss.01686" target="_blank" rel="noopener">https://doi.org/10.21105/joss.01686</a></p>
+<p><strong>Credits</strong></p>
+<p>While I am creating these labs specifically for this W22 class, I am incorporating some material from the previous TA&rsquo;s labs and his amazing workshops: 
+<a href="https://garberadamc.github.io/project-site/" target="_blank" rel="noopener">Adam Garber</a>.
+Big shout out to Adam for paving the way for us to switch over from SPSS to R in GGSE and for providing resources to make Mplus Automation more accessible to researchers.
+Please see Adam&rsquo;s website to find more resources related to R studio and MplusAutomation.</p>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://www.dina-arch.com/collection/tips-and-tricks-in-r/">Data Wrangling in R &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/collection/featured-sidebar.jpg" class="db ma0">
+
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4 flex-row">
+  <div class="w-two-thirds w-50-l ph0">
+    <h2 class="mv3 f5 fw7 ttu tracked">
+      <a class="no-underline dim" href="/collection/">Outline</a></h2>
+    <nav id="SectionTableOfContents" aria-label="SectionTableOfContents">
+        <ul>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/linear-models/"><a href="https://www.dina-arch.com/collection/linear-models/">Linear Models for Data Analysis</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/01-data-cleaning/"><a href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">Lab 1: Data Screening and Cleaning</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/02-slr/"><a href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/03-moderation/"><a href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/04-mediation/"><a href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
+            
+          </details>
+          
+          </li>
+        
+          
+          
+          <li class="active" hugo-nav="/collection/intro-r-mplus/">
+            <a href="https://www.dina-arch.com/collection/intro-r-mplus/">Introduction to R, Mplus, and MplusAutomation</a></li>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/tips-and-tricks-in-r/">
+            <a href="https://www.dina-arch.com/collection/tips-and-tricks-in-r/">Data Wrangling in R</a></li>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          
+          </li>
+        
+        </ul>
+    </nav>
+  </div>
+  <details id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">On this page<h2></summary>
+    <div class="pl2 pr0 mh0">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#part-1underline-introduction-to-mplus">[PART 1]{.underline}: Introduction to Mplus</a></li>
+    <li><a href="#part-2underline-introduction-to-rstudio">[PART 2]{.underline}: Introduction to RStudio</a></li>
+    <li><a href="#part-3underline-data-cleaning--screening">[PART 3]{.underline}: Data Cleaning &amp; Screening</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+</aside>
+
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2022 Dina Arch
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="mailto:dnaji@ucsb.edu" title="envelope" >
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/dinanajiarch" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/dnajiarch" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/dina-naji-arch-22649396/" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-2716-0798" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

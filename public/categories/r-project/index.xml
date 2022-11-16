@@ -5,11 +5,22 @@
     <link>https://www.dina-arch.com/categories/r-project/</link>
     <description>Recent content in r project on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://www.dina-arch.com/categories/r-project/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/r-project/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to R, Mplus, and MplusAutomation</title>
+      <link>https://www.dina-arch.com/collection/intro-r-mplus/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/intro-r-mplus/</guid>
+      <description>Please note that this document walks through AppStream which provides to access Mplus at UC Santa Barbara. If you already own Mplus, then you can ignore that part (i.e., you do not need to link your Google Drive to AppStream).
+For Part 1, we will first walk through how to run basic descriptive statistics using only Mplus. Then in the in the second part, we will use an R package called MplusAutomation to run the same analysis as part 1, only this time using only RStudio.</description>
+    </item>
+    
     <item>
       <title>Data Wrangling in R</title>
       <link>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</guid>
       <description>library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let&amp;rsquo;s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp;amp; Gorman KB, 2020)
@@ -19,7 +30,7 @@ Read in and view data data(&amp;#34;penguins&amp;#34;) head(penguins_raw) # read
     <item>
       <title>Machine Learning Course Project</title>
       <link>https://www.dina-arch.com/collection/machine_learning/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/collection/machine_learning/</guid>
       <description>Background The U.S. presidential election in 2012 did not come as a surprise. Some correctly predicted the outcome of the election correctly including Nate Silver, and many speculated about his approach.

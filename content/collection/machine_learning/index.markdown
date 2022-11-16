@@ -1,9 +1,9 @@
 ---
 title: "Machine Learning Course Project"
-date: "November 15, 2022"
+date: 2021-05-06
 author: 'Dina Arch'
 subtitle: Completion of a final project for PSTAT 231 at UC Santa Barbara.
-weight: 3
+weight: 4
 draft: false
 images: 
 series: 

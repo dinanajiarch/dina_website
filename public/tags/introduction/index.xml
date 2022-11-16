@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>introduction on Dina Arch</title>
+    <link>https://www.dina-arch.com/tags/introduction/</link>
+    <description>Recent content in introduction on Dina Arch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/introduction/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to R, Mplus, and MplusAutomation</title>
+      <link>https://www.dina-arch.com/collection/intro-r-mplus/</link>
+      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/intro-r-mplus/</guid>
+      <description>Please note that this document walks through AppStream which provides to access Mplus at UC Santa Barbara. If you already own Mplus, then you can ignore that part (i.e., you do not need to link your Google Drive to AppStream).
+For Part 1, we will first walk through how to run basic descriptive statistics using only Mplus. Then in the in the second part, we will use an R package called MplusAutomation to run the same analysis as part 1, only this time using only RStudio.</description>
+    </item>
+    
+  </channel>
+</rss>
