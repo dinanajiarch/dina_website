@@ -2,7 +2,7 @@
 title: "Data Wrangling in R"
 date: 2021-12-14
 author: 'Dina Arch'
-subtitle: Completion of a final project for PSTAT 231 at UC Santa Barbara.
+subtitle: A series of functions that could be useful when preparing your dataset for analysis.
 weight: 3
 draft: false
 images: 

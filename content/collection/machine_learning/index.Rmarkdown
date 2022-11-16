@@ -49,7 +49,7 @@ library(tree)
 library(maptree)
 ```
 
-# Background
+## Background
 
 The U.S. presidential election in 2012 did not come as a surprise. Some correctly predicted the outcome of the election correctly including [Nate Silver](https://en.wikipedia.org/wiki/Nate_Silver), 
 and [many speculated about his approach](https://www.theguardian.com/science/grrlscientist/2012/nov/08/nate-sliver-predict-us-election).
@@ -60,7 +60,7 @@ to many, and it underscored that predicting voter behavior is complicated for ma
 
 Your final project will be to merge census data with 2016 voting data to analyze the election outcome. 
 
-# Data
+## Data
 
 The `project_data.RData` binary file contains three datasets: tract-level 2010 census data, stored as `census`; metadata `census_meta` with variable descriptions and types; and county-level vote tallies from the 2016 election, stored as `election_raw`.
 
@@ -69,7 +69,7 @@ The `project_data.RData` binary file contains three datasets: tract-level 2010 c
 load('project_data.RData')
 ```
 
-## Election data
+### Election data
 
 Some example rows of the election data are shown below:
 
@@ -108,7 +108,7 @@ dim(election_raw)
 ```
 
 
-## Census data
+### Census data
 
 The first few rows and columns of the `census` data are shown below.
 
@@ -125,7 +125,7 @@ census_meta %>% head()
 ```
 
 
-## Data preprocessing
+### Data preprocessing
 
 5. Separate the rows of `election_raw` into separate federal-, state-, and county-level data frames:
 
@@ -230,7 +230,7 @@ state_winner %>%
   slice_max(pct, n=1)
 ```
 
-# Visualization
+## Visualization
 
 
 Here you'll generate maps of the election data using `ggmap`. The .Rmd file for this document contains codes to generate the following map.
@@ -432,7 +432,7 @@ census_ct %>%
 
 
 
-# Exploratory analysis
+## Exploratory analysis
 
 15. Carry out PCA for both county & sub-county level census data. Compute the first two principal components PC1 and PC2 for both county and sub-county respectively. Discuss whether you chose to center and scale the features and the reasons for your choice. Examine and interpret the loadings.
 
@@ -686,7 +686,7 @@ clusters[san_mateo]
 
 **It seems that the counties in the PC cluster are more evenly spread out than using the entire dataset. When using the first 5 principal components, we are capturing 64% of the variance in the county dataset with only five variables. Because of the smaller dimension, it may be more effective in clustering the counties as opposed to using 26 variables with the full dataset. It makes sense that San Mateo county is put into cluster 1 with the full dataset as most counties are grouped there. Thus, we may want to rely on the cluster that used the PCs, where San Mateo is in cluster 3.** 
 
-# Classification
+## Classification
 
 In order to train classification models, we need to combine `county_winner` and `census_ct` data. This seemingly straightforward task is harder than it sounds. Codes are provided in the .Rmd file that make the necessary changes to merge them into `election_cl` for classification.
 
@@ -916,7 +916,7 @@ rates_log %>%
 
 **Both ROC curves look very different, with the logistic curve looking cleaner and has a higher optimal threshold. Both analyses have pros and cons and different classifiers are more appropriate for answering different kinds of questions about the election. Regarding decision trees, as we saw in the output, they are intuitive and easy to implement visualize and interpret. They also have the ability to be pruned by cost complexity. However, they are sensitive to small changes in the data, have high variance, and could fail if they separation in the feature space is hard to approximate. I think working with this scale of data is difficult to implement decision trees with because there is a lot of variability in data. Regarding logistic regression, they are interpretable, flexible, and can take in a large number of predictors. However, like decision trees, they can fail if data are separated in the feature space.**
 
-# Taking it further
+## Taking it further
 
 21. This is an open question. Interpret and discuss any overall insights gained in this analysis and possible explanations. Use any tools at your disposal to make your case: visualize errors on the map, discuss what does or doesn't seem reasonable based on your understanding of these methods, propose possible directions (for example, collecting additional data or domain knowledge).  In addition, propose and tackle _at least_ one more interesting question. Creative and thoughtful analyses will be rewarded!
 

@@ -6,22 +6,40 @@
     <description>Recent content in Tags on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 14 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 28 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>introduction</title>
+      <link>https://www.dina-arch.com/tags/introduction/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/introduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mplus</title>
+      <link>https://www.dina-arch.com/tags/mplus/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/mplus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r markdown</title>
+      <link>https://www.dina-arch.com/tags/r-markdown/</link>
+      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>classification</title>
       <link>https://www.dina-arch.com/tags/classification/</link>
       <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/classification/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>introduction</title>
-      <link>https://www.dina-arch.com/tags/introduction/</link>
-      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/introduction/</guid>
       <description></description>
     </item>
     
@@ -35,29 +53,11 @@
     </item>
     
     <item>
-      <title>mplus</title>
-      <link>https://www.dina-arch.com/tags/mplus/</link>
-      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/mplus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>principal components</title>
       <link>https://www.dina-arch.com/tags/principal-components/</link>
       <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/principal-components/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r markdown</title>
-      <link>https://www.dina-arch.com/tags/r-markdown/</link>
-      <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
       <description></description>
     </item>
     
