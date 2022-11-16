@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.dina-arch.com/collection/linear-models/</loc>
-    <lastmod>2022-01-10T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</loc>
     <lastmod>2021-03-30T00:00:00+00:00</lastmod>
@@ -14,20 +14,18 @@
     <loc>https://www.dina-arch.com/collection/linear-models/02-slr/</loc>
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.dina-arch.com/blog/spoonful-series/02-spoonful/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</loc>
   </url><url>
     <loc>https://www.dina-arch.com/collection/linear-models/03-moderation/</loc>
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/collection/machine_learning/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://www.dina-arch.com/blog/spoonful-series/03-spoonful/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/collection/machine_learning/</loc>
   </url><url>
     <loc>https://www.dina-arch.com/collection/linear-models/04-mediation/</loc>
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
@@ -36,10 +34,10 @@
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/</loc>
-    <lastmod>2022-01-10T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/collection/</loc>
-    <lastmod>2022-01-10T00:00:00+00:00</lastmod>
+    <lastmod>2022-11-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/project/binarylog/</loc>
     <lastmod>2021-05-30T00:00:00+00:00</lastmod>
@@ -100,18 +98,6 @@
   </url><url>
     <loc>https://www.dina-arch.com/tags/data-screening/</loc>
     <lastmod>2021-03-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/machine-learning/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/principal-components/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/categories/r-project/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/visualization/</loc>
-    <lastmod>2021-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/blog/</loc>
     <lastmod>2021-01-28T00:00:00+00:00</lastmod>
@@ -205,5 +191,13 @@
     <loc>https://www.dina-arch.com/contributors/</loc>
   </url><url>
     <loc>https://www.dina-arch.com/license/</loc>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/machine-learning/</loc>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/principal-components/</loc>
+  </url><url>
+    <loc>https://www.dina-arch.com/categories/r-project/</loc>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/visualization/</loc>
   </url>
 </urlset>

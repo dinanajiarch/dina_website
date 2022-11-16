@@ -5,12 +5,11 @@
     <link>https://www.dina-arch.com/tags/principal-components/</link>
     <description>Recent content in principal components on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 15 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/principal-components/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language><atom:link href="https://www.dina-arch.com/tags/principal-components/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Data Wrangling in R</title>
       <link>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</link>
-      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</guid>
       <description>library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let&amp;rsquo;s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp;amp; Gorman KB, 2020)
@@ -20,7 +19,7 @@ Read in and view data data(&amp;#34;penguins&amp;#34;) head(penguins_raw) # read
     <item>
       <title>Machine Learning Course Project</title>
       <link>https://www.dina-arch.com/collection/machine_learning/</link>
-      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/collection/machine_learning/</guid>
       <description>Background The U.S. presidential election in 2012 did not come as a surprise. Some correctly predicted the outcome of the election correctly including Nate Silver, and many speculated about his approach.

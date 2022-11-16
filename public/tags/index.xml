@@ -125,33 +125,6 @@
     </item>
     
     <item>
-      <title>machine learning</title>
-      <link>https://www.dina-arch.com/tags/machine-learning/</link>
-      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/machine-learning/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>principal components</title>
-      <link>https://www.dina-arch.com/tags/principal-components/</link>
-      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/principal-components/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>visualization</title>
-      <link>https://www.dina-arch.com/tags/visualization/</link>
-      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>style</title>
       <link>https://www.dina-arch.com/tags/style/</link>
       <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
@@ -166,6 +139,33 @@
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/hugo-site/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>https://www.dina-arch.com/tags/machine-learning/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>principal components</title>
+      <link>https://www.dina-arch.com/tags/principal-components/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/principal-components/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visualization</title>
+      <link>https://www.dina-arch.com/tags/visualization/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/visualization/</guid>
       <description></description>
     </item>
     

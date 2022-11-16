@@ -1,6 +1,6 @@
 ---
 author: Dina Arch
-date: "2022-01-10"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 description: |
   I created these handouts for graduate students in ED 214C (Linear Models for Data Analysis) at UC Santa Barabara.
 excerpt: null

@@ -35,15 +35,6 @@
     </item>
     
     <item>
-      <title>r project</title>
-      <link>https://www.dina-arch.com/categories/r-project/</link>
-      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/categories/r-project/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Theme Features</title>
       <link>https://www.dina-arch.com/categories/theme-features/</link>
       <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
@@ -85,6 +76,15 @@
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/categories/package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r project</title>
+      <link>https://www.dina-arch.com/categories/r-project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/categories/r-project/</guid>
       <description></description>
     </item>
     

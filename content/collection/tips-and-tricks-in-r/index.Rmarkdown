@@ -1,6 +1,6 @@
 ---
 title: "Data Wrangling in R"
-date: 2021-03-15
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 author: 'Dina Arch'
 subtitle: Completion of a final project for PSTAT 231 at UC Santa Barbara.
 weight: 2

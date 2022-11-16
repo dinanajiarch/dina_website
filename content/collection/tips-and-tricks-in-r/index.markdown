@@ -1,6 +1,6 @@
 ---
 title: "Data Wrangling in R"
-date: 2021-03-15
+date: "November 15, 2022"
 author: 'Dina Arch'
 subtitle: Completion of a final project for PSTAT 231 at UC Santa Barbara.
 weight: 2
