@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data analysis on Dina Arch</title>
+    <link>https://www.dina-arch.com/categories/data-analysis/</link>
+    <description>Recent content in data analysis on Dina Arch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/data-analysis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lab 1: Data Screening and Cleaning</title>
+      <link>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</link>
+      <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</guid>
+      <description>#Load packages here library(haven) #for read_sav() function library(psych) # describe() library(ggpubr) # ggdensity() and ggqqplot() library(apaTables) # apa.cor.table() library(tidyverse) Data Screening &amp;amp; Cleaning The data sets used in this lab are used in Chapter 4 of Tabachnick &amp;amp; Fidell (2012; I believe there is a new version from 2019 now). The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.</description>
+    </item>
+    
+    <item>
+      <title>Lab 2: Simple Linear Regression</title>
+      <link>https://www.dina-arch.com/collection/linear-models/02-slr/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/02-slr/</guid>
+      <description>library(psych) #describe() library(PerformanceAnalytics) #chart.correlation() library(lm.beta) #lm.beta() library(sjPlot) #tab_model() library(gridExtra) #grid.arrange() library(tidyverse) This lab will be an overview of simple linear regression and was created along side Karen&amp;rsquo;s lectures and her code.
+Simple Linear Regression The Equation The equation of simple linear regression is this:
+$$Y_i = \alpha + \beta{x}_i + \epsilon_i $$ Expressed as Betas:
+$$ Y_i = \beta_0 + \beta{x}_i + \epsilon_i $$
+When we are predicting Y, we express the prediction equation as this:</description>
+    </item>
+    
+    <item>
+      <title>Lab 3: Moderation</title>
+      <link>https://www.dina-arch.com/collection/linear-models/03-moderation/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/03-moderation/</guid>
+      <description>library(knitr) #include_graphics() library(equatiomatic) # extract_eq() library(psych) #describe() library(gtsummary) #tbl_summary() library(summarytools) #descr() library(stargazer) #stargazer() library(sjPlot) #tab_model() library(interactions) #interact_plot(), sim_slopes() library(jtools) #summ() library(tidyverse) Moderation When the research hypotheses state that different categories, or levels of another variable, may have differing responses to other independent variables, we need to use interaction terms
+- Also called moderation
+Example: The relationship between discrimination and grades depends on prog.
+Graph drawn using draw.io.
+Moderation Example Suppose you are doing a simple study on weight loss and notice that people who spend more time exercising lose more weight.</description>
+    </item>
+    
+    <item>
+      <title>Lab 4: Mediation</title>
+      <link>https://www.dina-arch.com/collection/linear-models/04-mediation/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/04-mediation/</guid>
+      <description>library(haven) #read_sav() library(mediation) # mediate() (Tingley, Yamamoto, Hirose, Keele, &amp;amp; Imai, 2014) library(gvlma) # gvlma() library(kableExtra) #kable() library(corrr) #correlate() library(psych) #mediate() library(tidyverse) Mediation in R This examples comes from a tutorial paper on mediation found here. This is an open source paper that shared the data set used in this example. The following is code and interpretation are based on this paper. Note that they use a different package to estimate the model and you will see that our estimates are very close, though not exact.</description>
+    </item>
+    
+    <item>
+      <title>Lab 5: Binary Logistic Regression</title>
+      <link>https://www.dina-arch.com/collection/linear-models/05-blr/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/05-blr/</guid>
+      <description>library(pander) #pander() library(psych) # describe() library(gtsummary) #tbl_summary() library(equatiomatic) # extract_eq() library(sjPlot) # tab_xtab(), tab_model() library(tidyverse) This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.
+What is Binary Logistic Regression? It is a regression with an outcome variable (or dependent variable) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose).</description>
+    </item>
+    
+  </channel>
+</rss>

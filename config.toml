@@ -41,9 +41,9 @@ enableEmoji = true
   socialInFooter = true
   # Default image for social sharing and search engines. 
   # Place image file in `static` folder and specify image name here.
-  sharing_image = "/img/papillons.jpg"
+  sharing_image = ""
   # Twitter username (without @). Used when a visitor shares your site on Twitter.
-  twitter = "apreshill"
+  twitter = "dnajiarch"
   
   # use a built-in color theme
   # one of: forest / grayscale / peach / plum /
@@ -127,7 +127,7 @@ enableEmoji = true
   [[menu.header]]
     name = "R Projects"
     title = "Project Portfolio"
-    url = "/project/"
+    url = "/collection/"
     weight = 2
   [[menu.header]]
     name = "CV"

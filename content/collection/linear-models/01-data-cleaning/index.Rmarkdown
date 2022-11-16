@@ -1,0 +1,547 @@
+---
+title: "Lab 1: Data Screening and Cleaning"
+subtitle: "Information on how to clean and screen your data and write up the results."
+date: 2021-03-30
+author: "TA: Dina Arch"
+weight: 1
+draft: false
+images:
+series:
+tags:
+- r markdown
+- data cleaning
+- data screening
+- tidy data
+- regression
+categories:
+- data analysis
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE) #Here, I have made it so that when you knit your .rmd, warnings and messages will not show up in the html markdown. 
+```
+
+```{r}
+#Load packages here
+library(haven) #for read_sav() function
+library(psych) # describe()
+library(ggpubr) # ggdensity() and ggqqplot()
+library(apaTables) # apa.cor.table()
+library(tidyverse)
+```
+
+## Data Screening & Cleaning
+
+The data sets used in this lab are used in Chapter 4 of Tabachnick & Fidell (2012; I believe there is a new version from 2019 now).
+The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.
+
+Here is a table of the variables and their description:
+
+|              |                                |
+|--------------|--------------------------------|
+| **Variable** | **Description**                |
+| subno        | Subject number                 |
+| timedrs      | Visits to health professionals |
+| attdrug      | Attitudes toward medication    |
+| atthouse     | Attitudes toward housework     |
+| income       | Ordinal income variable        |
+| emplmnt      | Whether currently employed     |
+| mstatus      | Whether currently married      |
+| race         | Binary race variable           |
+
+The style of code and package we will be using for this class is called [`tidyverse`](https://www.tidyverse.org/) .
+This shouldn't be anything too different than what you've seen in the previous two courses in this series.
+Most functions are within the `tidyverse` package and if not, I've indicated the packages used in the code chunk above.
+
+As a reminder, if a function does not work and you receive an error like this: `could not find function "random_function"`; or if you try to load a package and you receive an error like this: `` there is no package called `random_package` `` , then you will need to install the package using `install.packages("random_package")` in the console (the bottom-left window in R studio).
+Once you have installed the package you will *never* need to install it again, however you must *always* load in the packages at the beginning of your R markdown using `library(random_package)`, as shown in this document.
+
+### Read in Data
+
+Let's read in a data set called `screen1.sav`:
+
+```{r}
+# Notice this is an SPSS dataset
+screen1 <- read_sav("screen1.sav")
+
+```
+
+Usually, we want to work with .csv files, so let's convert this data set from *.sav* to *.csv* and save it to our computers.
+
+```{r}
+# write_csv saves a .csv version of your dataset to your working directory.
+# Enter the name of the object that contains your data set (in this case, "screen1"), then enter the name you want to save your dataset as. We can call it the same thing: "screen1.csv"
+
+write_csv(screen1, "screen1.csv")
+```
+
+Let's read in the new *.csv* data set:
+
+```{r}
+# If you get an error, you might need to wait a few seconds for the .csv to save to your folder before running this. 
+
+screen1 <- read_csv("screen1.csv")
+```
+
+Use `names()` to view the variable names in the data set:
+
+```{r}
+names(screen1)
+```
+
+Let's read in another data set `screen2.sav` and convert it to a *.csv* like we did before:
+
+```{r}
+# Read in .sav
+screen2 <- read_sav("screen2.sav")
+
+# Convert and save a .csv version
+write.csv(screen2, "screen2.csv")
+
+# Read in the new .csv version
+screen2 <- read_csv("screen2.csv")
+
+# Look at variable names
+names(screen2)
+```
+
+### Merge Data
+
+What if we want to merge the two data sets?
+As with many thing in R, there are multiple ways to do this.
+Here is probably the most efficient way to merge data sets using `tidyverse::full_join()`.
+This will join two data sets based on a "join" variable and return all rows and columns from both data sets.
+Because we are joining two data sets that have different variable names to join them by (i.e., the ID or Subject number) , we use `by` shown below to let R know that there are different names.
+As a reminder, use the pipe operator `%>%` to create a sequence of functions.
+
+```{r}
+# Here we created a new dataset called `merged_screen`
+merged_screen <- screen1 %>% 
+  full_join(screen2, by = c("subno" = "...1")) 
+```
+
+### Examine Data
+
+Let's examine the data set:
+
+```{r}
+# View the first 5 rows
+head(merged_screen)
+```
+
+Let's look at descriptive statistics for each variable.
+Because looking at the ID variable's (`subno`) descriptives is unnecessary, we use `select()` to remove the variable by using the minus (`-`) sign:
+
+```{r}
+merged_screen %>% 
+  select(-subno) %>% 
+  summary() 
+```
+
+Alternatively, we can use the `psych::describe()` function to give more information:
+
+```{r}
+merged_screen %>% 
+  select(-subno) %>% 
+  describe()
+```
+
+What if we want to look at a subset of the data?
+For example, what if we want to subset the data to see whose been to the doctor more than 10 times?
+We can use `tidyverse::filter()` to subset the data using certain criteria.
+
+```{r}
+merged_screen %>% 
+  filter(timedrs > 10) %>% 
+  describe() 
+
+#You can use any operator to filter: >, <, ==, >=, etc.
+```
+
+### Recode Missing Values
+
+Let's check for missing values.
+First, how are missing values identified?
+They could be `-999`, `NA`, or literally anything else.
+The simplest way to do this is to look back at the `summary()` function.
+We can see that they are identified as `NA`.
+Because, for example, `timedrs` has 128 `NA`'s.
+We also know that it's not `-999` because the *min* and *max* values look normal.
+
+```{r}
+merged_screen %>% 
+  select(-subno) %>% 
+  summary() 
+```
+
+Additionally, we can look at the unique values (using `unique()`) for each variable to see if there are any unusual values or multiple missing values were coded.
+For example, for `timedrs` (Visits to health professionals), we can see that the unique values don't look unusual, and there is `NA`.
+
+```{r}
+unique(merged_screen$timedrs)
+```
+
+Usually, we want our missing values to be identified as `NA` since that's what R understands as missing by default.
+What if your dataset doesn't have missing as `NA`?
+What if the missing values are `-999`?
+Or vise versa?
+Here is how you would recode the values from `NA` to `-999` (but usually, you would never do this since you want the missing to be labeled as `NA`):
+
+```{r}
+# Use tidyverse::mutate() adjust an existing variable
+# Then use tidyverse::replace_na() to replace -999 with NA for the timedrs variable
+new_data_with_NA <- merged_screen %>% 
+  mutate(timedrs = replace_na(timedrs, -999))
+
+# Recode back to `NA` using tidyverse::na_if()
+new_data_with_NA <- merged_screen %>% 
+  mutate(timedrs = na_if(timedrs, "-999"))
+```
+
+### Recode Continuous Variable into Factor
+
+What if you want to recode a continuous variable into different levels (e.g., high, medium, and low)?
+Let's use the variable `income` as an example.
+First, let's recall the descriptives:
+
+```{r}
+merged_screen %>% 
+  select(income) %>% 
+  summary() 
+```
+
+Here, we can see that the values range from 1 - 10.
+Lets recode the variable to look like this:
+
+|        |        |
+|--------|--------|
+| Low    | 1 - 3  |
+| Medium | 4 - 6  |
+| High   | 7 - 10 |
+
+We use `cut()` to divide continuous variables into intervals:
+
+```{r}
+
+income_factor <- merged_screen %>% 
+  mutate(income_factor = cut(income,
+                      breaks = c(0, 3, 6, 10), #Use 0 at the beginning to ensure that 1 is included in the first break, then break by last number in each section (3, 6, 10) 
+                      labels = c("low", "medium", "high")))
+# View summary
+income_factor %>% 
+  select(income, income_factor) %>% 
+  summary() 
+```
+
+### Normality and Transformation
+
+It's important to inspect our data to see if it is normally distributed.
+Many analyses are sensitive to violations of normality so in order to make sure we are confident that our data are normal, there are several things we can look at: density plots, histograms, QQ plots, the Shapiro-Wilk's normality test, and the descriptives such as skewness and kurtosis.
+Normally, we would want to inspect every variable, but for demonstration purposes, lets focus on the `timedrs` variable.
+
+#### Density Plots
+
+A density plot is a visualization of the data over a continuous interval.
+As we can see by this density plot, the variable `timedrs` is positively skewed.
+There are more people that make less doctor visits than those who make more doctor visits.
+
+```{r}
+
+ggdensity(merged_screen$timedrs, fill = "lightgray")
+
+```
+
+#### Histogram
+
+A histogram provides the same information as the density plot but provides a count instead of density on the x-axis.
+
+```{r}
+gghistogram(merged_screen$timedrs, fill = "lightgray")
+```
+
+#### QQ Plots
+
+QQ plot, or quantile-quantile plot, is a plot of the correlation between a sample and the normal distribution.
+In a QQ plot, each observation is plotted as a single dot.
+If the data are normal, the dots should form a straight line.
+If the data are skewed, you will see either a downward curve (negatively skewed) or upward curve (positively skewed).
+
+```{r}
+ggqqplot(merged_screen$timedrs)
+```
+
+As you can see in this QQ plot, there is an upward curve, which further tells us that we have a positively skewed variable.
+
+#### Shapiro-Wilk's Test of Normality
+
+Sometimes it's difficult to tell whether the variable is normal based on the plots alone (not in this case, however).
+The Shapiro-Wilk's normality test is a significance test that compares the sample distribution to a normal distribution.
+If the test is not significant, then the distribution is normal.
+As in there is no significant difference between the sample and a normal distribution.
+If the test is significant, then the distribution is *not* normal.
+As in, there is a significant difference between the sample and a normal distribution.
+We can use `shapiro_test` to test this.
+
+```{r}
+#library(rstatix) 
+#merged_screen %>% 
+#  shapiro_test(timedrs)
+```
+
+To no one's surprise, the Shapiro-Wilk's Test of Normality was significant for the `timedrs` variable.
+
+#### Skewness and Kurtosis
+
+One final thing to look are the skewness and kurtosis values in the descriptive statistics provided earlier.
+There are many different sources that provide different cut-off values, but as a general rule of thumb, skewness and kurtosis values greater than +3/-3 indicate a non-normal distribution.
+Positive skew values indicate positively skewed variables and negative skew values indicate negatively skewed variables.
+Positive values of kurtosis indicate leptokurtic distributions, or higher peaks with taller tails than a normal distribution.
+Negative values of kurtosis indicate platykurtic distributions, or flat peaks with thin tails.
+
+```{r}
+describe(merged_screen$timedrs)
+```
+
+Here we can see that the *skew* value is greater than 3 and positive, indicating a positive distribution.
+The *kurtosis* value is greater than 3 and positive, probably because, as we saw in the density plot, it has a high peak and tall tails.
+
+#### Transformation
+
+So, you've violated normality, now what?
+Well, we need to consider the analysis were about to run.
+Is it robust to minor violations of normality (such as regression or ANOVA)?
+If we decide that the violation of normality is a big deal, we can use a mathematical function to transform the each point in the data set.
+
+Most of the time, we don't like to transform a variable unless it's absolutely necessary.
+I've found that researchers in other departments (other than social science) transform data all the time, but since we're working with responses from real people it's a bit trickier.
+There are many different ways to do this, the one we will use is logarithmic transformation.
+[Here](https://en.wikipedia.org/wiki/Data_transformation_%28statistics%29) is an in-depth look at how transformations work.
+
+Log transform `timedrs` using `log()`:
+
+```{r}
+log <- merged_screen %>% 
+  drop_na() %>% #droping NA values
+  mutate(log_timedrs = log(timedrs + 1)) # Adding a constant (1) here because there were zeros's. Log(0) is undefined. You do not need to add 1 if there are no zeros.
+
+#Before transformation
+ggdensity(merged_screen$timedrs, fill = "lightgray")
+#After transformation
+ggdensity(log$log_timedrs, fill = "lightgray")
+
+#Let's also look at changes in descriptives
+describe(log$log_timedrs)
+```
+
+Here, we can see a big improvement in the distribution compared to the previous, untransformed variable.
+
+## Regression Overview
+
+Let's start this section using applied examples:
+
+**Simple Linear Regression**: Predict **physics** scores from **math SAT scores**.
+$$\hat Y = \beta_0 + \beta_1x $$ $$ physics = \beta_0 + \beta_1 (msat) $$ **Multiple Regression**: Predict **physics** scores from: **emotional intelligence, IQ, verbal SAT, math SAT, creativity, and abstract thinking.** $$ \hat Y = \beta_0 + \beta_1x + \beta_2x ... \beta_ix_i  $$ $$physics = \beta_0 + \beta_1(ei) + \beta_2(iq) + \beta_3(vsat) + \beta_4(msat) + \beta_5(creativity) + \beta_6(abstract)  $$
+
+Read in data:
+
+```{r}
+physics <- read_sav("physics.sav")
+
+write.csv(physics, "physics.csv")
+
+physics <- read_csv("physics.csv") %>% 
+  select(-...1, -idno) 
+
+
+# Descriptive Statistics
+describe(physics) 
+```
+
+### Assumptions of Regression
+
+1.  Linearity - Relationship between the outcome variable and each predictor
+
+2.  Normality - Are the data normally distributed?
+
+3.  Homoscedasticity - Residuals are assumed to have a constant variance (*This can be checked after running the model*)
+
+4.  Multicollinearity - Bivariate correlations are less than .90.
+
+#### Linearity & Multicollinearity
+
+The easiest way to check **linearity** of relationship between the outcome variable and each predictor is to check the bivariate correlations and scatterplots.
+For the most part, most variables are (positively) correlated with each other, implying linear relationships.
+
+To assess **multicollinearity**, we want to see if there are predictors that are too highly correlated (*r* \> .90)
+
+Use `cor()` to look at bivariate correlations for the entire data set (Note: Missing values are not allowed in correlation analyses, use `drop_na()` to do listwise deletion):
+
+```{r}
+physics %>% 
+  drop_na() %>% #remove missing data
+  cor(method = "pearson")
+
+#Fun tip: `apa.cor.table()` creates an APA formated correlation matrix and saves it to your computer
+#apa.cor.table(physics, filename = "cor_table.doc")
+```
+
+You can also subset the data set to include only the variables of interest:
+
+```{r}
+physics %>% 
+  select(ei, iq, physics) %>% 
+  drop_na() %>% #remove missing data
+  cor() 
+```
+
+\[Correlation Interpretation:\]{.ul}
+
+Among the students in the sample, IQ and physics test scores were positively correlated, *r* = 0.34, *p* \< .001.
+
+We can also look at partial-correlations using `ppcor::pcor()` to see how the predictors relate to the outcome after controlling for the other correlations and semi-partial correlations using `ppcor::spcor()` to see how predictors relate to the outcome after controlling for *X* but not *Y*.
+
+```{r}
+library(ppcor) 
+# Partial Correlation
+physics %>% 
+  drop_na() %>% 
+  pcor() 
+
+# Semi-Parial Correlation
+physics %>% 
+  drop_na() %>% 
+  spcor()
+detach("package:ppcor", unload = TRUE)
+```
+
+Finally, use `pairs()` to look at bivariate scatterplots.
+Do the relationships look linear?:
+
+```{r}
+pairs(physics)
+
+# Or we can look at individual scatterplots:
+physics %>% 
+  ggplot(aes(physics, ei)) +
+  geom_point() +
+  geom_smooth(method = "lm", se =F) +
+  theme_minimal()
+```
+
+#### Normality
+
+Density Plot:
+
+```{r}
+lapply(physics, ggdensity, fill = "lightgray")
+
+# alternatively, you may look at each one individually like this:
+# ggdensity(physics$ei, fill = "lightgray")
+
+```
+
+QQ Plots for individual predictors (Later, we will want to look at the QQ plot of the entire model, which looks at the normality of residuals):
+
+```{r}
+lapply(physics, ggqqplot, fill = "lightgray")
+```
+
+Shapiro-Wilk's Test of Normality:
+
+```{r}
+#physics %>% 
+#  shapiro_test(ei, iq, vsat, msat, create, abstract, physics)
+#Here, abstract and msat is significant. However, Shapiro-Wilk's test is very sensitive to minor deviations from normality. Our density plot suggests normality.
+```
+
+Skewness and Kurtosis:
+
+```{r}
+describe(physics)
+```
+
+### Simple Linear Regression
+
+Finally, we have arrived at our main goal.
+It's good to reflect on how much work it takes to prepare the data for analyses.
+It's important to clean and screen the data before analyses.
+
+Recall our research hypothesis:
+
+**Research Example**: Predict **physics** scores from **math SAT** scores.
+Run a simple linear regression model using `lm()`:
+
+```{r}
+#`msat` predicting `physics`
+slr_model <- lm(physics~msat,data=physics)
+summary(slr_model)
+
+```
+
+\[Simple Linear Regression Interpretation:\]{.ul}
+
+For every one unit increase in `msat` scores, `physics` scores increase 0.28 points, *p* \< 0.001.
+
+$$ physics = -58.54 + 0.28 (msat) $$
+
+Looking at the **homoscedasticity** assumption, we use the `plot()` function.
+To assess for constant variance, we want to see a straight, horizontal red line across this plot.
+
+```{r}
+# 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.
+plot(slr_model, 3)
+
+```
+
+Looking at the **normality of residuals** assumption (whereas before, we were looking at normality of each predictor), we again use `plot()` function.:
+
+```{r}
+# 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. 
+plot(slr_model, 2)
+```
+
+### Multiple Regression
+
+Recall our research hypothesis:
+
+**Research Example**: Predict **physics** scores from: emotional intelligence, IQ, verbal SAT, math SAT, creativity, and abstract thinking.
+
+Run a multiple regression model using `lm()`:
+
+```{r}
+# using the period (.) tells R you want ALL the variables except the outcome (`physics`)
+# alternatively, you can type out all the variables by doing this:
+# lm(physics~ei+iq+vsat+msat+create+abstract, data=physics)
+mr_model <- lm(physics~.,data=physics)
+summary(mr_model)
+```
+
+\[Multiple Regression Interpretation:\]{.ul}
+
+Controlling for all other variables, for every one unit increase in `ei` scores, `physics` scores decrease 0.20 points, *p* \< 0.001.
+
+Rinse and repeat for remaining predictors.
+For non-significant predictors, "IQ was not found to be a significant predictor of the model" is sufficient.
+
+**Homoscedasticity**
+
+Scale-Location plot:
+
+```{r}
+# 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.
+plot(mr_model, 3)
+```
+
+**Normality of Residuals**
+
+QQ plot:
+
+```{r}
+# 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. 
+plot(mr_model, 2)
+```

@@ -1,1 +1,1 @@
-# dina_website
+I created my website using the Hugo Apero theme created by Alison Hill.

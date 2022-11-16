@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>outliers on Dina Arch</title>
+    <link>https://www.dina-arch.com/tags/outliers/</link>
+    <description>Recent content in outliers on Dina Arch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/outliers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lab 2: Simple Linear Regression</title>
+      <link>https://www.dina-arch.com/collection/linear-models/02-slr/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/02-slr/</guid>
+      <description>library(psych) #describe() library(PerformanceAnalytics) #chart.correlation() library(lm.beta) #lm.beta() library(sjPlot) #tab_model() library(gridExtra) #grid.arrange() library(tidyverse) This lab will be an overview of simple linear regression and was created along side Karen&amp;rsquo;s lectures and her code.
+Simple Linear Regression The Equation The equation of simple linear regression is this:
+$$Y_i = \alpha + \beta{x}_i + \epsilon_i $$ Expressed as Betas:
+$$ Y_i = \beta_0 + \beta{x}_i + \epsilon_i $$
+When we are predicting Y, we express the prediction equation as this:</description>
+    </item>
+    
+  </channel>
+</rss>

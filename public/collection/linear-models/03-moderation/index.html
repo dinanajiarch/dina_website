@@ -1,0 +1,2175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.102.1" />
+<title>Lab 3: Moderation | Dina Arch</title>
+
+
+<meta property="twitter:site" content="@dnajiarch">
+<meta property="twitter:creator" content="@dnajiarch">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Overview of regression using categorical and continuous moderators with interpretation.">
+
+
+<meta property="og:site_name" content="Dina Arch">
+<meta property="og:title" content="Lab 3: Moderation | Dina Arch">
+<meta property="og:description" content="Overview of regression using categorical and continuous moderators with interpretation." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://www.dina-arch.com/collection/linear-models/03-moderation/" />
+<meta property="og:locale" content="en">
+
+
+
+
+    
+        <meta property="og:image" content="https://www.dina-arch.com" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://www.dina-arch.com" >
+    
+  <meta itemprop="name" content="Lab 3: Moderation">
+<meta itemprop="description" content="library(knitr) #include_graphics() library(equatiomatic) # extract_eq() library(psych) #describe() library(gtsummary) #tbl_summary() library(summarytools) #descr() library(stargazer) #stargazer() library(sjPlot) #tab_model() library(interactions) #interact_plot(), sim_slopes() library(jtools) #summ() library(tidyverse) Moderation When the research hypotheses state that different categories, or levels of another variable, may have differing responses to other independent variables, we need to use interaction terms
+- Also called moderation
+Example: The relationship between discrimination and grades depends on prog.
+Graph drawn using draw.io.
+Moderation Example Suppose you are doing a simple study on weight loss and notice that people who spend more time exercising lose more weight."><meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="2582">
+<meta itemprop="keywords" content="r markdown,tidy data,regression,moderation," />
+  
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
+  <link rel="icon" href="/img/cat.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.5550fcfd017088ccae55298dd74a3b7d7bfe6cc577b648c443d001196a798ca6.js" type="text/javascript"></script>
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+      <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/collection/" title="Project Portfolio">R Projects</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73" title="CV">CV</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+<main class="page-main ph4 pt4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h4 class="breadcrumb pb5">
+
+  
+    
+      
+  
+    
+      
+  
+    
+      
+  
+
+    
+    
+      <a href="/collection/">R Projects</a>
+    
+  
+
+    
+    
+      <a href="/collection/linear-models/">Linear Models for Data Analysis</a>
+    
+  
+
+    
+    
+      Lab 3: Moderation
+    
+  
+
+</h4>
+
+
+
+
+        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Lab 3: Moderation</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Overview of regression using categorical and continuous moderators with interpretation.</h4>
+        
+        
+        
+        
+      
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(knitr) <span style="color:#998;font-style:italic">#include_graphics()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(equatiomatic) <span style="color:#998;font-style:italic"># extract_eq()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic">#describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(gtsummary) <span style="color:#998;font-style:italic">#tbl_summary()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(summarytools) <span style="color:#998;font-style:italic">#descr()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(stargazer) <span style="color:#998;font-style:italic">#stargazer()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(sjPlot) <span style="color:#998;font-style:italic">#tab_model()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(interactions) <span style="color:#998;font-style:italic">#interact_plot(), sim_slopes()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(jtools) <span style="color:#998;font-style:italic">#summ()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+</span></span></code></pre></div>
+
+
+
+<h1 id="moderation">Moderation
+  <a href="#moderation"></a>
+</h1>
+<p>When the research hypotheses state that different categories, or levels of another variable, may have differing responses to other independent variables, we need to use interaction terms</p>
+<p>- Also called <strong>moderation</strong></p>
+<p><img src="images/moderation.png" alt=""></p>
+<p><strong>Example</strong>: The relationship between <em>discrimination</em> and <em>grades</em> depends on prog.</p>
+<p>Graph drawn using 
+<a href="draw.io">draw.io</a>.</p>
+<hr>
+
+
+
+
+<h2 id="moderation-example">Moderation Example
+  <a href="#moderation-example"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Suppose you are doing a simple study on weight loss and notice that people who spend more time exercising lose more weight.
+Upon further analysis you notice that those who spend the same amount of time exercising lose more weight if they are more effortful.
+The more effort people put into their workouts, the less time they need to spend exercising.
+This is popular in workouts like high intensity interval training (HIIT).</p>
+<p>Example adapted from UCLA’s 
+<a href="https://stats.idre.ucla.edu/r/seminars/interactions-r/#s4" target="_blank" rel="noopener">seminar</a> on decomposing, probing, and plotting interactions in R.</p>
+<p>Read in data:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>exercise <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read.csv</span>(<span style="color:#d14">&#34;https://stats.idre.ucla.edu/wp-content/uploads/2019/03/exercise.csv&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>gender) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(prog <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">factor</span>(prog, labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;Jogging&#34;</span>, <span style="color:#d14">&#34;Swimming&#34;</span>, <span style="color:#d14">&#34;Reading&#34;</span>)),
+</span></span><span style="display:flex;"><span>         hours_scaled <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">as.numeric</span>(<span style="color:#900;font-weight:bold">scale</span>(hours)))
+</span></span></code></pre></div><hr>
+
+
+
+
+<h3 id="variable-descriptions">Variable Descriptions
+  <a href="#variable-descriptions"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Name</strong></td>
+<td><strong>Labels</strong></td>
+</tr>
+<tr>
+<td>prog</td>
+<td></td>
+</tr>
+<tr>
+<td>loss</td>
+<td>Weight loss (continuous), positive = weight loss, negative scores = weight gain</td>
+</tr>
+<tr>
+<td>hours</td>
+<td>Hours spent exercising (continuous)</td>
+</tr>
+<tr>
+<td>effort</td>
+<td>Effort during exercise (continuous), 0 = minimal physical effort and 50 = maximum effort</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+
+
+
+<h3 id="descriptive-statistics">Descriptive Statistics
+  <a href="#descriptive-statistics"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Three ways of presenting descriptives:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># psych::describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">round</span>(<span style="color:#900;font-weight:bold">describe</span>(exercise),<span style="color:#099">2</span>) 
+</span></span></code></pre></div><pre><code>##              vars   n   mean     sd median trimmed    mad    min    max  range
+## id              1 900 450.50 259.95 450.50  450.50 333.58   1.00 900.00 899.00
+## loss            2 900  10.02  14.10   7.88    9.06  15.42 -17.14  54.15  71.29
+## hours           3 900   2.00   0.49   2.01    2.00   0.49   0.18   4.07   3.90
+## effort          4 900  29.66   5.14  29.63   29.64   5.08  12.95  44.08  31.13
+## prog*           5 900   2.00   0.82   2.00    2.00   1.48   1.00   3.00   2.00
+## hours_scaled    6 900   0.00   1.00   0.01    0.00   0.99  -3.70   4.19   7.88
+##              skew kurtosis   se
+## id           0.00    -1.20 8.67
+## loss         0.50    -0.64 0.47
+## hours        0.07     0.47 0.02
+## effort       0.00     0.01 0.17
+## prog*        0.00    -1.50 0.03
+## hours_scaled 0.07     0.47 0.03
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># gtsummary::gtsummary()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tbl_summary</span>(exercise,
+</span></span><span style="display:flex;"><span>            statistic <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">list</span>(<span style="color:#900;font-weight:bold">all_continuous</span>() <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#34;{mean} ({sd})&#34;</span>),
+</span></span><span style="display:flex;"><span>                             missing <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;no&#34;</span>)
+</span></span></code></pre></div><div id="sghigmuysv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+<p>#sghigmuysv .gt_table {
+display: table;
+border-collapse: collapse;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}</p>
+<p>#sghigmuysv .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 0;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}</p>
+<p>#sghigmuysv .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}</p>
+<p>#sghigmuysv .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}</p>
+<p>#sghigmuysv .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}</p>
+<p>#sghigmuysv .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}</p>
+<p>#sghigmuysv .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}</p>
+<p>#sghigmuysv .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+}</p>
+<p>#sghigmuysv .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}</p>
+<p>#sghigmuysv .gt_from_md &gt; :first-child {
+margin-top: 0;
+}</p>
+<p>#sghigmuysv .gt_from_md &gt; :last-child {
+margin-bottom: 0;
+}</p>
+<p>#sghigmuysv .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}</p>
+<p>#sghigmuysv .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}</p>
+<p>#sghigmuysv .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}</p>
+<p>#sghigmuysv .gt_row_group_first td {
+border-top-width: 2px;
+}</p>
+<p>#sghigmuysv .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}</p>
+<p>#sghigmuysv .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_first_summary_row.thick {
+border-top-width: 2px;
+}</p>
+<p>#sghigmuysv .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}</p>
+<p>#sghigmuysv .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}</p>
+<p>#sghigmuysv .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-left: 4px;
+padding-right: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}</p>
+<p>#sghigmuysv .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}</p>
+<p>#sghigmuysv .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}</p>
+<p>#sghigmuysv .gt_left {
+text-align: left;
+}</p>
+<p>#sghigmuysv .gt_center {
+text-align: center;
+}</p>
+<p>#sghigmuysv .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}</p>
+<p>#sghigmuysv .gt_font_normal {
+font-weight: normal;
+}</p>
+<p>#sghigmuysv .gt_font_bold {
+font-weight: bold;
+}</p>
+<p>#sghigmuysv .gt_font_italic {
+font-style: italic;
+}</p>
+<p>#sghigmuysv .gt_super {
+font-size: 65%;
+}</p>
+<p>#sghigmuysv .gt_two_val_uncert {
+display: inline-block;
+line-height: 1em;
+text-align: right;
+font-size: 60%;
+vertical-align: -0.25em;
+margin-left: 0.1em;
+}</p>
+<p>#sghigmuysv .gt_footnote_marks {
+font-style: italic;
+font-weight: normal;
+font-size: 75%;
+vertical-align: 0.4em;
+}</p>
+<p>#sghigmuysv .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}</p>
+<p>#sghigmuysv .gt_slash_mark {
+font-size: 0.7em;
+line-height: 0.7em;
+vertical-align: 0.15em;
+}</p>
+<p>#sghigmuysv .gt_fraction_numerator {
+font-size: 0.6em;
+line-height: 0.6em;
+vertical-align: 0.45em;
+}</p>
+<p>#sghigmuysv .gt_fraction_denominator {
+font-size: 0.6em;
+line-height: 0.6em;
+vertical-align: -0.05em;
+}
+</style></p>
+<table class="gt_table">
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1"><strong>Characteristic</strong></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1"><strong>N = 900</strong><sup class="gt_footnote_marks">1</sup></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">id</td>
+<td class="gt_row gt_center">450 (260)</td></tr>
+    <tr><td class="gt_row gt_left">loss</td>
+<td class="gt_row gt_center">10 (14)</td></tr>
+    <tr><td class="gt_row gt_left">hours</td>
+<td class="gt_row gt_center">2.00 (0.49)</td></tr>
+    <tr><td class="gt_row gt_left">effort</td>
+<td class="gt_row gt_center">29.7 (5.1)</td></tr>
+    <tr><td class="gt_row gt_left">prog</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Jogging</td>
+<td class="gt_row gt_center">300 (33%)</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Swimming</td>
+<td class="gt_row gt_center">300 (33%)</td></tr>
+    <tr><td class="gt_row gt_left" style="text-align: left; text-indent: 10px;">Reading</td>
+<td class="gt_row gt_center">300 (33%)</td></tr>
+    <tr><td class="gt_row gt_left">hours_scaled</td>
+<td class="gt_row gt_center">0.00 (1.00)</td></tr>
+  </tbody>
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="2"><sup class="gt_footnote_marks">1</sup> Mean (SD); n (%)</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># summarytools::descr()</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#print(descr(exercise), method = &#39;render&#39;)</span>
+</span></span></code></pre></div><hr>
+
+
+
+
+<h2 id="regression-with-a-categorical-moderator">Regression with a Categorical Moderator
+  <a href="#regression-with-a-categorical-moderator"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p><strong>Research Question:</strong> Does <em>exercise program</em> moderate the relationship between <em>hours spent exercising</em> and <em>weight loss</em>?
+Or, said differently, Does the relationship between the <em>hours spent exercising</em> and <em>weight loss</em> differ based on the type of exercise you do (e.g., <em>exercise program</em>)?</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>reg <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">+</span>prog, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>mod <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">*</span>prog, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Compare regression and moderation models</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(reg, mod,show.std <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.zeroinf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span> )
+</span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="6" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+loss
+</th>
+<th colspan="6" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+loss
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+standardized CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Statistic
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
+p
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col8">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col9">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  0">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  1">
+standardized CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  2">
+Statistic
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  3">
+p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+8.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+7.29 – 8.87
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.19 – -0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+20.17
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+8.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+7.41 – 8.88
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+-0.19 – -0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+21.68
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+<strong>\<0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+hours
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.62
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.11
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.16 – 2.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.08 – 0.15
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+6.98
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+3.69
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+0.26
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+2.90 – 4.47
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+0.21 – 0.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+9.25
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+<strong>\<0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+prog \[Swimming\]
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+17.78
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.26
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+16.67 – 18.90
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.18 – 1.34
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+31.40
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+17.77
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+1.26
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+16.73 – 18.81
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+1.19 – 1.33
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+33.46
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+<strong>\<0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+prog \[Reading\]
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-11.96
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.85
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-13.07 – -10.85
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.93 – -0.77
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-21.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-11.85
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.84
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-12.89 – -10.80
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+-0.91 – -0.77
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+-22.29
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+<strong>\<0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+hours \* prog \[Swimming\]
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-0.29
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-1.37 – 0.80
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+-0.10 – 0.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+-0.52
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+0.605
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+hours \* prog \[Reading\]
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-5.15
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-6.19 – -4.11
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+-0.44 – -0.29
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+-9.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+<strong>\<0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="6">
+900
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="6">
+900
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">
+0.759 / 0.758
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">
+0.789 / 0.787
+</td>
+</tr>
+</table>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Can also use stargazer::stargazer()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">stargazer</span>(reg, mod, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;text&#34;</span>)
+</span></span></code></pre></div><pre><code>## 
+## ===========================================================================
+##                                          Dependent variable:               
+##                           -------------------------------------------------
+##                                                 loss                       
+##                                     (1)                      (2)           
+## ---------------------------------------------------------------------------
+## scale(hours)                      1.616***                 3.686***        
+##                                   (0.232)                  (0.398)         
+##                                                                            
+## progSwimming                     17.785***                17.771***        
+##                                   (0.566)                  (0.531)         
+##                                                                            
+## progReading                      -11.961***               -11.846***       
+##                                   (0.567)                  (0.531)         
+##                                                                            
+## scale(hours):progSwimming                                   -0.286         
+##                                                            (0.554)         
+##                                                                            
+## scale(hours):progReading                                  -5.148***        
+##                                                            (0.530)         
+##                                                                            
+## Constant                          8.080***                 8.143***        
+##                                   (0.401)                  (0.376)         
+##                                                                            
+## ---------------------------------------------------------------------------
+## Observations                        900                      900           
+## R2                                 0.759                    0.789          
+## Adjusted R2                        0.758                    0.787          
+## Residual Std. Error           6.937 (df = 896)         6.502 (df = 894)    
+## F Statistic               939.491*** (df = 3; 896) 666.752*** (df = 5; 894)
+## ===========================================================================
+## Note:                                           *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Only looks at moderation </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># and jtools:summ()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summ</span>(mod)
+</span></span></code></pre></div><table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Observations
+</td>
+<td style="text-align:right;">
+900
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Dependent variable
+</td>
+<td style="text-align:right;">
+loss
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Type
+</td>
+<td style="text-align:right;">
+OLS linear regression
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+F(5,894)
+</td>
+<td style="text-align:right;">
+666.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+R²
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Adj. R²
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Est.
+</th>
+<th style="text-align:right;">
+S.E.
+</th>
+<th style="text-align:right;">
+t val.
+</th>
+<th style="text-align:right;">
+p
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+8.14
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+<td style="text-align:right;">
+21.68
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+scale(hours)
+</td>
+<td style="text-align:right;">
+3.69
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+9.25
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+progSwimming
+</td>
+<td style="text-align:right;">
+17.77
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+33.46
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+progReading
+</td>
+<td style="text-align:right;">
+-11.85
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+-22.29
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+scale(hours):progSwimming
+</td>
+<td style="text-align:right;">
+-0.29
+</td>
+<td style="text-align:right;">
+0.55
+</td>
+<td style="text-align:right;">
+-0.52
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+scale(hours):progReading
+</td>
+<td style="text-align:right;">
+-5.15
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+-9.71
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> Standard errors: OLS
+</td>
+</tr>
+</tfoot>
+</table>
+
+
+
+
+<h3 id="simple-slope-equations">Simple Slope Equations
+  <a href="#simple-slope-equations"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>The results above tell us that there is a moderation effect because the p-value for scale(hours)*program(reading) is significant.
+The estimate of -5.15 is not that useful on it’s own.
+The best way to understand is to use the estimates above and create a simple slope equation for each of the exercise programs (reading, swimming, and jogging).
+We do this below.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod)
+</span></span></code></pre></div><p>$$
+\operatorname{loss} = \alpha + \beta_{1}(\operatorname{scale(hours)}) + \beta_{2}(\operatorname{prog}<em>{\operatorname{Swimming}}) + \beta</em>{3}(\operatorname{prog}<em>{\operatorname{Reading}}) + \beta</em>{4}(\operatorname{scale(hours)} \times \operatorname{prog}<em>{\operatorname{Swimming}}) + \beta</em>{5}(\operatorname{scale(hours)} \times \operatorname{prog}_{\operatorname{Reading}}) + \epsilon
+$$</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod, use_coefs <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span></code></pre></div><p>$$
+\operatorname{\widehat{loss}} = 8.14 + 3.69(\operatorname{scale(hours)}) + 17.77(\operatorname{prog}<em>{\operatorname{Swimming}}) - 11.85(\operatorname{prog}</em>{\operatorname{Reading}}) - 0.29(\operatorname{scale(hours)} \times \operatorname{prog}<em>{\operatorname{Swimming}}) - 5.15(\operatorname{scale(hours)} \times \operatorname{prog}</em>{\operatorname{Reading}})
+$$</p>
+<p>Reading:</p>
+<p>$$
+y_{reading} = 8.14 + 3.69(hours) + 17.77(0) - 11.85(1) - 0.29(hours * 0) - 5.15 (hours * 1)
+$$ By dropping the terms that have a zero in it and adding the constant terms (e.g., those that have a 1), the equation simplifies to the equation below.
+This is the simple slope for the reading program.
+Another way to say it, this is the relationship between hours spent exercising and the outcome of weight loss for those who were in the reading program.</p>
+<p>$$
+y_{reading} = -3.71 - 1.46 (hours) 
+$$</p>
+<p>Swimming: $$
+y_{swimming} = 8.14 + 3.69(hours) + 17.77(1) - 11.85(0) - 0.29(hours * 1) - 5.15 (hours * 0)
+$$ The simple slope for those who were in the swimming program is below:</p>
+<p>$$
+y_{swimming} = 25.91 + 3.40(hours) 
+$$</p>
+<p>Jogging: $$
+y_{jogging} = 8.14 + 3.69(hours) + 17.77(0) - 11.85(0) - 0.29(hours * 0) - 5.15 (hours * 0)
+$$ The simple slope for those who were in the jogging program is below:</p>
+<p>$$
+y_{jogging} = 8.14 + 3.69(hours) 
+$$</p>
+<p>Looking at those three equations for each of the program time, we can see they vary both in their intercepts and their slopes.
+It is not directly evident just by looking at the point estimates in the table above how the combination of parameter estimates leads to the difference across the exercise programs– but simple slopes helps us!</p>
+<hr>
+
+
+
+
+<h3 id="plotting-interactions">Plotting Interactions
+  <a href="#plotting-interactions"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Plot code adapted from 
+<a href="https://cran.r-project.org/web/packages/interactions/vignettes/interactions.html#simple_slopes_analysis_and_johnson-neyman_intervals" target="_blank" rel="noopener">here</a> (Long, 2020).</p>
+<p>Here, we plot the interaction or simple slope plots between <code>hours</code> and <code>loss</code> and levels of <code>prog</code>.
+The <code>interact_plot()</code> also plots the confidence intervals at 90%.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">interact_plot</span>(mod, pred <span style="color:#000;font-weight:bold">=</span> hours, modx <span style="color:#000;font-weight:bold">=</span> prog, interval <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, int.width <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.9</span>, data <span style="color:#000;font-weight:bold">=</span> exercise) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">theme_apa</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/03-moderation/index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mod_adj <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> hours_scaled<span style="color:#000;font-weight:bold">*</span>prog, data<span style="color:#000;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">interact_plot</span>(mod_adj, pred <span style="color:#000;font-weight:bold">=</span> hours_scaled, modx <span style="color:#000;font-weight:bold">=</span> prog, interval <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, int.width <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.9</span>, data <span style="color:#000;font-weight:bold">=</span> exercise) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">theme_apa</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/03-moderation/index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<p>Note that the only difference between the two interaction plots above is the scale of the x variable, <em>hours</em>.
+In the top plot, the hours variable is not scaled and in the bottom one it is.
+This does not change the slope, but it does change the intercept since we are moving the “zero” value in the scaled versoin.</p>
+
+
+
+
+<h3 id="simple-slopes">Simple Slopes
+  <a href="#simple-slopes"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Here, we can test the simple slopes at each level of <em>hours spend exercising</em>.
+The results show us that for all levels of <code>prog</code>, there a significant association between <em>hours spent exercising</em> and <em>weight loss</em>.
+Note that the slope is different for each program.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># The moderation needs to be adjusted a bit for this function to work (it doesn&#39;t like when we scale the hours variable directly in the lm function)</span>
+</span></span><span style="display:flex;"><span>mod_adj <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> hours_scaled<span style="color:#000;font-weight:bold">*</span>prog, data<span style="color:#000;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">sim_slopes</span>(mod_adj, pred <span style="color:#000;font-weight:bold">=</span> hours_scaled, modx <span style="color:#000;font-weight:bold">=</span> prog, johnson_neyman <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>)
+</span></span></code></pre></div><pre><code>## SIMPLE SLOPES ANALYSIS 
+## 
+## Slope of hours_scaled when prog = Reading: 
+## 
+##    Est.   S.E.   t val.      p
+## ------- ------ -------- ------
+##   -1.46   0.35    -4.18   0.00
+## 
+## Slope of hours_scaled when prog = Swimming: 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   3.40   0.38     8.84   0.00
+## 
+## Slope of hours_scaled when prog = Jogging: 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   3.69   0.40     9.25   0.00
+</code></pre>
+<hr>
+
+
+
+
+<h2 id="regression-with-a-continuous-moderator">Regression with a Continuous Moderator
+  <a href="#regression-with-a-continuous-moderator"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p><strong>Research Question:</strong> Does <em>effort during exercise</em> moderate the relationship between <em>hours spent exercising</em> and <em>weight loss</em>?
+Said differently (and equivalently), Does the relationship between the <em>hours spent</em> exercising and weight loss vary by the <em>effort during exercise</em>?</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>reg2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">+</span>effort, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>mod2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">*</span>effort, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(reg2, mod2,show.std <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.zeroinf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span> )
+</span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
+ 
+</th>
+<th colspan="6" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+loss
+</th>
+<th colspan="8" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">
+loss
+</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">
+Predictors
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+standardized CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">
+Statistic
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">
+p
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col8">
+Estimates
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col9">
+std. Beta
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  0">
+CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  1">
+standardized CI
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  2">
+Statistic
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  3">
+std. Statistic
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  4">
+p
+</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  5">
+std. p
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+(Intercept)
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-10.90
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-16.10 – -5.69
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-0.06 – 0.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+-4.11
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-10.98
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+-0.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-16.17 – -5.78
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+-0.06 – 0.06
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+-4.15
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+-0.04
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">
+0.971
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+hours
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+1.16
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.27 – 2.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.02 – 0.15
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+2.56
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>0.010</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+-4.64
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+-10.13 – 0.86
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+0.02 – 0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+-1.66
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+2.50
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">
+0.098
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">
+<strong>0.012</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+effort
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.26
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.53 – 0.88
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+0.19 – 0.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+8.00
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+0.26
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.53 – 0.88
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+0.20 – 0.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+8.04
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+8.04
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">
+<strong>\<0.001</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">
+<strong>\<0.001</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">
+hours \* effort
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7">
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col8">
+0.19
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col9">
+0.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  0">
+0.01 – 0.38
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  1">
+0.00 – 0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  2">
+2.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  3">
+2.10
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  4">
+<strong>0.036</strong>
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  5">
+<strong>0.036</strong>
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">
+Observations
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="6">
+900
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="8">
+900
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">
+R<sup>2</sup> / R<sup>2</sup> adjusted
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">
+0.074 / 0.072
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="8">
+0.078 / 0.075
+</td>
+</tr>
+</table>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Can also use stargazer::stargazer()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">stargazer</span>(reg2, mod2, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;text&#34;</span>)
+</span></span></code></pre></div><pre><code>## 
+## ===================================================================
+##                                   Dependent variable:              
+##                     -----------------------------------------------
+##                                          loss                      
+##                               (1)                     (2)          
+## -------------------------------------------------------------------
+## scale(hours)                1.162**                 -4.637*        
+##                             (0.453)                 (2.801)        
+##                                                                    
+## effort                     0.705***                0.707***        
+##                             (0.088)                 (0.088)        
+##                                                                    
+## scale(hours):effort                                 0.195**        
+##                                                     (0.093)        
+##                                                                    
+## Constant                  -10.897***              -10.975***       
+##                             (2.653)                 (2.648)        
+##                                                                    
+## -------------------------------------------------------------------
+## Observations                  900                     900          
+## R2                           0.074                   0.078         
+## Adjusted R2                  0.072                   0.075         
+## Residual Std. Error    13.586 (df = 897)       13.560 (df = 896)   
+## F Statistic         35.659*** (df = 2; 897) 25.330*** (df = 3; 896)
+## ===================================================================
+## Note:                                   *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># and jtools:summ()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summ</span>(mod2)
+</span></span></code></pre></div><table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Observations
+</td>
+<td style="text-align:right;">
+900
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Dependent variable
+</td>
+<td style="text-align:right;">
+loss
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Type
+</td>
+<td style="text-align:right;">
+OLS linear regression
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+F(3,896)
+</td>
+<td style="text-align:right;">
+25.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+R²
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+Adj. R²
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Est.
+</th>
+<th style="text-align:right;">
+S.E.
+</th>
+<th style="text-align:right;">
+t val.
+</th>
+<th style="text-align:right;">
+p
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+-10.98
+</td>
+<td style="text-align:right;">
+2.65
+</td>
+<td style="text-align:right;">
+-4.15
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+scale(hours)
+</td>
+<td style="text-align:right;">
+-4.64
+</td>
+<td style="text-align:right;">
+2.80
+</td>
+<td style="text-align:right;">
+-1.66
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+effort
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+8.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;">
+scale(hours):effort
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+2.10
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> Standard errors: OLS
+</td>
+</tr>
+</tfoot>
+</table>
+
+
+
+
+<h3 id="model-equations">Model Equations
+  <a href="#model-equations"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod2)
+</span></span></code></pre></div><p>$$
+\operatorname{loss} = \alpha + \beta_{1}(\operatorname{scale(hours)}) + \beta_{2}(\operatorname{effort}) + \beta_{3}(\operatorname{scale(hours)} \times \operatorname{effort}) + \epsilon
+$$</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod2, use_coefs <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span></code></pre></div><p>$$
+\operatorname{\widehat{loss}} = -10.98 - 4.64(\operatorname{scale(hours)}) + 0.71(\operatorname{effort}) + 0.19(\operatorname{scale(hours)} \times \operatorname{effort})
+$$</p>
+<hr>
+
+
+
+
+<h3 id="plotting-interactions-1">Plotting Interactions
+  <a href="#plotting-interactions-1"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Plot code adapted from 
+<a href="https://cran.r-project.org/web/packages/interactions/vignettes/interactions.html#simple_slopes_analysis_and_johnson-neyman_intervals" target="_blank" rel="noopener">here</a> (Long, 2020).</p>
+<p>Here, we plot the interaction between <code>hours</code> and <code>loss</code> for +1 SD, mean, and -2 SD of <code>effort</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">interact_plot</span>(mod2, pred <span style="color:#000;font-weight:bold">=</span> hours, modx <span style="color:#000;font-weight:bold">=</span> effort, interval <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, int.width <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.9</span>, data <span style="color:#000;font-weight:bold">=</span> exercise) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">theme_apa</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/03-moderation/index_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<hr>
+
+
+
+
+<h3 id="simple-slopes-1">Simple Slopes
+  <a href="#simple-slopes-1"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Here, we can test the simple slopes at each level (in this case +1 SD, mean, -1SD) of <em>effort during exercise.</em> The results show us that for mean and +1 SD levels of <em>effort</em>, the slope is significantly different than zero.</p>
+<p><em>NOTE</em>: There is a difference in the way we interpret continuous by continuous interactions.
+We use the Johnson-Neyman approach (<code>johnson_neyman=TRUE</code>) will tell us the exact values of the moderator for which the slope of the predictor will be statistically significant.
+We can also plot the Johnson Neyman test by using <code>jnplot=TRUE</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># The moderation needs to be adjusted a bit for this function to work (it doesn&#39;t like when we scale the hours variable directly in the lm function)</span>
+</span></span><span style="display:flex;"><span>mod_adj <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> hours_scaled<span style="color:#000;font-weight:bold">*</span>effort, data<span style="color:#000;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">sim_slopes</span>(mod_adj, pred <span style="color:#000;font-weight:bold">=</span> hours_scaled, modx <span style="color:#000;font-weight:bold">=</span> effort, johnson_neyman <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, jnplot <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span></code></pre></div><pre><code>## JOHNSON-NEYMAN INTERVAL 
+## 
+## When effort is OUTSIDE the interval [-64.73, 28.55], the slope of
+## hours_scaled is p &lt; .05.
+## 
+## Note: The range of observed values of effort is [12.95, 44.08]
+</code></pre>
+<img src="https://www.dina-arch.com/collection/linear-models/03-moderation/index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<pre><code>## SIMPLE SLOPES ANALYSIS 
+## 
+## Slope of hours_scaled when effort = 24.51646 (- 1 SD): 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   0.13   0.67     0.20   0.84
+## 
+## Slope of hours_scaled when effort = 29.65922 (Mean): 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   1.13   0.45     2.50   0.01
+## 
+## Slope of hours_scaled when effort = 34.80198 (+ 1 SD): 
+## 
+##   Est.   S.E.   t val.      p
+## ------ ------ -------- ------
+##   2.13   0.65     3.30   0.00
+</code></pre>
+<p>Johnson-Neyman interpretation: When effort is OUTSIDE the interval [-64.73, 28.55], the slope of hours_scaled is p &lt; .05.
+In other words, the Johnson-Neymen tells us that when effort is less than 28.55, there is no significant relationship between hours and weight loss.
+However, for those who put in and effort level of 29 (rounding 28.55) and greater, there is a significant weight loss for the hours they put in.</p>
+<p>Bottom line: It doesn’t matter how much time you put in to working out, you won’t see weight loss if the effort is low (less than 29).</p>
+<hr>
+<p>Write up (note the formatting is not APA here– just the text)</p>
+<p>A moderated regression model was used to explore the impact of the effort of an athlete on the relationship between hours spent exercising and weight loss.
+Specifically, we estimated a regression model with the hours spent exercising (standardized), effort, and the interaction of hours and effort to predict weight loss.
+There was evidence that there is a relationship with at least one predictor, <em>F</em>(3, 896) = 25.33, <em>p</em> &lt; .01, and collectively these variables explained 8% of the variability in weight loss.
+Results indicated that there was a significant interaction (<em>B</em> = .19, <em>p</em> = .04).
+Figure 1 presents the simple slope at the plot which we used to understand the interaction.
+Simple slopes are plotted for those who put in high (+1 SD above the mean), moderate effort (mean), and low effort (-1 SD below the mean) effort.
+The test of the simple slopes at each of these different levels indicated that for those who put in low effort (-1 SD below the mean), the slope is not significant (<em>B</em> = .13, <em>p</em> &gt;.05), indicating that for low effort, there is no relationship between the time spent exercising and weight loss.
+However, for higher values of effort, there was a relation.
+Specifically, for mean effort and high effort, the slope was significant, specifically <em>B</em> = 1.13 (<em>p</em> &lt; .05) and <em>B</em> = 2.13 (<em>p</em> &lt; .01).
+This implies that the slope increases the more effort put in, that is there is greater weight loss for time put in for those who have higher effort.
+The Johnson-Neyman interval (Johnson &amp; Neyman, 1936) specifically indicates that for effort levels greater than 29, there is a positive and significant relationship between the time exercising and weight loss.</p>
+<hr>
+<p><strong>References</strong></p>
+<p>Esarey, J., &amp; Sumner, J. L.
+(2017).
+Marginal effects in interaction models: Determining and controlling the false positive rate.
+Comparative Political Studies, 1–33.
+Advance online publication.
+
+<a href="https://doi.org/10.1177/0010414017730080" target="_blank" rel="noopener">https://doi.org/10.1177/0010414017730080</a></p>
+<p>Johnson, P. O.
+&amp; Neyman, J.
+(1936).
+Tests of certain linear hypotheses and their applications to some educational problems.
+Statistical Research Memoirs, 1, 57–93.
+R Core Team (2021).
+R: A language and environment for statistical computing.
+R Foundation for Statistical Computing, Vienna, Austria.
+URL 
+<a href="https://www.R-project.org/" target="_blank" rel="noopener">https://www.R-project.org/</a>.</p>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://www.dina-arch.com/collection/linear-models/02-slr/">&larr; Lab 2: Simple Linear Regression</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/collection/featured-sidebar.jpg" class="db ma0">
+
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4 flex-row">
+  <div class="w-two-thirds w-50-l ph0">
+    <h2 class="mv3 f5 fw7 ttu tracked">
+      <a class="no-underline dim" href="/collection/">Outline</a></h2>
+    <nav id="SectionTableOfContents" aria-label="SectionTableOfContents">
+        <ul>
+        
+          
+          
+          
+          <details open class="active">
+            <summary class="active" hugo-nav="/collection/linear-models/"><a href="https://www.dina-arch.com/collection/linear-models/">Linear Models for Data Analysis</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/01-data-cleaning/"><a href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">Lab 1: Data Screening and Cleaning</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/02-slr/"><a href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression</a></li>
+            
+              
+              <li class="active" hugo-nav="/collection/linear-models/03-moderation/"><a href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/04-mediation/"><a href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
+            
+          </details>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          
+          </li>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/day02/"><a href="https://www.dina-arch.com/collection/day02/">Day 02</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/day02/01-netlify/"><a href="https://www.dina-arch.com/collection/day02/01-netlify/">Netlify</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/02-blogdown/"><a href="https://www.dina-arch.com/collection/day02/02-blogdown/">Using blogdown</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/03-blogdown/"><a href="https://www.dina-arch.com/collection/day02/03-blogdown/">Warm woolen mittens</a></li>
+            
+          </details>
+          
+          </li>
+        
+        </ul>
+    </nav>
+  </div>
+  <details id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">On this page<h2></summary>
+    <div class="pl2 pr0 mh0">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#moderation-example">Moderation Example</a></li>
+    <li><a href="#regression-with-a-categorical-moderator">Regression with a Categorical Moderator</a></li>
+    <li><a href="#regression-with-a-continuous-moderator">Regression with a Continuous Moderator</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+</aside>
+
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2022 Dina Arch
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="mailto:dnaji@ucsb.edu" title="envelope" >
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/dinanajiarch" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/dnajiarch" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/dina-naji-arch-22649396/" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-2716-0798" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

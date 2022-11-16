@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Hugo Apéro</title>
+    <title>Tags on Dina Arch</title>
     <link>https://www.dina-arch.com/tags/</link>
-    <description>Recent content in Tags on Hugo Apéro</description>
+    <description>Recent content in Tags on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
@@ -49,6 +49,96 @@
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mediation</title>
+      <link>https://www.dina-arch.com/tags/mediation/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/mediation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>moderation</title>
+      <link>https://www.dina-arch.com/tags/moderation/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/moderation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>outliers</title>
+      <link>https://www.dina-arch.com/tags/outliers/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/outliers/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>regression</title>
+      <link>https://www.dina-arch.com/tags/regression/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tidy data</title>
+      <link>https://www.dina-arch.com/tags/tidy-data/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/tidy-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data cleaning</title>
+      <link>https://www.dina-arch.com/tags/data-cleaning/</link>
+      <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/data-cleaning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data screening</title>
+      <link>https://www.dina-arch.com/tags/data-screening/</link>
+      <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/data-screening/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>https://www.dina-arch.com/tags/machine-learning/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>principal components</title>
+      <link>https://www.dina-arch.com/tags/principal-components/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/principal-components/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>visualization</title>
+      <link>https://www.dina-arch.com/tags/visualization/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/visualization/</guid>
       <description></description>
     </item>
     

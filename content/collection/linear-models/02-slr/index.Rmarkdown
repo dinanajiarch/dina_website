@@ -1,0 +1,356 @@
+---
+title: 'Lab 2: Simple Linear Regression'
+author: 'TA: Dina Arch'
+date: 2021-04-16
+subtitle: Overview of simple linear regression.
+weight: 2
+draft: false
+images: 
+series: 
+tags:
+- r markdown
+- outliers
+- tidy data
+- regression
+categories:
+- data analysis
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+```{r}
+library(psych) #describe()
+library(PerformanceAnalytics) #chart.correlation()
+library(lm.beta) #lm.beta()
+library(sjPlot) #tab_model()
+library(gridExtra) #grid.arrange()
+library(tidyverse)
+```
+
+This lab will be an overview of simple linear regression and was created along side Karen's lectures and her code.
+
+# Simple Linear Regression
+
+## The Equation
+
+The equation of simple linear regression is this:
+
+$$Y_i = \alpha + \beta{x}_i + \epsilon_i $$ Expressed as Betas:
+
+$$ Y_i = \beta_0 + \beta{x}_i + \epsilon_i $$
+
+When we are predicting Y, we express the prediction equation as this:
+
+$$\hat Y = a+ b{x} $$
+
+As presented in lecture and lab 1, here is how we would plug in our intercept and slope values into our equations:
+
+```{r}
+# Reading in physics.csv dataset
+physics <- read_csv("physics.csv")
+
+
+#`msat` predicting `physics`
+slr_model <- lm(physics~msat,data=physics)
+summary(slr_model)
+```
+
+$$ Y = -58.54 + .28{x} $$
+
+## An Example
+
+Data from [UCLA - Academic Performance Index:](https://stats.idre.ucla.edu/r/seminars/introduction-to-regression-in-r/)
+
+|              |                                              |
+|--------------|----------------------------------------------|
+| **Variable** | **Description**                              |
+| api00        | Academic Performance Index                   |
+| enroll       | School enrollment                            |
+| Meals        | Number of free and reduced lunch             |
+| full         | Percentage of teachers will full credentials |
+
+Read in data and view first 6 rows.
+Here, we are reading in the data directly from the UCLA website:
+
+```{r}
+api <- read.csv(
+"https://stats.idre.ucla.edu/wp-content/uploads/2019/02/elemapi2v2.csv") %>% 
+  select(api00, full, enroll, meals)
+
+#First 6 rows
+head(api)
+```
+
+Descriptive Statistics:
+
+```{r}
+describe(api) 
+```
+
+Correlations:
+
+```{r}
+cor(api, method = "pearson", use = "complete.obs") %>%
+  round(2)
+```
+
+A fancier correlation matrix from Karen's lecture and code:
+
+```{r}
+chart.Correlation(api, histogram=TRUE, pch=19)
+```
+
+Histogram for API schools:
+
+```{r}
+api %>% 
+  ggplot(aes(x = api00)) +
+  geom_histogram(col="dark green", 
+                 fill="green", 
+                 alpha = .2,
+                 binwidth = 30) +  
+  labs(title="Histogram for API for schools", x="API", y="Count") + 
+  xlim(c(200, 1000)) + 
+  ylim(c(0,50))
+```
+
+Simple linear regression:
+
+[Research question]{.ul}: Does **school enrollment** predict **school API**?
+
+```{r}
+m1 <- lm(api00 ~ enroll, data = api)
+summary(m1)
+```
+
+Standardized Beta Coefficients:
+
+```{r}
+lm.beta(m1)
+```
+
+Nicely presented regression table using `tab_model()`:
+
+```{r}
+tab_model(m1, show.std = TRUE, show.stat = TRUE, show.zeroinf = TRUE)
+```
+
+Here, we can see both unstandardized and standardized regression coefficients.
+
+## Outliers
+
+### Outlier Detection
+
+*From Karen's slides:*
+
+There are various ways to diagnose outliers:
+
+[Distance (residuals]{.ul}): is useful in identifying potential outliers in the dependent variable (Y).
+
+[Leverage]{.ul} (h~i~): is useful in identifying potential outliers in the independent variable (x's).
+Leverage identifies outliers with respect to the X values
+
+[Influence:]{.ul} combines **distance** and **leverage** to identify unusually influential observations (use Cook's D).
+
+### Distance (residuals)
+
+The studentized residual:
+
+$$
+e_{s_i} = \frac{e_i}{s \sqrt{1-h_i}} = \frac{e_i}{\sqrt{MS_{Error}(1-h_i)}}
+$$
+
+The student residual identifies outliers with respect to their *y* values.
+
+To find studentized residuals in R:
+
+```{r}
+library(MASS) #We use the MASS package for this, I don't like this package because it masks the `select` function from dplyr (tidyverse). After we find studentized residuals, let's detach it.
+
+#Using API data (m1)
+stud_res <- as.data.frame(studres(m1)) %>% 
+  rename("stud_res" = "studres(m1)")
+
+#View first 6 rows
+head(stud_res)
+
+#Let's detach the package so we don't get any errors moving forward
+detach("package:MASS")
+```
+
+Let's plot the predictor variable (`enroll`) and the corresponding studentized residuals:
+
+```{r}
+plot(api$enroll, as.matrix(stud_res), ylab='Studentized Residuals', xlab='Predictor')
+abline(0,0)
+
+```
+
+We can see that there is a studentized residual with an absolute value greater than (or pretty close to) 3 (top right).
+Let's combine the studentized outliers with our dataset to get an idea of which observation is the outlier here.
+
+We can add a column by using `tidyverse::add_column()` and then sort by descending using `arrange()` and `desc()` .
+
+```{r}
+new_api <- api %>% 
+  add_column(stud_res)
+
+#Sort stud_res by descending:
+new_api %>% 
+  arrange(desc(stud_res)) %>% 
+  head() 
+```
+
+We can see that observation 8 has a studentized residual of about 3.
+
+### Leverage
+
+$$
+ h_i = \frac{1}{N} + \frac{(x_i - \overline{x})^2}{\sum_{i = 1}^{N}(x_i - \overline{x})^2}
+$$
+
+To calculate a leverage score for each x in the data set in R, we use the `hatvalues()` function to calculate the leverage for each observation in the model:
+
+```{r}
+#Using API example (m1)
+hats <- as.data.frame(hatvalues(m1)) %>% 
+  rename("hats" = "hatvalues(m1)")
+head(hats)
+```
+
+We can also plot the leverage values for each observation:
+
+```{r}
+plot(hatvalues(m1), type = 'h')
+```
+
+This plot shows some spikes in leverage values.
+Let's find out the cut off.
+Leverage (h~i~) values greater than $\frac{3(p+1)}{N}$ are considered influential ($p$ = number of predictors, $N$ = sample size)
+
+To calculate the leverage cut-off scores in R:
+
+```{r}
+# Using our API example
+
+#Number of predictors: 1
+p <- 1
+#Sample Size: 400
+n <- 400
+
+leverage <- (3*(p+1))/n
+leverage
+```
+
+To find the leverage values above our cut off (Influential values):
+
+```{r}
+influential <- hats %>% 
+  filter(hats > leverage)
+influential
+```
+
+We can see that observation 8 has the highest leverage value.
+If we want to remove all leverage values greater than the cut off from our `api` dataset:
+
+```{r}
+new_api_no_lev <- api %>% 
+  filter(hats < leverage) 
+```
+
+### Influence
+
+Combines distance and leverage to identify unusually influential observations (use Cook's D).
+
+Cook's distance measure is defined as:
+
+$$
+ Cook's D = \frac{(e_{s_i})^2}{p + 1} * \frac{h_i}{1-h_i} 
+$$
+
+Where $e_{s_i}$ is the studentized residual, $p$ = number of predictors, and $h_i$ is the leverage for observation for the $i$th observation.
+
+To find Cook's D in R:
+
+First let's create a scatterplot for our model (`enroll` by `api00`):
+
+```{r}
+api %>% 
+  ggplot(aes(x = enroll, y = api00)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  theme_minimal()
+```
+
+We can clearly see an outlier that is shifting our datapoints to the left.
+Let's calculate and plot Cook's D using R (This is Karen's code!):
+
+```{r}
+#Cacluating Cook's D
+cooksd <- cooks.distance(m1)
+
+#Plotting Values 
+plot(cooksd, pch="*", 
+     cex=2, 
+     main="Influential Obs by Cooks distance") # plot
+abline(h = 4*mean(cooksd, na.rm=T), 
+       col="red")  # add cutoff line
+text(x=1:length(cooksd)+1, 
+     y=cooksd, 
+     labels=ifelse(cooksd>4*mean(cooksd, na.rm=T),
+                   names(cooksd),""), 
+     col="red")  # add labels
+
+```
+
+As we've noted multiple times, observation 8 has proven to be the outlier in this dataset.
+Let's remove the outlier (row 8) using `slice()` and compare scatterplots (using the `gridExtra:grid.arrange()` to look at the plots side by side):
+
+```{r}
+#Remove outlier
+api_no_outlier <- api %>% 
+  slice(-8)
+
+# Scatterplot without the outlier
+no_outlier <- api_no_outlier %>% 
+  ggplot(aes(x = enroll, y = api00)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "No Outlier") +
+  theme_minimal()
+
+#Scatterplot with outlier
+outlier <- api %>% 
+  ggplot(aes(x = enroll, y = api00)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(title = "With Outlier") +
+  theme_minimal()
+
+grid.arrange(no_outlier, outlier, ncol = 2)
+```
+
+We can also rerun and compare regression models:
+
+```{r}
+#Rerun regression
+m2 <- lm(api00 ~ enroll, data = api_no_outlier)
+summary(m2)
+tab_model(m2, show.std = TRUE, show.stat = TRUE, show.zeroinf = TRUE)
+
+#Compare to model with outlier
+summary(m1)
+tab_model(m1, show.std = TRUE, show.stat = TRUE, show.zeroinf = TRUE)
+```
+
+What are the differences in output?
+Coefficients?
+R^2^ ?

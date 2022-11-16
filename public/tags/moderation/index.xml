@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>moderation on Dina Arch</title>
+    <link>https://www.dina-arch.com/tags/moderation/</link>
+    <description>Recent content in moderation on Dina Arch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/moderation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lab 3: Moderation</title>
+      <link>https://www.dina-arch.com/collection/linear-models/03-moderation/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/03-moderation/</guid>
+      <description>library(knitr) #include_graphics() library(equatiomatic) # extract_eq() library(psych) #describe() library(gtsummary) #tbl_summary() library(summarytools) #descr() library(stargazer) #stargazer() library(sjPlot) #tab_model() library(interactions) #interact_plot(), sim_slopes() library(jtools) #summ() library(tidyverse) Moderation When the research hypotheses state that different categories, or levels of another variable, may have differing responses to other independent variables, we need to use interaction terms
+- Also called moderation
+Example: The relationship between discrimination and grades depends on prog.
+Graph drawn using draw.io.
+Moderation Example Suppose you are doing a simple study on weight loss and notice that people who spend more time exercising lose more weight.</description>
+    </item>
+    
+  </channel>
+</rss>

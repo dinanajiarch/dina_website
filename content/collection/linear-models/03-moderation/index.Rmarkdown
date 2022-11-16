@@ -1,0 +1,306 @@
+---
+title: 'Lab 3: Moderation'
+author: 'TA: Dina Arch'
+date: 2021-04-16
+subtitle: Overview of regression using categorical and continuous moderators with interpretation.
+weight: 3
+draft: false
+images: 
+series: 
+tags:
+- r markdown
+- tidy data
+- regression
+- moderation
+categories:
+- data analysis
+editor_options:
+  markdown:
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      warning = FALSE,
+                      message = FALSE)
+
+```
+
+```{r}
+library(knitr) #include_graphics()
+library(equatiomatic) # extract_eq()
+library(psych) #describe()
+library(gtsummary) #tbl_summary()
+library(summarytools) #descr()
+library(stargazer) #stargazer()
+library(sjPlot) #tab_model()
+library(interactions) #interact_plot(), sim_slopes()
+library(jtools) #summ()
+library(tidyverse)
+```
+
+# Moderation
+
+When the research hypotheses state that different categories, or levels of another variable, may have differing responses to other independent variables, we need to use interaction terms
+
+\- Also called **moderation**
+
+![](images/moderation.png)
+
+**Example**: The relationship between *discrimination* and *grades* depends on prog.
+
+Graph drawn using [draw.io](draw.io).
+
+------------------------------------------------------------------------
+
+## Moderation Example
+
+Suppose you are doing a simple study on weight loss and notice that people who spend more time exercising lose more weight.
+Upon further analysis you notice that those who spend the same amount of time exercising lose more weight if they are more effortful.
+The more effort people put into their workouts, the less time they need to spend exercising.
+This is popular in workouts like high intensity interval training (HIIT).
+
+Example adapted from UCLA's [seminar](https://stats.idre.ucla.edu/r/seminars/interactions-r/#s4) on decomposing, probing, and plotting interactions in R.
+
+Read in data:
+
+```{r}
+exercise <- read.csv("https://stats.idre.ucla.edu/wp-content/uploads/2019/03/exercise.csv") %>% 
+  select(-gender) %>% 
+  mutate(prog = factor(prog, labels = c("Jogging", "Swimming", "Reading")),
+         hours_scaled = as.numeric(scale(hours)))
+```
+
+------------------------------------------------------------------------
+
+### Variable Descriptions
+
+|          |                                                                                          |
+|-------------------|-----------------------------------------------------|
+| **Name** | **Labels**                                                                               |
+| prog     |                                                                                          |
+| loss     | Weight loss (continuous), positive = weight loss, negative scores = weight gain          |
+| hours    | Hours spent exercising (continuous)                                                      |
+| effort   | Effort during exercise (continuous), 0 = minimal physical effort and 50 = maximum effort |
+
+------------------------------------------------------------------------
+
+### Descriptive Statistics
+
+```{r}
+#Three ways of presenting descriptives:
+
+# psych::describe()
+round(describe(exercise),2) 
+
+# gtsummary::gtsummary()
+tbl_summary(exercise,
+            statistic = list(all_continuous() ~ "{mean} ({sd})"),
+                             missing = "no")
+
+# summarytools::descr()
+#print(descr(exercise), method = 'render')
+```
+
+------------------------------------------------------------------------
+
+## Regression with a Categorical Moderator
+
+**Research Question:** Does *exercise program* moderate the relationship between *hours spent exercising* and *weight loss*?
+Or, said differently, Does the relationship between the *hours spent exercising* and *weight loss* differ based on the type of exercise you do (e.g., *exercise program*)?
+
+```{r}
+reg <- lm(loss ~ scale(hours)+prog, 
+                  data=exercise)
+mod <- lm(loss ~ scale(hours)*prog, 
+                  data=exercise)
+
+#Compare regression and moderation models
+tab_model(reg, mod,show.std = TRUE, show.stat = TRUE, show.zeroinf = TRUE )
+
+#Can also use stargazer::stargazer()
+stargazer(reg, mod, type = "text")
+
+#Only looks at moderation 
+# and jtools:summ()
+summ(mod)
+```
+
+### Simple Slope Equations
+
+The results above tell us that there is a moderation effect because the p-value for scale(hours)\*program(reading) is significant.
+The estimate of -5.15 is not that useful on it's own.
+The best way to understand is to use the estimates above and create a simple slope equation for each of the exercise programs (reading, swimming, and jogging).
+We do this below.
+
+```{r}
+extract_eq(mod)
+extract_eq(mod, use_coefs = TRUE)
+```
+
+Reading:
+
+$$
+y_{reading} = 8.14 + 3.69(hours) + 17.77(0) - 11.85(1) - 0.29(hours * 0) - 5.15 (hours * 1)
+$$ By dropping the terms that have a zero in it and adding the constant terms (e.g., those that have a 1), the equation simplifies to the equation below.
+This is the simple slope for the reading program.
+Another way to say it, this is the relationship between hours spent exercising and the outcome of weight loss for those who were in the reading program.
+
+$$
+y_{reading} = -3.71 - 1.46 (hours) 
+$$
+
+Swimming: $$
+y_{swimming} = 8.14 + 3.69(hours) + 17.77(1) - 11.85(0) - 0.29(hours * 1) - 5.15 (hours * 0)
+$$ The simple slope for those who were in the swimming program is below:
+
+$$
+y_{swimming} = 25.91 + 3.40(hours) 
+$$
+
+Jogging: $$
+y_{jogging} = 8.14 + 3.69(hours) + 17.77(0) - 11.85(0) - 0.29(hours * 0) - 5.15 (hours * 0)
+$$ The simple slope for those who were in the jogging program is below:
+
+$$
+y_{jogging} = 8.14 + 3.69(hours) 
+$$
+
+Looking at those three equations for each of the program time, we can see they vary both in their intercepts and their slopes.
+It is not directly evident just by looking at the point estimates in the table above how the combination of parameter estimates leads to the difference across the exercise programs-- but simple slopes helps us!
+
+------------------------------------------------------------------------
+
+### Plotting Interactions
+
+Plot code adapted from [here](https://cran.r-project.org/web/packages/interactions/vignettes/interactions.html#simple_slopes_analysis_and_johnson-neyman_intervals) (Long, 2020).
+
+Here, we plot the interaction or simple slope plots between `hours` and `loss` and levels of `prog`.
+The `interact_plot()` also plots the confidence intervals at 90%.
+
+```{r}
+interact_plot(mod, pred = hours, modx = prog, interval = TRUE, int.width = 0.9, data = exercise) + theme_apa()
+```
+
+```{r}
+mod_adj <- lm(loss ~ hours_scaled*prog, data=exercise)
+interact_plot(mod_adj, pred = hours_scaled, modx = prog, interval = TRUE, int.width = 0.9, data = exercise) + theme_apa()
+```
+
+Note that the only difference between the two interaction plots above is the scale of the x variable, *hours*.
+In the top plot, the hours variable is not scaled and in the bottom one it is.
+This does not change the slope, but it does change the intercept since we are moving the "zero" value in the scaled versoin.
+
+### Simple Slopes
+
+Here, we can test the simple slopes at each level of *hours spend exercising*.
+The results show us that for all levels of `prog`, there a significant association between *hours spent exercising* and *weight loss*.
+Note that the slope is different for each program.
+
+```{r}
+# The moderation needs to be adjusted a bit for this function to work (it doesn't like when we scale the hours variable directly in the lm function)
+mod_adj <- lm(loss ~ hours_scaled*prog, data=exercise)
+
+sim_slopes(mod_adj, pred = hours_scaled, modx = prog, johnson_neyman = FALSE)
+```
+
+------------------------------------------------------------------------
+
+## Regression with a Continuous Moderator
+
+**Research Question:** Does *effort during exercise* moderate the relationship between *hours spent exercising* and *weight loss*?
+Said differently (and equivalently), Does the relationship between the *hours spent* exercising and weight loss vary by the *effort during exercise*?
+
+```{r}
+reg2 <- lm(loss ~ scale(hours)+effort, 
+                  data=exercise)
+mod2 <- lm(loss ~ scale(hours)*effort, 
+                  data=exercise)
+
+tab_model(reg2, mod2,show.std = TRUE, show.stat = TRUE, show.zeroinf = TRUE )
+
+#Can also use stargazer::stargazer()
+stargazer(reg2, mod2, type = "text")
+
+# and jtools:summ()
+summ(mod2)
+```
+
+### Model Equations
+
+```{r}
+extract_eq(mod2)
+extract_eq(mod2, use_coefs = TRUE)
+```
+
+------------------------------------------------------------------------
+
+### Plotting Interactions
+
+Plot code adapted from [here](https://cran.r-project.org/web/packages/interactions/vignettes/interactions.html#simple_slopes_analysis_and_johnson-neyman_intervals) (Long, 2020).
+
+Here, we plot the interaction between `hours` and `loss` for +1 SD, mean, and -2 SD of `effort`.
+
+```{r}
+interact_plot(mod2, pred = hours, modx = effort, interval = TRUE, int.width = 0.9, data = exercise) + theme_apa()
+```
+
+------------------------------------------------------------------------
+
+### Simple Slopes
+
+Here, we can test the simple slopes at each level (in this case +1 SD, mean, -1SD) of *effort during exercise.* The results show us that for mean and +1 SD levels of *effort*, the slope is significantly different than zero.
+
+*NOTE*: There is a difference in the way we interpret continuous by continuous interactions.
+We use the Johnson-Neyman approach (`johnson_neyman=TRUE`) will tell us the exact values of the moderator for which the slope of the predictor will be statistically significant.
+We can also plot the Johnson Neyman test by using `jnplot=TRUE`.
+
+```{r}
+# The moderation needs to be adjusted a bit for this function to work (it doesn't like when we scale the hours variable directly in the lm function)
+mod_adj <- lm(loss ~ hours_scaled*effort, data=exercise)
+
+sim_slopes(mod_adj, pred = hours_scaled, modx = effort, johnson_neyman = TRUE, jnplot = TRUE)
+```
+
+Johnson-Neyman interpretation: When effort is OUTSIDE the interval \[-64.73, 28.55\], the slope of hours_scaled is p \< .05.
+In other words, the Johnson-Neymen tells us that when effort is less than 28.55, there is no significant relationship between hours and weight loss.
+However, for those who put in and effort level of 29 (rounding 28.55) and greater, there is a significant weight loss for the hours they put in.
+
+Bottom line: It doesn't matter how much time you put in to working out, you won't see weight loss if the effort is low (less than 29).
+
+------------------------------------------------------------------------
+
+Write up (note the formatting is not APA here-- just the text)
+
+A moderated regression model was used to explore the impact of the effort of an athlete on the relationship between hours spent exercising and weight loss.
+Specifically, we estimated a regression model with the hours spent exercising (standardized), effort, and the interaction of hours and effort to predict weight loss.
+There was evidence that there is a relationship with at least one predictor, *F*(3, 896) = 25.33, *p* \< .01, and collectively these variables explained 8% of the variability in weight loss.
+Results indicated that there was a significant interaction (*B* = .19, *p* = .04).
+Figure 1 presents the simple slope at the plot which we used to understand the interaction.
+Simple slopes are plotted for those who put in high (+1 SD above the mean), moderate effort (mean), and low effort (-1 SD below the mean) effort.
+The test of the simple slopes at each of these different levels indicated that for those who put in low effort (-1 SD below the mean), the slope is not significant (*B* = .13, *p* \>.05), indicating that for low effort, there is no relationship between the time spent exercising and weight loss.
+However, for higher values of effort, there was a relation.
+Specifically, for mean effort and high effort, the slope was significant, specifically *B* = 1.13 (*p* \< .05) and *B* = 2.13 (*p* \< .01).
+This implies that the slope increases the more effort put in, that is there is greater weight loss for time put in for those who have higher effort.
+The Johnson-Neyman interval (Johnson & Neyman, 1936) specifically indicates that for effort levels greater than 29, there is a positive and significant relationship between the time exercising and weight loss.
+
+------------------------------------------------------------------------
+
+**References**
+
+Esarey, J., & Sumner, J. L.
+(2017).
+Marginal effects in interaction models: Determining and controlling the false positive rate.
+Comparative Political Studies, 1--33.
+Advance online publication.
+<https://doi.org/10.1177/0010414017730080>
+
+Johnson, P. O.
+& Neyman, J.
+(1936).
+Tests of certain linear hypotheses and their applications to some educational problems.
+Statistical Research Memoirs, 1, 57--93.
+R Core Team (2021).
+R: A language and environment for statistical computing.
+R Foundation for Statistical Computing, Vienna, Austria.
+URL <https://www.R-project.org/>.

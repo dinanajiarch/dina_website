@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.102.1" />
+<title>Machine Learning Course Project | Dina Arch</title>
+
+
+<meta property="twitter:site" content="@dnajiarch">
+<meta property="twitter:creator" content="@dnajiarch">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Completion of a final project for PSTAT 231 at UC Santa Barbara.">
+
+
+<meta property="og:site_name" content="Dina Arch">
+<meta property="og:title" content="Machine Learning Course Project | Dina Arch">
+<meta property="og:description" content="Completion of a final project for PSTAT 231 at UC Santa Barbara." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://www.dina-arch.com/collection/machine_learning/" />
+<meta property="og:locale" content="en">
+
+
+
+
+    
+        <meta property="og:image" content="https://www.dina-arch.com/collection/machine_learning/featured.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://www.dina-arch.com/collection/machine_learning/featured.jpg" >
+    
+    
+  <meta itemprop="name" content="Machine Learning Course Project">
+<meta itemprop="description" content="Background The U.S. presidential election in 2012 did not come as a surprise. Some correctly predicted the outcome of the election correctly including Nate Silver, and many speculated about his approach.
+Despite the success in 2012, the 2016 presidential election came as a big surprise to many, and it underscored that predicting voter behavior is complicated for many reasons despite the tremendous effort in collecting, analyzing, and understanding many available datasets."><meta itemprop="datePublished" content="2021-03-15T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-03-15T00:00:00+00:00" />
+<meta itemprop="wordCount" content="7426"><meta itemprop="image" content="https://www.dina-arch.com/collection/machine_learning/featured.jpg">
+<meta itemprop="keywords" content="r markdown,machine learning,visualization,classification,principal components," />
+  
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
+  <link rel="icon" href="/img/cat.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.5550fcfd017088ccae55298dd74a3b7d7bfe6cc577b648c443d001196a798ca6.js" type="text/javascript"></script>
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+      <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/collection/" title="Project Portfolio">R Projects</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73" title="CV">CV</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+<main class="page-main ph4 pt4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h4 class="breadcrumb pb5">
+
+  
+    
+      
+  
+    
+      
+  
+
+    
+    
+      <a href="/collection/">R Projects</a>
+    
+  
+
+    
+    
+      Machine Learning Course Project
+    
+  
+
+</h4>
+
+
+
+
+        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Machine Learning Course Project</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Completion of a final project for PSTAT 231 at UC Santa Barbara.</h4>
+        
+        
+        
+        
+      
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        
+
+
+
+<h1 id="background">Background
+  <a href="#background"></a>
+</h1>
+<p>The U.S. presidential election in 2012 did not come as a surprise. Some correctly predicted the outcome of the election correctly including 
+<a href="https://en.wikipedia.org/wiki/Nate_Silver" target="_blank" rel="noopener">Nate Silver</a>, 
+and 
+<a href="https://www.theguardian.com/science/grrlscientist/2012/nov/08/nate-sliver-predict-us-election" target="_blank" rel="noopener">many speculated about his approach</a>.</p>
+<p>Despite the success in 2012, the 2016 presidential election came as a 
+
+<a href="https://fivethirtyeight.com/features/the-polls-missed-trump-we-asked-pollsters-why/" target="_blank" rel="noopener">big surprise</a> 
+to many, and it underscored that predicting voter behavior is complicated for many reasons despite the tremendous effort in collecting, analyzing, and understanding many available datasets.</p>
+<p>Your final project will be to merge census data with 2016 voting data to analyze the election outcome.</p>
+
+
+
+
+<h1 id="data">Data
+  <a href="#data"></a>
+</h1>
+<p>The <code>project_data.RData</code> binary file contains three datasets: tract-level 2010 census data, stored as <code>census</code>; metadata <code>census_meta</code> with variable descriptions and types; and county-level vote tallies from the 2016 election, stored as <code>election_raw</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">load</span>(<span style="color:#d14">&#39;project_data.RData&#39;</span>)
+</span></span></code></pre></div>
+
+
+
+<h2 id="election-data">Election data
+  <a href="#election-data"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Some example rows of the election data are shown below:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">filter</span>(election_raw, <span style="color:#000;font-weight:bold">!</span><span style="color:#900;font-weight:bold">is.na</span>(county)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 5
+##   county             fips  candidate       state   votes
+##   &lt;chr&gt;              &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt;
+## 1 Los Angeles County 6037  Hillary Clinton CA    2464364
+## 2 Los Angeles County 6037  Donald Trump    CA     769743
+## 3 Los Angeles County 6037  Gary Johnson    CA      88968
+## 4 Los Angeles County 6037  Jill Stein      CA      76465
+## 5 Los Angeles County 6037  Gloria La Riva  CA      21993
+## 6 Cook County        17031 Hillary Clinton IL    1611946
+</code></pre><p>The meaning of each column in <code>election_raw</code> is self-evident except <code>fips</code>. The accronym is short for 
+<a href="https://en.wikipedia.org/wiki/FIPS_county_code" target="_blank" rel="noopener">Federal Information Processing Standard</a>. In this dataset, <code>fips</code> values denote the area (nationwide, statewide, or countywide) that each row of data represent.</p>
+<p>Nationwide and statewide tallies are included as rows in <code>election_raw</code> with <code>county</code> values of <code>NA</code>. There are two kinds of these summary rows:</p>
+<ul>
+<li>Federal-level summary rows have a <code>fips</code> value of <code>US</code>.</li>
+<li>State-level summary rows have the state name as the <code>fips</code> value.</li>
+</ul>
+<ol start="4">
+<li>Inspect rows with <code>fips=2000</code>. Provide a reason for excluding them. Drop these observations &ndash; please write over <code>election_raw</code> &ndash; and report the data dimensions after removal.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>election_raw <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(fips <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">2000</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 5
+##   county fips  candidate          state  votes
+##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;              &lt;chr&gt;  &lt;dbl&gt;
+## 1 &lt;NA&gt;   2000  Donald Trump       AK    163387
+## 2 &lt;NA&gt;   2000  Hillary Clinton    AK    116454
+## 3 &lt;NA&gt;   2000  Gary Johnson       AK     18725
+## 4 &lt;NA&gt;   2000  Jill Stein         AK      5735
+## 5 &lt;NA&gt;   2000  Darrell Castle     AK      3866
+## 6 &lt;NA&gt;   2000  Rocky De La Fuente AK      1240
+</code></pre><p><strong>The only reason I see for exclusion is lack of county information and the <code>fips</code> value is identified as neither federal level (<code>fips</code> value of US) or state-level (<code>fips</code> value as the state).</strong></p>
+<p><strong>Dimensions:</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Drop observations</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>election_raw <span style="color:#000;font-weight:bold">&lt;-</span> election_raw <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(fips <span style="color:#000;font-weight:bold">!=</span> <span style="color:#099">2000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">dim</span>(election_raw) 
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] 18345     5
+</code></pre>
+
+
+
+<h2 id="census-data">Census data
+  <a href="#census-data"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>The first few rows and columns of the <code>census</code> data are shown below.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">6</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 6
+##   CensusTract State   County  TotalPop   Men Women
+##         &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  1001020100 Alabama Autauga     1948   940  1008
+## 2  1001020200 Alabama Autauga     2156  1059  1097
+## 3  1001020300 Alabama Autauga     2968  1364  1604
+## 4  1001020400 Alabama Autauga     4423  2172  2251
+## 5  1001020500 Alabama Autauga    10763  4922  5841
+## 6  1001020600 Alabama Autauga     3851  1787  2064
+</code></pre><p>Variable descriptions are given in the <code>metadata</code> file. The variables shown above are:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_meta <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#900;font-weight:bold">head</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 3
+##   variable       description                     type       
+##   &lt;chr&gt;          &lt;chr&gt;                           &lt;chr&gt;      
+## 1 &#34;CensusTract &#34; &#34; Census tract ID &#34;             &#34; numeric &#34;
+## 2 &#34;State &#34;       &#34; State, DC, or Puerto Rico &#34;   &#34; string &#34; 
+## 3 &#34;County &#34;      &#34; County or county equivalent &#34; &#34; string &#34; 
+## 4 &#34;TotalPop &#34;    &#34; Total population &#34;            &#34; numeric &#34;
+## 5 &#34;Men &#34;         &#34; Number of men &#34;               &#34; numeric &#34;
+## 6 &#34;Women &#34;       &#34; Number of women &#34;             &#34; numeric &#34;
+</code></pre><p>\newpage</p>
+
+
+
+
+<h2 id="data-preprocessing">Data preprocessing
+  <a href="#data-preprocessing"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<ol start="5">
+<li>
+<p>Separate the rows of <code>election_raw</code> into separate federal-, state-, and county-level data frames:</p>
+<ul>
+<li>
+<p>Store federal-level tallies as <code>election_federal</code>.</p>
+</li>
+<li>
+<p>Store state-level tallies as <code>election_state</code>.</p>
+</li>
+<li>
+<p>Store county-level tallies as <code>election</code>. Coerce the <code>fips</code> variable to numeric.</p>
+</li>
+</ul>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>election_federal <span style="color:#000;font-weight:bold">&lt;-</span> election_raw <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(fips <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;US&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>election_state <span style="color:#000;font-weight:bold">&lt;-</span> election_raw <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(<span style="color:#900;font-weight:bold">is.na</span>(county)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(fips <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#34;US&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>election <span style="color:#000;font-weight:bold">&lt;-</span> election_raw <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(fips <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#34;US&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(<span style="color:#000;font-weight:bold">!</span><span style="color:#900;font-weight:bold">is.na</span>(county)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(fips <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">as.numeric</span>(fips))
+</span></span></code></pre></div><p>Federal-Level Tallies (First 5 Rows):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>election_federal <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 5
+##   county fips  candidate       state    votes
+##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;    &lt;dbl&gt;
+## 1 &lt;NA&gt;   US    Donald Trump    US    62984825
+## 2 &lt;NA&gt;   US    Hillary Clinton US    65853516
+## 3 &lt;NA&gt;   US    Gary Johnson    US     4489221
+## 4 &lt;NA&gt;   US    Jill Stein      US     1429596
+## 5 &lt;NA&gt;   US    Evan McMullin   US      510002
+## 6 &lt;NA&gt;   US    Darrell Castle  US      186545
+</code></pre><p>State-Level Tallies (First 5 Rows):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>election_state <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 5
+##   county fips  candidate       state   votes
+##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt;
+## 1 &lt;NA&gt;   CA    Hillary Clinton CA    8753788
+## 2 &lt;NA&gt;   CA    Donald Trump    CA    4483810
+## 3 &lt;NA&gt;   CA    Gary Johnson    CA     478500
+## 4 &lt;NA&gt;   CA    Jill Stein      CA     278657
+## 5 &lt;NA&gt;   CA    Gloria La Riva  CA      66101
+## 6 &lt;NA&gt;   FL    Donald Trump    FL    4617886
+</code></pre><p>County-Level Tallies (First 5 Rows):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>election <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 5
+##   county              fips candidate       state   votes
+##   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;           &lt;chr&gt;   &lt;dbl&gt;
+## 1 Los Angeles County  6037 Hillary Clinton CA    2464364
+## 2 Los Angeles County  6037 Donald Trump    CA     769743
+## 3 Los Angeles County  6037 Gary Johnson    CA      88968
+## 4 Los Angeles County  6037 Jill Stein      CA      76465
+## 5 Los Angeles County  6037 Gloria La Riva  CA      21993
+## 6 Cook County        17031 Hillary Clinton IL    1611946
+</code></pre><ol start="6">
+<li>How many named presidential candidates were there in the 2016 election? Draw a bar graph of all votes received by each candidate, and order the candidate names by decreasing vote counts. (You may need to log-transform the vote axis.)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>pres_ct <span style="color:#000;font-weight:bold">&lt;-</span> election_federal <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(candidate <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#34; None of these candidates&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(candidate) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(sum <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">sum</span>(votes)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(candidate, sum) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(candidate <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">as.factor</span>(candidate))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pres_ct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">reorder</span>(candidate, sum), y <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">log</span>(sum), fill <span style="color:#000;font-weight:bold">=</span> candidate)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_bar</span>(colour <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;black&#34;</span>, stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;identity&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">guides</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">guide_axis</span>(angle <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">90</span>), fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Candidate&#34;</span>, y <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Votes&#34;</span>, title <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Vote Counts (Log-Transformed) of Each Presidential Candidate, 2016&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">coord_flip</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" />
+**There are 31 named presidential candidates**
+<ol start="7">
+<li>Create <code>county_winner</code> and <code>state_winner</code> by taking the candidate with the highest proportion of votes. (Hint: to create <code>county_winner</code>, start with <code>election</code>, group by <code>fips</code>, compute <code>total</code> votes, and <code>pct = votes/total</code>. Then choose the highest row using <code>slice_max</code> (variable <code>state_winner</code> is similar).)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>county_winner <span style="color:#000;font-weight:bold">&lt;-</span> election <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(fips) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(total <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">sum</span>(votes)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(pct <span style="color:#000;font-weight:bold">=</span> votes<span style="color:#000;font-weight:bold">/</span>total) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(pct, n<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>state_winner <span style="color:#000;font-weight:bold">&lt;-</span> election_state <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(fips) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(total <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">sum</span>(votes)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(pct <span style="color:#000;font-weight:bold">=</span> votes<span style="color:#000;font-weight:bold">/</span>total) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(pct, n<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span>)
+</span></span></code></pre></div><p>County Winner:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>county_winner <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ungroup</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(pct, n<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 1 × 7
+##   county          fips candidate    state votes total   pct
+##   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 Roberts County 48393 Donald Trump TX      524   550 0.953
+</code></pre><p>State Winner:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>state_winner <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ungroup</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(pct, n<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 1 × 7
+##   county fips  candidate       state  votes  total   pct
+##   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1 &lt;NA&gt;   DC    Hillary Clinton DC    282830 304717 0.928
+</code></pre>
+
+
+
+<h1 id="visualization">Visualization
+  <a href="#visualization"></a>
+</h1>
+<p>Here you&rsquo;ll generate maps of the election data using <code>ggmap</code>. The .Rmd file for this document contains codes to generate the following map.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>states <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">map_data</span>(<span style="color:#d14">&#34;state&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggplot</span>(states) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_polygon</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> long, 
+</span></span><span style="display:flex;"><span>                   y <span style="color:#000;font-weight:bold">=</span> lat, 
+</span></span><span style="display:flex;"><span>                   fill <span style="color:#000;font-weight:bold">=</span> region, 
+</span></span><span style="display:flex;"><span>                   group <span style="color:#000;font-weight:bold">=</span> group), 
+</span></span><span style="display:flex;"><span>               color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;white&#34;</span>) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">coord_fixed</span>(<span style="color:#099">1.3</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># avoid stretching</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">guides</span>(fill<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">FALSE</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># no fill legend</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_nothing</span>() <span style="color:#998;font-style:italic"># no axes</span>
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-15-1.png" width="576" style="display: block; margin: auto;" />
+<ol start="8">
+<li>Draw a county-level map with <code>map_data(&quot;county&quot;)</code> and color by county.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>counties <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">map_data</span>(<span style="color:#d14">&#34;county&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggplot</span>(counties) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_polygon</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> long, 
+</span></span><span style="display:flex;"><span>                   y <span style="color:#000;font-weight:bold">=</span> lat, 
+</span></span><span style="display:flex;"><span>                   fill <span style="color:#000;font-weight:bold">=</span> region, 
+</span></span><span style="display:flex;"><span>                   group <span style="color:#000;font-weight:bold">=</span> group), 
+</span></span><span style="display:flex;"><span>               color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;white&#34;</span>) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">coord_fixed</span>(<span style="color:#099">1.3</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># avoid stretching</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">guides</span>(fill<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">FALSE</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># no fill legend</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_nothing</span>() <span style="color:#998;font-style:italic"># no axes</span>
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-16-1.png" width="576" style="display: block; margin: auto;" />
+<p>In order to map the winning candidate for each state, the map data (<code>states</code>) must be merged with with the election data (<code>state_winner</code>).</p>
+<p>The function <code>left_join()</code> will do the trick, but needs to join the data frames on a variable with values that match. In this case, that variable is the state name, but abbreviations are used in one data frame and the full name is used in the other.</p>
+<ol start="9">
+<li>Use the following function to create a <code>fips</code> variable in the <code>states</code> data frame with values that match the <code>fips</code> variable in <code>election_federal</code>.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>name2abb <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">function</span>(statename){
+</span></span><span style="display:flex;"><span>  ix <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">match</span>(statename, <span style="color:#900;font-weight:bold">tolower</span>(state.name))
+</span></span><span style="display:flex;"><span>  out <span style="color:#000;font-weight:bold">&lt;-</span> state.abb[ix]
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">return</span>(out)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>states <span style="color:#000;font-weight:bold">&lt;-</span> states <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(fips <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">name2abb</span>(region))
+</span></span></code></pre></div><p>First 5 rows in the <code>states</code> data frame:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>states <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##        long      lat group order  region subregion fips
+## 1 -87.46201 30.38968     1     1 alabama      &lt;NA&gt;   AL
+## 2 -87.48493 30.37249     1     2 alabama      &lt;NA&gt;   AL
+## 3 -87.52503 30.37249     1     3 alabama      &lt;NA&gt;   AL
+## 4 -87.53076 30.33239     1     4 alabama      &lt;NA&gt;   AL
+## 5 -87.57087 30.32665     1     5 alabama      &lt;NA&gt;   AL
+## 6 -87.58806 30.32665     1     6 alabama      &lt;NA&gt;   AL
+</code></pre><ul>
+<li>Now the data frames can be merged. <code>left_join(df1, df2)</code> takes all the rows from <code>df1</code> and looks for matches in <code>df2</code>. For each match, <code>left_join()</code> appends the data from the second table to the matching row in the first; if no matching value is found, it adds missing values.</li>
+</ul>
+<ol start="10">
+<li>Use <code>left_join</code> to merge the tables and use the result to create a map of the election results by state. Your figure will look similar to this state level 
+<a href="https://www.nytimes.com/elections/results/president" target="_blank" rel="noopener">New York Times map</a>. (Hint: use <code>scale_fill_brewer(palette=&quot;Set1&quot;)</code> for a red-and-blue map.)</li>
+</ol>
+<p>Merged states by <code>fips</code> (First 5 rows):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_states <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">left_join</span>(states, state_winner) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggplot</span>(merged_states) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_polygon</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> long, 
+</span></span><span style="display:flex;"><span>                   y <span style="color:#000;font-weight:bold">=</span> lat, 
+</span></span><span style="display:flex;"><span>                   fill <span style="color:#000;font-weight:bold">=</span> candidate, 
+</span></span><span style="display:flex;"><span>                   group <span style="color:#000;font-weight:bold">=</span> group), 
+</span></span><span style="display:flex;"><span>               color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Black&#34;</span>) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">coord_fixed</span>(<span style="color:#099">1.3</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># avoid stretching</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">guides</span>(fill<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">FALSE</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># no fill legend</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_nothing</span>() <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># no axes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">scale_fill_brewer</span>(palette<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;Set1&#34;</span>) 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-19-1.png" width="576" style="display: block; margin: auto;" />
+<ol start="11">
+<li>Now create a county-level map. The county-level map data does not have a <code>fips</code> value, so to create one, use information from <code>maps::county.fips</code>: split the <code>polyname</code> column to <code>region</code> and <code>subregion</code> using <code>tidyr::separate</code>, and use <code>left_join()</code> to combine <code>county.fips</code> with the county-level map data. Then construct the map. Your figure will look similar to county-level 
+<a href="https://www.nytimes.com/elections/results/president" target="_blank" rel="noopener">New York Times map</a>.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>county_fips <span style="color:#000;font-weight:bold">&lt;-</span> maps<span style="color:#000;font-weight:bold">::</span>county.fips <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  tidyr<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">separate</span>(polyname, <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;region&#34;</span>, <span style="color:#d14">&#34;subregion&#34;</span>), sep <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;,&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>counties <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">left_join</span>(counties, county_fips)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>county_map <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">left_join</span>(counties, county_winner)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggplot</span>(county_map) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_polygon</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> long, 
+</span></span><span style="display:flex;"><span>                   y <span style="color:#000;font-weight:bold">=</span> lat, 
+</span></span><span style="display:flex;"><span>                   fill <span style="color:#000;font-weight:bold">=</span> candidate, 
+</span></span><span style="display:flex;"><span>                   group <span style="color:#000;font-weight:bold">=</span> group), 
+</span></span><span style="display:flex;"><span>               color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;white&#34;</span>) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">coord_fixed</span>(<span style="color:#099">1.3</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># avoid stretching</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">guides</span>(fill<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">FALSE</span>) <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># no fill legend</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_nothing</span>() <span style="color:#000;font-weight:bold">+</span> <span style="color:#998;font-style:italic"># no axes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">scale_fill_brewer</span>(palette<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;Set1&#34;</span>) 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-20-1.png" width="576" style="display: block; margin: auto;" />
+<ol start="12">
+<li>Create a visualization of your choice using <code>census</code> data. Many exit polls noted that 
+<a href="https://fivethirtyeight.com/features/demographics-not-hacking-explain-the-election-results/" target="_blank" rel="noopener">demographics played a big role in the election</a>. If you need a starting point, use 
+<a href="https://www.washingtonpost.com/graphics/politics/2016-election/exit-polls/" target="_blank" rel="noopener">this Washington Post article</a> and 
+<a href="https://www.r-graph-gallery.com/" target="_blank" rel="noopener">this R graph gallery</a> for ideas and inspiration.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_12 <span style="color:#000;font-weight:bold">&lt;-</span> census <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(State, Men, Women, TotalPop, Income, Unemployment, Hispanic, White, Black) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(State) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summarise</span>(<span style="color:#900;font-weight:bold">across</span>(Men<span style="color:#000;font-weight:bold">:</span>Income, <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">sum</span>(.x, na.rm <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)),
+</span></span><span style="display:flex;"><span>            <span style="color:#900;font-weight:bold">across</span>(Unemployment<span style="color:#000;font-weight:bold">:</span>Black, <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">mean</span>(.x, na.rm <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p <span style="color:#000;font-weight:bold">&lt;-</span> census_12 <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(State <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">as.factor</span>(State)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(State) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> Unemployment, y <span style="color:#000;font-weight:bold">=</span> Income, size <span style="color:#000;font-weight:bold">=</span> TotalPop, fill <span style="color:#000;font-weight:bold">=</span> State, colour <span style="color:#000;font-weight:bold">=</span> State)) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(show.legend <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_text</span>(label<span style="color:#000;font-weight:bold">=</span>census_12<span style="color:#000;font-weight:bold">$</span>State, 
+</span></span><span style="display:flex;"><span>            nudge_x <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.25</span>, 
+</span></span><span style="display:flex;"><span>            nudge_y <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.25</span>, 
+</span></span><span style="display:flex;"><span>            check_overlap <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">F</span>,
+</span></span><span style="display:flex;"><span>            colour <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Black&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-21-1.png" width="1152" style="display: block; margin: auto;" />
+<ol start="13">
+<li>The <code>census</code> data contains high resolution information (more fine-grained than county-level). Aggregate the information into county-level data by computing population-weighted averages of each attribute for each county by carrying out the following steps:</li>
+</ol>
+<ul>
+<li>
+<p>Clean census data, saving the result as <code>census_del</code>:</p>
+<ul>
+<li>filter out any rows of <code>census</code> with missing values;</li>
+<li>convert <code>Men</code>, <code>Employed</code>, and <code>Citizen</code> to percentages;</li>
+<li>compute a <code>Minority</code> variable by combining <code>Hispanic</code>, <code>Black</code>, <code>Native</code>, <code>Asian</code>, <code>Pacific</code>, and remove these variables after creating <code>Minority</code>; and</li>
+<li>remove <code>Walk</code>, <code>PublicWork</code>, and <code>Construction</code>.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_del <span style="color:#000;font-weight:bold">&lt;-</span> census <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(Men <span style="color:#000;font-weight:bold">=</span> (Men<span style="color:#000;font-weight:bold">/</span>TotalPop)<span style="color:#000;font-weight:bold">*</span><span style="color:#099">100</span>,
+</span></span><span style="display:flex;"><span>         Citizen <span style="color:#000;font-weight:bold">=</span> (Citizen<span style="color:#000;font-weight:bold">/</span>TotalPop)<span style="color:#000;font-weight:bold">*</span><span style="color:#099">100</span>, 
+</span></span><span style="display:flex;"><span>         Employed <span style="color:#000;font-weight:bold">=</span> (Employed<span style="color:#000;font-weight:bold">/</span>TotalPop)<span style="color:#000;font-weight:bold">*</span><span style="color:#099">100</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(Minority <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">rowSums</span>(<span style="color:#900;font-weight:bold">across</span>(<span style="color:#900;font-weight:bold">c</span>(Hispanic, Black, Native, Asian, Pacific)))) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>Hispanic, <span style="color:#000;font-weight:bold">-</span>Black, <span style="color:#000;font-weight:bold">-</span>Native, <span style="color:#000;font-weight:bold">-</span>Asian, <span style="color:#000;font-weight:bold">-</span>Pacific, <span style="color:#000;font-weight:bold">-</span>Walk, <span style="color:#000;font-weight:bold">-</span>PublicWork, <span style="color:#000;font-weight:bold">-</span>Construction)
+</span></span></code></pre></div><ul>
+<li>Create population weights for sub-county census data, saving the result as <code>census_subct</code>:
+<ul>
+<li>group <code>census_del</code> by <code>State</code> and <code>County</code>;</li>
+<li>use <code>add_tally()</code> to compute <code>CountyPop</code>;</li>
+<li>compute the population weight as <code>TotalPop/CountyTotal</code>;</li>
+<li>adjust all quantitative variables by multiplying by the population weights.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_subct <span style="color:#000;font-weight:bold">&lt;-</span> census_del <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(State, County) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(CountyPop <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">sum</span>(TotalPop)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(PopWeight <span style="color:#000;font-weight:bold">=</span> TotalPop<span style="color:#000;font-weight:bold">/</span>CountyPop) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(<span style="color:#900;font-weight:bold">across</span>(Men<span style="color:#000;font-weight:bold">:</span>Minority, <span style="color:#000;font-weight:bold">~</span>.x<span style="color:#000;font-weight:bold">*</span>PopWeight))
+</span></span></code></pre></div><ul>
+<li>Aggregate census data to county level, <code>census_ct</code>: group the sub-county data <code>census_subct</code> by state and county and compute popluation-weighted averages of each variable by taking the sum (since the variables were already transformed by the population weights)</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_ct <span style="color:#000;font-weight:bold">&lt;-</span> census_subct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(State, County) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summarise</span>(<span style="color:#900;font-weight:bold">across</span>(Men<span style="color:#000;font-weight:bold">:</span>Minority, sum))
+</span></span></code></pre></div><ul>
+<li>Print the first few rows and columns of <code>census_ct</code>.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_ct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 28
+## # Groups:   State [1]
+##   State   County    Men Women White Citizen Income IncomeErr IncomePerCap
+##   &lt;chr&gt;   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+## 1 Alabama Autauga  48.4 3349.  75.8    73.7 51696.     7771.       24974.
+## 2 Alabama Baldwin  48.8 3934.  83.1    75.7 51074.     8745.       27317.
+## 3 Alabama Barbour  53.8 1492.  46.2    76.9 32959.     6031.       16824.
+## 4 Alabama Bibb     53.4 2930.  74.5    77.4 38887.     5662.       18431.
+## 5 Alabama Blount   49.4 3562.  87.9    73.4 46238.     8696.       20532.
+## 6 Alabama Bullock  53.0 1968.  22.2    75.5 33293.     9000.       17580.
+## # … with 19 more variables: IncomePerCapErr &lt;dbl&gt;, Poverty &lt;dbl&gt;,
+## #   ChildPoverty &lt;dbl&gt;, Professional &lt;dbl&gt;, Service &lt;dbl&gt;, Office &lt;dbl&gt;,
+## #   Production &lt;dbl&gt;, Drive &lt;dbl&gt;, Carpool &lt;dbl&gt;, Transit &lt;dbl&gt;,
+## #   OtherTransp &lt;dbl&gt;, WorkAtHome &lt;dbl&gt;, MeanCommute &lt;dbl&gt;, Employed &lt;dbl&gt;,
+## #   PrivateWork &lt;dbl&gt;, SelfEmployed &lt;dbl&gt;, FamilyWork &lt;dbl&gt;,
+## #   Unemployment &lt;dbl&gt;, Minority &lt;dbl&gt;
+</code></pre><ol start="14">
+<li>If you were physically located in the United States on election day for the 2016 presidential election, what state and county were you in? Compare and contrast the results and demographic information for this county with the state it is located in. If you were not in the United States on election day, select any county. Do you find anything unusual or surprising? If so, explain; if not, explain why not.</li>
+</ol>
+<p><strong>On election day, I was in Los Angeles, CA. Taking the average values of some of the variables to look at overall California demographics, it looks like minorities make up 70% of LA, and 40% of California. Men and Unemployement is unchanged. Having lived here a long time, I am not surprised at the demographics. LA is much more diverse than the rest of California.</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_ct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(County <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;Los Angeles&#34;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 1 × 28
+## # Groups:   State [1]
+##   State      County        Men Women White Citizen Income IncomeErr IncomePerCap
+##   &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;
+## 1 California Los Angeles  49.2 2460.  26.9    60.1 61385.    10572.       28390.
+## # … with 19 more variables: IncomePerCapErr &lt;dbl&gt;, Poverty &lt;dbl&gt;,
+## #   ChildPoverty &lt;dbl&gt;, Professional &lt;dbl&gt;, Service &lt;dbl&gt;, Office &lt;dbl&gt;,
+## #   Production &lt;dbl&gt;, Drive &lt;dbl&gt;, Carpool &lt;dbl&gt;, Transit &lt;dbl&gt;,
+## #   OtherTransp &lt;dbl&gt;, WorkAtHome &lt;dbl&gt;, MeanCommute &lt;dbl&gt;, Employed &lt;dbl&gt;,
+## #   PrivateWork &lt;dbl&gt;, SelfEmployed &lt;dbl&gt;, FamilyWork &lt;dbl&gt;,
+## #   Unemployment &lt;dbl&gt;, Minority &lt;dbl&gt;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>census_ct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(State <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#34;California&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summarise</span>(<span style="color:#900;font-weight:bold">across</span>(Men<span style="color:#000;font-weight:bold">:</span>Minority, mean)) 
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 1 × 27
+##   State    Men Women White Citizen Income IncomeErr IncomePerCap IncomePerCapErr
+##   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt;           &lt;dbl&gt;
+## 1 Calif…  50.4 2665.  55.7    68.2 59031.     9828.       28014.           3977.
+## # … with 18 more variables: Poverty &lt;dbl&gt;, ChildPoverty &lt;dbl&gt;,
+## #   Professional &lt;dbl&gt;, Service &lt;dbl&gt;, Office &lt;dbl&gt;, Production &lt;dbl&gt;,
+## #   Drive &lt;dbl&gt;, Carpool &lt;dbl&gt;, Transit &lt;dbl&gt;, OtherTransp &lt;dbl&gt;,
+## #   WorkAtHome &lt;dbl&gt;, MeanCommute &lt;dbl&gt;, Employed &lt;dbl&gt;, PrivateWork &lt;dbl&gt;,
+## #   SelfEmployed &lt;dbl&gt;, FamilyWork &lt;dbl&gt;, Unemployment &lt;dbl&gt;, Minority &lt;dbl&gt;
+</code></pre>
+
+
+
+<h1 id="exploratory-analysis">Exploratory analysis
+  <a href="#exploratory-analysis"></a>
+</h1>
+<ol start="15">
+<li>Carry out PCA for both county &amp; sub-county level census data. Compute the first two principal components PC1 and PC2 for both county and sub-county respectively. Discuss whether you chose to center and scale the features and the reasons for your choice. Examine and interpret the loadings.</li>
+</ol>
+<p>County Level:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># County Level Census</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Center and scale the data</span>
+</span></span><span style="display:flex;"><span>county_std <span style="color:#000;font-weight:bold">&lt;-</span> census_ct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span><span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#39;State&#39;</span>,<span style="color:#d14">&#39;County&#39;</span>)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">scale</span>(center <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">T</span>, scale <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">T</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Compute SVD</span>
+</span></span><span style="display:flex;"><span>x_svd <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">svd</span>(county_std)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Get loadings</span>
+</span></span><span style="display:flex;"><span>v_svd <span style="color:#000;font-weight:bold">&lt;-</span> x_svd<span style="color:#000;font-weight:bold">$</span>v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute principal components</span>
+</span></span><span style="display:flex;"><span>county_pc <span style="color:#000;font-weight:bold">&lt;-</span> county_std <span style="color:#000;font-weight:bold">%*%</span> v_svd
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">colnames</span>(county_pc) <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">paste</span>(<span style="color:#d14">&#39;PC&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">26</span>, sep <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># scatterplot</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">as_tibble</span>(county_pc[,<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>]) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">bind_cols</span>(<span style="color:#900;font-weight:bold">select</span>(census_ct, County)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> PC1, y <span style="color:#000;font-weight:bold">=</span> PC2)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(<span style="color:#900;font-weight:bold">aes</span>(color <span style="color:#000;font-weight:bold">=</span> County)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme</span>(legend.position<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;none&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-27-1.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>v_svd[, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>] <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(variable <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(county_std)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;PC&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Loading&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(variable) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> variable, y <span style="color:#000;font-weight:bold">=</span> Loading)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(<span style="color:#900;font-weight:bold">aes</span>(shape <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_hline</span>(yintercept <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;blue&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>(<span style="color:#900;font-weight:bold">aes</span>(linetype <span style="color:#000;font-weight:bold">=</span> PC, group <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme</span>(axis.text.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">element_text</span>(angle <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">90</span>)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>) 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-27-2.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>v_svd[, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>] <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(variable <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(county_std)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;PC&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Loading&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(variable) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> variable, y <span style="color:#000;font-weight:bold">=</span> Loading)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(<span style="color:#900;font-weight:bold">aes</span>(shape <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_hline</span>(yintercept <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;blue&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>(<span style="color:#900;font-weight:bold">aes</span>(linetype <span style="color:#000;font-weight:bold">=</span> PC, group <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme</span>(axis.text.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">element_text</span>(angle <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">90</span>)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span>PC)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-27-3.png" width="576" style="display: block; margin: auto;" />
+<p><strong>The first PC has a high percentage of children under poverty level, a high percentage of people under poverty level, and high percentage of those unemployed. The first PC also has low income per capital, low percentage of those employed (16+), and low median household income. I would label this principal component as <em>Under Poverty Level</em>.</strong></p>
+<p><strong>The second PC has a high percentage of those who are self-employed, a high percentage of those working at home, and high percentage of those working in unpaid family work. The second PC also has low number of women, low percentage of working in private industry, and low percentage of employed in office jobs. I would label this principal component as <em>Working Class - Family Oriented</em>.</strong></p>
+<p>Sub-county Level:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Sub-County Level Census</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Center and scale the data</span>
+</span></span><span style="display:flex;"><span>subcounty_std <span style="color:#000;font-weight:bold">&lt;-</span> census_subct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span><span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#39;State&#39;</span>,<span style="color:#d14">&#39;County&#39;</span>,<span style="color:#d14">&#39;CensusTract&#39;</span>, <span style="color:#d14">&#39;PopWeight&#39;</span>, <span style="color:#d14">&#39;TotalPop&#39;</span>, <span style="color:#d14">&#39;CountyPop&#39;</span>)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">scale</span>(center <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">T</span>, scale <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">T</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Compute SVD</span>
+</span></span><span style="display:flex;"><span>x_svd2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">svd</span>(subcounty_std)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Get loadings</span>
+</span></span><span style="display:flex;"><span>v_svd2 <span style="color:#000;font-weight:bold">&lt;-</span> x_svd2<span style="color:#000;font-weight:bold">$</span>v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute principal components</span>
+</span></span><span style="display:flex;"><span>subcounty_pc <span style="color:#000;font-weight:bold">&lt;-</span> subcounty_std <span style="color:#000;font-weight:bold">%*%</span> v_svd2
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">colnames</span>(subcounty_pc) <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">paste</span>(<span style="color:#d14">&#39;PC&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">26</span>, sep <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># scatterplot</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">as_tibble</span>(subcounty_pc[,<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>]) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">bind_cols</span>(<span style="color:#900;font-weight:bold">select</span>(census_subct, County)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> PC1, y <span style="color:#000;font-weight:bold">=</span> PC2)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(<span style="color:#900;font-weight:bold">aes</span>(color <span style="color:#000;font-weight:bold">=</span> County)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme</span>(legend.position<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;none&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-28-1.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>v_svd2[, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>] <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(variable <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(subcounty_std)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;PC&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Loading&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(variable) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> variable, y <span style="color:#000;font-weight:bold">=</span> Loading)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(<span style="color:#900;font-weight:bold">aes</span>(shape <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_hline</span>(yintercept <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;blue&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>(<span style="color:#900;font-weight:bold">aes</span>(linetype <span style="color:#000;font-weight:bold">=</span> PC, group <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme</span>(axis.text.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">element_text</span>(angle <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">90</span>)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>) 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-28-2.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>v_svd2[, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>] <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(variable <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(subcounty_std)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;PC&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Loading&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(variable) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> variable, y <span style="color:#000;font-weight:bold">=</span> Loading)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(<span style="color:#900;font-weight:bold">aes</span>(shape <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_hline</span>(yintercept <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;blue&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>(<span style="color:#900;font-weight:bold">aes</span>(linetype <span style="color:#000;font-weight:bold">=</span> PC, group <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme</span>(axis.text.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">element_text</span>(angle <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">90</span>)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span>PC)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-28-3.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>data <span style="color:#000;font-weight:bold">&lt;-</span> v_svd2[, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">2</span>] <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(variable <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(subcounty_std))
+</span></span></code></pre></div><p><strong>This PC is interesting because all 26 variables are positive and relatively high, where most have loadings greater than .20. The first PC has a high percentage of Men, a high number of citizens, high percentage of those employed in private industry, high percentage of those who commute alone in a car, and a high percentage of those employed (+16). I would label this principal component as <em>Working-Class</em>.</strong></p>
+<p><strong>The second PC has a high percentage of minorities, a high percentage of unemployment, and high percentage of child poverty and under poverty level. The second PC also has low percentage of those who work from home, low percentage of inpaid family work, and low percentage of those who are self-employed. I would label this principal component as <em>Under Poverty Level</em>.</strong></p>
+<p><strong>It&rsquo;s usually important to both center and scale your variables as they are most likely not on the same metric. As in this case, I center and scaled the dataset because some variables are count and others are percentages. Either way, it doesn&rsquo;t hurt.</strong></p>
+<ol start="16">
+<li>Determine the minimum number of PCs needed to capture 90% of the variance for both the county and sub-county analyses. Plot the proportion of variance explained and cumulative variance explained for both county and sub-county analyses.</li>
+</ol>
+<p>County Level:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># scree and cumulative variance plots</span>
+</span></span><span style="display:flex;"><span>pc_vars <span style="color:#000;font-weight:bold">&lt;-</span> x_svd<span style="color:#000;font-weight:bold">$</span>d^2<span style="color:#000;font-weight:bold">/</span>(<span style="color:#900;font-weight:bold">nrow</span>(county_std) <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tibble</span>(PC <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#900;font-weight:bold">min</span>(<span style="color:#900;font-weight:bold">dim</span>(county_std)),
+</span></span><span style="display:flex;"><span>       Proportion <span style="color:#000;font-weight:bold">=</span> pc_vars<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">sum</span>(pc_vars),
+</span></span><span style="display:flex;"><span>       Cumulative <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cumsum</span>(Proportion)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;measure&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Variance Explained&#39;</span>, <span style="color:#099">2</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">3</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> PC, y <span style="color:#000;font-weight:bold">=</span> `Variance Explained`)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span> measure) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-29-1.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#tibble(PC = 1:min(dim(county_std)),</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#       Proportion = pc_vars/sum(pc_vars),</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#       Cumulative = cumsum(Proportion)) %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  head(15) %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  pander()</span>
+</span></span></code></pre></div><p><strong>At least <em>13</em> PCs are needed to capture 90% of the variance for the county analysis.</strong></p>
+<p>Sub-County Level:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># scree and cumulative variance plots</span>
+</span></span><span style="display:flex;"><span>pc_vars2 <span style="color:#000;font-weight:bold">&lt;-</span> x_svd2<span style="color:#000;font-weight:bold">$</span>d^2<span style="color:#000;font-weight:bold">/</span>(<span style="color:#900;font-weight:bold">nrow</span>(subcounty_std) <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tibble</span>(PC <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#900;font-weight:bold">min</span>(<span style="color:#900;font-weight:bold">dim</span>(subcounty_std)),
+</span></span><span style="display:flex;"><span>       Proportion <span style="color:#000;font-weight:bold">=</span> pc_vars2<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">sum</span>(pc_vars2),
+</span></span><span style="display:flex;"><span>       Cumulative <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cumsum</span>(Proportion)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;measure&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Variance Explained&#39;</span>, <span style="color:#099">2</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">3</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> PC, y <span style="color:#000;font-weight:bold">=</span> `Variance Explained`)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span> measure) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-30-1.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#tibble(PC = 1:min(dim(subcounty_std)),</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#       Proportion = pc_vars2/sum(pc_vars2),</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#       Cumulative = cumsum(Proportion)) %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  head(10) %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  pander()</span>
+</span></span></code></pre></div><p><strong>At least <em>7</em> PCs are needed to capture 90% of the variance for the sub-county analysis.</strong></p>
+<ol start="17">
+<li>With <code>census_ct</code>, perform hierarchical clustering with complete linkage.  Cut the tree to partition the observations into 10 clusters. Re-run the hierarchical clustering algorithm using the first 5 principal components the county-level data as inputs instead of the original features. Compare and contrast the results. For both approaches investigate the cluster that contains San Mateo County. Which approach seemed to put San Mateo County in a more appropriate cluster? Comment on what you observe and discuss possible explanations for these observations.</li>
+</ol>
+<p>Hierarchical Clustering:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ggridges)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(dendextend)
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute distances between points</span>
+</span></span><span style="display:flex;"><span>d_mx <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">dist</span>(county_std, method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;euclidean&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute hierarchical clustering</span>
+</span></span><span style="display:flex;"><span>hclust_out <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">hclust</span>(d_mx, method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;complete&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># cut at 10 clusters</span>
+</span></span><span style="display:flex;"><span>clusters <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">cutree</span>(hclust_out, k <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">10</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">factor</span>(labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">paste</span>(<span style="color:#d14">&#39;cluster&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">10</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># count number of data points per cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tibble</span>(clusters) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">count</span>(clusters) 
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 10 × 2
+##    clusters       n
+##    &lt;fct&gt;      &lt;int&gt;
+##  1 cluster 1   2307
+##  2 cluster 2    779
+##  3 cluster 3     67
+##  4 cluster 4      8
+##  5 cluster 5     20
+##  6 cluster 6      4
+##  7 cluster 7      3
+##  8 cluster 8      3
+##  9 cluster 9     23
+## 10 cluster 10     4
+</code></pre><p>Cluster for San Mateo County:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#filter San Mateo County</span>
+</span></span><span style="display:flex;"><span>san_mateo <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">which</span>(<span style="color:#900;font-weight:bold">grepl</span>(<span style="color:#d14">&#39;San Mateo&#39;</span>, census_ct<span style="color:#000;font-weight:bold">$</span>County))
+</span></span><span style="display:flex;"><span>clusters[san_mateo]
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] cluster 1
+## 10 Levels: cluster 1 cluster 2 cluster 3 cluster 4 cluster 5 ... cluster 10
+</code></pre><p>Hierarchical Clustering for first five PCs:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># First 5 PC</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute distances between points</span>
+</span></span><span style="display:flex;"><span>d_mx <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">dist</span>(county_pc[,<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">5</span>], method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;euclidean&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute hierarchical clustering</span>
+</span></span><span style="display:flex;"><span>hclust_out <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">hclust</span>(d_mx, method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;complete&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># cut at 10 clusters</span>
+</span></span><span style="display:flex;"><span>clusters <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">cutree</span>(hclust_out, k <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">10</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">factor</span>(labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">paste</span>(<span style="color:#d14">&#39;cluster&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">10</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># count number of data points per cluster</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tibble</span>(clusters) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">count</span>(clusters)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 10 × 2
+##    clusters       n
+##    &lt;fct&gt;      &lt;int&gt;
+##  1 cluster 1   1950
+##  2 cluster 2    631
+##  3 cluster 3    312
+##  4 cluster 4     57
+##  5 cluster 5      8
+##  6 cluster 6    167
+##  7 cluster 7     43
+##  8 cluster 8      7
+##  9 cluster 9     40
+## 10 cluster 10     3
+</code></pre><p>Cluster for San Mateo County:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#filter San Mateo County</span>
+</span></span><span style="display:flex;"><span>san_mateo <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">which</span>(<span style="color:#900;font-weight:bold">grepl</span>(<span style="color:#d14">&#39;San Mateo&#39;</span>, census_ct<span style="color:#000;font-weight:bold">$</span>County))
+</span></span><span style="display:flex;"><span>clusters[san_mateo] 
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] cluster 3
+## 10 Levels: cluster 1 cluster 2 cluster 3 cluster 4 cluster 5 ... cluster 10
+</code></pre><p><strong>It seems that the counties in the PC cluster are more evenly spread out than using the entire dataset. When using the first 5 principal components, we are capturing 64% of the variance in the county dataset with only five variables. Because of the smaller dimension, it may be more effective in clustering the counties as opposed to using 26 variables with the full dataset. It makes sense that San Mateo county is put into cluster 1 with the full dataset as most counties are grouped there. Thus, we may want to rely on the cluster that used the PCs, where San Mateo is in cluster 3.</strong></p>
+
+
+
+
+<h1 id="classification">Classification
+  <a href="#classification"></a>
+</h1>
+<p>In order to train classification models, we need to combine <code>county_winner</code> and <code>census_ct</code> data. This seemingly straightforward task is harder than it sounds. Codes are provided in the .Rmd file that make the necessary changes to merge them into <code>election_cl</code> for classification.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>abb2name <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">function</span>(stateabb){
+</span></span><span style="display:flex;"><span>  ix <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">match</span>(stateabb, state.abb)
+</span></span><span style="display:flex;"><span>  out <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tolower</span>(state.name[ix])
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">return</span>(out)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tmpwinner <span style="color:#000;font-weight:bold">&lt;-</span> county_winner <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  ungroup <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic"># coerce names to abbreviations</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(state <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">abb2name</span>(state)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic"># everything lower case</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(<span style="color:#900;font-weight:bold">across</span>(<span style="color:#900;font-weight:bold">c</span>(state, county), tolower)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#998;font-style:italic"># remove county suffixes</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(county <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">gsub</span>(<span style="color:#d14">&#34; county| columbia| city| parish&#34;</span>, 
+</span></span><span style="display:flex;"><span>                       <span style="color:#d14">&#34;&#34;</span>, 
+</span></span><span style="display:flex;"><span>                       county)) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tmpcensus <span style="color:#000;font-weight:bold">&lt;-</span> census_ct <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  ungroup <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(<span style="color:#900;font-weight:bold">across</span>(<span style="color:#900;font-weight:bold">c</span>(State, County), tolower))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>election_county <span style="color:#000;font-weight:bold">&lt;-</span> tmpwinner <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">left_join</span>(tmpcensus, 
+</span></span><span style="display:flex;"><span>            by <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;state&#34;</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;State&#34;</span>, <span style="color:#d14">&#34;county&#34;</span><span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;County&#34;</span>)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">na.omit</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">## save meta information</span>
+</span></span><span style="display:flex;"><span>election_meta <span style="color:#000;font-weight:bold">&lt;-</span> election_county <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#900;font-weight:bold">c</span>(county, fips, state, votes, pct, total))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">## save predictors and class labels</span>
+</span></span><span style="display:flex;"><span>election_county <span style="color:#000;font-weight:bold">&lt;-</span> election_county <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span><span style="color:#900;font-weight:bold">c</span>(county, fips, state, votes, pct, total))
+</span></span></code></pre></div><p>After merging the data, partition the result into 80% training and 20% testing partitions.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># hold out 20% of data as a test set</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">set.seed</span>(<span style="color:#099">12521</span>)
+</span></span><span style="display:flex;"><span>county_part <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">resample_partition</span>(election_county, <span style="color:#900;font-weight:bold">c</span>(test <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.2</span>, train <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.8</span>))
+</span></span><span style="display:flex;"><span>train <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as_tibble</span>(county_part<span style="color:#000;font-weight:bold">$</span>train)
+</span></span><span style="display:flex;"><span>test <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as_tibble</span>(county_part<span style="color:#000;font-weight:bold">$</span>test)
+</span></span></code></pre></div><ol start="18">
+<li>Decision tree: train a decision tree on the training partition, and apply cost-complexity pruning. Visualize the tree before and after pruning. Estimate the misclassification errors on the test partition, and interpret and discuss the results of the decision tree analysis. Use your plot to tell a story about voting behavior in the US (see this 
+<a href="https://archive.nytimes.com/www.nytimes.com/imagepages/2008/04/16/us/20080416_OBAMA_GRAPHIC.html" target="_blank" rel="noopener">NYT infographic</a>).</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Train a decision tree - training partition</span>
+</span></span><span style="display:flex;"><span>nmin <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#099">5</span>
+</span></span><span style="display:flex;"><span>tree_opts <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tree.control</span>(nobs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">nrow</span>(train), 
+</span></span><span style="display:flex;"><span>                          minsize <span style="color:#000;font-weight:bold">=</span> nmin, 
+</span></span><span style="display:flex;"><span>                          mindev <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">exp</span>(<span style="color:#099">-6</span>))
+</span></span><span style="display:flex;"><span>t_small <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tree</span>(<span style="color:#900;font-weight:bold">as.factor</span>(candidate) <span style="color:#000;font-weight:bold">~</span> ., data <span style="color:#000;font-weight:bold">=</span> train,
+</span></span><span style="display:flex;"><span>                control <span style="color:#000;font-weight:bold">=</span> tree_opts, split <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;deviance&#39;</span>) 
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(t_small)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Classification tree:
+## tree(formula = as.factor(candidate) ~ ., data = train, control = tree_opts, 
+##     split = &#34;deviance&#34;)
+## Variables actually used in tree construction:
+##  [1] &#34;White&#34;           &#34;Men&#34;             &#34;Unemployment&#34;    &#34;IncomePerCapErr&#34;
+##  [5] &#34;MeanCommute&#34;     &#34;Service&#34;         &#34;Women&#34;           &#34;Citizen&#34;        
+##  [9] &#34;IncomePerCap&#34;    &#34;Drive&#34;           &#34;Transit&#34;         &#34;Office&#34;         
+## [13] &#34;Production&#34;      &#34;SelfEmployed&#34;    &#34;Income&#34;          &#34;WorkAtHome&#34;     
+## [17] &#34;Poverty&#34;         &#34;Employed&#34;        &#34;Carpool&#34;         &#34;Professional&#34;   
+## [21] &#34;PrivateWork&#34;     &#34;OtherTransp&#34;     &#34;FamilyWork&#34;     
+## Number of terminal nodes:  84 
+## Residual mean deviance:  0.04184 = 99.29 / 2373 
+## Misclassification error rate: 0.008547 = 21 / 2457
+</code></pre><p>Tree before pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">draw.tree</span>(t_small, cex <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.5</span>, size <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-38-1.png" width="960" style="display: block; margin: auto;" />
+<p>Add cost-complexity pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># cost-complexity pruning</span>
+</span></span><span style="display:flex;"><span>nfolds <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#099">10</span>
+</span></span><span style="display:flex;"><span>cv_out <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">cv.tree</span>(t_small, K <span style="color:#000;font-weight:bold">=</span> nfolds, method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;deviance&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># convert to tibble</span>
+</span></span><span style="display:flex;"><span>cv_df <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tibble</span>(alpha <span style="color:#000;font-weight:bold">=</span> cv_out<span style="color:#000;font-weight:bold">$</span>k,
+</span></span><span style="display:flex;"><span>                impurity <span style="color:#000;font-weight:bold">=</span> cv_out<span style="color:#000;font-weight:bold">$</span>dev,
+</span></span><span style="display:flex;"><span>                size <span style="color:#000;font-weight:bold">=</span> cv_out<span style="color:#000;font-weight:bold">$</span>size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># choose optimal alpha</span>
+</span></span><span style="display:flex;"><span>best_alpha <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">slice_min</span>(cv_df, impurity) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_min</span>(size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># select final tree</span>
+</span></span><span style="display:flex;"><span>t_opt <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">prune.tree</span>(t_small, k <span style="color:#000;font-weight:bold">=</span> best_alpha<span style="color:#000;font-weight:bold">$</span>alpha)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(t_opt) 
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Classification tree:
+## snip.tree(tree = t_small, nodes = c(4L, 14L, 5L, 15L, 6L))
+## Variables actually used in tree construction:
+## [1] &#34;White&#34;        &#34;Men&#34;          &#34;Transit&#34;      &#34;Professional&#34;
+## Number of terminal nodes:  5 
+## Residual mean deviance:  0.4521 = 1108 / 2452 
+## Misclassification error rate: 0.0814 = 200 / 2457
+</code></pre><p>Tree after pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">draw.tree</span>(t_opt, cex <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.8</span>, size <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-40-1.png" width="576" style="display: block; margin: auto;" />
+<p>Classification Errors on Test Partition - Before Pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># predict on test data</span>
+</span></span><span style="display:flex;"><span>preds_test_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(t_small, newdata <span style="color:#000;font-weight:bold">=</span> county_part<span style="color:#000;font-weight:bold">$</span>test, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;class&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># examin misclassification errors on test set - First Tree</span>
+</span></span><span style="display:flex;"><span>classes_test <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as.data.frame</span>(county_part<span style="color:#000;font-weight:bold">$</span>test) <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#900;font-weight:bold">pull</span>(candidate)
+</span></span><span style="display:flex;"><span>test_errors_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(class <span style="color:#000;font-weight:bold">=</span> classes_test, pred <span style="color:#000;font-weight:bold">=</span> preds_test_t0)
+</span></span><span style="display:flex;"><span>(test_errors_t0<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">rowSums</span>(test_errors_t0)) 
+</span></span></code></pre></div><pre tabindex="0"><code>##                  pred
+## class             Donald Trump Hillary Clinton
+##   Donald Trump       0.9496124       0.0503876
+##   Hillary Clinton    0.3505155       0.6494845
+</code></pre><p>Classification Errors on Test Partition - After Pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># predict on test data</span>
+</span></span><span style="display:flex;"><span>preds_test_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(t_opt, newdata <span style="color:#000;font-weight:bold">=</span> county_part<span style="color:#000;font-weight:bold">$</span>test, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;class&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Pruned - Tree Error</span>
+</span></span><span style="display:flex;"><span>classes_test <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as.data.frame</span>(county_part<span style="color:#000;font-weight:bold">$</span>test) <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#900;font-weight:bold">pull</span>(candidate)
+</span></span><span style="display:flex;"><span>test_errors_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(class <span style="color:#000;font-weight:bold">=</span> classes_test, pred <span style="color:#000;font-weight:bold">=</span> preds_test_t0)
+</span></span><span style="display:flex;"><span>(test_errors_t0<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">rowSums</span>(test_errors_t0)) 
+</span></span></code></pre></div><pre tabindex="0"><code>##                  pred
+## class             Donald Trump Hillary Clinton
+##   Donald Trump      0.94379845      0.05620155
+##   Hillary Clinton   0.44329897      0.55670103
+</code></pre><p><strong>After training a decision tree before pruning, the resulting classification tree had 84 terminal nodes and a misclassification error rate of 0.0085. There were 23 variables used. After pruning the classification tree, now there are 5 terminal nodes and a misclassifcation error rate of 0.0814. There were four variables used: White, Men, Transit, Professional. Similar to the infographic, it&rsquo;s not surprising that &ldquo;White&rdquo; is used as the first splitting variable and Men is one of the second spliting variables. Counties that are less than 49.969% White and less than 49.6965 Male were likely to vote for Hillary Clinton. Which makes sense given the demographics of the election results, however it isn&rsquo;t very telling as splitting on almost 50% isn&rsquo;t much information. On the other side of the decision tree, counties that are more than almost 50% white, more than 1.138% use public transportation, and more than 35.4651% are employed in management positions voted for Hillary. It&rsquo;s interesting that counties that have more than 1.138% of people using public transit are likely to vote Trump. It may indicate that the model needs some adjustments since the misclassification error rate is higher for this model.</strong></p>
+<ol start="19">
+<li>Train a logistic regression model on the training partition to predict the winning candidate in each county and estimate errors on the test partition. What are the significant variables? Are these consistent with what you observed in the decision tree analysis? Interpret the meaning of one or two significant coefficients of your choice in terms of a unit change in the variables. Did the results in your particular county (from question 14) match the predicted results?</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fit_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">glm</span>(<span style="color:#900;font-weight:bold">as.factor</span>(candidate) <span style="color:#000;font-weight:bold">~</span> ., family <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;binomial&#39;</span>, data<span style="color:#000;font-weight:bold">=</span>train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(fit_glm)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## glm(formula = as.factor(candidate) ~ ., family = &#34;binomial&#34;, 
+##     data = train)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.9700  -0.2610  -0.1094  -0.0414   3.5310  
+## 
+## Coefficients:
+##                   Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)     -1.230e+01  9.576e+00  -1.284 0.199042    
+## Men             -3.202e-02  5.466e-02  -0.586 0.558020    
+## Women            4.849e-05  1.675e-04   0.289 0.772235    
+## White           -1.876e-01  6.417e-02  -2.924 0.003453 ** 
+## Citizen          1.139e-01  2.934e-02   3.881 0.000104 ***
+## Income          -5.835e-05  2.752e-05  -2.120 0.033970 *  
+## IncomeErr        4.269e-05  6.807e-05   0.627 0.530554    
+## IncomePerCap     1.900e-04  6.601e-05   2.879 0.003991 ** 
+## IncomePerCapErr -2.421e-04  1.405e-04  -1.723 0.084840 .  
+## Poverty          4.498e-02  4.267e-02   1.054 0.291820    
+## ChildPoverty    -4.893e-03  2.611e-02  -0.187 0.851348    
+## Professional     2.568e-01  3.852e-02   6.665 2.64e-11 ***
+## Service          3.509e-01  4.974e-02   7.055 1.73e-12 ***
+## Office           1.209e-01  4.660e-02   2.595 0.009448 ** 
+## Production       1.849e-01  4.262e-02   4.337 1.44e-05 ***
+## Drive           -2.236e-01  4.639e-02  -4.821 1.43e-06 ***
+## Carpool         -2.164e-01  6.138e-02  -3.525 0.000423 ***
+## Transit          4.788e-02  9.227e-02   0.519 0.603815    
+## OtherTransp     -9.843e-02  1.018e-01  -0.967 0.333650    
+## WorkAtHome      -1.356e-01  7.447e-02  -1.821 0.068677 .  
+## MeanCommute      5.417e-02  2.500e-02   2.167 0.030224 *  
+## Employed         1.960e-01  3.376e-02   5.807 6.36e-09 ***
+## PrivateWork      7.211e-02  2.230e-02   3.233 0.001224 ** 
+## SelfEmployed     1.535e-02  4.992e-02   0.308 0.758415    
+## FamilyWork      -8.790e-01  4.130e-01  -2.128 0.033336 *  
+## Unemployment     1.742e-01  4.075e-02   4.275 1.91e-05 ***
+## Minority        -6.081e-02  6.186e-02  -0.983 0.325579    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2071.81  on 2456  degrees of freedom
+## Residual deviance:  841.25  on 2430  degrees of freedom
+## AIC: 895.25
+## 
+## Number of Fisher Scoring iterations: 7
+</code></pre><p>Errors (Test Partition):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute estimated probabilities</span>
+</span></span><span style="display:flex;"><span>p_hat_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(fit_glm, test, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;response&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># bayes classifier</span>
+</span></span><span style="display:flex;"><span>y_hat_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">factor</span>(p_hat_glm <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0.5</span>, labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#39;No&#39;</span>, <span style="color:#d14">&#39;Yes&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># errors</span>
+</span></span><span style="display:flex;"><span>error_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(test<span style="color:#000;font-weight:bold">$</span>candidate, y_hat_glm)
+</span></span><span style="display:flex;"><span>(error_glm <span style="color:#000;font-weight:bold">/</span> <span style="color:#900;font-weight:bold">rowSums</span>(error_glm)) 
+</span></span></code></pre></div><pre tabindex="0"><code>##                  y_hat_glm
+##                           No        Yes
+##   Donald Trump    0.95930233 0.04069767
+##   Hillary Clinton 0.32989691 0.67010309
+</code></pre><p><strong>Significant predictors of candidate are White, Citizen, Income, IncomePerCap, Professional, Service, Office, Production, Drive, Carpool, MeanCommute, Employed, PrivateWork, FamilyWork, and Unemployement. Only one of the variables overlap with the variables chosen in the pruned decision tree which is inconsistent.</strong></p>
+<p><strong>The probability of a county voting for Donald Trump increases by an estimated 0.1139 among counties with Citizens, after accounting for all other predictors.</strong></p>
+<p><strong>The probability of a county voting for Donald Trump decreases by an estimated -.879 among counties with unpaid family workers, after accounting for all other predictors.</strong></p>
+<p><strong>Yes, the results in Los Angeles county (Hillary Clinton) matched the predicted results.</strong></p>
+<ol start="20">
+<li>Compute ROC curves for the decision tree and logistic regression using predictions on the test data, and display them on the same plot. Based on your classification results, discuss the pros and cons of each method. Are the different classifiers more appropriate for answering different kinds of questions about the election?</li>
+</ol>
+<p>Decision Tree:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Decision Tree</span>
+</span></span><span style="display:flex;"><span>t_predict <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(t_small, newdata <span style="color:#000;font-weight:bold">=</span> test) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as_tibble</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tree_predict <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">prediction</span>(t_predict[,<span style="color:#099">2</span>], labels <span style="color:#000;font-weight:bold">=</span> test<span style="color:#000;font-weight:bold">$</span>candidate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute error rates as a function of the probability threshold</span>
+</span></span><span style="display:flex;"><span>perf_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">performance</span>(prediction.obj <span style="color:#000;font-weight:bold">=</span> tree_predict, <span style="color:#d14">&#39;tpr&#39;</span>, <span style="color:#d14">&#39;fpr&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># extract rates and threshold from perf_lda as a tibble</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tibble</span>(fpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>x.values,
+</span></span><span style="display:flex;"><span>                    tpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>y.values,
+</span></span><span style="display:flex;"><span>                    thresh <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>alpha.values) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">unnest</span>(<span style="color:#900;font-weight:bold">everything</span>())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute youden&#39;s stat</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(youden <span style="color:#000;font-weight:bold">=</span> tpr <span style="color:#000;font-weight:bold">-</span> fpr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># find the optimal value</span>
+</span></span><span style="display:flex;"><span>optimal_thresh <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(youden)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># ROC curve</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> fpr, y <span style="color:#000;font-weight:bold">=</span> tpr, color <span style="color:#000;font-weight:bold">=</span> thresh)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(data <span style="color:#000;font-weight:bold">=</span> optimal_thresh, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;red&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-45-1.png" width="576" style="display: block; margin: auto;" />
+<p>Logistic Regression:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Logistic Regression</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># create prediction object</span>
+</span></span><span style="display:flex;"><span>spam_predict <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">prediction</span>(predictions <span style="color:#000;font-weight:bold">=</span> p_hat_glm, labels <span style="color:#000;font-weight:bold">=</span> test<span style="color:#000;font-weight:bold">$</span>candidate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute error rates as a function of the probability threshold</span>
+</span></span><span style="display:flex;"><span>perf_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">performance</span>(prediction.obj <span style="color:#000;font-weight:bold">=</span> spam_predict, <span style="color:#d14">&#39;tpr&#39;</span>, <span style="color:#d14">&#39;fpr&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># extract rates and threshold from perf_lda as a tibble</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tibble</span>(fpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>x.values,
+</span></span><span style="display:flex;"><span>                    tpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>y.values,
+</span></span><span style="display:flex;"><span>                    thresh <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>alpha.values) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">unnest</span>(<span style="color:#900;font-weight:bold">everything</span>())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute youden&#39;s stat</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(youden <span style="color:#000;font-weight:bold">=</span> tpr <span style="color:#000;font-weight:bold">-</span> fpr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># find the optimal value</span>
+</span></span><span style="display:flex;"><span>optimal_thresh <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(youden)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># ROC curve</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> fpr, y <span style="color:#000;font-weight:bold">=</span> tpr, color <span style="color:#000;font-weight:bold">=</span> thresh)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(data <span style="color:#000;font-weight:bold">=</span> optimal_thresh, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;red&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-46-1.png" width="576" style="display: block; margin: auto;" />
+<p><strong>Both ROC curves look very different, with the logistic curve looking cleaner and has a higher optimal threshold. Both analyses have pros and cons and different classifiers are more appropriate for answering different kinds of questions about the election. Regarding decision trees, as we saw in the output, they are intuitive and easy to implement visualize and interpret. They also have the ability to be pruned by cost complexity. However, they are sensitive to small changes in the data, have high variance, and could fail if they separation in the feature space is hard to approximate. I think working with this scale of data is difficult to implement decision trees with because there is a lot of variability in data. Regarding logistic regression, they are interpretable, flexible, and can take in a large number of predictors. However, like decision trees, they can fail if data are separated in the feature space.</strong></p>
+
+
+
+
+<h1 id="taking-it-further">Taking it further
+  <a href="#taking-it-further"></a>
+</h1>
+<ol start="21">
+<li>This is an open question. Interpret and discuss any overall insights gained in this analysis and possible explanations. Use any tools at your disposal to make your case: visualize errors on the map, discuss what does or doesn&rsquo;t seem reasonable based on your understanding of these methods, propose possible directions (for example, collecting additional data or domain knowledge).  In addition, propose and tackle <em>at least</em> one more interesting question. Creative and thoughtful analyses will be rewarded!</li>
+</ol>
+<p><strong>As mentioned previously, both analyses have pros and cons and different classifiers are more appropriate for answering different kinds of questions about the election. In this example, it is shown that the logistic model performed better, providing a better misclassification error rate. I think the model would perform even better with theory-based predictors as that can influence the model, more predictors doesn&rsquo;t necessarily mean better.</strong></p>
+<ul>
+<li>Instead of using the native attributes (the original features), we can use principal components to create new (and lower dimensional) sets of features with which to train a classification model. This sometimes improves classification performance.  Compare classifiers trained on the original features with those trained on PCA features.</li>
+</ul>
+<p><strong>I like the idea of using PC components to reevaluate the classification methods used. The minimum number of PCs needed to capture 90% of the variance for county data is <em>13</em>, however, using 13 components makes interpretation tricky, as evaluating and labeling all 13 will be extremely time-consulting. To assess differences in bias-variance trade off between using PC and raw data, I will rerun both the decision tree analysis and the logistic regress using the first 4 principal components to predict the election results and compare.</strong></p>
+<p>Rerun PCs with combined <code>county_winner</code> column for easier wrangling:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Center and scale the data</span>
+</span></span><span style="display:flex;"><span>county_winner_std <span style="color:#000;font-weight:bold">&lt;-</span> election_county <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>candidate) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">scale</span>(center <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">T</span>, scale <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">T</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Compute SVD</span>
+</span></span><span style="display:flex;"><span>x_svd <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">svd</span>(county_winner_std)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Get loadings</span>
+</span></span><span style="display:flex;"><span>v_svd <span style="color:#000;font-weight:bold">&lt;-</span> x_svd<span style="color:#000;font-weight:bold">$</span>v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute principal components</span>
+</span></span><span style="display:flex;"><span>county_winner_pc <span style="color:#000;font-weight:bold">&lt;-</span> county_winner_std <span style="color:#000;font-weight:bold">%*%</span> v_svd
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">colnames</span>(county_winner_pc) <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">paste</span>(<span style="color:#d14">&#39;PC&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">26</span>, sep <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># scree and cumulative variance plots</span>
+</span></span><span style="display:flex;"><span>pc_winner_vars <span style="color:#000;font-weight:bold">&lt;-</span> x_svd<span style="color:#000;font-weight:bold">$</span>d^2<span style="color:#000;font-weight:bold">/</span>(<span style="color:#900;font-weight:bold">nrow</span>(county_winner_std) <span style="color:#000;font-weight:bold">-</span> <span style="color:#099">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tibble</span>(PC <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#900;font-weight:bold">min</span>(<span style="color:#900;font-weight:bold">dim</span>(county_winner_std)),
+</span></span><span style="display:flex;"><span>       Proportion <span style="color:#000;font-weight:bold">=</span> pc_winner_vars<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">sum</span>(pc_winner_vars),
+</span></span><span style="display:flex;"><span>       Cumulative <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cumsum</span>(Proportion)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;measure&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Variance Explained&#39;</span>, <span style="color:#099">2</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">3</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> PC, y <span style="color:#000;font-weight:bold">=</span> `Variance Explained`)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span> measure) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() 
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-47-1.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#tibble(PC = 1:min(dim(county_winner_std)),</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#       Proportion = pc_winner_vars/sum(pc_winner_vars),</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#       Cumulative = cumsum(Proportion)) %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  head(15) %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  pander()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>v_svd[, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">4</span>] <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as.data.frame</span>() <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(variable <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(county_winner_std)) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">gather</span>(key <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;PC&#39;</span>, value <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;Loading&#39;</span>, <span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">4</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(variable) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> variable, y <span style="color:#000;font-weight:bold">=</span> Loading)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(<span style="color:#900;font-weight:bold">aes</span>(shape <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_hline</span>(yintercept <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0</span>, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;blue&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>(<span style="color:#900;font-weight:bold">aes</span>(linetype <span style="color:#000;font-weight:bold">=</span> PC, group <span style="color:#000;font-weight:bold">=</span> PC)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme</span>(axis.text.x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">element_text</span>(angle <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">90</span>)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;&#39;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span>PC)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-47-2.png" width="576" style="display: block; margin: auto;" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>county_pc_4 <span style="color:#000;font-weight:bold">&lt;-</span> county_winner_pc <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as_tibble</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">bind_cols</span>(<span style="color:#900;font-weight:bold">select</span>(election_county, candidate)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(PC1<span style="color:#000;font-weight:bold">:</span>PC4, candidate)
+</span></span></code></pre></div><p>Note: Eigenvalues are slightly off because some observations were removed in the process of combining <code>county_winner</code> and <code>census_ct</code> but they are generally the same.</p>
+<p><em>PC 1/Affluent</em>: High IncomePerCap, Employed, Income, and Professional. Low Child Poverty, Poverty, and Unemployment.</p>
+<p><em>PC 2/Family Oriented</em>: High SelfEmployed, WorkAtHome, and FamilyWork. Low Women, PrivateWork, IncomeErr.</p>
+<p><em>PC 3/Working Class in Suburb</em>: High White, Drive, Production, and Private Work. Low Minority, and Transit.</p>
+<p><em>PC 4/Working Class in City</em>: High Carpool, Production, Employed. Low Citizen, Service, Office.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># hold out 20% of data as a test set</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">set.seed</span>(<span style="color:#099">12521</span>)
+</span></span><span style="display:flex;"><span>county_part <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">resample_partition</span>(county_pc_4, <span style="color:#900;font-weight:bold">c</span>(test <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.2</span>, train <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.8</span>))
+</span></span><span style="display:flex;"><span>train <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as_tibble</span>(county_part<span style="color:#000;font-weight:bold">$</span>train)
+</span></span><span style="display:flex;"><span>test <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as_tibble</span>(county_part<span style="color:#000;font-weight:bold">$</span>test)
+</span></span></code></pre></div><p>Decision Tree:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Train a decision tree - training partition</span>
+</span></span><span style="display:flex;"><span>nmin <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#099">5</span>
+</span></span><span style="display:flex;"><span>tree_opts <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tree.control</span>(nobs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">nrow</span>(train), 
+</span></span><span style="display:flex;"><span>                          minsize <span style="color:#000;font-weight:bold">=</span> nmin, 
+</span></span><span style="display:flex;"><span>                          mindev <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">exp</span>(<span style="color:#099">-6</span>))
+</span></span><span style="display:flex;"><span>t_small <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tree</span>(<span style="color:#900;font-weight:bold">as.factor</span>(candidate) <span style="color:#000;font-weight:bold">~</span> ., data <span style="color:#000;font-weight:bold">=</span> train,
+</span></span><span style="display:flex;"><span>                control <span style="color:#000;font-weight:bold">=</span> tree_opts, split <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;deviance&#39;</span>) 
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(t_small) 
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Classification tree:
+## tree(formula = as.factor(candidate) ~ ., data = train, control = tree_opts, 
+##     split = &#34;deviance&#34;)
+## Number of terminal nodes:  56 
+## Residual mean deviance:  0.3242 = 778.3 / 2401 
+## Misclassification error rate: 0.0639 = 157 / 2457
+</code></pre><p>Tree before pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">draw.tree</span>(t_small, cex <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.8</span>, size <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-50-1.png" width="960" style="display: block; margin: auto;" />
+<p>Add cost-complexity pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># cost-complexity pruning</span>
+</span></span><span style="display:flex;"><span>nfolds <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#099">10</span>
+</span></span><span style="display:flex;"><span>cv_out <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">cv.tree</span>(t_small, K <span style="color:#000;font-weight:bold">=</span> nfolds, method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;deviance&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># convert to tibble</span>
+</span></span><span style="display:flex;"><span>cv_df <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tibble</span>(alpha <span style="color:#000;font-weight:bold">=</span> cv_out<span style="color:#000;font-weight:bold">$</span>k,
+</span></span><span style="display:flex;"><span>                impurity <span style="color:#000;font-weight:bold">=</span> cv_out<span style="color:#000;font-weight:bold">$</span>dev,
+</span></span><span style="display:flex;"><span>                size <span style="color:#000;font-weight:bold">=</span> cv_out<span style="color:#000;font-weight:bold">$</span>size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># choose optimal alpha</span>
+</span></span><span style="display:flex;"><span>best_alpha <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">slice_min</span>(cv_df, impurity) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_min</span>(size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># select final tree</span>
+</span></span><span style="display:flex;"><span>t_opt <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">prune.tree</span>(t_small, k <span style="color:#000;font-weight:bold">=</span> best_alpha<span style="color:#000;font-weight:bold">$</span>alpha)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(t_opt) 
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Classification tree:
+## snip.tree(tree = t_small, nodes = c(10L, 7L, 54L, 55L, 26L, 91L, 
+## 23L, 25L, 90L, 9L))
+## Number of terminal nodes:  13 
+## Residual mean deviance:  0.4694 = 1147 / 2444 
+## Misclassification error rate: 0.09565 = 235 / 2457
+</code></pre><p>Tree after pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">draw.tree</span>(t_opt, cex <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.8</span>, size <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">5</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-52-1.png" width="960" style="display: block; margin: auto;" />
+<p>Classification Errors on Test Partition - Before Pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># predict on test data</span>
+</span></span><span style="display:flex;"><span>preds_test_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(t_small, newdata <span style="color:#000;font-weight:bold">=</span> county_part<span style="color:#000;font-weight:bold">$</span>test, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;class&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># examin misclassification errors on test set - First Tree</span>
+</span></span><span style="display:flex;"><span>classes_test <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as.data.frame</span>(county_part<span style="color:#000;font-weight:bold">$</span>test) <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#900;font-weight:bold">pull</span>(candidate)
+</span></span><span style="display:flex;"><span>test_errors_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(class <span style="color:#000;font-weight:bold">=</span> classes_test, pred <span style="color:#000;font-weight:bold">=</span> preds_test_t0)
+</span></span><span style="display:flex;"><span>(test_errors_t0<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">rowSums</span>(test_errors_t0)) 
+</span></span></code></pre></div><pre tabindex="0"><code>##                  pred
+## class             Donald Trump Hillary Clinton
+##   Donald Trump      0.95348837      0.04651163
+##   Hillary Clinton   0.49484536      0.50515464
+</code></pre><p>Classification Errors on Test Partition - After Pruning:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># predict on test data</span>
+</span></span><span style="display:flex;"><span>preds_test_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(t_opt, newdata <span style="color:#000;font-weight:bold">=</span> county_part<span style="color:#000;font-weight:bold">$</span>test, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;class&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Pruned - Tree Error</span>
+</span></span><span style="display:flex;"><span>classes_test <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as.data.frame</span>(county_part<span style="color:#000;font-weight:bold">$</span>test) <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#900;font-weight:bold">pull</span>(candidate)
+</span></span><span style="display:flex;"><span>test_errors_t0 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(class <span style="color:#000;font-weight:bold">=</span> classes_test, pred <span style="color:#000;font-weight:bold">=</span> preds_test_t0)
+</span></span><span style="display:flex;"><span>(test_errors_t0<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">rowSums</span>(test_errors_t0)) 
+</span></span></code></pre></div><pre tabindex="0"><code>##                  pred
+## class             Donald Trump Hillary Clinton
+##   Donald Trump      0.93410853      0.06589147
+##   Hillary Clinton   0.51546392      0.48453608
+</code></pre><p><strong>After training a decision tree before pruning, the resulting classification tree had 56 terminal nodes and a misclassification error rate of 0.0639. The four PCs were used. Already, we see that the misclassifciation error is much higher than using the full dataset shown earlier. After pruning the classification tree, now there are 13 terminal nodes and a misclassifcation error rate of 0.09565. Compared to the full dataset the pruned decision tree had less terminal nodes (5), but the misclassification error rate was slightly similar (0.08). The interpretation is slightly different now that we have to identify the PC on the tree. For example, if the loading on PC3 is less than -.610 (or in this case less affluent counties) and the loading on PC2 is less than -1.47912 (or in this case less family oriented counties), and the loading on PC3 is less than -3.40997 (even less affleunt counties) then it is likely they voted for Hillary Clinton. Already, this interpretation is extremely confusing compared to using all predictors.</strong></p>
+<p>Logistic Regression:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fit_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">glm</span>(<span style="color:#900;font-weight:bold">as.factor</span>(candidate) <span style="color:#000;font-weight:bold">~</span> ., family <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;binomial&#39;</span>, data<span style="color:#000;font-weight:bold">=</span>train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(fit_glm) 
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## glm(formula = as.factor(candidate) ~ ., family = &#34;binomial&#34;, 
+##     data = train)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -3.1258  -0.4289  -0.2081  -0.1065   3.3147  
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -2.76655    0.11026 -25.091  &lt; 2e-16 ***
+## PC1         -0.05276    0.02655  -1.987   0.0469 *  
+## PC2         -0.64696    0.04784 -13.523  &lt; 2e-16 ***
+## PC3         -0.86938    0.05006 -17.368  &lt; 2e-16 ***
+## PC4         -0.39303    0.06011  -6.538 6.23e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2071.8  on 2456  degrees of freedom
+## Residual deviance: 1262.3  on 2452  degrees of freedom
+## AIC: 1272.3
+## 
+## Number of Fisher Scoring iterations: 6
+</code></pre><p><strong>All four PCs are significant predictors of candidate. And it looks like all for PCs have similar interpretation: the probability of a county voting for Donald Trump decreases for each PC estimate. This was not the case when all variables were entered in the logistic model.</strong></p>
+<p>Errors (Test Partition):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute estimated probabilities</span>
+</span></span><span style="display:flex;"><span>p_hat_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(fit_glm, test, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;response&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># bayes classifier</span>
+</span></span><span style="display:flex;"><span>y_hat_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">factor</span>(p_hat_glm <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">0.5</span>, labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#39;No&#39;</span>, <span style="color:#d14">&#39;Yes&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># errors</span>
+</span></span><span style="display:flex;"><span>error_glm <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(test<span style="color:#000;font-weight:bold">$</span>candidate, y_hat_glm)
+</span></span><span style="display:flex;"><span>(error_glm <span style="color:#000;font-weight:bold">/</span> <span style="color:#900;font-weight:bold">rowSums</span>(error_glm))
+</span></span></code></pre></div><pre tabindex="0"><code>##                  y_hat_glm
+##                           No        Yes
+##   Donald Trump    0.95155039 0.04844961
+##   Hillary Clinton 0.52577320 0.47422680
+</code></pre><p><strong>The true positve for Hillary Clinton in the model is a lot less than the model with all variables, however.</strong></p>
+<p>ROC Curves:</p>
+<p>Decision Tree:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Decision Tree</span>
+</span></span><span style="display:flex;"><span>t_predict <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(t_small, newdata <span style="color:#000;font-weight:bold">=</span> test) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">as_tibble</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tree_predict <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">prediction</span>(t_predict[,<span style="color:#099">2</span>], labels <span style="color:#000;font-weight:bold">=</span> test<span style="color:#000;font-weight:bold">$</span>candidate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute error rates as a function of the probability threshold</span>
+</span></span><span style="display:flex;"><span>perf_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">performance</span>(prediction.obj <span style="color:#000;font-weight:bold">=</span> tree_predict, <span style="color:#d14">&#39;tpr&#39;</span>, <span style="color:#d14">&#39;fpr&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># extract rates and threshold from perf_lda as a tibble</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tibble</span>(fpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>x.values,
+</span></span><span style="display:flex;"><span>                    tpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>y.values,
+</span></span><span style="display:flex;"><span>                    thresh <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>alpha.values) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">unnest</span>(<span style="color:#900;font-weight:bold">everything</span>())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute youden&#39;s stat</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(youden <span style="color:#000;font-weight:bold">=</span> tpr <span style="color:#000;font-weight:bold">-</span> fpr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># find the optimal value</span>
+</span></span><span style="display:flex;"><span>optimal_thresh <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(youden)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># ROC curve</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> fpr, y <span style="color:#000;font-weight:bold">=</span> tpr, color <span style="color:#000;font-weight:bold">=</span> thresh)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(data <span style="color:#000;font-weight:bold">=</span> optimal_thresh, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;red&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-57-1.png" width="576" style="display: block; margin: auto;" />
+<p>Logistic Regression:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Logistic Regression</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># create prediction object</span>
+</span></span><span style="display:flex;"><span>spam_predict <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">prediction</span>(predictions <span style="color:#000;font-weight:bold">=</span> p_hat_glm, labels <span style="color:#000;font-weight:bold">=</span> test<span style="color:#000;font-weight:bold">$</span>candidate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute error rates as a function of the probability threshold</span>
+</span></span><span style="display:flex;"><span>perf_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">performance</span>(prediction.obj <span style="color:#000;font-weight:bold">=</span> spam_predict, <span style="color:#d14">&#39;tpr&#39;</span>, <span style="color:#d14">&#39;fpr&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># extract rates and threshold from perf_lda as a tibble</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">tibble</span>(fpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>x.values,
+</span></span><span style="display:flex;"><span>                    tpr <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>y.values,
+</span></span><span style="display:flex;"><span>                    thresh <span style="color:#000;font-weight:bold">=</span> perf_log<span style="color:#000;font-weight:bold">@</span>alpha.values) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">unnest</span>(<span style="color:#900;font-weight:bold">everything</span>())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># compute youden&#39;s stat</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(youden <span style="color:#000;font-weight:bold">=</span> tpr <span style="color:#000;font-weight:bold">-</span> fpr)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># find the optimal value</span>
+</span></span><span style="display:flex;"><span>optimal_thresh <span style="color:#000;font-weight:bold">&lt;-</span> rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice_max</span>(youden)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># ROC curve</span>
+</span></span><span style="display:flex;"><span>rates_log <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> fpr, y <span style="color:#000;font-weight:bold">=</span> tpr, color <span style="color:#000;font-weight:bold">=</span> thresh)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_path</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>(data <span style="color:#000;font-weight:bold">=</span> optimal_thresh, color <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;red&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_bw</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/machine_learning/index_files/figure-html/unnamed-chunk-58-1.png" width="576" style="display: block; margin: auto;" />
+<p><strong>Overall, it seems like using the first four principal components did not improve neither the decision tree or logistic regression model. This could be due to many factors but the main one I can think of is that the first four PCs only capture 59% of the variance in the variables. The decision tree did not make sense to use even if it had a better misclassification rate as the interpretability of the tree did not as much sense as the model with all variables. While the logistic model did have all significant predictors, the error rate was much higher than the model with all variables, but less predictors were used. In the future, I would select variables based on theory, use PCA to reduce the dimensions and capture more variance than I did now, and then re-run the model.</strong></p>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+  
+  
+</div>
+
+      </footer>
+    </article>
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/collection/featured-sidebar.jpg" class="db ma0">
+
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4 flex-row">
+  <div class="w-two-thirds w-50-l ph0">
+    <h2 class="mv3 f5 fw7 ttu tracked">
+      <a class="no-underline dim" href="/collection/">Outline</a></h2>
+    <nav id="SectionTableOfContents" aria-label="SectionTableOfContents">
+        <ul>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/linear-models/"><a href="https://www.dina-arch.com/collection/linear-models/">Linear Models for Data Analysis</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/01-data-cleaning/"><a href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">Lab 1: Data Screening and Cleaning</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/02-slr/"><a href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/03-moderation/"><a href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/04-mediation/"><a href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
+            
+          </details>
+          
+          </li>
+        
+          
+          
+          <li class="active" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          
+          </li>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/day02/"><a href="https://www.dina-arch.com/collection/day02/">Day 02</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/day02/01-netlify/"><a href="https://www.dina-arch.com/collection/day02/01-netlify/">Netlify</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/02-blogdown/"><a href="https://www.dina-arch.com/collection/day02/02-blogdown/">Using blogdown</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/03-blogdown/"><a href="https://www.dina-arch.com/collection/day02/03-blogdown/">Warm woolen mittens</a></li>
+            
+          </details>
+          
+          </li>
+        
+        </ul>
+    </nav>
+  </div>
+  <details id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">On this page<h2></summary>
+    <div class="pl2 pr0 mh0">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#election-data">Election data</a></li>
+    <li><a href="#census-data">Census data</a></li>
+    <li><a href="#data-preprocessing">Data preprocessing</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+</aside>
+
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2022 Dina Arch
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="mailto:dnaji@ucsb.edu" title="envelope" >
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/dinanajiarch" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/dnajiarch" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/dina-naji-arch-22649396/" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-2716-0798" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

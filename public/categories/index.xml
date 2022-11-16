@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Hugo Apéro</title>
+    <title>Categories on Dina Arch</title>
     <link>https://www.dina-arch.com/categories/</link>
-    <description>Recent content in Categories on Hugo Apéro</description>
+    <description>Recent content in Categories on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/index.xml" rel="self" type="application/rss+xml" />
@@ -22,6 +22,24 @@
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/categories/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data analysis</title>
+      <link>https://www.dina-arch.com/categories/data-analysis/</link>
+      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/categories/data-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r project</title>
+      <link>https://www.dina-arch.com/categories/r-project/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/categories/r-project/</guid>
       <description></description>
     </item>
     

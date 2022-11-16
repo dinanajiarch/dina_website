@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.102.1" />
+<title>Lab 1: Data Screening and Cleaning | Dina Arch</title>
+
+
+<meta property="twitter:site" content="@dnajiarch">
+<meta property="twitter:creator" content="@dnajiarch">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Information on how to clean and screen your data and write up the results.">
+
+
+<meta property="og:site_name" content="Dina Arch">
+<meta property="og:title" content="Lab 1: Data Screening and Cleaning | Dina Arch">
+<meta property="og:description" content="Information on how to clean and screen your data and write up the results." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/" />
+<meta property="og:locale" content="en">
+
+
+
+
+    
+        <meta property="og:image" content="https://www.dina-arch.com" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://www.dina-arch.com" >
+    
+  <meta itemprop="name" content="Lab 1: Data Screening and Cleaning">
+<meta itemprop="description" content="#Load packages here library(haven) #for read_sav() function library(psych) # describe() library(ggpubr) # ggdensity() and ggqqplot() library(apaTables) # apa.cor.table() library(tidyverse) Data Screening &amp; Cleaning The data sets used in this lab are used in Chapter 4 of Tabachnick &amp; Fidell (2012; I believe there is a new version from 2019 now). The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results."><meta itemprop="datePublished" content="2021-03-30T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-03-30T00:00:00+00:00" />
+<meta itemprop="wordCount" content="4562">
+<meta itemprop="keywords" content="r markdown,data cleaning,data screening,tidy data,regression," />
+  
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
+  <link rel="icon" href="/img/cat.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.5550fcfd017088ccae55298dd74a3b7d7bfe6cc577b648c443d001196a798ca6.js" type="text/javascript"></script>
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+      <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/collection/" title="Project Portfolio">R Projects</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73" title="CV">CV</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+<main class="page-main ph4 pt4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h4 class="breadcrumb pb5">
+
+  
+    
+      
+  
+    
+      
+  
+    
+      
+  
+
+    
+    
+      <a href="/collection/">R Projects</a>
+    
+  
+
+    
+    
+      <a href="/collection/linear-models/">Linear Models for Data Analysis</a>
+    
+  
+
+    
+    
+      Lab 1: Data Screening and Cleaning
+    
+  
+
+</h4>
+
+
+
+
+        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Lab 1: Data Screening and Cleaning</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Information on how to clean and screen your data and write up the results.</h4>
+        
+        
+        
+        
+      
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Load packages here</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(haven) <span style="color:#998;font-style:italic">#for read_sav() function</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic"># describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ggpubr) <span style="color:#998;font-style:italic"># ggdensity() and ggqqplot()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(apaTables) <span style="color:#998;font-style:italic"># apa.cor.table()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+</span></span></code></pre></div>
+
+
+
+<h2 id="data-screening--cleaning">Data Screening &amp; Cleaning
+  <a href="#data-screening--cleaning"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>The data sets used in this lab are used in Chapter 4 of Tabachnick &amp; Fidell (2012; I believe there is a new version from 2019 now).
+The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.</p>
+<p>Here is a table of the variables and their description:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Variable</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>subno</td>
+<td>Subject number</td>
+</tr>
+<tr>
+<td>timedrs</td>
+<td>Visits to health professionals</td>
+</tr>
+<tr>
+<td>attdrug</td>
+<td>Attitudes toward medication</td>
+</tr>
+<tr>
+<td>atthouse</td>
+<td>Attitudes toward housework</td>
+</tr>
+<tr>
+<td>income</td>
+<td>Ordinal income variable</td>
+</tr>
+<tr>
+<td>emplmnt</td>
+<td>Whether currently employed</td>
+</tr>
+<tr>
+<td>mstatus</td>
+<td>Whether currently married</td>
+</tr>
+<tr>
+<td>race</td>
+<td>Binary race variable</td>
+</tr>
+</tbody>
+</table>
+<p>The style of code and package we will be using for this class is called 
+<a href="https://www.tidyverse.org/" target="_blank" rel="noopener"><code>tidyverse</code></a> .
+This shouldn&rsquo;t be anything too different than what you&rsquo;ve seen in the previous two courses in this series.
+Most functions are within the <code>tidyverse</code> package and if not, I&rsquo;ve indicated the packages used in the code chunk above.</p>
+<p>As a reminder, if a function does not work and you receive an error like this: <code>could not find function &quot;random_function&quot;</code>; or if you try to load a package and you receive an error like this: <code>there is no package called `random_package`</code> , then you will need to install the package using <code>install.packages(&quot;random_package&quot;)</code> in the console (the bottom-left window in R studio).
+Once you have installed the package you will <em>never</em> need to install it again, however you must <em>always</em> load in the packages at the beginning of your R markdown using <code>library(random_package)</code>, as shown in this document.</p>
+
+
+
+
+<h3 id="read-in-data">Read in Data
+  <a href="#read-in-data"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s read in a data set called <code>screen1.sav</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Notice this is an SPSS dataset</span>
+</span></span><span style="display:flex;"><span>screen1 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#d14">&#34;screen1.sav&#34;</span>)
+</span></span></code></pre></div><p>Usually, we want to work with .csv files, so let&rsquo;s convert this data set from <em>.sav</em> to <em>.csv</em> and save it to our computers.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># write_csv saves a .csv version of your dataset to your working directory.</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Enter the name of the object that contains your data set (in this case, &#34;screen1&#34;), then enter the name you want to save your dataset as. We can call it the same thing: &#34;screen1.csv&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write_csv</span>(screen1, <span style="color:#d14">&#34;screen1.csv&#34;</span>)
+</span></span></code></pre></div><p>Let&rsquo;s read in the new <em>.csv</em> data set:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># If you get an error, you might need to wait a few seconds for the .csv to save to your folder before running this. </span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>screen1 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;screen1.csv&#34;</span>)
+</span></span></code></pre></div><p>Use <code>names()</code> to view the variable names in the data set:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(screen1)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;subno&#34;    &#34;timedrs&#34;  &#34;atthouse&#34;
+</code></pre><p>Let&rsquo;s read in another data set <code>screen2.sav</code> and convert it to a <em>.csv</em> like we did before:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Read in .sav</span>
+</span></span><span style="display:flex;"><span>screen2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#d14">&#34;screen2.sav&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Convert and save a .csv version</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write.csv</span>(screen2, <span style="color:#d14">&#34;screen2.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Read in the new .csv version</span>
+</span></span><span style="display:flex;"><span>screen2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;screen2.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Look at variable names</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(screen2)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;...1&#34;    &#34;income&#34;  &#34;mstatus&#34; &#34;race&#34;
+</code></pre>
+
+
+
+<h3 id="merge-data">Merge Data
+  <a href="#merge-data"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>What if we want to merge the two data sets?
+As with many thing in R, there are multiple ways to do this.
+Here is probably the most efficient way to merge data sets using <code>tidyverse::full_join()</code>.
+This will join two data sets based on a &ldquo;join&rdquo; variable and return all rows and columns from both data sets.
+Because we are joining two data sets that have different variable names to join them by (i.e., the ID or Subject number) , we use <code>by</code> shown below to let R know that there are different names.
+As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of functions.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Here we created a new dataset called `merged_screen`</span>
+</span></span><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">&lt;-</span> screen1 <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">full_join</span>(screen2, by <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;subno&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;...1&#34;</span>)) 
+</span></span></code></pre></div>
+
+
+
+<h3 id="examine-data">Examine Data
+  <a href="#examine-data"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s examine the data set:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># View the first 5 rows</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(merged_screen)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 6
+##   subno timedrs atthouse income mstatus  race
+##   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+## 1     1       1       27      5       2     1
+## 2     2       3       20      6       2     1
+## 3     3       0       23      3       2     1
+## 4     4      13       28      8       2     1
+## 5     5      15       24      1       2     1
+## 6     6       3       25      4       2     1
+</code></pre><p>Let&rsquo;s look at descriptive statistics for each variable.
+Because looking at the ID variable&rsquo;s (<code>subno</code>) descriptives is unnecessary, we use <code>select()</code> to remove the variable by using the minus (<code>-</code>) sign:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>subno) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##     timedrs          atthouse         income         mstatus     
+##  Min.   : 0.000   Min.   : 2.00   Min.   : 1.00   Min.   :1.000  
+##  1st Qu.: 2.000   1st Qu.:21.00   1st Qu.: 2.50   1st Qu.:2.000  
+##  Median : 4.000   Median :24.00   Median : 4.00   Median :2.000  
+##  Mean   : 7.901   Mean   :23.54   Mean   : 4.21   Mean   :1.778  
+##  3rd Qu.:10.000   3rd Qu.:27.00   3rd Qu.: 6.00   3rd Qu.:2.000  
+##  Max.   :81.000   Max.   :35.00   Max.   :10.00   Max.   :2.000  
+##  NA&#39;s   :128      NA&#39;s   :128     NA&#39;s   :154     NA&#39;s   :128    
+##       race      
+##  Min.   :1.000  
+##  1st Qu.:1.000  
+##  Median :1.000  
+##  Mean   :1.088  
+##  3rd Qu.:1.000  
+##  Max.   :2.000  
+##  NA&#39;s   :128
+</code></pre><p>Alternatively, we can use the <code>psych::describe()</code> function to give more information:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>subno) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>##          vars   n  mean    sd median trimmed  mad min max range  skew kurtosis
+## timedrs     1 465  7.90 10.95      4    5.61 4.45   0  81    81  3.23    12.88
+## atthouse    2 465 23.54  4.48     24   23.62 4.45   2  35    33 -0.45     1.52
+## income      3 439  4.21  2.42      4    4.01 2.97   1  10     9  0.58    -0.38
+## mstatus     4 465  1.78  0.42      2    1.85 0.00   1   2     1 -1.34    -0.21
+## race        5 465  1.09  0.28      1    1.00 0.00   1   2     1  2.90     6.40
+##            se
+## timedrs  0.51
+## atthouse 0.21
+## income   0.12
+## mstatus  0.02
+## race     0.01
+</code></pre><p>What if we want to look at a subset of the data?
+For example, what if we want to subset the data to see whose been to the doctor more than 10 times?
+We can use <code>tidyverse::filter()</code> to subset the data using certain criteria.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(timedrs <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">10</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##          vars   n   mean     sd median trimmed    mad min max range  skew
+## subno       1 107 324.25 199.63    292  320.41 269.83   4 756   752  0.14
+## timedrs     2 107  22.49  14.90     16   19.40   5.93  11  81    70  1.88
+## atthouse    3 107  24.33   4.14     24   24.36   4.45  14  35    21 -0.02
+## income      4  68   4.19   2.32      4    4.05   1.48   1  10     9  0.52
+## mstatus     5  72   1.81   0.40      2    1.88   0.00   1   2     1 -1.51
+## race        6  72   1.11   0.32      1    1.02   0.00   1   2     1  2.42
+##          kurtosis    se
+## subno       -1.14 19.30
+## timedrs      3.06  1.44
+## atthouse    -0.10  0.40
+## income      -0.42  0.28
+## mstatus      0.29  0.05
+## race         3.93  0.04
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#You can use any operator to filter: &gt;, &lt;, ==, &gt;=, etc.</span>
+</span></span></code></pre></div>
+
+
+
+<h3 id="recode-missing-values">Recode Missing Values
+  <a href="#recode-missing-values"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s check for missing values.
+First, how are missing values identified?
+They could be <code>-999</code>, <code>NA</code>, or literally anything else.
+The simplest way to do this is to look back at the <code>summary()</code> function.
+We can see that they are identified as <code>NA</code>.
+Because, for example, <code>timedrs</code> has 128 <code>NA</code>&rsquo;s.
+We also know that it&rsquo;s not <code>-999</code> because the <em>min</em> and <em>max</em> values look normal.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>subno) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##     timedrs          atthouse         income         mstatus     
+##  Min.   : 0.000   Min.   : 2.00   Min.   : 1.00   Min.   :1.000  
+##  1st Qu.: 2.000   1st Qu.:21.00   1st Qu.: 2.50   1st Qu.:2.000  
+##  Median : 4.000   Median :24.00   Median : 4.00   Median :2.000  
+##  Mean   : 7.901   Mean   :23.54   Mean   : 4.21   Mean   :1.778  
+##  3rd Qu.:10.000   3rd Qu.:27.00   3rd Qu.: 6.00   3rd Qu.:2.000  
+##  Max.   :81.000   Max.   :35.00   Max.   :10.00   Max.   :2.000  
+##  NA&#39;s   :128      NA&#39;s   :128     NA&#39;s   :154     NA&#39;s   :128    
+##       race      
+##  Min.   :1.000  
+##  1st Qu.:1.000  
+##  Median :1.000  
+##  Mean   :1.088  
+##  3rd Qu.:1.000  
+##  Max.   :2.000  
+##  NA&#39;s   :128
+</code></pre><p>Additionally, we can look at the unique values (using <code>unique()</code>) for each variable to see if there are any unusual values or multiple missing values were coded.
+For example, for <code>timedrs</code> (Visits to health professionals), we can see that the unique values don&rsquo;t look unusual, and there is <code>NA</code>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs)
+</span></span></code></pre></div><pre tabindex="0"><code>##  [1]  1  3  0 13 15  2  7  4  5 12  6 14 60 20  8  9 10 23 39 16 33 38 22 11 34
+## [26] 27 30 17 25 19 49 52 18 24 57 21 58 43 37 75 29 56 81 NA
+</code></pre><p>Usually, we want our missing values to be identified as <code>NA</code> since that&rsquo;s what R understands as missing by default.
+What if your dataset doesn&rsquo;t have missing as <code>NA</code>?
+What if the missing values are <code>-999</code>?
+Or vise versa?
+Here is how you would recode the values from <code>NA</code> to <code>-999</code> (but usually, you would never do this since you want the missing to be labeled as <code>NA</code>):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Use tidyverse::mutate() adjust an existing variable</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Then use tidyverse::replace_na() to replace -999 with NA for the timedrs variable</span>
+</span></span><span style="display:flex;"><span>new_data_with_NA <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(timedrs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">replace_na</span>(timedrs, <span style="color:#099">-999</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Recode back to `NA` using tidyverse::na_if()</span>
+</span></span><span style="display:flex;"><span>new_data_with_NA <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(timedrs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">na_if</span>(timedrs, <span style="color:#d14">&#34;-999&#34;</span>))
+</span></span></code></pre></div>
+
+
+
+<h3 id="recode-continuous-variable-into-factor">Recode Continuous Variable into Factor
+  <a href="#recode-continuous-variable-into-factor"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>What if you want to recode a continuous variable into different levels (e.g., high, medium, and low)?
+Let&rsquo;s use the variable <code>income</code> as an example.
+First, let&rsquo;s recall the descriptives:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(income) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##      income     
+##  Min.   : 1.00  
+##  1st Qu.: 2.50  
+##  Median : 4.00  
+##  Mean   : 4.21  
+##  3rd Qu.: 6.00  
+##  Max.   :10.00  
+##  NA&#39;s   :154
+</code></pre><p>Here, we can see that the values range from 1 - 10.
+Lets recode the variable to look like this:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>1 - 3</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>4 - 6</td>
+</tr>
+<tr>
+<td>High</td>
+<td>7 - 10</td>
+</tr>
+</tbody>
+</table>
+<p>We use <code>cut()</code> to divide continuous variables into intervals:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>income_factor <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(income_factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cut</span>(income,
+</span></span><span style="display:flex;"><span>                      breaks <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">0</span>, <span style="color:#099">3</span>, <span style="color:#099">6</span>, <span style="color:#099">10</span>), <span style="color:#998;font-style:italic">#Use 0 at the beginning to ensure that 1 is included in the first break, then break by last number in each section (3, 6, 10) </span>
+</span></span><span style="display:flex;"><span>                      labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;low&#34;</span>, <span style="color:#d14">&#34;medium&#34;</span>, <span style="color:#d14">&#34;high&#34;</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># View summary</span>
+</span></span><span style="display:flex;"><span>income_factor <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(income, income_factor) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##      income      income_factor
+##  Min.   : 1.00   low   :189   
+##  1st Qu.: 2.50   medium:166   
+##  Median : 4.00   high  : 84   
+##  Mean   : 4.21   NA&#39;s  :154   
+##  3rd Qu.: 6.00                
+##  Max.   :10.00                
+##  NA&#39;s   :154
+</code></pre>
+
+
+
+<h3 id="normality-and-transformation">Normality and Transformation
+  <a href="#normality-and-transformation"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>It&rsquo;s important to inspect our data to see if it is normally distributed.
+Many analyses are sensitive to violations of normality so in order to make sure we are confident that our data are normal, there are several things we can look at: density plots, histograms, QQ plots, the Shapiro-Wilk&rsquo;s normality test, and the descriptives such as skewness and kurtosis.
+Normally, we would want to inspect every variable, but for demonstration purposes, lets focus on the <code>timedrs</code> variable.</p>
+
+
+
+
+<h4 id="density-plots">Density Plots
+  <a href="#density-plots"></a>
+</h4>
+<p>A density plot is a visualization of the data over a continuous interval.
+As we can see by this density plot, the variable <code>timedrs</code> is positively skewed.
+There are more people that make less doctor visits than those who make more doctor visits.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+
+
+
+
+<h4 id="histogram">Histogram
+  <a href="#histogram"></a>
+</h4>
+<p>A histogram provides the same information as the density plot but provides a count instead of density on the x-axis.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">gghistogram</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+
+
+
+
+<h4 id="qq-plots">QQ Plots
+  <a href="#qq-plots"></a>
+</h4>
+<p>QQ plot, or quantile-quantile plot, is a plot of the correlation between a sample and the normal distribution.
+In a QQ plot, each observation is plotted as a single dot.
+If the data are normal, the dots should form a straight line.
+If the data are skewed, you will see either a downward curve (negatively skewed) or upward curve (positively skewed).</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggqqplot</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<p>As you can see in this QQ plot, there is an upward curve, which further tells us that we have a positively skewed variable.</p>
+
+
+
+
+<h4 id="shapiro-wilks-test-of-normality">Shapiro-Wilk&rsquo;s Test of Normality
+  <a href="#shapiro-wilks-test-of-normality"></a>
+</h4>
+<p>Sometimes it&rsquo;s difficult to tell whether the variable is normal based on the plots alone (not in this case, however).
+The Shapiro-Wilk&rsquo;s normality test is a significance test that compares the sample distribution to a normal distribution.
+If the test is not significant, then the distribution is normal.
+As in there is no significant difference between the sample and a normal distribution.
+If the test is significant, then the distribution is <em>not</em> normal.
+As in, there is a significant difference between the sample and a normal distribution.
+We can use <code>shapiro_test</code> to test this.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#library(rstatix) </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#merged_screen %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  shapiro_test(timedrs)</span>
+</span></span></code></pre></div><p>To no one&rsquo;s surprise, the Shapiro-Wilk&rsquo;s Test of Normality was significant for the <code>timedrs</code> variable.</p>
+
+
+
+
+<h4 id="skewness-and-kurtosis">Skewness and Kurtosis
+  <a href="#skewness-and-kurtosis"></a>
+</h4>
+<p>One final thing to look are the skewness and kurtosis values in the descriptive statistics provided earlier.
+There are many different sources that provide different cut-off values, but as a general rule of thumb, skewness and kurtosis values greater than +3/-3 indicate a non-normal distribution.
+Positive skew values indicate positively skewed variables and negative skew values indicate negatively skewed variables.
+Positive values of kurtosis indicate leptokurtic distributions, or higher peaks with taller tails than a normal distribution.
+Negative values of kurtosis indicate platykurtic distributions, or flat peaks with thin tails.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs)
+</span></span></code></pre></div><pre tabindex="0"><code>##    vars   n mean    sd median trimmed  mad min max range skew kurtosis   se
+## X1    1 465  7.9 10.95      4    5.61 4.45   0  81    81 3.23    12.88 0.51
+</code></pre><p>Here we can see that the <em>skew</em> value is greater than 3 and positive, indicating a positive distribution.
+The <em>kurtosis</em> value is greater than 3 and positive, probably because, as we saw in the density plot, it has a high peak and tall tails.</p>
+
+
+
+
+<h4 id="transformation">Transformation
+  <a href="#transformation"></a>
+</h4>
+<p>So, you&rsquo;ve violated normality, now what?
+Well, we need to consider the analysis were about to run.
+Is it robust to minor violations of normality (such as regression or ANOVA)?
+If we decide that the violation of normality is a big deal, we can use a mathematical function to transform the each point in the data set.</p>
+<p>Most of the time, we don&rsquo;t like to transform a variable unless it&rsquo;s absolutely necessary.
+I&rsquo;ve found that researchers in other departments (other than social science) transform data all the time, but since we&rsquo;re working with responses from real people it&rsquo;s a bit trickier.
+There are many different ways to do this, the one we will use is logarithmic transformation.
+
+<a href="https://en.wikipedia.org/wiki/Data_transformation_%28statistics%29" target="_blank" rel="noopener">Here</a> is an in-depth look at how transformations work.</p>
+<p>Log transform <code>timedrs</code> using <code>log()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>log <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#droping NA values</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(log_timedrs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">log</span>(timedrs <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>)) <span style="color:#998;font-style:italic"># Adding a constant (1) here because there were zeros&#39;s. Log(0) is undefined. You do not need to add 1 if there are no zeros.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Before transformation</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#After transformation</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(log<span style="color:#000;font-weight:bold">$</span>log_timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-22-2.png" width="672" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Let&#39;s also look at changes in descriptives</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(log<span style="color:#000;font-weight:bold">$</span>log_timedrs)
+</span></span></code></pre></div><pre tabindex="0"><code>##    vars   n mean   sd median trimmed  mad min  max range skew kurtosis   se
+## X1    1 321 1.66 0.97   1.61    1.65 0.76   0 4.33  4.33 0.26    -0.21 0.05
+</code></pre><p>Here, we can see a big improvement in the distribution compared to the previous, untransformed variable.</p>
+
+
+
+
+<h2 id="regression-overview">Regression Overview
+  <a href="#regression-overview"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Let&rsquo;s start this section using applied examples:</p>
+<p><strong>Simple Linear Regression</strong>: Predict <strong>physics</strong> scores from <strong>math SAT scores</strong>.
+$$\hat Y = \beta_0 + \beta_1x $$ $$ physics = \beta_0 + \beta_1 (msat) $$ <strong>Multiple Regression</strong>: Predict <strong>physics</strong> scores from: <strong>emotional intelligence, IQ, verbal SAT, math SAT, creativity, and abstract thinking.</strong> $$ \hat Y = \beta_0 + \beta_1x + \beta_2x &hellip; \beta_ix_i  $$ $$physics = \beta_0 + \beta_1(ei) + \beta_2(iq) + \beta_3(vsat) + \beta_4(msat) + \beta_5(creativity) + \beta_6(abstract)  $$</p>
+<p>Read in data:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#d14">&#34;physics.sav&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write.csv</span>(physics, <span style="color:#d14">&#34;physics.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;physics.csv&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#099">-.</span><span style="color:#000;font-weight:bold">..1</span>, <span style="color:#000;font-weight:bold">-</span>idno) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Descriptive Statistics</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(physics) 
+</span></span></code></pre></div><pre tabindex="0"><code>##          vars   n   mean     sd median trimmed    mad   min max range  skew
+## ei          1 199 107.59  12.17  108.0  107.82  10.38  75.0 139  64.0 -0.15
+## iq          2 199  99.99  14.59  100.0   99.89  14.83  57.0 134  77.0  0.01
+## vsat        3 199 534.46 105.37  526.0  532.13 108.23 314.0 801 487.0  0.21
+## msat        4 199 493.38  42.98  487.0  490.93  43.00 364.0 601 237.0  0.40
+## create      5 200   9.57   3.78    9.0    9.53   4.45   1.0  19  18.0  0.14
+## abstract    6 199   9.46   2.98   10.0    9.64   2.97   1.0  15  14.0 -0.55
+## physics     7 195  79.57  17.58   79.5   79.34  16.90  29.5 119  89.5  0.04
+##          kurtosis   se
+## ei          -0.20 0.86
+## iq          -0.23 1.03
+## vsat        -0.51 7.47
+## msat        -0.25 3.05
+## create      -0.57 0.27
+## abstract     0.15 0.21
+## physics     -0.10 1.26
+</code></pre>
+
+
+
+<h3 id="assumptions-of-regression">Assumptions of Regression
+  <a href="#assumptions-of-regression"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<ol>
+<li>
+<p>Linearity - Relationship between the outcome variable and each predictor</p>
+</li>
+<li>
+<p>Normality - Are the data normally distributed?</p>
+</li>
+<li>
+<p>Homoscedasticity - Residuals are assumed to have a constant variance (<em>This can be checked after running the model</em>)</p>
+</li>
+<li>
+<p>Multicollinearity - Bivariate correlations are less than .90.</p>
+</li>
+</ol>
+
+
+
+
+<h4 id="linearity--multicollinearity">Linearity &amp; Multicollinearity
+  <a href="#linearity--multicollinearity"></a>
+</h4>
+<p>The easiest way to check <strong>linearity</strong> of relationship between the outcome variable and each predictor is to check the bivariate correlations and scatterplots.
+For the most part, most variables are (positively) correlated with each other, implying linear relationships.</p>
+<p>To assess <strong>multicollinearity</strong>, we want to see if there are predictors that are too highly correlated (<em>r</em> &gt; .90)</p>
+<p>Use <code>cor()</code> to look at bivariate correlations for the entire data set (Note: Missing values are not allowed in correlation analyses, use <code>drop_na()</code> to do listwise deletion):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#remove missing data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">cor</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;pearson&#34;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>##                   ei         iq        vsat       msat      create   abstract
+## ei        1.00000000 0.03400695  0.53927222 0.04823131 -0.02356759 0.02311522
+## iq        0.03400695 1.00000000  0.64810303 0.70635708  0.64281265 0.57259750
+## vsat      0.53927222 0.64810303  1.00000000 0.50502038  0.45670255 0.35357159
+## msat      0.04823131 0.70635708  0.50502038 1.00000000  0.57382957 0.50705131
+## create   -0.02356759 0.64281265  0.45670255 0.57382957  1.00000000 0.42365795
+## abstract  0.02311522 0.57259750  0.35357159 0.50705131  0.42365795 1.00000000
+## physics  -0.38171959 0.35304329 -0.09995838 0.69101577  0.35328045 0.25249211
+##              physics
+## ei       -0.38171959
+## iq        0.35304329
+## vsat     -0.09995838
+## msat      0.69101577
+## create    0.35328045
+## abstract  0.25249211
+## physics   1.00000000
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Fun tip: `apa.cor.table()` creates an APA formated correlation matrix and saves it to your computer</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#apa.cor.table(physics, filename = &#34;cor_table.doc&#34;)</span>
+</span></span></code></pre></div><p>You can also subset the data set to include only the variables of interest:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(ei, iq, physics) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#remove missing data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">cor</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##                 ei        iq    physics
+## ei       1.0000000 0.0360554 -0.3941978
+## iq       0.0360554 1.0000000  0.3440316
+## physics -0.3941978 0.3440316  1.0000000
+</code></pre><p>[Correlation Interpretation:]{.ul}</p>
+<p>Among the students in the sample, IQ and physics test scores were positively correlated, <em>r</em> = 0.34, <em>p</em> &lt; .001.</p>
+<p>We can also look at partial-correlations using <code>ppcor::pcor()</code> to see how the predictors relate to the outcome after controlling for the other correlations and semi-partial correlations using <code>ppcor::spcor()</code> to see how predictors relate to the outcome after controlling for <em>X</em> but not <em>Y</em>.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ppcor) 
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Partial Correlation</span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">pcor</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>## $estimate
+##                   ei          iq       vsat       msat      create    abstract
+## ei        1.00000000 -0.32568951  0.4650756 0.16441386 -0.12115000  0.01488448
+## iq       -0.32568951  1.00000000  0.4746335 0.17078572  0.23857783  0.29849210
+## vsat      0.46507555  0.47463350  1.0000000 0.44653013  0.16077919 -0.13045988
+## msat      0.16441386  0.17078572  0.4465301 1.00000000  0.05092278  0.21300341
+## create   -0.12115000  0.23857783  0.1607792 0.05092278  1.00000000  0.07149435
+## abstract  0.01488448  0.29849210 -0.1304599 0.21300341  0.07149435  1.00000000
+## physics  -0.21342029  0.04833899 -0.5147686 0.80097974  0.08561041 -0.14365807
+##              physics
+## ei       -0.21342029
+## iq        0.04833899
+## vsat     -0.51476858
+## msat      0.80097974
+## create    0.08561041
+## abstract -0.14365807
+## physics   1.00000000
+## 
+## $p.value
+##                    ei           iq         vsat         msat       create
+## ei       0.000000e+00 4.805721e-06 1.560295e-11 2.377604e-02 0.0967917262
+## iq       4.805721e-06 0.000000e+00 5.208355e-12 1.879216e-02 0.0009463296
+## vsat     1.560295e-11 5.208355e-12 0.000000e+00 1.193188e-10 0.0270993829
+## msat     2.377604e-02 1.879216e-02 1.193188e-10 0.000000e+00 0.4865040527
+## create   9.679173e-02 9.463296e-04 2.709938e-02 4.865041e-01 0.0000000000
+## abstract 8.389149e-01 3.021094e-05 7.356918e-02 3.253293e-03 0.3282642697
+## physics  3.191877e-03 5.089145e-01 3.517794e-14 1.575852e-43 0.2414812417
+##              abstract      physics
+## ei       8.389149e-01 3.191877e-03
+## iq       3.021094e-05 5.089145e-01
+## vsat     7.356918e-02 3.517794e-14
+## msat     3.253293e-03 1.575852e-43
+## create   3.282643e-01 2.414812e-01
+## abstract 0.000000e+00 4.859688e-02
+## physics  4.859688e-02 0.000000e+00
+## 
+## $statistic
+##                  ei         iq      vsat       msat     create   abstract
+## ei        0.0000000 -4.7105727  7.184029  2.2793444 -1.6689948  0.2035648
+## iq       -4.7105727  0.0000000  7.374048  2.3702833  3.3595141  4.2767879
+## vsat      7.1840291  7.3740478  0.000000  6.8243429  2.2276026 -1.7993904
+## msat      2.2793444  2.3702833  6.824343  0.0000000  0.6972632  2.9811919
+## create   -1.6689948  3.3595141  2.227603  0.6972632  0.0000000  0.9801788
+## abstract  0.2035648  4.2767879 -1.799390  2.9811919  0.9801788  0.0000000
+## physics  -2.9873047  0.6617994 -8.210795 18.2952888  1.1750187 -1.9850851
+##             physics
+## ei       -2.9873047
+## iq        0.6617994
+## vsat     -8.2107955
+## msat     18.2952888
+## create    1.1750187
+## abstract -1.9850851
+## physics   0.0000000
+## 
+## $n
+## [1] 194
+## 
+## $gp
+## [1] 5
+## 
+## $method
+## [1] &#34;pearson&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Semi-Parial Correlation</span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">spcor</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>## $estimate
+##                   ei          iq       vsat       msat      create    abstract
+## ei        1.00000000 -0.24386511  0.3719153 0.11800106 -0.08640342  0.01053850
+## iq       -0.17991579  1.00000000  0.2816447 0.09053069  0.12831341  0.16334780
+## vsat      0.24787217  0.25442843  1.0000000 0.23546184  0.07685947 -0.06208477
+## msat      0.06775628  0.07045955  0.2028619 1.00000000  0.02072700  0.08861955
+## create   -0.08966473  0.18048584  0.1196753 0.03745962  1.00000000  0.05265892
+## abstract  0.01184521  0.24886148 -0.1047045 0.17347221  0.05703550  1.00000000
+## physics  -0.10442322  0.02313364 -0.2870138 0.63952396  0.04107356 -0.06938997
+##              physics
+## ei       -0.15465198
+## iq        0.02527679
+## vsat     -0.28329892
+## msat      0.54384971
+## create    0.06312646
+## abstract -0.11550987
+## physics   1.00000000
+## 
+## $p.value
+##                    ei           iq         vsat         msat     create
+## ei       0.0000000000 0.0007207838 1.369299e-07 1.058482e-01 0.23713321
+## iq       0.0132390483 0.0000000000 8.634775e-05 2.153898e-01 0.07847628
+## vsat     0.0005840884 0.0004109848 0.000000e+00 1.107964e-03 0.29317174
+## msat     0.3542482772 0.3353314498 5.117270e-03 0.000000e+00 0.77710849
+## create   0.2198294618 0.0129459172 1.009535e-01 6.088274e-01 0.00000000
+## abstract 0.8714869384 0.0005542444 1.516168e-01 1.697934e-02 0.43566074
+## physics  0.1527254403 0.7520272679 6.223148e-05 3.984530e-23 0.57468919
+##            abstract      physics
+## ei       0.88556108 3.360256e-02
+## iq       0.02471236 7.299077e-01
+## vsat     0.39605865 7.811472e-05
+## msat     0.22527418 6.106787e-16
+## create   0.47174829 3.881654e-01
+## abstract 0.00000000 1.134748e-01
+## physics  0.34273760 0.000000e+00
+## 
+## $statistic
+##                  ei         iq      vsat       msat     create   abstract
+## ei        0.0000000 -3.4386200  5.478884  1.6249933 -1.1859843  0.1441198
+## iq       -2.5011248  0.0000000  4.013921  1.2430931  1.7692850  2.2641585
+## vsat      3.4987885  3.5976493  0.000000  3.3130430  1.0541557 -0.8506374
+## msat      0.9286874  0.9659206  2.833000  0.0000000  0.2834983  1.2166410
+## create   -1.2311057  2.5093158  1.648381  0.5126124  0.0000000  0.7211004
+## abstract  0.1619921  3.5136730 -1.439726  2.4087159  0.7812205  0.0000000
+## physics  -1.4358157  0.3164324 -4.097240 11.3757630  0.5621468 -0.9511863
+##             physics
+## ei       -2.1405874
+## iq        0.3457654
+## vsat     -4.0395481
+## msat      8.8622340
+## create    0.8649665
+## abstract -1.5902181
+## physics   0.0000000
+## 
+## $n
+## [1] 194
+## 
+## $gp
+## [1] 5
+## 
+## $method
+## [1] &#34;pearson&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">detach</span>(<span style="color:#d14">&#34;package:ppcor&#34;</span>, unload <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span></code></pre></div><p>Finally, use <code>pairs()</code> to look at bivariate scatterplots.
+Do the relationships look linear?:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">pairs</span>(physics)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Or we can look at individual scatterplots:</span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(physics, ei)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_smooth</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lm&#34;</span>, se <span style="color:#000;font-weight:bold">=</span><span style="color:#999">F</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_minimal</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-27-2.png" width="672" />
+
+
+
+
+<h4 id="normality">Normality
+  <a href="#normality"></a>
+</h4>
+<p>Density Plot:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">lapply</span>(physics, ggdensity, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## $ei
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<pre tabindex="0"><code>## 
+## $iq
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-2.png" width="672" />
+<pre tabindex="0"><code>## 
+## $vsat
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-3.png" width="672" />
+<pre tabindex="0"><code>## 
+## $msat
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-4.png" width="672" />
+<pre tabindex="0"><code>## 
+## $create
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-5.png" width="672" />
+<pre tabindex="0"><code>## 
+## $abstract
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-6.png" width="672" />
+<pre tabindex="0"><code>## 
+## $physics
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-7.png" width="672" />
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># alternatively, you may look at each one individually like this:</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># ggdensity(physics$ei, fill = &#34;lightgray&#34;)</span>
+</span></span></code></pre></div><p>QQ Plots for individual predictors (Later, we will want to look at the QQ plot of the entire model, which looks at the normality of residuals):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">lapply</span>(physics, ggqqplot, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>## $ei
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<pre tabindex="0"><code>## 
+## $iq
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-2.png" width="672" />
+<pre tabindex="0"><code>## 
+## $vsat
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-3.png" width="672" />
+<pre tabindex="0"><code>## 
+## $msat
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-4.png" width="672" />
+<pre tabindex="0"><code>## 
+## $create
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-5.png" width="672" />
+<pre tabindex="0"><code>## 
+## $abstract
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-6.png" width="672" />
+<pre tabindex="0"><code>## 
+## $physics
+</code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-7.png" width="672" />
+<p>Shapiro-Wilk&rsquo;s Test of Normality:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#physics %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  shapiro_test(ei, iq, vsat, msat, create, abstract, physics)</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Here, abstract and msat is significant. However, Shapiro-Wilk&#39;s test is very sensitive to minor deviations from normality. Our density plot suggests normality.</span>
+</span></span></code></pre></div><p>Skewness and Kurtosis:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(physics)
+</span></span></code></pre></div><pre tabindex="0"><code>##          vars   n   mean     sd median trimmed    mad   min max range  skew
+## ei          1 199 107.59  12.17  108.0  107.82  10.38  75.0 139  64.0 -0.15
+## iq          2 199  99.99  14.59  100.0   99.89  14.83  57.0 134  77.0  0.01
+## vsat        3 199 534.46 105.37  526.0  532.13 108.23 314.0 801 487.0  0.21
+## msat        4 199 493.38  42.98  487.0  490.93  43.00 364.0 601 237.0  0.40
+## create      5 200   9.57   3.78    9.0    9.53   4.45   1.0  19  18.0  0.14
+## abstract    6 199   9.46   2.98   10.0    9.64   2.97   1.0  15  14.0 -0.55
+## physics     7 195  79.57  17.58   79.5   79.34  16.90  29.5 119  89.5  0.04
+##          kurtosis   se
+## ei          -0.20 0.86
+## iq          -0.23 1.03
+## vsat        -0.51 7.47
+## msat        -0.25 3.05
+## create      -0.57 0.27
+## abstract     0.15 0.21
+## physics     -0.10 1.26
+</code></pre>
+
+
+
+<h3 id="simple-linear-regression">Simple Linear Regression
+  <a href="#simple-linear-regression"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Finally, we have arrived at our main goal.
+It&rsquo;s good to reflect on how much work it takes to prepare the data for analyses.
+It&rsquo;s important to clean and screen the data before analyses.</p>
+<p>Recall our research hypothesis:</p>
+<p><strong>Research Example</strong>: Predict <strong>physics</strong> scores from <strong>math SAT</strong> scores.
+Run a simple linear regression model using <code>lm()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#`msat` predicting `physics`</span>
+</span></span><span style="display:flex;"><span>slr_model <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(physics<span style="color:#000;font-weight:bold">~</span>msat,data<span style="color:#000;font-weight:bold">=</span>physics)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(slr_model)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = physics ~ msat, data = physics)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -36.735  -7.484  -0.243   8.980  30.098 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -58.54334   10.46659  -5.593 7.54e-08 ***
+## msat          0.27977    0.02112  13.246  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 12.76 on 193 degrees of freedom
+##   (5 observations deleted due to missingness)
+## Multiple R-squared:  0.4762,	Adjusted R-squared:  0.4735 
+## F-statistic: 175.5 on 1 and 193 DF,  p-value: &lt; 2.2e-16
+</code></pre><p>[Simple Linear Regression Interpretation:]{.ul}</p>
+<p>For every one unit increase in <code>msat</code> scores, <code>physics</code> scores increase 0.28 points, <em>p</em> &lt; 0.001.</p>
+<p>$$ physics = -58.54 + 0.28 (msat) $$</p>
+<p>Looking at the <strong>homoscedasticity</strong> assumption, we use the <code>plot()</code> function.
+To assess for constant variance, we want to see a straight, horizontal red line across this plot.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(slr_model, <span style="color:#099">3</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<p>Looking at the <strong>normality of residuals</strong> assumption (whereas before, we were looking at normality of each predictor), we again use <code>plot()</code> function.:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. </span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(slr_model, <span style="color:#099">2</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+
+
+
+
+<h3 id="multiple-regression">Multiple Regression
+  <a href="#multiple-regression"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Recall our research hypothesis:</p>
+<p><strong>Research Example</strong>: Predict <strong>physics</strong> scores from: emotional intelligence, IQ, verbal SAT, math SAT, creativity, and abstract thinking.</p>
+<p>Run a multiple regression model using <code>lm()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># using the period (.) tells R you want ALL the variables except the outcome (`physics`)</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># alternatively, you can type out all the variables by doing this:</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># lm(physics~ei+iq+vsat+msat+create+abstract, data=physics)</span>
+</span></span><span style="display:flex;"><span>mr_model <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(physics<span style="color:#000;font-weight:bold">~</span>.,data<span style="color:#000;font-weight:bold">=</span>physics)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(mr_model)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = physics ~ ., data = physics)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -18.4419  -6.4058  -0.6015   6.2519  21.1205 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -40.80967   10.06104  -4.056 7.32e-05 ***
+## ei           -0.20493    0.06860  -2.987  0.00319 ** 
+## iq            0.05214    0.07878   0.662  0.50891    
+## vsat         -0.08664    0.01055  -8.211 3.52e-14 ***
+## msat          0.37663    0.02059  18.295  &lt; 2e-16 ***
+## create        0.25462    0.21669   1.175  0.24148    
+## abstract     -0.50442    0.25411  -1.985  0.04860 *  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 8.425 on 187 degrees of freedom
+##   (6 observations deleted due to missingness)
+## Multiple R-squared:  0.7715,	Adjusted R-squared:  0.7642 
+## F-statistic: 105.2 on 6 and 187 DF,  p-value: &lt; 2.2e-16
+</code></pre><p>[Multiple Regression Interpretation:]{.ul}</p>
+<p>Controlling for all other variables, for every one unit increase in <code>ei</code> scores, <code>physics</code> scores decrease 0.20 points, <em>p</em> &lt; 0.001.</p>
+<p>Rinse and repeat for remaining predictors.
+For non-significant predictors, &ldquo;IQ was not found to be a significant predictor of the model&rdquo; is sufficient.</p>
+<p><strong>Homoscedasticity</strong></p>
+<p>Scale-Location plot:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(mr_model, <span style="color:#099">3</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<p><strong>Normality of Residuals</strong></p>
+<p>QQ plot:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. </span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(mr_model, <span style="color:#099">2</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/collection/featured-sidebar.jpg" class="db ma0">
+
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4 flex-row">
+  <div class="w-two-thirds w-50-l ph0">
+    <h2 class="mv3 f5 fw7 ttu tracked">
+      <a class="no-underline dim" href="/collection/">Outline</a></h2>
+    <nav id="SectionTableOfContents" aria-label="SectionTableOfContents">
+        <ul>
+        
+          
+          
+          
+          <details open class="active">
+            <summary class="active" hugo-nav="/collection/linear-models/"><a href="https://www.dina-arch.com/collection/linear-models/">Linear Models for Data Analysis</a></summary>
+            
+              
+              <li class="active" hugo-nav="/collection/linear-models/01-data-cleaning/"><a href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">Lab 1: Data Screening and Cleaning</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/02-slr/"><a href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/03-moderation/"><a href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/04-mediation/"><a href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
+            
+          </details>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          
+          </li>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/day02/"><a href="https://www.dina-arch.com/collection/day02/">Day 02</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/day02/01-netlify/"><a href="https://www.dina-arch.com/collection/day02/01-netlify/">Netlify</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/02-blogdown/"><a href="https://www.dina-arch.com/collection/day02/02-blogdown/">Using blogdown</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/03-blogdown/"><a href="https://www.dina-arch.com/collection/day02/03-blogdown/">Warm woolen mittens</a></li>
+            
+          </details>
+          
+          </li>
+        
+        </ul>
+    </nav>
+  </div>
+  <details id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">On this page<h2></summary>
+    <div class="pl2 pr0 mh0">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-screening--cleaning">Data Screening &amp; Cleaning</a></li>
+    <li><a href="#regression-overview">Regression Overview</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+</aside>
+
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2022 Dina Arch
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="mailto:dnaji@ucsb.edu" title="envelope" >
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/dinanajiarch" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/dnajiarch" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/dina-naji-arch-22649396/" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-2716-0798" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

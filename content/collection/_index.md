@@ -1,27 +1,24 @@
 ---
-author: Alison Hill
+author: Dina Arch
 cascade:
   layout: single-series
   sidebar:
-    author: Alison Hill
-    description: "Sometimes you want a souped-up series- a bundle of related pages
-      \nmeant to be read in sequence. This section is like a blog series, \nminus
-      the blog.\n"
+    author: Dina Arch
+    description: "Here you can find R Markdowns I have created as a graduate student at UC Santa Barbara."
     show_author_byline: true
     show_post_date: true
     show_sidebar_adunit: true
     text_contents_label: On this page
-    text_link_label: ""
-    text_link_url: ""
+    text_link_label: "Artwork by @allison_horst"
+    text_link_url: "https://twitter.com/allison_horst"
     text_series_label: Outline
-    title: Create a Collection
-description: "Sometimes you want a souped-up series- a bundle of related pages \nmeant
-  to be read in sequence. This section is like a blog series, \nminus the blog.\n"
+    title: A series of R Markdowns
+description: "Here you can find R Markdowns I have created as a graduate student at UC Santa Barbara."
 layout: list-sidebar
 show_author_byline: false
-show_post_date: false
-show_post_thumbnail: true
+show_post_date: true
+show_post_thumbnail: false
 subtitle: A collection, minus the blog.
 thumbnail_left: false
-title: Create a Collection
+title: R Projects
 ---

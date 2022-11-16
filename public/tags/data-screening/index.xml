@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data screening on Dina Arch</title>
+    <link>https://www.dina-arch.com/tags/data-screening/</link>
+    <description>Recent content in data screening on Dina Arch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 30 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/data-screening/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lab 1: Data Screening and Cleaning</title>
+      <link>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</link>
+      <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</guid>
+      <description>#Load packages here library(haven) #for read_sav() function library(psych) # describe() library(ggpubr) # ggdensity() and ggqqplot() library(apaTables) # apa.cor.table() library(tidyverse) Data Screening &amp;amp; Cleaning The data sets used in this lab are used in Chapter 4 of Tabachnick &amp;amp; Fidell (2012; I believe there is a new version from 2019 now). The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.</description>
+    </item>
+    
+  </channel>
+</rss>

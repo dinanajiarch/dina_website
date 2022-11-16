@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.102.1" />
+<title>Lab 2: Simple Linear Regression | Dina Arch</title>
+
+
+<meta property="twitter:site" content="@dnajiarch">
+<meta property="twitter:creator" content="@dnajiarch">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Overview of simple linear regression.">
+
+
+<meta property="og:site_name" content="Dina Arch">
+<meta property="og:title" content="Lab 2: Simple Linear Regression | Dina Arch">
+<meta property="og:description" content="Overview of simple linear regression." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://www.dina-arch.com/collection/linear-models/02-slr/" />
+<meta property="og:locale" content="en">
+
+
+
+
+    
+        <meta property="og:image" content="https://www.dina-arch.com" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://www.dina-arch.com" >
+    
+  <meta itemprop="name" content="Lab 2: Simple Linear Regression">
+<meta itemprop="description" content="library(psych) #describe() library(PerformanceAnalytics) #chart.correlation() library(lm.beta) #lm.beta() library(sjPlot) #tab_model() library(gridExtra) #grid.arrange() library(tidyverse) This lab will be an overview of simple linear regression and was created along side Karen&rsquo;s lectures and her code.
+Simple Linear Regression The Equation The equation of simple linear regression is this:
+$$Y_i = \alpha &#43; \beta{x}_i &#43; \epsilon_i $$ Expressed as Betas:
+$$ Y_i = \beta_0 &#43; \beta{x}_i &#43; \epsilon_i $$
+When we are predicting Y, we express the prediction equation as this:"><meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1857">
+<meta itemprop="keywords" content="r markdown,outliers,tidy data,regression," />
+  
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
+  <link rel="icon" href="/img/cat.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.5550fcfd017088ccae55298dd74a3b7d7bfe6cc577b648c443d001196a798ca6.js" type="text/javascript"></script>
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+      <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/collection/" title="Project Portfolio">R Projects</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73" title="CV">CV</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+<main class="page-main ph4 pt4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h4 class="breadcrumb pb5">
+
+  
+    
+      
+  
+    
+      
+  
+    
+      
+  
+
+    
+    
+      <a href="/collection/">R Projects</a>
+    
+  
+
+    
+    
+      <a href="/collection/linear-models/">Linear Models for Data Analysis</a>
+    
+  
+
+    
+    
+      Lab 2: Simple Linear Regression
+    
+  
+
+</h4>
+
+
+
+
+        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Lab 2: Simple Linear Regression</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Overview of simple linear regression.</h4>
+        
+        
+        
+        
+      
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic">#describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(PerformanceAnalytics) <span style="color:#998;font-style:italic">#chart.correlation()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(lm.beta) <span style="color:#998;font-style:italic">#lm.beta()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(sjPlot) <span style="color:#998;font-style:italic">#tab_model()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(gridExtra) <span style="color:#998;font-style:italic">#grid.arrange()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+</span></span></code></pre></div><p>This lab will be an overview of simple linear regression and was created along side Karen&rsquo;s lectures and her code.</p>
+
+
+
+
+<h1 id="simple-linear-regression">Simple Linear Regression
+  <a href="#simple-linear-regression"></a>
+</h1>
+
+
+
+
+<h2 id="the-equation">The Equation
+  <a href="#the-equation"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>The equation of simple linear regression is this:</p>
+<p>$$Y_i = \alpha + \beta{x}_i + \epsilon_i $$ Expressed as Betas:</p>
+<p>$$ Y_i = \beta_0 + \beta{x}_i + \epsilon_i $$</p>
+<p>When we are predicting Y, we express the prediction equation as this:</p>
+<p>$$\hat Y = a+ b{x} $$</p>
+<p>As presented in lecture and lab 1, here is how we would plug in our intercept and slope values into our equations:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Reading in physics.csv dataset</span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;physics.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#`msat` predicting `physics`</span>
+</span></span><span style="display:flex;"><span>slr_model <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(physics<span style="color:#000;font-weight:bold">~</span>msat,data<span style="color:#000;font-weight:bold">=</span>physics)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(slr_model)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = physics ~ msat, data = physics)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -36.735  -7.484  -0.243   8.980  30.098 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -58.54334   10.46659  -5.593 7.54e-08 ***
+## msat          0.27977    0.02112  13.246  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 12.76 on 193 degrees of freedom
+##   (5 observations deleted due to missingness)
+## Multiple R-squared:  0.4762,	Adjusted R-squared:  0.4735 
+## F-statistic: 175.5 on 1 and 193 DF,  p-value: &lt; 2.2e-16
+</code></pre><p>$$ Y = -58.54 + .28{x} $$</p>
+
+
+
+
+<h2 id="an-example">An Example
+  <a href="#an-example"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Data from 
+<a href="https://stats.idre.ucla.edu/r/seminars/introduction-to-regression-in-r/" target="_blank" rel="noopener">UCLA - Academic Performance Index:</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Variable</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr>
+<td>api00</td>
+<td>Academic Performance Index</td>
+</tr>
+<tr>
+<td>enroll</td>
+<td>School enrollment</td>
+</tr>
+<tr>
+<td>Meals</td>
+<td>Number of free and reduced lunch</td>
+</tr>
+<tr>
+<td>full</td>
+<td>Percentage of teachers will full credentials</td>
+</tr>
+</tbody>
+</table>
+<p>Read in data and view first 6 rows.
+Here, we are reading in the data directly from the UCLA website:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>api <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read.csv</span>(
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;https://stats.idre.ucla.edu/wp-content/uploads/2019/02/elemapi2v2.csv&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(api00, full, enroll, meals)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#First 6 rows</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(api)
+</span></span></code></pre></div><pre tabindex="0"><code>##   api00 full enroll meals
+## 1   693   76    247    67
+## 2   570   79    463    92
+## 3   546   68    395    97
+## 4   571   87    418    90
+## 5   478   87    520    89
+## 6   858  100    343    10
+</code></pre><p>Descriptive Statistics:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(api) 
+</span></span></code></pre></div><pre tabindex="0"><code>##        vars   n   mean     sd median trimmed    mad min  max range  skew
+## api00     1 400 647.62 142.25  643.0  645.79 177.17 369  940   571  0.10
+## full      2 400  84.55  14.95   88.0   86.60  14.83  37  100    63 -0.97
+## enroll    3 400 483.46 226.45  435.0  459.41 202.37 130 1570  1440  1.34
+## meals     4 400  60.31  31.91   67.5   62.18  37.81   0  100   100 -0.41
+##        kurtosis    se
+## api00     -1.13  7.11
+## full       0.17  0.75
+## enroll     3.02 11.32
+## meals     -1.20  1.60
+</code></pre><p>Correlations:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">cor</span>(api, method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;pearson&#34;</span>, use <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;complete.obs&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">round</span>(<span style="color:#099">2</span>)
+</span></span></code></pre></div><pre tabindex="0"><code>##        api00  full enroll meals
+## api00   1.00  0.57  -0.32 -0.90
+## full    0.57  1.00  -0.34 -0.53
+## enroll -0.32 -0.34   1.00  0.24
+## meals  -0.90 -0.53   0.24  1.00
+</code></pre><p>A fancier correlation matrix from Karen&rsquo;s lecture and code:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">chart.Correlation</span>(api, histogram<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">TRUE</span>, pch<span style="color:#000;font-weight:bold">=</span><span style="color:#099">19</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/02-slr/index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<p>Histogram for API schools:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>api <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> api00)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_histogram</span>(col<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;dark green&#34;</span>, 
+</span></span><span style="display:flex;"><span>                 fill<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;green&#34;</span>, 
+</span></span><span style="display:flex;"><span>                 alpha <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">.2</span>,
+</span></span><span style="display:flex;"><span>                 binwidth <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">30</span>) <span style="color:#000;font-weight:bold">+</span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(title<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;Histogram for API for schools&#34;</span>, x<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;API&#34;</span>, y<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;Count&#34;</span>) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">xlim</span>(<span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">200</span>, <span style="color:#099">1000</span>)) <span style="color:#000;font-weight:bold">+</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ylim</span>(<span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">0</span>,<span style="color:#099">50</span>))
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/02-slr/index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<p>Simple linear regression:</p>
+<p>[Research question]{.ul}: Does <strong>school enrollment</strong> predict <strong>school API</strong>?</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m1 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(api00 <span style="color:#000;font-weight:bold">~</span> enroll, data <span style="color:#000;font-weight:bold">=</span> api)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(m1)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = api00 ~ enroll, data = api)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -285.50 -112.55   -6.70   95.06  389.15 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 744.25141   15.93308  46.711  &lt; 2e-16 ***
+## enroll       -0.19987    0.02985  -6.695 7.34e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 135 on 398 degrees of freedom
+## Multiple R-squared:  0.1012,	Adjusted R-squared:  0.09898 
+## F-statistic: 44.83 on 1 and 398 DF,  p-value: 7.339e-11
+</code></pre><p>Standardized Beta Coefficients:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">lm.beta</span>(m1)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = api00 ~ enroll, data = api)
+## 
+## Standardized Coefficients::
+## (Intercept)      enroll 
+##          NA  -0.3181722
+</code></pre><p>Nicely presented regression table using <code>tab_model()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(m1, show.std <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.zeroinf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="6" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">api 00</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">std. Beta</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">standardized CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Statistic</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">p</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">744.25</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">712.93&nbsp;&ndash;&nbsp;775.57</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.09&nbsp;&ndash;&nbsp;0.09</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">46.71</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">enroll</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.20</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.32</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.26&nbsp;&ndash;&nbsp;-0.14</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.41&nbsp;&ndash;&nbsp;-0.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;6.70</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="6">400</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">0.101 / 0.099</td>
+</tr>
+</table>
+<p>Here, we can see both unstandardized and standardized regression coefficients.</p>
+
+
+
+
+<h2 id="outliers">Outliers
+  <a href="#outliers"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="outlier-detection">Outlier Detection
+  <a href="#outlier-detection"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p><em>From Karen&rsquo;s slides:</em></p>
+<p>There are various ways to diagnose outliers:</p>
+<p>[Distance (residuals]{.ul}): is useful in identifying potential outliers in the dependent variable (Y).</p>
+<p>[Leverage]{.ul} (h~i~): is useful in identifying potential outliers in the independent variable (x&rsquo;s).
+Leverage identifies outliers with respect to the X values</p>
+<p>[Influence:]{.ul} combines <strong>distance</strong> and <strong>leverage</strong> to identify unusually influential observations (use Cook&rsquo;s D).</p>
+
+
+
+
+<h3 id="distance-residuals">Distance (residuals)
+  <a href="#distance-residuals"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>The studentized residual:</p>
+<p>$$
+e_{s_i} = \frac{e_i}{s \sqrt{1-h_i}} = \frac{e_i}{\sqrt{MS_{Error}(1-h_i)}}
+$$</p>
+<p>The student residual identifies outliers with respect to their <em>y</em> values.</p>
+<p>To find studentized residuals in R:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(MASS) <span style="color:#998;font-style:italic">#We use the MASS package for this, I don&#39;t like this package because it masks the `select` function from dplyr (tidyverse). After we find studentized residuals, let&#39;s detach it.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Using API data (m1)</span>
+</span></span><span style="display:flex;"><span>stud_res <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as.data.frame</span>(<span style="color:#900;font-weight:bold">studres</span>(m1)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">rename</span>(<span style="color:#d14">&#34;stud_res&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;studres(m1)&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#View first 6 rows</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(stud_res)
+</span></span></code></pre></div><pre tabindex="0"><code>##      stud_res
+## 1 -0.01397309
+## 2 -0.60544501
+## 3 -0.88459579
+## 4 -0.66480228
+## 5 -1.20436717
+## 6  1.35389271
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Let&#39;s detach the package so we don&#39;t get any errors moving forward</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">detach</span>(<span style="color:#d14">&#34;package:MASS&#34;</span>)
+</span></span></code></pre></div><p>Let&rsquo;s plot the predictor variable (<code>enroll</code>) and the corresponding studentized residuals:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(api<span style="color:#000;font-weight:bold">$</span>enroll, <span style="color:#900;font-weight:bold">as.matrix</span>(stud_res), ylab<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;Studentized Residuals&#39;</span>, xlab<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;Predictor&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">abline</span>(<span style="color:#099">0</span>,<span style="color:#099">0</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/02-slr/index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<p>We can see that there is a studentized residual with an absolute value greater than (or pretty close to) 3 (top right).
+Let&rsquo;s combine the studentized outliers with our dataset to get an idea of which observation is the outlier here.</p>
+<p>We can add a column by using <code>tidyverse::add_column()</code> and then sort by descending using <code>arrange()</code> and <code>desc()</code> .</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_api <span style="color:#000;font-weight:bold">&lt;-</span> api <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">add_column</span>(stud_res)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Sort stud_res by descending:</span>
+</span></span><span style="display:flex;"><span>new_api <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(<span style="color:#900;font-weight:bold">desc</span>(stud_res)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>() 
+</span></span></code></pre></div><pre tabindex="0"><code>##     api00 full enroll meals stud_res
+## 8     831   96   1513     2 2.993100
+## 242   903  100    696     2 2.222040
+## 86    912   97    611     6 2.160181
+## 196   894   93    615    13 2.030676
+## 339   892   78    602     2 1.995923
+## 239   897   75    547    11 1.950388
+</code></pre><p>We can see that observation 8 has a studentized residual of about 3.</p>
+
+
+
+
+<h3 id="leverage">Leverage
+  <a href="#leverage"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>$$
+h_i = \frac{1}{N} + \frac{(x_i - \overline{x})^2}{\sum_{i = 1}^{N}(x_i - \overline{x})^2}
+$$</p>
+<p>To calculate a leverage score for each x in the data set in R, we use the <code>hatvalues()</code> function to calculate the leverage for each observation in the model:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Using API example (m1)</span>
+</span></span><span style="display:flex;"><span>hats <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">as.data.frame</span>(<span style="color:#900;font-weight:bold">hatvalues</span>(m1)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">rename</span>(<span style="color:#d14">&#34;hats&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;hatvalues(m1)&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(hats)
+</span></span></code></pre></div><pre tabindex="0"><code>##          hats
+## 1 0.005232891
+## 2 0.002520470
+## 3 0.002882500
+## 4 0.002709463
+## 5 0.002565239
+## 6 0.003464328
+</code></pre><p>We can also plot the leverage values for each observation:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(<span style="color:#900;font-weight:bold">hatvalues</span>(m1), type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;h&#39;</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/02-slr/index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<p>This plot shows some spikes in leverage values.
+Let&rsquo;s find out the cut off.
+Leverage (h~i~) values greater than <code>\(\frac{3(p+1)}{N}\)</code> are considered influential ($p$ = number of predictors, <code>\(N\)</code> = sample size)</p>
+<p>To calculate the leverage cut-off scores in R:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Using our API example</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Number of predictors: 1</span>
+</span></span><span style="display:flex;"><span>p <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#099">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Sample Size: 400</span>
+</span></span><span style="display:flex;"><span>n <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#099">400</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>leverage <span style="color:#000;font-weight:bold">&lt;-</span> (<span style="color:#099">3</span><span style="color:#000;font-weight:bold">*</span>(p<span style="color:#099">+1</span>))<span style="color:#000;font-weight:bold">/</span>n
+</span></span><span style="display:flex;"><span>leverage
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] 0.015
+</code></pre><p>To find the leverage values above our cut off (Influential values):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>influential <span style="color:#000;font-weight:bold">&lt;-</span> hats <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(hats <span style="color:#000;font-weight:bold">&gt;</span> leverage)
+</span></span><span style="display:flex;"><span>influential
+</span></span></code></pre></div><pre tabindex="0"><code>##           hats
+## 8   0.05430490
+## 106 0.01704568
+## 120 0.03227648
+## 130 0.01742135
+## 134 0.01868945
+## 140 0.01620497
+## 145 0.02414863
+## 163 0.05592762
+## 164 0.02274105
+## 165 0.01599870
+## 172 0.01599870
+## 187 0.02180846
+## 193 0.01574307
+## 197 0.01995080
+## 199 0.01589615
+## 210 0.06020004
+</code></pre><p>We can see that observation 8 has the highest leverage value.
+If we want to remove all leverage values greater than the cut off from our <code>api</code> dataset:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_api_no_lev <span style="color:#000;font-weight:bold">&lt;-</span> api <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(hats <span style="color:#000;font-weight:bold">&lt;</span> leverage) 
+</span></span></code></pre></div>
+
+
+
+<h3 id="influence">Influence
+  <a href="#influence"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Combines distance and leverage to identify unusually influential observations (use Cook&rsquo;s D).</p>
+<p>Cook&rsquo;s distance measure is defined as:</p>
+<p>$$
+Cook&rsquo;s D = \frac{(e_{s_i})^2}{p + 1} * \frac{h_i}{1-h_i} 
+$$</p>
+<p>Where <code>\(e_{s_i}\)</code> is the studentized residual, <code>\(p\)</code> = number of predictors, and <code>\(h_i\)</code> is the leverage for observation for the <code>\(i\)</code>th observation.</p>
+<p>To find Cook&rsquo;s D in R:</p>
+<p>First let&rsquo;s create a scatterplot for our model (<code>enroll</code> by <code>api00</code>):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>api <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> enroll, y <span style="color:#000;font-weight:bold">=</span> api00)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_smooth</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lm&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_minimal</span>()
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/02-slr/index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<p>We can clearly see an outlier that is shifting our datapoints to the left.
+Let&rsquo;s calculate and plot Cook&rsquo;s D using R (This is Karen&rsquo;s code!):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Cacluating Cook&#39;s D</span>
+</span></span><span style="display:flex;"><span>cooksd <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">cooks.distance</span>(m1)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Plotting Values </span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(cooksd, pch<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;*&#34;</span>, 
+</span></span><span style="display:flex;"><span>     cex<span style="color:#000;font-weight:bold">=</span><span style="color:#099">2</span>, 
+</span></span><span style="display:flex;"><span>     main<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;Influential Obs by Cooks distance&#34;</span>) <span style="color:#998;font-style:italic"># plot</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">abline</span>(h <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">4</span><span style="color:#000;font-weight:bold">*</span><span style="color:#900;font-weight:bold">mean</span>(cooksd, na.rm<span style="color:#000;font-weight:bold">=</span><span style="color:#999">T</span>), 
+</span></span><span style="display:flex;"><span>       col<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;red&#34;</span>)  <span style="color:#998;font-style:italic"># add cutoff line</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">text</span>(x<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#900;font-weight:bold">length</span>(cooksd)<span style="color:#099">+1</span>, 
+</span></span><span style="display:flex;"><span>     y<span style="color:#000;font-weight:bold">=</span>cooksd, 
+</span></span><span style="display:flex;"><span>     labels<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">ifelse</span>(cooksd<span style="color:#000;font-weight:bold">&gt;</span><span style="color:#099">4</span><span style="color:#000;font-weight:bold">*</span><span style="color:#900;font-weight:bold">mean</span>(cooksd, na.rm<span style="color:#000;font-weight:bold">=</span><span style="color:#999">T</span>),
+</span></span><span style="display:flex;"><span>                   <span style="color:#900;font-weight:bold">names</span>(cooksd),<span style="color:#d14">&#34;&#34;</span>), 
+</span></span><span style="display:flex;"><span>     col<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;red&#34;</span>)  <span style="color:#998;font-style:italic"># add labels</span>
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/02-slr/index_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<p>As we&rsquo;ve noted multiple times, observation 8 has proven to be the outlier in this dataset.
+Let&rsquo;s remove the outlier (row 8) using <code>slice()</code> and compare scatterplots (using the <code>gridExtra:grid.arrange()</code> to look at the plots side by side):</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Remove outlier</span>
+</span></span><span style="display:flex;"><span>api_no_outlier <span style="color:#000;font-weight:bold">&lt;-</span> api <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice</span>(<span style="color:#099">-8</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Scatterplot without the outlier</span>
+</span></span><span style="display:flex;"><span>no_outlier <span style="color:#000;font-weight:bold">&lt;-</span> api_no_outlier <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> enroll, y <span style="color:#000;font-weight:bold">=</span> api00)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_smooth</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lm&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(title <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;No Outlier&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_minimal</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Scatterplot with outlier</span>
+</span></span><span style="display:flex;"><span>outlier <span style="color:#000;font-weight:bold">&lt;-</span> api <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> enroll, y <span style="color:#000;font-weight:bold">=</span> api00)) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_smooth</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lm&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(title <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;With Outlier&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_minimal</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">grid.arrange</span>(no_outlier, outlier, ncol <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>)
+</span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/02-slr/index_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<p>We can also rerun and compare regression models:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Rerun regression</span>
+</span></span><span style="display:flex;"><span>m2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(api00 <span style="color:#000;font-weight:bold">~</span> enroll, data <span style="color:#000;font-weight:bold">=</span> api_no_outlier)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(m2)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = api00 ~ enroll, data = api_no_outlier)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -286.945 -111.413   -5.914   95.955  303.286 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 753.23324   16.05899  46.904  &lt; 2e-16 ***
+## enroll       -0.22057    0.03036  -7.266 1.97e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 133.7 on 397 degrees of freedom
+## Multiple R-squared:  0.1174,	Adjusted R-squared:  0.1152 
+## F-statistic:  52.8 on 1 and 397 DF,  p-value: 1.975e-12
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(m2, show.std <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.zeroinf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="6" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">api 00</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">std. Beta</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">standardized CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Statistic</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">p</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">753.23</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">721.66&nbsp;&ndash;&nbsp;784.80</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.09&nbsp;&ndash;&nbsp;0.09</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">46.90</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">enroll</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.34</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.28&nbsp;&ndash;&nbsp;-0.16</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.44&nbsp;&ndash;&nbsp;-0.25</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;7.27</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="6">399</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">0.117 / 0.115</td>
+</tr>
+</table>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Compare to model with outlier</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(m1)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = api00 ~ enroll, data = api)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -285.50 -112.55   -6.70   95.06  389.15 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 744.25141   15.93308  46.711  &lt; 2e-16 ***
+## enroll       -0.19987    0.02985  -6.695 7.34e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 135 on 398 degrees of freedom
+## Multiple R-squared:  0.1012,	Adjusted R-squared:  0.09898 
+## F-statistic: 44.83 on 1 and 398 DF,  p-value: 7.339e-11
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(m1, show.std <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.zeroinf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
+<tr>
+<th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">&nbsp;</th>
+<th colspan="6" style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm; ">api 00</th>
+</tr>
+<tr>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  text-align:left; ">Predictors</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Estimates</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">std. Beta</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">standardized CI</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  ">Statistic</td>
+<td style=" text-align:center; border-bottom:1px solid; font-style:italic; font-weight:normal;  col7">p</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">(Intercept)</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">744.25</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">0.00</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">712.93&nbsp;&ndash;&nbsp;775.57</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.09&nbsp;&ndash;&nbsp;0.09</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">46.71</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; ">enroll</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.20</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.32</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.26&nbsp;&ndash;&nbsp;-0.14</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;0.41&nbsp;&ndash;&nbsp;-0.22</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  ">&#45;6.70</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center;  col7"><strong>&lt;0.001</strong></td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm; border-top:1px solid;">Observations</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left; border-top:1px solid;" colspan="6">400</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left; padding-top:0.1cm; padding-bottom:0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; padding-top:0.1cm; padding-bottom:0.1cm; text-align:left;" colspan="6">0.101 / 0.099</td>
+</tr>
+</table>
+<p>What are the differences in output?
+Coefficients?
+R^2^ ?</p>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">&larr; Lab 1: Data Screening and Cleaning</a>
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/collection/featured-sidebar.jpg" class="db ma0">
+
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4 flex-row">
+  <div class="w-two-thirds w-50-l ph0">
+    <h2 class="mv3 f5 fw7 ttu tracked">
+      <a class="no-underline dim" href="/collection/">Outline</a></h2>
+    <nav id="SectionTableOfContents" aria-label="SectionTableOfContents">
+        <ul>
+        
+          
+          
+          
+          <details open class="active">
+            <summary class="active" hugo-nav="/collection/linear-models/"><a href="https://www.dina-arch.com/collection/linear-models/">Linear Models for Data Analysis</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/01-data-cleaning/"><a href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">Lab 1: Data Screening and Cleaning</a></li>
+            
+              
+              <li class="active" hugo-nav="/collection/linear-models/02-slr/"><a href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/03-moderation/"><a href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/04-mediation/"><a href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
+            
+          </details>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          
+          </li>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/day02/"><a href="https://www.dina-arch.com/collection/day02/">Day 02</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/day02/01-netlify/"><a href="https://www.dina-arch.com/collection/day02/01-netlify/">Netlify</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/02-blogdown/"><a href="https://www.dina-arch.com/collection/day02/02-blogdown/">Using blogdown</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/day02/03-blogdown/"><a href="https://www.dina-arch.com/collection/day02/03-blogdown/">Warm woolen mittens</a></li>
+            
+          </details>
+          
+          </li>
+        
+        </ul>
+    </nav>
+  </div>
+  <details id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">On this page<h2></summary>
+    <div class="pl2 pr0 mh0">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-equation">The Equation</a></li>
+    <li><a href="#an-example">An Example</a></li>
+    <li><a href="#outliers">Outliers</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+</aside>
+
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2022 Dina Arch
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="mailto:dnaji@ucsb.edu" title="envelope" >
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/dinanajiarch" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/dnajiarch" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/dina-naji-arch-22649396/" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-2716-0798" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>
