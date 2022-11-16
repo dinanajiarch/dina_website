@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.102.1" />
+<title>Data Wrangling in R | Dina Arch</title>
+
+
+<meta property="twitter:site" content="@dnajiarch">
+<meta property="twitter:creator" content="@dnajiarch">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="Completion of a final project for PSTAT 231 at UC Santa Barbara.">
+
+
+<meta property="og:site_name" content="Dina Arch">
+<meta property="og:title" content="Data Wrangling in R | Dina Arch">
+<meta property="og:description" content="Completion of a final project for PSTAT 231 at UC Santa Barbara." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://www.dina-arch.com/collection/tips-and-tricks-in-r/" />
+<meta property="og:locale" content="en">
+
+
+
+
+    
+        <meta property="og:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+    
+    
+  <meta itemprop="name" content="Data Wrangling in R">
+<meta itemprop="description" content="library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let&rsquo;s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp; Gorman KB, 2020)
+Read in and view data data(&#34;penguins&#34;) head(penguins_raw) # reads first 6 rows ## # A tibble: 6 × 17## studyName `Sample Number` Species Region Island Stage `Individual ID`## &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; ## 1 PAL0708 1 Adelie Penguin … Anvers Torge… Adul… N1A1 ## 2 PAL0708 2 Adelie Penguin … Anvers Torge… Adul… N1A2 ## 3 PAL0708 3 Adelie Penguin … Anvers Torge… Adul… N2A1 ## 4 PAL0708 4 Adelie Penguin … Anvers Torge… Adul… N2A2 ## 5 PAL0708 5 Adelie Penguin … Anvers Torge… Adul… N3A1 ## 6 PAL0708 6 Adelie Penguin … Anvers Torge… Adul… N3A2 ## # … with 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,## # `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,## # `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,## # `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt; names(penguins_raw) # lists variable names ## [1] &#34;studyName&#34; &#34;Sample Number&#34; &#34;Species&#34; ## [4] &#34;Region&#34; &#34;Island&#34; &#34;Stage&#34; ## [7] &#34;Individual ID&#34; &#34;Clutch Completion&#34; &#34;Date Egg&#34; ## [10] &#34;Culmen Length (mm)&#34; &#34;Culmen Depth (mm)&#34; &#34;Flipper Length (mm)&#34;## [13] &#34;Body Mass (g)&#34; &#34;Sex&#34; &#34;Delta 15 N (o/oo)&#34; ## [16] &#34;Delta 13 C (o/oo)&#34; &#34;Comments&#34; summary(penguins_raw) # provides some descriptive statistics for each variable ## studyName Sample Number Species Region ## Length:344 Min."><meta itemprop="datePublished" content="2021-03-15T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-03-15T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1990">
+<meta itemprop="keywords" content="r markdown,machine learning,visualization,classification,principal components," />
+  
+  
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
+  <link rel="icon" href="/img/cat.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.5550fcfd017088ccae55298dd74a3b7d7bfe6cc577b648c443d001196a798ca6.js" type="text/javascript"></script>
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+      <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/collection/" title="Project Portfolio">R Projects</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73" title="CV">CV</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+<main class="page-main ph4 pt4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h4 class="breadcrumb pb5">
+
+  
+    
+      
+  
+    
+      
+  
+
+    
+    
+      <a href="/collection/">R Projects</a>
+    
+  
+
+    
+    
+      Data Wrangling in R
+    
+  
+
+</h4>
+
+
+
+
+        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4">Data Wrangling in R</h1>
+        <h4 class="f4 mt0 mb4 lh-title measure">Completion of a final project for PSTAT 231 at UC Santa Barbara.</h4>
+        
+        
+        
+        
+      
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(stringr) <span style="color:#998;font-style:italic"># str_to_lower()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(janitor) <span style="color:#998;font-style:italic"># clean_names()</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(palmerpenguins) <span style="color:#998;font-style:italic"># penguins</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(sjmisc) <span style="color:#998;font-style:italic"># move_columns</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+</span></span></code></pre></div>
+
+
+
+<h1 id="data-wrangling-tips-in-r">Data Wrangling Tips in R
+  <a href="#data-wrangling-tips-in-r"></a>
+</h1>
+<p>Let&rsquo;s use a dataset called <code>penguins</code> in the <code>palmerpenguins</code> package (Reference: 
+<a href="https://allisonhorst.github.io/palmerpenguins/" target="_blank" rel="noopener">Horst AM, Hill AP, &amp; Gorman KB, 2020</a>)</p>
+<hr>
+
+
+
+
+<h2 id="read-in-and-view-data">Read in and view data
+  <a href="#read-in-and-view-data"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">data</span>(<span style="color:#d14">&#34;penguins&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(penguins_raw) <span style="color:#998;font-style:italic"># reads first 6 rows</span>
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 17
+##   studyName `Sample Number` Species          Region Island Stage `Individual ID`
+##   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;          
+## 1 PAL0708                 1 Adelie Penguin … Anvers Torge… Adul… N1A1           
+## 2 PAL0708                 2 Adelie Penguin … Anvers Torge… Adul… N1A2           
+## 3 PAL0708                 3 Adelie Penguin … Anvers Torge… Adul… N2A1           
+## 4 PAL0708                 4 Adelie Penguin … Anvers Torge… Adul… N2A2           
+## 5 PAL0708                 5 Adelie Penguin … Anvers Torge… Adul… N3A1           
+## 6 PAL0708                 6 Adelie Penguin … Anvers Torge… Adul… N3A2           
+## # … with 10 more variables: `Clutch Completion` &lt;chr&gt;, `Date Egg` &lt;date&gt;,
+## #   `Culmen Length (mm)` &lt;dbl&gt;, `Culmen Depth (mm)` &lt;dbl&gt;,
+## #   `Flipper Length (mm)` &lt;dbl&gt;, `Body Mass (g)` &lt;dbl&gt;, Sex &lt;chr&gt;,
+## #   `Delta 15 N (o/oo)` &lt;dbl&gt;, `Delta 13 C (o/oo)` &lt;dbl&gt;, Comments &lt;chr&gt;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(penguins_raw) <span style="color:#998;font-style:italic"># lists variable names</span>
+</span></span></code></pre></div><pre tabindex="0"><code>##  [1] &#34;studyName&#34;           &#34;Sample Number&#34;       &#34;Species&#34;            
+##  [4] &#34;Region&#34;              &#34;Island&#34;              &#34;Stage&#34;              
+##  [7] &#34;Individual ID&#34;       &#34;Clutch Completion&#34;   &#34;Date Egg&#34;           
+## [10] &#34;Culmen Length (mm)&#34;  &#34;Culmen Depth (mm)&#34;   &#34;Flipper Length (mm)&#34;
+## [13] &#34;Body Mass (g)&#34;       &#34;Sex&#34;                 &#34;Delta 15 N (o/oo)&#34;  
+## [16] &#34;Delta 13 C (o/oo)&#34;   &#34;Comments&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(penguins_raw) <span style="color:#998;font-style:italic"># provides some descriptive statistics for each variable</span>
+</span></span></code></pre></div><pre tabindex="0"><code>##   studyName         Sample Number      Species             Region         
+##  Length:344         Min.   :  1.00   Length:344         Length:344        
+##  Class :character   1st Qu.: 29.00   Class :character   Class :character  
+##  Mode  :character   Median : 58.00   Mode  :character   Mode  :character  
+##                     Mean   : 63.15                                        
+##                     3rd Qu.: 95.25                                        
+##                     Max.   :152.00                                        
+##                                                                           
+##     Island             Stage           Individual ID      Clutch Completion 
+##  Length:344         Length:344         Length:344         Length:344        
+##  Class :character   Class :character   Class :character   Class :character  
+##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+##                                                                             
+##                                                                             
+##                                                                             
+##                                                                             
+##     Date Egg          Culmen Length (mm) Culmen Depth (mm) Flipper Length (mm)
+##  Min.   :2007-11-09   Min.   :32.10      Min.   :13.10     Min.   :172.0      
+##  1st Qu.:2007-11-28   1st Qu.:39.23      1st Qu.:15.60     1st Qu.:190.0      
+##  Median :2008-11-09   Median :44.45      Median :17.30     Median :197.0      
+##  Mean   :2008-11-27   Mean   :43.92      Mean   :17.15     Mean   :200.9      
+##  3rd Qu.:2009-11-16   3rd Qu.:48.50      3rd Qu.:18.70     3rd Qu.:213.0      
+##  Max.   :2009-12-01   Max.   :59.60      Max.   :21.50     Max.   :231.0      
+##                       NA&#39;s   :2          NA&#39;s   :2         NA&#39;s   :2          
+##  Body Mass (g)      Sex            Delta 15 N (o/oo) Delta 13 C (o/oo)
+##  Min.   :2700   Length:344         Min.   : 7.632    Min.   :-27.02   
+##  1st Qu.:3550   Class :character   1st Qu.: 8.300    1st Qu.:-26.32   
+##  Median :4050   Mode  :character   Median : 8.652    Median :-25.83   
+##  Mean   :4202                      Mean   : 8.733    Mean   :-25.69   
+##  3rd Qu.:4750                      3rd Qu.: 9.172    3rd Qu.:-25.06   
+##  Max.   :6300                      Max.   :10.025    Max.   :-23.79   
+##  NA&#39;s   :2                         NA&#39;s   :14        NA&#39;s   :13       
+##    Comments        
+##  Length:344        
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+##                    
+## 
+</code></pre><p>How to read in data and make note of the missing values:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>data <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;data.csv&#34;</span>, na <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;-999&#34;</span>, <span style="color:#d14">&#34;NA&#34;</span>, <span style="color:#d14">&#34;000&#34;</span>)) <span style="color:#998;font-style:italic">#note: the `na` argument only works for &#34;read_csv&#34; and not &#34;read_sav.&#34;</span>
+</span></span></code></pre></div><hr>
+
+
+
+
+<h2 id="clean-names">Clean names
+  <a href="#clean-names"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>We see that the variable names are not &ldquo;clean.&rdquo; As in, they have spaces and capital letters.
+Usually, we want to use a format called &ldquo;snake case&rdquo;, where we have lower case letters and spaces are replaced with underscores.
+We can easily do this with the <code>clean_names()</code> function in the <code>janitor</code> package:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_new <span style="color:#000;font-weight:bold">&lt;-</span> penguins_raw <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">clean_names</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Compare names</span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(penguins_new)
+</span></span></code></pre></div><pre tabindex="0"><code>##  [1] &#34;study_name&#34;        &#34;sample_number&#34;     &#34;species&#34;          
+##  [4] &#34;region&#34;            &#34;island&#34;            &#34;stage&#34;            
+##  [7] &#34;individual_id&#34;     &#34;clutch_completion&#34; &#34;date_egg&#34;         
+## [10] &#34;culmen_length_mm&#34;  &#34;culmen_depth_mm&#34;   &#34;flipper_length_mm&#34;
+## [13] &#34;body_mass_g&#34;       &#34;sex&#34;               &#34;delta_15_n_o_oo&#34;  
+## [16] &#34;delta_13_c_o_oo&#34;   &#34;comments&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(penguins_raw)
+</span></span></code></pre></div><pre tabindex="0"><code>##  [1] &#34;studyName&#34;           &#34;Sample Number&#34;       &#34;Species&#34;            
+##  [4] &#34;Region&#34;              &#34;Island&#34;              &#34;Stage&#34;              
+##  [7] &#34;Individual ID&#34;       &#34;Clutch Completion&#34;   &#34;Date Egg&#34;           
+## [10] &#34;Culmen Length (mm)&#34;  &#34;Culmen Depth (mm)&#34;   &#34;Flipper Length (mm)&#34;
+## [13] &#34;Body Mass (g)&#34;       &#34;Sex&#34;                 &#34;Delta 15 N (o/oo)&#34;  
+## [16] &#34;Delta 13 C (o/oo)&#34;   &#34;Comments&#34;
+</code></pre><hr>
+
+
+
+
+<h2 id="move-variable-names">Move variable names
+  <a href="#move-variable-names"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>We can use the <code>move_columns()</code> function to rearrange our variable names. Lets say we want to move <code>clutch_completion</code> to the left of <code>body_mass_g</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_move <span style="color:#000;font-weight:bold">&lt;-</span> penguins_new <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">move_columns</span>(clutch_completion, .before <span style="color:#000;font-weight:bold">=</span> body_mass_g)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(penguins_move)
+</span></span></code></pre></div><pre tabindex="0"><code>##  [1] &#34;study_name&#34;        &#34;sample_number&#34;     &#34;species&#34;          
+##  [4] &#34;region&#34;            &#34;island&#34;            &#34;stage&#34;            
+##  [7] &#34;individual_id&#34;     &#34;date_egg&#34;          &#34;culmen_length_mm&#34; 
+## [10] &#34;culmen_depth_mm&#34;   &#34;flipper_length_mm&#34; &#34;clutch_completion&#34;
+## [13] &#34;body_mass_g&#34;       &#34;sex&#34;               &#34;delta_15_n_o_oo&#34;  
+## [16] &#34;delta_13_c_o_oo&#34;   &#34;comments&#34;
+</code></pre><hr>
+
+
+
+
+<h2 id="recoding">Recoding
+  <a href="#recoding"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="examine-class">Examine class
+  <a href="#examine-class"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s examine the <code>clutch_completion</code> variable.
+(a character string denoting if the study nest observed with a full clutch, i.e., 2 eggs).
+Let&rsquo;s see what the labels look like using <code>unique()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_new<span style="color:#000;font-weight:bold">$</span>clutch_completion)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;Yes&#34; &#34;No&#34;
+</code></pre><p>Right now, the levels are <code>Yes</code> and <code>No</code>.
+Let&rsquo;s also check the variable type using <code>class()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_new<span style="color:#000;font-weight:bold">$</span>clutch_completion)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;character&#34;
+</code></pre><p>Let&rsquo;s make this a factor.</p>
+<hr>
+
+
+
+
+<h3 id="create-factor">Create factor
+  <a href="#create-factor"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Since this variable is not a character (but a factor), we need to convert it.
+We can do that using <code>factor()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_factor <span style="color:#000;font-weight:bold">&lt;-</span> penguins_new <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(clutch_factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">factor</span>(clutch_completion))
+</span></span></code></pre></div><p>Let&rsquo;s check the variable again:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_factor<span style="color:#000;font-weight:bold">$</span>clutch_factor)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;factor&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_factor<span style="color:#000;font-weight:bold">$</span>clutch_factor)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] Yes No 
+## Levels: No Yes
+</code></pre><hr>
+
+
+
+
+<h3 id="recoding-a-factor">Recoding a factor
+  <a href="#recoding-a-factor"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s say we want to recode our labels from <code>Yes</code> and <code>No</code> to <code>1</code> and <code>0</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_recoded <span style="color:#000;font-weight:bold">&lt;-</span> penguins_factor <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(clutch_recoded <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">recode</span>(clutch_factor,<span style="color:#d14">&#34;Yes&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;1&#34;</span>, <span style="color:#d14">&#34;No&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;0&#34;</span>))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_recoded<span style="color:#000;font-weight:bold">$</span>clutch_recoded)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;factor&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_recoded<span style="color:#000;font-weight:bold">$</span>clutch_recoded)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] 1 0
+## Levels: 0 1
+</code></pre><hr>
+
+
+
+
+<h3 id="recoding-a-character-into-a-factor">Recoding a character into a factor
+  <a href="#recoding-a-character-into-a-factor"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s look at another variable in the <code>penguins</code> dataset: <code>Sex</code> of the penguin:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_new<span style="color:#000;font-weight:bold">$</span>sex)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;character&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_new<span style="color:#000;font-weight:bold">$</span>sex)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;MALE&#34;   &#34;FEMALE&#34; NA
+</code></pre><p>Let&rsquo;s say we didn&rsquo;t do the process above, and it was still in <code>character</code> format.
+We can combine those two steps by recoding character variables into factors (from <code>MALE</code> and <code>FEMALE</code> to <code>0</code> and <code>1</code>) using <code>recode_factor():</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_sex_recoded <span style="color:#000;font-weight:bold">&lt;-</span> penguins_new <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(sex_recoded <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">recode_factor</span>(sex,<span style="color:#d14">&#34;MALE&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;0&#34;</span>, <span style="color:#d14">&#34;FEMALE&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;1&#34;</span>))
+</span></span></code></pre></div><p>Lets check the variable again:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_sex_recoded<span style="color:#000;font-weight:bold">$</span>sex_recoded)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;factor&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_sex_recoded<span style="color:#000;font-weight:bold">$</span>sex_recoded)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] 0    1    &lt;NA&gt;
+## Levels: 0 1
+</code></pre><p><em>Side Note</em>.
+I also wanted to make a quick note on what happens when you select the variable of interest first vs. not:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_recoded_select <span style="color:#000;font-weight:bold">&lt;-</span> penguins_new <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(sex) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(sex_recoded <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">recode_factor</span>(sex,<span style="color:#d14">&#34;MALE&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;0&#34;</span>, <span style="color:#d14">&#34;FEMALE&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;1&#34;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(penguins_recoded_select)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 2
+##   sex    sex_recoded
+##   &lt;chr&gt;  &lt;fct&gt;      
+## 1 MALE   0          
+## 2 FEMALE 1          
+## 3 FEMALE 1          
+## 4 &lt;NA&gt;   &lt;NA&gt;       
+## 5 FEMALE 1          
+## 6 MALE   0
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(penguins_sex_recoded)
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 18
+##   study_name sample_number species             region island stage individual_id
+##   &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;        
+## 1 PAL0708                1 Adelie Penguin (Py… Anvers Torge… Adul… N1A1         
+## 2 PAL0708                2 Adelie Penguin (Py… Anvers Torge… Adul… N1A2         
+## 3 PAL0708                3 Adelie Penguin (Py… Anvers Torge… Adul… N2A1         
+## 4 PAL0708                4 Adelie Penguin (Py… Anvers Torge… Adul… N2A2         
+## 5 PAL0708                5 Adelie Penguin (Py… Anvers Torge… Adul… N3A1         
+## 6 PAL0708                6 Adelie Penguin (Py… Anvers Torge… Adul… N3A2         
+## # … with 11 more variables: clutch_completion &lt;chr&gt;, date_egg &lt;date&gt;,
+## #   culmen_length_mm &lt;dbl&gt;, culmen_depth_mm &lt;dbl&gt;, flipper_length_mm &lt;dbl&gt;,
+## #   body_mass_g &lt;dbl&gt;, sex &lt;chr&gt;, delta_15_n_o_oo &lt;dbl&gt;, delta_13_c_o_oo &lt;dbl&gt;,
+## #   comments &lt;chr&gt;, sex_recoded &lt;fct&gt;
+</code></pre><hr>
+
+
+
+
+<h3 id="recoding-multiple-variables">Recoding multiple variables
+  <a href="#recoding-multiple-variables"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>The dataset doesn&rsquo;t have any two variables that need to be recoded the same, but let&rsquo;s recode both <code>sex</code> and <code>clutch_completion</code> at the same time. <em>Not</em>e: this code should be used if you have two variables that need to have the same recoding, but it looks like this works too.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_multiple <span style="color:#000;font-weight:bold">&lt;-</span> penguins_new <span style="color:#000;font-weight:bold">%&gt;%</span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#900;font-weight:bold">mutate_at</span>(<span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;sex&#34;</span>, <span style="color:#d14">&#34;clutch_completion&#34;</span>),
+</span></span><span style="display:flex;"><span>              <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">recode_factor</span>(., <span style="color:#d14">&#34;MALE&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;0&#34;</span>, <span style="color:#d14">&#34;FEMALE&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>                       <span style="color:#d14">&#34;Yes&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;1&#34;</span>, <span style="color:#d14">&#34;No&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;0&#34;</span>))
+</span></span><span style="display:flex;"><span>penguins_multiple <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(sex, clutch_completion) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">head</span>()
+</span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 2
+##   sex   clutch_completion
+##   &lt;fct&gt; &lt;fct&gt;            
+## 1 0     1                
+## 2 1     1                
+## 3 1     1                
+## 4 &lt;NA&gt;  1                
+## 5 1     1                
+## 6 0     1
+</code></pre><hr>
+
+
+
+
+<h2 id="creating-reference-variables">Creating reference variables
+  <a href="#creating-reference-variables"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+<p>Recall slide 33 in the Multiple Regression lecture:</p>
+<p><img src="dummycoding.jpg" alt=""></p>
+<p>Remember that when we enter a categorical variable into the model using <code>lm()</code>, R creates the reference variable for us, and picks the first category as the reference category.
+For example, let&rsquo;s look at the <code>species</code> variable:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_new<span style="color:#000;font-weight:bold">$</span>species)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;character&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_new<span style="color:#000;font-weight:bold">$</span>species)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;Adelie Penguin (Pygoscelis adeliae)&#34;      
+## [2] &#34;Gentoo penguin (Pygoscelis papua)&#34;        
+## [3] &#34;Chinstrap penguin (Pygoscelis antarctica)&#34;
+</code></pre><p>Let&rsquo;s clean this variable.
+First, let&rsquo;s make the labels lowercase using <code>str_to_lower()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguin_species <span style="color:#000;font-weight:bold">&lt;-</span> penguins_new <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(species <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">str_to_lower</span>(species))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguin_species<span style="color:#000;font-weight:bold">$</span>species)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;adelie penguin (pygoscelis adeliae)&#34;      
+## [2] &#34;gentoo penguin (pygoscelis papua)&#34;        
+## [3] &#34;chinstrap penguin (pygoscelis antarctica)&#34;
+</code></pre><p>Now, let&rsquo;s just keep the simple names of the penguins: <code>adelie</code>, <code>gentoo</code>, and <code>chinstrap</code> using the <code>separate()</code> function:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_species_clean <span style="color:#000;font-weight:bold">&lt;-</span> penguin_species <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">separate</span>(species, into <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;species&#34;</span>, <span style="color:#d14">&#34;delete&#34;</span>), sep <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34; penguin&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>delete)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;adelie&#34;    &#34;gentoo&#34;    &#34;chinstrap&#34;
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;character&#34;
+</code></pre><p>Let&rsquo;s also convert this new variable into a factor:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">factor</span>(penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] adelie    gentoo    chinstrap
+## Levels: adelie chinstrap gentoo
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">class</span>(penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species)
+</span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;factor&#34;
+</code></pre><p>Let&rsquo;s quickly run a simple linear regression using the <code>species</code> variable without creating the reference variables.
+Let&rsquo;s predict <code>flipper_length_mm</code> from <code>species</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>model_1 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(flipper_length_mm <span style="color:#000;font-weight:bold">~</span> species, data <span style="color:#000;font-weight:bold">=</span> penguins_species_clean)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(model_1)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = flipper_length_mm ~ species, data = penguins_species_clean)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -17.9536  -4.8235   0.0464   4.8130  20.0464 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      189.9536     0.5405 351.454  &lt; 2e-16 ***
+## specieschinstrap   5.8699     0.9699   6.052 3.79e-09 ***
+## speciesgentoo     27.2333     0.8067  33.760  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.642 on 339 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.7782,	Adjusted R-squared:  0.7769 
+## F-statistic: 594.8 on 2 and 339 DF,  p-value: &lt; 2.2e-16
+</code></pre><p>Here, it automatically created the reference variables and made <code>adelie</code> penguins the reference category.
+What if we want to compare our results to <code>gentoo</code> penguins?
+We can do that by converting the <code>chinstrap</code> and <code>adelie</code> into their own variables using <code>ifelse()</code></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>chinstrap <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">ifelse</span>(penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;chinstrap&#39;</span>, <span style="color:#099">1</span>, <span style="color:#099">0</span>)
+</span></span><span style="display:flex;"><span>adelie <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">ifelse</span>(penguins_species_clean<span style="color:#000;font-weight:bold">$</span>species <span style="color:#000;font-weight:bold">==</span> <span style="color:#d14">&#39;adelie&#39;</span>, <span style="color:#099">1</span>, <span style="color:#099">0</span>)
+</span></span></code></pre></div><p>Then, we add them to our dataset using <code>cbind()</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>penguins_reference <span style="color:#000;font-weight:bold">&lt;-</span> penguins_species_clean <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">cbind</span>(chinstrap, adelie)
+</span></span></code></pre></div><p>Let&rsquo;s look at the model again with <code>gentoo</code> as the reference variable.
+Instead of <code>species</code>, we use <code>chinstrap</code> and <code>adelie</code>:</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>model_2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(flipper_length_mm <span style="color:#000;font-weight:bold">~</span> chinstrap <span style="color:#000;font-weight:bold">+</span> adelie, data <span style="color:#000;font-weight:bold">=</span> penguins_reference)
+</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(model_2)
+</span></span></code></pre></div><pre tabindex="0"><code>## 
+## Call:
+## lm(formula = flipper_length_mm ~ chinstrap + adelie, data = penguins_reference)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -17.9536  -4.8235   0.0464   4.8130  20.0464 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 217.1870     0.5988  362.68   &lt;2e-16 ***
+## chinstrap   -21.3635     1.0036  -21.29   &lt;2e-16 ***
+## adelie      -27.2333     0.8067  -33.76   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 6.642 on 339 degrees of freedom
+##   (2 observations deleted due to missingness)
+## Multiple R-squared:  0.7782,	Adjusted R-squared:  0.7769 
+## F-statistic: 594.8 on 2 and 339 DF,  p-value: &lt; 2.2e-16
+</code></pre><p>Changing the reference category does NOT change our model.
+It only allows us to make a more meaningful comparison.</p>
+<hr>
+
+
+
+
+<h2 id="collapsing-variables">Collapsing variables
+  <a href="#collapsing-variables"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="continous-to-categorical">Continous to categorical
+  <a href="#continous-to-categorical"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>In lab 1, I go over how to collapse continuous variables into categorical. Let&rsquo;s categorize <code>body_mass_g</code> into <code>1</code>, <code>2</code>, <code>3</code>, and <code>4</code> levels.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(penguins_new<span style="color:#000;font-weight:bold">$</span>body_mass_g)
+</span></span></code></pre></div><pre tabindex="0"><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+##    2700    3550    4050    4202    4750    6300       2
+</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>cont_cat <span style="color:#000;font-weight:bold">&lt;-</span> penguins_new <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(body_mass_factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cut</span>(body_mass_g,
+</span></span><span style="display:flex;"><span>                      breaks <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">2700</span>, <span style="color:#099">3550</span>, <span style="color:#099">4202</span>, <span style="color:#099">4750</span>, <span style="color:#099">6300</span>),
+</span></span><span style="display:flex;"><span>                      labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;low&#34;</span>, <span style="color:#d14">&#34;medium_low&#34;</span>, <span style="color:#d14">&#34;medium_high&#34;</span>, <span style="color:#d14">&#34;high&#34;</span>)))
+</span></span></code></pre></div><hr>
+
+
+
+
+<h3 id="categorical-to-categorical">Categorical to categorical
+  <a href="#categorical-to-categorical"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<p>Let&rsquo;s collapse our <code>body_mass_g</code> even further. This code is useful if you have a Likert-type scale with four categories, such as <code>Strong Agree</code> to <code>Strongly Disagree</code> and want to collapse to a category with those who responded <code>Strongly Agree</code> and <code>Agree</code> as <code>1</code>, and <code>Disagree</code> and <code>Strongly Disagree</code> as <code>2</code>. We can use <code>fct_collapse</code> to collapse factor levels into groups.</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>cat_cat <span style="color:#000;font-weight:bold">&lt;-</span> cont_cat <span style="color:#000;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(body_mass_collpase <span style="color:#000;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span>           <span style="color:#900;font-weight:bold">fct_collapse</span>(body_mass_factor,
+</span></span><span style="display:flex;"><span>                        low <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;low&#34;</span>, <span style="color:#d14">&#34;medium_low&#34;</span>),
+</span></span><span style="display:flex;"><span>                        high <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;medium_high&#34;</span>, <span style="color:#d14">&#34;high&#34;</span>)))
+</span></span></code></pre></div><hr>
+
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+  
+  
+    <a class="next dtc pl2 tr v-top fw6"
+    href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project &rarr;</a>
+  
+</div>
+
+      </footer>
+    </article>
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/collection/featured-sidebar.jpg" class="db ma0">
+
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4 flex-row">
+  <div class="w-two-thirds w-50-l ph0">
+    <h2 class="mv3 f5 fw7 ttu tracked">
+      <a class="no-underline dim" href="/collection/">Outline</a></h2>
+    <nav id="SectionTableOfContents" aria-label="SectionTableOfContents">
+        <ul>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/linear-models/"><a href="https://www.dina-arch.com/collection/linear-models/">Linear Models for Data Analysis</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/01-data-cleaning/"><a href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">Lab 1: Data Screening and Cleaning</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/02-slr/"><a href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/03-moderation/"><a href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/04-mediation/"><a href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
+            
+          </details>
+          
+          </li>
+        
+          
+          
+          <li class="active" hugo-nav="/collection/tips-and-tricks-in-r/">
+            <a href="https://www.dina-arch.com/collection/tips-and-tricks-in-r/">Data Wrangling in R</a></li>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          
+          </li>
+        
+        </ul>
+    </nav>
+  </div>
+  <details id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">On this page<h2></summary>
+    <div class="pl2 pr0 mh0">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#read-in-and-view-data">Read in and view data</a></li>
+    <li><a href="#clean-names">Clean names</a></li>
+    <li><a href="#move-variable-names">Move variable names</a></li>
+    <li><a href="#recoding">Recoding</a></li>
+    <li><a href="#creating-reference-variables">Creating reference variables</a></li>
+    <li><a href="#collapsing-variables">Collapsing variables</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+</aside>
+
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2022 Dina Arch
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="mailto:dnaji@ucsb.edu" title="envelope" >
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/dinanajiarch" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/dnajiarch" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/dina-naji-arch-22649396/" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-2716-0798" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>

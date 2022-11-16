@@ -17,16 +17,6 @@
     </item>
     
     <item>
-      <title>Netlify</title>
-      <link>https://www.dina-arch.com/collection/day02/01-netlify/</link>
-      <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/collection/day02/01-netlify/</guid>
-      <description>So far, we&amp;rsquo;ve been leveraging GitHub Pages for publishing. This works great, but for blogdown we&amp;rsquo;ll start using Netlify. Let&amp;rsquo;s start RIGHT NOW with a site we&amp;rsquo;ve already built and published.
-Pre-requisites Pick either your postcards site, or your distill site from day 01. Refresh your memory- which repository was it again?</description>
-    </item>
-    
-    <item>
       <title>A first post</title>
       <link>https://www.dina-arch.com/blog/spoonful-series/01-spoonful/</link>
       <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
@@ -52,6 +42,16 @@ When we are predicting Y, we express the prediction equation as this:</descripti
     </item>
     
     <item>
+      <title>Data Wrangling in R</title>
+      <link>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</guid>
+      <description>library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let&amp;rsquo;s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp;amp; Gorman KB, 2020)
+Read in and view data data(&amp;#34;penguins&amp;#34;) head(penguins_raw) # reads first 6 rows ## # A tibble: 6 × 17## studyName `Sample Number` Species Region Island Stage `Individual ID`## &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; ## 1 PAL0708 1 Adelie Penguin … Anvers Torge… Adul… N1A1 ## 2 PAL0708 2 Adelie Penguin … Anvers Torge… Adul… N1A2 ## 3 PAL0708 3 Adelie Penguin … Anvers Torge… Adul… N2A1 ## 4 PAL0708 4 Adelie Penguin … Anvers Torge… Adul… N2A2 ## 5 PAL0708 5 Adelie Penguin … Anvers Torge… Adul… N3A1 ## 6 PAL0708 6 Adelie Penguin … Anvers Torge… Adul… N3A2 ## # … with 10 more variables: `Clutch Completion` &amp;lt;chr&amp;gt;, `Date Egg` &amp;lt;date&amp;gt;,## # `Culmen Length (mm)` &amp;lt;dbl&amp;gt;, `Culmen Depth (mm)` &amp;lt;dbl&amp;gt;,## # `Flipper Length (mm)` &amp;lt;dbl&amp;gt;, `Body Mass (g)` &amp;lt;dbl&amp;gt;, Sex &amp;lt;chr&amp;gt;,## # `Delta 15 N (o/oo)` &amp;lt;dbl&amp;gt;, `Delta 13 C (o/oo)` &amp;lt;dbl&amp;gt;, Comments &amp;lt;chr&amp;gt; names(penguins_raw) # lists variable names ## [1] &amp;#34;studyName&amp;#34; &amp;#34;Sample Number&amp;#34; &amp;#34;Species&amp;#34; ## [4] &amp;#34;Region&amp;#34; &amp;#34;Island&amp;#34; &amp;#34;Stage&amp;#34; ## [7] &amp;#34;Individual ID&amp;#34; &amp;#34;Clutch Completion&amp;#34; &amp;#34;Date Egg&amp;#34; ## [10] &amp;#34;Culmen Length (mm)&amp;#34; &amp;#34;Culmen Depth (mm)&amp;#34; &amp;#34;Flipper Length (mm)&amp;#34;## [13] &amp;#34;Body Mass (g)&amp;#34; &amp;#34;Sex&amp;#34; &amp;#34;Delta 15 N (o/oo)&amp;#34; ## [16] &amp;#34;Delta 13 C (o/oo)&amp;#34; &amp;#34;Comments&amp;#34; summary(penguins_raw) # provides some descriptive statistics for each variable ## studyName Sample Number Species Region ## Length:344 Min.</description>
+    </item>
+    
+    <item>
       <title>A second post</title>
       <link>https://www.dina-arch.com/blog/spoonful-series/02-spoonful/</link>
       <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
@@ -60,18 +60,6 @@ When we are predicting Y, we express the prediction equation as this:</descripti
       <description> Hi, I&#39;m the here-bot cat! Use me to find your way in your website.
 Here I am: content/blog\spoonful-series\02-spoonful\index.md To remove me, delete this line inside that file: {{&amp;lt; here &amp;gt;}}
 My content section is: blog My layout is: single-series Images in this page bundle: /blog/spoonful-series/02-spoonful/sidebar-inverse.jpg part 2! does this work? now for some very cool things more get ready! </description>
-    </item>
-    
-    <item>
-      <title>Using blogdown</title>
-      <link>https://www.dina-arch.com/collection/day02/02-blogdown/</link>
-      <pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/collection/day02/02-blogdown/</guid>
-      <description>Pre-requisites First, make sure you have the latest version of the blogdown package installed from CRAN:
-install.packages(&amp;#34;blogdoown&amp;#34;) Restart your R session. If you use RStudio, use the menu item Session &amp;gt; Restart R or the associated keyboard shortcut:
-Ctrl + Shift + F10 (Windows and Linux) or Command + Shift + F10 (Mac OS). packageVersion(&amp;#34;blogdown&amp;#34;) [1] ‘1.0’ Create GitHub repo Online.
-Clone GitHub repo usethis::create_from_github(&amp;#34;https://github.com/apreshill/global-blogdown.git&amp;#34;) ✨ Commit &amp;amp; Push! ✨</description>
     </item>
     
     <item>
@@ -107,17 +95,6 @@ Despite the success in 2012, the 2016 presidential election came as a big surpri
 Here I am: content/blog\spoonful-series\03-spoonful\index.markdown Here is my R Markdown source file: blog\spoonful-series\03-spoonful\index.Rmarkdown You&#39;ll want to edit this file, then re-knit to see the changes take effect in your site preview.
 To remove me, delete this line inside that file: {{&amp;lt; here &amp;gt;}}
 My content section is: blog My layout is: single-series Images in this page bundle: /blog/spoonful-series/03-spoonful/featured-photo.</description>
-    </item>
-    
-    <item>
-      <title>Warm woolen mittens</title>
-      <link>https://www.dina-arch.com/collection/day02/03-blogdown/</link>
-      <pubDate>Sat, 02 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/collection/day02/03-blogdown/</guid>
-      <description> Hi, I&#39;m the here-bot cat! Use me to find your way in your website.
-Here I am: content/collection\day02\03-blogdown\index.md To remove me, delete this line inside that file: {{&amp;lt; here &amp;gt;}}
-My content section is: collection My layout is: single-series part 2! does this work? now for some very cool things more get ready! </description>
     </item>
     
     <item>

@@ -47,7 +47,7 @@
 What is Binary Logistic Regression? It is a regression with an outcome variable (or dependent variable) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose)."><meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00" />
 <meta itemprop="wordCount" content="3655">
-<meta itemprop="keywords" content="r markdown,tidy data,regression,mediation," />
+<meta itemprop="keywords" content="r markdown,tidy data,logistic regression," />
   
   
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -353,11 +353,11 @@ Thousand Oaks, CA: Sage Publications.</p>
 </span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tbl_summary</span>(log,
 </span></span><span style="display:flex;"><span>            statistic <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">list</span>(<span style="color:#900;font-weight:bold">all_continuous</span>() <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#34;{mean} ({sd})&#34;</span>),
 </span></span><span style="display:flex;"><span>                             missing <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;no&#34;</span>)
-</span></span></code></pre></div><div id="albntgcftj" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+</span></span></code></pre></div><div id="sjuwjdsdoz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
-<p>#albntgcftj .gt_table {
+<p>#sjuwjdsdoz .gt_table {
 display: table;
 border-collapse: collapse;
 margin-left: auto;
@@ -381,7 +381,7 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_heading {
+<p>#sjuwjdsdoz .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -392,7 +392,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_title {
+<p>#sjuwjdsdoz .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -403,7 +403,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }</p>
-<p>#albntgcftj .gt_subtitle {
+<p>#sjuwjdsdoz .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -414,12 +414,12 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }</p>
-<p>#albntgcftj .gt_bottom_border {
+<p>#sjuwjdsdoz .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_col_headings {
+<p>#sjuwjdsdoz .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -433,7 +433,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_col_heading {
+<p>#sjuwjdsdoz .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -452,7 +452,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }</p>
-<p>#albntgcftj .gt_column_spanner_outer {
+<p>#sjuwjdsdoz .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -463,13 +463,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }</p>
-<p>#albntgcftj .gt_column_spanner_outer:first-child {
+<p>#sjuwjdsdoz .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }</p>
-<p>#albntgcftj .gt_column_spanner_outer:last-child {
+<p>#sjuwjdsdoz .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }</p>
-<p>#albntgcftj .gt_column_spanner {
+<p>#sjuwjdsdoz .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -480,7 +480,7 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }</p>
-<p>#albntgcftj .gt_group_heading {
+<p>#sjuwjdsdoz .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -504,7 +504,7 @@ border-right-width: 1px;
 border-right-color: #D3D3D3;
 vertical-align: middle;
 }</p>
-<p>#albntgcftj .gt_empty_group_heading {
+<p>#sjuwjdsdoz .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -518,13 +518,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }</p>
-<p>#albntgcftj .gt_from_md &gt; :first-child {
+<p>#sjuwjdsdoz .gt_from_md &gt; :first-child {
 margin-top: 0;
 }</p>
-<p>#albntgcftj .gt_from_md &gt; :last-child {
+<p>#sjuwjdsdoz .gt_from_md &gt; :last-child {
 margin-bottom: 0;
 }</p>
-<p>#albntgcftj .gt_row {
+<p>#sjuwjdsdoz .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -542,7 +542,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }</p>
-<p>#albntgcftj .gt_stub {
+<p>#sjuwjdsdoz .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -554,7 +554,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }</p>
-<p>#albntgcftj .gt_stub_row_group {
+<p>#sjuwjdsdoz .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -567,10 +567,10 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }</p>
-<p>#albntgcftj .gt_row_group_first td {
+<p>#sjuwjdsdoz .gt_row_group_first td {
 border-top-width: 2px;
 }</p>
-<p>#albntgcftj .gt_summary_row {
+<p>#sjuwjdsdoz .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -579,14 +579,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }</p>
-<p>#albntgcftj .gt_first_summary_row {
+<p>#sjuwjdsdoz .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_first_summary_row.thick {
+<p>#sjuwjdsdoz .gt_first_summary_row.thick {
 border-top-width: 2px;
 }</p>
-<p>#albntgcftj .gt_last_summary_row {
+<p>#sjuwjdsdoz .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -595,7 +595,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_grand_summary_row {
+<p>#sjuwjdsdoz .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -604,7 +604,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }</p>
-<p>#albntgcftj .gt_first_grand_summary_row {
+<p>#sjuwjdsdoz .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -613,10 +613,10 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_striped {
+<p>#sjuwjdsdoz .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }</p>
-<p>#albntgcftj .gt_table_body {
+<p>#sjuwjdsdoz .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -624,7 +624,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_footnotes {
+<p>#sjuwjdsdoz .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -637,7 +637,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_footnote {
+<p>#sjuwjdsdoz .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-left: 4px;
@@ -645,7 +645,7 @@ padding-right: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }</p>
-<p>#albntgcftj .gt_sourcenotes {
+<p>#sjuwjdsdoz .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -658,36 +658,36 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }</p>
-<p>#albntgcftj .gt_sourcenote {
+<p>#sjuwjdsdoz .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }</p>
-<p>#albntgcftj .gt_left {
+<p>#sjuwjdsdoz .gt_left {
 text-align: left;
 }</p>
-<p>#albntgcftj .gt_center {
+<p>#sjuwjdsdoz .gt_center {
 text-align: center;
 }</p>
-<p>#albntgcftj .gt_right {
+<p>#sjuwjdsdoz .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }</p>
-<p>#albntgcftj .gt_font_normal {
+<p>#sjuwjdsdoz .gt_font_normal {
 font-weight: normal;
 }</p>
-<p>#albntgcftj .gt_font_bold {
+<p>#sjuwjdsdoz .gt_font_bold {
 font-weight: bold;
 }</p>
-<p>#albntgcftj .gt_font_italic {
+<p>#sjuwjdsdoz .gt_font_italic {
 font-style: italic;
 }</p>
-<p>#albntgcftj .gt_super {
+<p>#sjuwjdsdoz .gt_super {
 font-size: 65%;
 }</p>
-<p>#albntgcftj .gt_two_val_uncert {
+<p>#sjuwjdsdoz .gt_two_val_uncert {
 display: inline-block;
 line-height: 1em;
 text-align: right;
@@ -695,27 +695,27 @@ font-size: 60%;
 vertical-align: -0.25em;
 margin-left: 0.1em;
 }</p>
-<p>#albntgcftj .gt_footnote_marks {
+<p>#sjuwjdsdoz .gt_footnote_marks {
 font-style: italic;
 font-weight: normal;
 font-size: 75%;
 vertical-align: 0.4em;
 }</p>
-<p>#albntgcftj .gt_asterisk {
+<p>#sjuwjdsdoz .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }</p>
-<p>#albntgcftj .gt_slash_mark {
+<p>#sjuwjdsdoz .gt_slash_mark {
 font-size: 0.7em;
 line-height: 0.7em;
 vertical-align: 0.15em;
 }</p>
-<p>#albntgcftj .gt_fraction_numerator {
+<p>#sjuwjdsdoz .gt_fraction_numerator {
 font-size: 0.6em;
 line-height: 0.6em;
 vertical-align: 0.45em;
 }</p>
-<p>#albntgcftj .gt_fraction_denominator {
+<p>#sjuwjdsdoz .gt_fraction_denominator {
 font-size: 0.6em;
 line-height: 0.6em;
 vertical-align: -0.05em;
@@ -1910,27 +1910,15 @@ Overall, this model had high prediction accuracy, predicting 91% schools accurat
         
           
           
-          <li class="" hugo-nav="/collection/machine_learning/">
-            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          <li class="" hugo-nav="/collection/tips-and-tricks-in-r/">
+            <a href="https://www.dina-arch.com/collection/tips-and-tricks-in-r/">Data Wrangling in R</a></li>
           
           </li>
         
           
           
-          
-          <details  class="">
-            <summary class="" hugo-nav="/collection/day02/"><a href="https://www.dina-arch.com/collection/day02/">Day 02</a></summary>
-            
-              
-              <li class="" hugo-nav="/collection/day02/01-netlify/"><a href="https://www.dina-arch.com/collection/day02/01-netlify/">Netlify</a></li>
-            
-              
-              <li class="" hugo-nav="/collection/day02/02-blogdown/"><a href="https://www.dina-arch.com/collection/day02/02-blogdown/">Using blogdown</a></li>
-            
-              
-              <li class="" hugo-nav="/collection/day02/03-blogdown/"><a href="https://www.dina-arch.com/collection/day02/03-blogdown/">Warm woolen mittens</a></li>
-            
-          </details>
+          <li class="" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
           
           </li>
         

@@ -8,6 +8,16 @@
     <language>en</language>
     <lastBuildDate>Sun, 30 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/classification/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Data Wrangling in R</title>
+      <link>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</guid>
+      <description>library(stringr) # str_to_lower() library(janitor) # clean_names() library(palmerpenguins) # penguins library(sjmisc) # move_columns library(tidyverse) Data Wrangling Tips in R Let&amp;rsquo;s use a dataset called penguins in the palmerpenguins package (Reference: Horst AM, Hill AP, &amp;amp; Gorman KB, 2020)
+Read in and view data data(&amp;#34;penguins&amp;#34;) head(penguins_raw) # reads first 6 rows ## # A tibble: 6 × 17## studyName `Sample Number` Species Region Island Stage `Individual ID`## &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; ## 1 PAL0708 1 Adelie Penguin … Anvers Torge… Adul… N1A1 ## 2 PAL0708 2 Adelie Penguin … Anvers Torge… Adul… N1A2 ## 3 PAL0708 3 Adelie Penguin … Anvers Torge… Adul… N2A1 ## 4 PAL0708 4 Adelie Penguin … Anvers Torge… Adul… N2A2 ## 5 PAL0708 5 Adelie Penguin … Anvers Torge… Adul… N3A1 ## 6 PAL0708 6 Adelie Penguin … Anvers Torge… Adul… N3A2 ## # … with 10 more variables: `Clutch Completion` &amp;lt;chr&amp;gt;, `Date Egg` &amp;lt;date&amp;gt;,## # `Culmen Length (mm)` &amp;lt;dbl&amp;gt;, `Culmen Depth (mm)` &amp;lt;dbl&amp;gt;,## # `Flipper Length (mm)` &amp;lt;dbl&amp;gt;, `Body Mass (g)` &amp;lt;dbl&amp;gt;, Sex &amp;lt;chr&amp;gt;,## # `Delta 15 N (o/oo)` &amp;lt;dbl&amp;gt;, `Delta 13 C (o/oo)` &amp;lt;dbl&amp;gt;, Comments &amp;lt;chr&amp;gt; names(penguins_raw) # lists variable names ## [1] &amp;#34;studyName&amp;#34; &amp;#34;Sample Number&amp;#34; &amp;#34;Species&amp;#34; ## [4] &amp;#34;Region&amp;#34; &amp;#34;Island&amp;#34; &amp;#34;Stage&amp;#34; ## [7] &amp;#34;Individual ID&amp;#34; &amp;#34;Clutch Completion&amp;#34; &amp;#34;Date Egg&amp;#34; ## [10] &amp;#34;Culmen Length (mm)&amp;#34; &amp;#34;Culmen Depth (mm)&amp;#34; &amp;#34;Flipper Length (mm)&amp;#34;## [13] &amp;#34;Body Mass (g)&amp;#34; &amp;#34;Sex&amp;#34; &amp;#34;Delta 15 N (o/oo)&amp;#34; ## [16] &amp;#34;Delta 13 C (o/oo)&amp;#34; &amp;#34;Comments&amp;#34; summary(penguins_raw) # provides some descriptive statistics for each variable ## studyName Sample Number Species Region ## Length:344 Min.</description>
+    </item>
+    
+    <item>
       <title>Machine Learning Course Project</title>
       <link>https://www.dina-arch.com/collection/machine_learning/</link>
       <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>

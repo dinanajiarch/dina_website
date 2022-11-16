@@ -10,8 +10,7 @@ series:
 tags:
 - r markdown
 - tidy data
-- regression
-- mediation
+- logistic regression
 categories:
 - data analysis
 editor_options:
@@ -58,7 +57,7 @@ This example comes from the UCLA Statistical Consulting page found [here](https:
 This example assesses how GRE, GPA, and prestige of the undergraduate institutions effect graduate school admission.
 
 | **Variable** | **Description**                                                                     |
-|--------------|-------------------------------------------------------------------------------------|
+|---------------|---------------------------------------------------------|
 | gre          | Graduate Record Exam (GRE) scores, *continuous*                                     |
 | gpa          | Grade point average, *continuous*                                                   |
 | rank         | Rank of undergraduate institutions, 1 = highest prestige, 4 = lowest, *categorical* |
@@ -318,7 +317,7 @@ However, we are changing the model to have a binary outcome for logistic regress
 Below is the list of variables we used in this analysis for lab, noting that there are more variables in the API dataset.
 
 |              |                                                                                        |
-|--------------|----------------------------------------------------------------------------------------|
+|---------------|---------------------------------------------------------|
 | **Variable** | **Description**                                                                        |
 | api00        | Academic Performance Index, 0 = under statewide target of 800, 1 = above 800, *binary* |
 | enroll       | School enrollment, *continuous*                                                        |

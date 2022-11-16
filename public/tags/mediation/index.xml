@@ -16,15 +16,5 @@
       <description>library(haven) #read_sav() library(mediation) # mediate() (Tingley, Yamamoto, Hirose, Keele, &amp;amp; Imai, 2014) library(gvlma) # gvlma() library(kableExtra) #kable() library(corrr) #correlate() library(psych) #mediate() library(tidyverse) Mediation in R This examples comes from a tutorial paper on mediation found here. This is an open source paper that shared the data set used in this example. The following is code and interpretation are based on this paper. Note that they use a different package to estimate the model and you will see that our estimates are very close, though not exact.</description>
     </item>
     
-    <item>
-      <title>Lab 5: Binary Logistic Regression</title>
-      <link>https://www.dina-arch.com/collection/linear-models/05-blr/</link>
-      <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/collection/linear-models/05-blr/</guid>
-      <description>library(pander) #pander() library(psych) # describe() library(gtsummary) #tbl_summary() library(equatiomatic) # extract_eq() library(sjPlot) # tab_xtab(), tab_model() library(tidyverse) This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.
-What is Binary Logistic Regression? It is a regression with an outcome variable (or dependent variable) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose).</description>
-    </item>
-    
   </channel>
 </rss>
