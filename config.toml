@@ -125,7 +125,7 @@ enableEmoji = true
 #    url = "/blog/"
 #    weight = 2
   [[menu.header]]
-    name = "R Projects"
+    name = "Portfolio"
     title = "Project Portfolio"
     url = "/collection/"
     weight = 2

@@ -1,7 +1,7 @@
 ---
-#action_label: Read More &rarr;
-#action_link: /about
-#action_type: text
+action_label: Portfolio &rarr;
+action_link: /collection
+action_type: text
 description: My name is Dina Arch and I am a fourth-year PhD student emphasizing in quantitative methods in the social sciences under the guidance of Dr. Karen Nylund-Gibson. My research interests include latent variable analyses, data visualization methods using R. 
 image_left: true
 images:
