@@ -1,3 +1,32 @@
+---
+title: "Big Data Analytics Course Project"
+date: 2020-12-11
+author: 'Dina Arch'
+subtitle: A collaborative project for Big Data Analytics at UC Santa Barbara using COVID-19 data.
+weight: 4
+draft: false
+images: 
+series: 
+tags:
+- python
+- machine learning
+- visualization
+- classification
+- spark
+categories:
+- python
+editor_options:
+  markdown:
+    wrap: sentence
+links:
+- icon: github
+  icon_pack: fab
+  name: code and dataset
+  url: https://github.com/dinanajiarch/covid19_project   
+---
+
+
+
 # Final Project: Big Data Analytics
 
 ## Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian

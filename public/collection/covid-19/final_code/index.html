@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head>
+  
+                           
+     
+
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.102.1" />
+<title> | Dina Arch</title>
+
+
+<meta property="twitter:site" content="@dnajiarch">
+<meta property="twitter:creator" content="@dnajiarch">
+
+
+
+
+
+
+
+  
+    
+  
+<meta name="description" content="A modern, beautiful, and easily configurable blog theme for Hugo.">
+
+
+<meta property="og:site_name" content="Dina Arch">
+<meta property="og:title" content=" | Dina Arch">
+<meta property="og:description" content="A modern, beautiful, and easily configurable blog theme for Hugo." />
+<meta property="og:type" content="page" />
+<meta property="og:url" content="https://www.dina-arch.com/collection/covid-19/final_code/" />
+<meta property="og:locale" content="en">
+
+
+
+
+    
+        <meta property="og:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+        <meta property="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+    
+    
+  <meta itemprop="name" content="">
+<meta itemprop="description" content="Final Project: Big Data Analytics Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian Data Import from pyspark.sql import SparkSession spark = SparkSession.builder.getOrCreate() CORD-19: The COVID-19 Open Research Dataset
+#Import COVID-19 dataset filename = &#39;/home/jovyan/Project/metadata.csv&#39; df = spark.read.csv(filename, inferSchema=True, header = True) df.printSchema() root|-- cord_uid: string (nullable = true)|-- sha: string (nullable = true)|-- source_x: string (nullable = true)|-- title: string (nullable = true)|-- doi: string (nullable = true)|-- pmcid: string (nullable = true)|-- pubmed_id: string (nullable = true)|-- license: string (nullable = true)|-- abstract: string (nullable = true)|-- publish_time: string (nullable = true)|-- authors: string (nullable = true)|-- journal: string (nullable = true)|-- mag_id: string (nullable = true)|-- who_covidence_id: string (nullable = true)|-- arxiv_id: string (nullable = true)|-- pdf_json_files: string (nullable = true)|-- pmc_json_files: string (nullable = true)|-- url: string (nullable = true)|-- s2_id: string (nullable = true)Source: https://github.">
+
+<meta itemprop="wordCount" content="4209">
+<meta itemprop="keywords" content="" />
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
+<script>
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-XV6Y72XCTJ', { 'anonymize_ip': true });
+}
+</script>
+
+  
+<script type="application/javascript">
+var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+var doNotTrack = (dnt == "1" || dnt == "yes");
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'G-XV6Y72XCTJ', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+  <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
+  <link rel="icon" href="/img/cat.ico" type="image/x-icon">
+  
+  
+  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  
+  
+  <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
+  
+  
+  <script src="/main.min.9ae41e138f4f62c165cf7ebd6bc9d8c44682584e7f1797a679ee0f23718e83a5.js" type="text/javascript"></script>
+</head>
+<body>
+      <div class="grid-container single-series">
+<header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
+  <nav class="site-nav db dt-l w-100" role="navigation">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+      <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
+    </a>
+    <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 active" href="/collection/" title="Project Portfolio">R Projects</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73" title="CV">CV</a>
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+<main class="page-main ph4 pt4" role="main">
+  <section class="page-content mw7 center">
+    <article class="post-content pa0 pr3-l">
+      <header class="post-header">
+        <h4 class="breadcrumb pb5">
+
+  
+    
+      
+  
+    
+      
+  
+
+    
+    
+      <a href="/collection/">R Projects</a>
+    
+  
+
+    
+    
+      
+    
+  
+
+</h4>
+
+
+
+
+        
+        <h1 class="f1 lh-solid measure-narrow mb3 fw4"></h1>
+        
+        
+        
+        
+        
+      
+        
+      </header>
+      <section class="post-body pt5 pb4">
+        
+
+
+
+<h1 id="final-project-big-data-analytics">Final Project: Big Data Analytics
+  <a href="#final-project-big-data-analytics"></a>
+</h1>
+
+
+
+
+<h2 id="dina-arch-jeremy-knox-theo-velikov-roupen-khanjian">Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian
+  <a href="#dina-arch-jeremy-knox-theo-velikov-roupen-khanjian"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="data-import">Data Import
+  <a href="#data-import"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.sql</span> <span style="color:#000;font-weight:bold">import</span> SparkSession
+</span></span><span style="display:flex;"><span>spark <span style="color:#000;font-weight:bold">=</span> SparkSession<span style="color:#000;font-weight:bold">.</span>builder<span style="color:#000;font-weight:bold">.</span>getOrCreate()
+</span></span></code></pre></div><p>
+<a href="https://arxiv.org/abs/2004.10706" target="_blank" rel="noopener">CORD-19: The COVID-19 Open Research Dataset</a></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Import COVID-19 dataset</span>
+</span></span><span style="display:flex;"><span>filename <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;/home/jovyan/Project/metadata.csv&#39;</span>
+</span></span><span style="display:flex;"><span>df <span style="color:#000;font-weight:bold">=</span> spark<span style="color:#000;font-weight:bold">.</span>read<span style="color:#000;font-weight:bold">.</span>csv(filename,  inferSchema<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">True</span>, header <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">True</span>) 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df<span style="color:#000;font-weight:bold">.</span>printSchema()
+</span></span></code></pre></div><pre><code>root
+ |-- cord_uid: string (nullable = true)
+ |-- sha: string (nullable = true)
+ |-- source_x: string (nullable = true)
+ |-- title: string (nullable = true)
+ |-- doi: string (nullable = true)
+ |-- pmcid: string (nullable = true)
+ |-- pubmed_id: string (nullable = true)
+ |-- license: string (nullable = true)
+ |-- abstract: string (nullable = true)
+ |-- publish_time: string (nullable = true)
+ |-- authors: string (nullable = true)
+ |-- journal: string (nullable = true)
+ |-- mag_id: string (nullable = true)
+ |-- who_covidence_id: string (nullable = true)
+ |-- arxiv_id: string (nullable = true)
+ |-- pdf_json_files: string (nullable = true)
+ |-- pmc_json_files: string (nullable = true)
+ |-- url: string (nullable = true)
+ |-- s2_id: string (nullable = true)
+</code></pre>
+<p>Source: 
+<a href="https://github.com/allenai/cord19" target="_blank" rel="noopener">https://github.com/allenai/cord19</a></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df<span style="color:#000;font-weight:bold">.</span>show(<span style="color:#099">1</span>)
+</span></span></code></pre></div><pre><code>+--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+
+|cord_uid|                 sha|source_x|               title|                 doi|   pmcid|pubmed_id|license|            abstract|publish_time|             authors|       journal|mag_id|who_covidence_id|arxiv_id|      pdf_json_files|      pmc_json_files|                 url|s2_id|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+
+|ug7v899j|d1aafb70c066a2068...|     PMC|Clinical features...|10.1186/1471-2334...|PMC35282| 11472636|  no-cc|OBJECTIVE: This r...|  2001-07-04|Madani, Tariq A; ...|BMC Infect Dis|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+
+only showing top 1 row
+</code></pre>
+
+
+
+
+<h3 id="data-cleaning">Data Cleaning
+  <a href="#data-cleaning"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+
+
+
+
+<h4 id="duplicates">Duplicates
+  <a href="#duplicates"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Check for duplicates</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Count of rows: </span><span style="color:#d14">{0}</span><span style="color:#d14">&#39;</span><span style="color:#000;font-weight:bold">.</span>format(df<span style="color:#000;font-weight:bold">.</span>count()))
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Count of distinct rows:</span><span style="color:#d14">{0}</span><span style="color:#d14">&#39;</span><span style="color:#000;font-weight:bold">.</span>format(df<span style="color:#000;font-weight:bold">.</span>distinct()<span style="color:#000;font-weight:bold">.</span>count()))
+</span></span></code></pre></div><pre><code>Count of rows: 136067
+Count of distinct rows:136064
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Check for duplicates in the data irrespective of ID</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Count of ids: </span><span style="color:#d14">{0}</span><span style="color:#d14">&#39;</span><span style="color:#000;font-weight:bold">.</span>format(df<span style="color:#000;font-weight:bold">.</span>count()))
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Count of distinct ids: </span><span style="color:#d14">{0}</span><span style="color:#d14">&#39;</span><span style="color:#000;font-weight:bold">.</span>format(
+</span></span><span style="display:flex;"><span>df<span style="color:#000;font-weight:bold">.</span>select([
+</span></span><span style="display:flex;"><span>c <span style="color:#000;font-weight:bold">for</span> c <span style="color:#000;font-weight:bold">in</span> df<span style="color:#000;font-weight:bold">.</span>columns <span style="color:#000;font-weight:bold">if</span> c <span style="color:#000;font-weight:bold">!=</span> <span style="color:#d14">&#39;cord_uid&#39;</span>
+</span></span><span style="display:flex;"><span>])<span style="color:#000;font-weight:bold">.</span>distinct()<span style="color:#000;font-weight:bold">.</span>count())
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><pre><code>Count of ids: 136067
+Count of distinct ids: 136053
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Check for duplicated ID</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">fn</span>
+</span></span><span style="display:flex;"><span>df<span style="color:#000;font-weight:bold">.</span>agg(
+</span></span><span style="display:flex;"><span>fn<span style="color:#000;font-weight:bold">.</span>count(<span style="color:#d14">&#39;cord_uid&#39;</span>)<span style="color:#000;font-weight:bold">.</span>alias(<span style="color:#d14">&#39;count&#39;</span>),
+</span></span><span style="display:flex;"><span>fn<span style="color:#000;font-weight:bold">.</span>countDistinct(<span style="color:#d14">&#39;cord_uid&#39;</span>)<span style="color:#000;font-weight:bold">.</span>alias(<span style="color:#d14">&#39;distinct&#39;</span>)
+</span></span><span style="display:flex;"><span>)<span style="color:#000;font-weight:bold">.</span>show()
+</span></span></code></pre></div><pre><code>+------+--------+
+| count|distinct|
++------+--------+
+|136067|  135124|
++------+--------+
+</code></pre>
+<p>Source: 
+<a href="https://github.com/allenai/cord19/blob/master/README.md" target="_blank" rel="noopener">https://github.com/allenai/cord19/blob/master/README.md</a></p>
+
+
+
+
+<h5 id="why-can-the-same-cord_uid-appear-in-multiple-rows">Why can the same cord_uid appear in multiple rows?
+  <a href="#why-can-the-same-cord_uid-appear-in-multiple-rows"></a>
+</h5>
+<p>This is a very tricky issue, and we have not decided on the best way forward. To explain, let’s take example cord_uid=hox2xwjg. Examining their respective rows in the metadata file, we see that they are the same paper, but sent from different sources (Elsevier, PMC). The Elsevier row has DOI and PDF, but the PMC row doesn’t. Furthermore, the PMC ID, publication date, and URL for each of these rows is different.</p>
+<p>Technically all of this data is representative of paper hox2xwjg so we don’t want to remove any of it. But combining them into one cluster would require a schema change to the data, which would break a lot of people’s code. Hopefully this is not too big an issue because there are only a small percentage of papers affected, but know that this issue exists and we’re debating what’s the best way forward.</p>
+
+
+
+
+<h4 id="missing">Missing
+  <a href="#missing"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Percent missing for each column</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">fn</span>
+</span></span><span style="display:flex;"><span>df<span style="color:#000;font-weight:bold">.</span>agg(<span style="color:#000;font-weight:bold">*</span>[
+</span></span><span style="display:flex;"><span>(<span style="color:#099">1</span> <span style="color:#000;font-weight:bold">-</span> (fn<span style="color:#000;font-weight:bold">.</span>count(c) <span style="color:#000;font-weight:bold">/</span> fn<span style="color:#000;font-weight:bold">.</span>count(<span style="color:#d14">&#39;*&#39;</span>)))<span style="color:#000;font-weight:bold">.</span>alias(c <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#39;_missing&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">for</span> c <span style="color:#000;font-weight:bold">in</span> df<span style="color:#000;font-weight:bold">.</span>columns
+</span></span><span style="display:flex;"><span>])<span style="color:#000;font-weight:bold">.</span>show()
+</span></span></code></pre></div><pre><code>+----------------+-----------------+----------------+--------------------+-------------------+------------------+------------------+--------------------+-------------------+--------------------+-------------------+-------------------+------------------+------------------------+------------------+----------------------+----------------------+-------------------+-------------------+
+|cord_uid_missing|      sha_missing|source_x_missing|       title_missing|        doi_missing|     pmcid_missing| pubmed_id_missing|     license_missing|   abstract_missing|publish_time_missing|    authors_missing|    journal_missing|    mag_id_missing|who_covidence_id_missing|  arxiv_id_missing|pdf_json_files_missing|pmc_json_files_missing|        url_missing|      s2_id_missing|
++----------------+-----------------+----------------+--------------------+-------------------+------------------+------------------+--------------------+-------------------+--------------------+-------------------+-------------------+------------------+------------------------+------------------+----------------------+----------------------+-------------------+-------------------+
+|             0.0|0.567859951347498|             0.0|2.204796166593858...|0.21650363423901464|0.5229703013956359|0.2409842210087677|3.013221427679013...|0.21533509227071956|3.233701044338399...|0.03670985617379674|0.04888033101339784|0.9796644300234443|        0.83416993098988|0.9731749799731015|    0.5558732095217798|     0.643256630924471|0.08417176832001882|0.20808866220317934|
++----------------+-----------------+----------------+--------------------+-------------------+------------------+------------------+--------------------+-------------------+--------------------+-------------------+-------------------+------------------+------------------------+------------------+----------------------+----------------------+-------------------+-------------------+
+</code></pre>
+
+
+
+
+<h4 id="remove-missing">Remove Missing
+  <a href="#remove-missing"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Remove null values from abstract, journal, authors</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">import</span> col 
+</span></span><span style="display:flex;"><span>df_noNull <span style="color:#000;font-weight:bold">=</span> df<span style="color:#000;font-weight:bold">.</span>filter(col(<span style="color:#d14">&#34;abstract&#34;</span>)<span style="color:#000;font-weight:bold">.</span>isNotNull())<span style="color:#000;font-weight:bold">.</span>filter(col(<span style="color:#d14">&#34;journal&#34;</span>)<span style="color:#000;font-weight:bold">.</span>isNotNull())<span style="color:#000;font-weight:bold">.</span>filter(col(<span style="color:#d14">&#34;authors&#34;</span>)<span style="color:#000;font-weight:bold">.</span>isNotNull())
+</span></span><span style="display:flex;"><span>df_noNull<span style="color:#000;font-weight:bold">.</span>show(<span style="color:#099">2</span>)
+</span></span></code></pre></div><pre><code>+--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+
+|cord_uid|                 sha|source_x|               title|                 doi|   pmcid|pubmed_id|license|            abstract|publish_time|             authors|       journal|mag_id|who_covidence_id|arxiv_id|      pdf_json_files|      pmc_json_files|                 url|s2_id|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+
+|ug7v899j|d1aafb70c066a2068...|     PMC|Clinical features...|10.1186/1471-2334...|PMC35282| 11472636|  no-cc|OBJECTIVE: This r...|  2001-07-04|Madani, Tariq A; ...|BMC Infect Dis|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|
+|02tnwd4m|6b0567729c2143a66...|     PMC|Nitric oxide: a p...|        10.1186/rr14|PMC59543| 11667967|  no-cc|Inflammatory dise...|  2000-08-15|Vliet, Albert van...|    Respir Res|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+
+only showing top 2 rows
+</code></pre>
+<p>Imputation methods and outlier removals (at this time in the analyses) are not applicable as this is qualitative data</p>
+
+
+
+
+<h3 id="exploratory-data">Exploratory Data
+  <a href="#exploratory-data"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+
+
+
+
+<h4 id="top-journal-pulications">Top Journal Pulications
+  <a href="#top-journal-pulications"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Top Journals</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">import</span> desc
+</span></span><span style="display:flex;"><span>df_noNull<span style="color:#000;font-weight:bold">.</span>groupby(<span style="color:#d14">&#39;journal&#39;</span>)<span style="color:#000;font-weight:bold">.</span>count()<span style="color:#000;font-weight:bold">.</span>orderBy(desc(<span style="color:#d14">&#39;count&#39;</span>))<span style="color:#000;font-weight:bold">.</span>show()
+</span></span></code></pre></div><pre><code>+--------------------+-----+
+|             journal|count|
++--------------------+-----+
+|            PLoS One| 1682|
+| Journal of virology| 1542|
+|            Virology| 1273|
+|             bioRxiv| 1202|
+|  Surgical endoscopy|  823|
+|             Sci Rep|  758|
+|             Viruses|  678|
+|          Arch Virol|  633|
+|    Emerg Infect Dis|  604|
+|The Journal of ge...|  574|
+|             Vaccine|  517|
+|         J Med Virol|  404|
+|             Virol J|  398|
+|      Virus Research|  379|
+|      BMC Infect Dis|  377|
+|Veterinary Microb...|  362|
+|         PLoS Pathog|  348|
+|Emerging infectio...|  329|
+|Journal of clinic...|  324|
+|              Nature|  287|
++--------------------+-----+
+only showing top 20 rows
+</code></pre>
+
+
+
+
+<h4 id="top-authors">Top Authors
+  <a href="#top-authors"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">### Authors</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">import</span> desc
+</span></span><span style="display:flex;"><span>df_noNull<span style="color:#000;font-weight:bold">.</span>groupby(<span style="color:#d14">&#39;authors&#39;</span>)<span style="color:#000;font-weight:bold">.</span>count()<span style="color:#000;font-weight:bold">.</span>orderBy(desc(<span style="color:#d14">&#39;count&#39;</span>))<span style="color:#000;font-weight:bold">.</span>show()
+</span></span></code></pre></div><pre><code>+--------------------+-----+
+|             authors|count|
++--------------------+-----+
+|                2020|   68|
+|   Mahase, Elisabeth|   30|
+|Andersen, Bjørg M...|   20|
+|   Iacobucci, Gareth|   20|
+|Modrow, Susanne; ...|   19|
+|         Rimmer, Abi|   18|
+|       Knopf, Alison|   17|
+|    Domingo, Esteban|   17|
+|      Pearson, Helen|   17|
+|                2017|   14|
+|    Le Page, Michael|   13|
+|                2005|   13|
+|    Cyranoski, David|   12|
+|                2016|   12|
+|Burrell, Christop...|   12|
+|                2015|   12|
+|FENNER, FRANK; BA...|   12|
+|         Fong, I. W.|   11|
+|Tulchinsky, Theod...|   11|
+|                2018|   11|
++--------------------+-----+
+only showing top 20 rows
+</code></pre>
+
+
+
+
+<h4 id="number-of-papers-in-top-10-journals-per-month-and-year">Number of Papers in Top 10 Journals Per Month and Year
+  <a href="#number-of-papers-in-top-10-journals-per-month-and-year"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">seaborn</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">sns</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">matplotlib.pyplot</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">plt</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">numpy</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">%</span>matplotlib inline
+</span></span><span style="display:flex;"><span>np<span style="color:#000;font-weight:bold">.</span>random<span style="color:#000;font-weight:bold">.</span>seed(<span style="color:#099">42</span>)
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">F</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">import</span> col, lower
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_2 <span style="color:#000;font-weight:bold">=</span> spark<span style="color:#000;font-weight:bold">.</span>read<span style="color:#000;font-weight:bold">.</span>format(<span style="color:#d14">&#39;csv&#39;</span>)\
+</span></span><span style="display:flex;"><span>          <span style="color:#000;font-weight:bold">.</span>option(<span style="color:#d14">&#39;header&#39;</span>,<span style="color:#d14">&#39;true&#39;</span>)\
+</span></span><span style="display:flex;"><span>          <span style="color:#000;font-weight:bold">.</span>option(<span style="color:#d14">&#39;inferSchema&#39;</span>, <span style="color:#d14">&#39;true&#39;</span>)\
+</span></span><span style="display:flex;"><span>          <span style="color:#000;font-weight:bold">.</span>option(<span style="color:#d14">&#39;timestamp&#39;</span>, <span style="color:#d14">&#39;true&#39;</span>)\
+</span></span><span style="display:flex;"><span>          <span style="color:#000;font-weight:bold">.</span>load(<span style="color:#d14">&#39;metadata.csv&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#000;font-weight:bold">=</span> df_2<span style="color:#000;font-weight:bold">.</span>select(lower(col(<span style="color:#d14">&#39;journal&#39;</span>)),lower(col(<span style="color:#d14">&#39;abstract&#39;</span>)), lower(col(<span style="color:#d14">&#39;publish_time&#39;</span>)))\
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">.</span>withColumnRenamed(<span style="color:#d14">&#39;lower(journal)&#39;</span>,<span style="color:#d14">&#39;Journal&#39;</span>)\
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">.</span>withColumnRenamed(<span style="color:#d14">&#39;lower(publish_time)&#39;</span>,<span style="color:#d14">&#39;Publish_Time&#39;</span>)\
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">.</span>withColumnRenamed(<span style="color:#d14">&#39;lower(abstract)&#39;</span>, <span style="color:#d14">&#39;Abstract&#39;</span>)
+</span></span><span style="display:flex;"><span>data<span style="color:#000;font-weight:bold">.</span>cache()
+</span></span><span style="display:flex;"><span>data_clean <span style="color:#000;font-weight:bold">=</span> data<span style="color:#000;font-weight:bold">.</span>na<span style="color:#000;font-weight:bold">.</span>drop()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>top_10 <span style="color:#000;font-weight:bold">=</span> [<span style="color:#d14">&#34;plos one&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;journal of virology&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;virology&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;biorxiv&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;surgical endoscopy&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;sci rep&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;viruses&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;arch virol&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;emerg infect dis&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;virus research&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data_top10 <span style="color:#000;font-weight:bold">=</span> data_clean<span style="color:#000;font-weight:bold">.</span>filter(F<span style="color:#000;font-weight:bold">.</span>col(<span style="color:#d14">&#34;Journal&#34;</span>)<span style="color:#000;font-weight:bold">.</span>isin(top_10))
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_pd <span style="color:#000;font-weight:bold">=</span> data_top10<span style="color:#000;font-weight:bold">.</span>toPandas()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pandas</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">pd</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">datetime</span>
+</span></span><span style="display:flex;"><span>df_pd[<span style="color:#d14">&#39;Publish_Time&#39;</span>]<span style="color:#000;font-weight:bold">=</span> pd<span style="color:#000;font-weight:bold">.</span>to_datetime(df_pd[<span style="color:#d14">&#39;Publish_Time&#39;</span>])
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_pd[<span style="color:#d14">&#39;month&#39;</span>] <span style="color:#000;font-weight:bold">=</span> pd<span style="color:#000;font-weight:bold">.</span>DatetimeIndex(df_pd[<span style="color:#d14">&#39;Publish_Time&#39;</span>])<span style="color:#000;font-weight:bold">.</span>month
+</span></span><span style="display:flex;"><span>df_pd[<span style="color:#d14">&#39;year&#39;</span>] <span style="color:#000;font-weight:bold">=</span> pd<span style="color:#000;font-weight:bold">.</span>DatetimeIndex(df_pd[<span style="color:#d14">&#39;Publish_Time&#39;</span>])<span style="color:#000;font-weight:bold">.</span>year
+</span></span><span style="display:flex;"><span>df_2020 <span style="color:#000;font-weight:bold">=</span> df_pd[(df_pd<span style="color:#000;font-weight:bold">.</span>year <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">2020</span>)]
+</span></span></code></pre></div>
+
+
+
+<h3 id="latent-dirichlet-allocation-model">Latent Dirichlet Allocation model
+  <a href="#latent-dirichlet-allocation-model"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+
+
+
+
+<h4 id="evaluation-using-filtered-dataset">Evaluation using filtered dataset
+  <a href="#evaluation-using-filtered-dataset"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">import</span> rand
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Filtered dataset with n=1000</span>
+</span></span><span style="display:flex;"><span>df_demo <span style="color:#000;font-weight:bold">=</span>df_noNull<span style="color:#000;font-weight:bold">.</span>orderBy(rand())<span style="color:#000;font-weight:bold">.</span>limit(<span style="color:#099">1000</span>)
+</span></span></code></pre></div>
+
+
+
+<h4 id="model-construction">Model Construction
+  <a href="#model-construction"></a>
+</h4>
+<p>Stop word list copied from 
+<a href="https://www.jmir.org/2020/11/e21559#app1" target="_blank" rel="noopener">https://www.jmir.org/2020/11/e21559#app1</a> to supplement StopWordRemover&rsquo;s dictionary and account for some of the missed out on some stop words</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>stopwordList <span style="color:#000;font-weight:bold">=</span> [<span style="color:#d14">&#39;shall&#39;</span>, <span style="color:#d14">&#39;accordance&#39;</span>, <span style="color:#d14">&#39;yourself&#39;</span>, <span style="color:#d14">&#39;successfully&#39;</span>, <span style="color:#d14">&#39;each&#39;</span>, <span style="color:#d14">&#39;showed&#39;</span>, <span style="color:#d14">&#39;ok&#39;</span>, <span style="color:#d14">&#39;eighty&#39;</span>, <span style="color:#d14">&#39;welcome&#39;</span>, <span style="color:#d14">&#39;their&#39;</span>, <span style="color:#d14">&#39; those&#39;</span>, <span style="color:#d14">&#39;been&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;whoever&#39;</span>, <span style="color:#d14">&#39;ask&#39;</span>, <span style="color:#d14">&#39;mean&#39;</span>, <span style="color:#d14">&#39;thank&#39;</span>, <span style="color:#d14">&#39;apparently&#39;</span>, <span style="color:#d14">&#39; almost&#39;</span>, <span style="color:#d14">&#39;cov&#39;</span>, <span style="color:#d14">&#39;obtain&#39;</span>, <span style="color:#d14">&#39;theyd&#39;</span>, <span style="color:#d14">&#39;becomes&#39;</span>, <span style="color:#d14">&#39;largely&#39;</span>, <span style="color:#d14">&#39;date&#39;</span>, <span style="color:#d14">&#39;except&#39;</span>, <span style="color:#d14">&#39;n&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;herself&#39;</span>, <span style="color:#d14">&#39;be&#39;</span>, <span style="color:#d14">&#39;out&#39;</span>, <span style="color:#d14">&#39;usefulness&#39;</span>, <span style="color:#d14">&#39;itself&#39;</span>, <span style="color:#d14">&#39;none&#39;</span>, <span style="color:#d14">&#39;for&#39;</span>, <span style="color:#d14">&#39;plus&#39;</span>, <span style="color:#d14">&#39;went&#39;</span>, <span style="color:#d14">&#39;coronavirus&#39;</span>, <span style="color:#d14">&#39;your&#39;</span>, <span style="color:#d14">&#39;studies&#39;</span>, <span style="color:#d14">&#39;somewhere&#39;</span>, <span style="color:#d14">&#39;make&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;give&#39;</span>, <span style="color:#d14">&#39;means&#39;</span>, <span style="color:#d14">&#39;etc&#39;</span>, <span style="color:#d14">&#39;look&#39;</span>, <span style="color:#d14">&#39;hereafter&#39;</span>, <span style="color:#d14">&#39;nine&#39;</span>, <span style="color:#d14">&#39; would&#39;</span>, <span style="color:#d14">&#39;an&#39;</span>, <span style="color:#d14">&#39;first&#39;</span>, <span style="color:#d14">&#39;selves&#39;</span>, <span style="color:#d14">&#39;vol&#39;</span>, <span style="color:#d14">&#39;kept&#39;</span>, <span style="color:#d14">&#39;im&#39;</span>, <span style="color:#d14">&#39;yes&#39;</span>, <span style="color:#d14">&#39; due&#39;</span>, <span style="color:#d14">&#34;shouldn&#39;t&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;awfully&#39;</span>, <span style="color:#d14">&#39;mainly&#39;</span>, <span style="color:#d14">&#39;therein&#39;</span>, <span style="color:#d14">&#39;affects&#39;</span>, <span style="color:#d14">&#39;patient&#39;</span>, <span style="color:#d14">&#39;section&#39;</span>, <span style="color:#d14">&#39;whereas&#39;</span>, <span style="color:#d14">&#39;his&#39;</span>, <span style="color:#d14">&#39; make&#39;</span>, <span style="color:#d14">&#39;other&#39;</span>, <span style="color:#d14">&#39; do&#39;</span>, <span style="color:#d14">&#39;unto&#39;</span>, <span style="color:#d14">&#39;probably&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;doesn&#39;t&#34;</span>, <span style="color:#d14">&#39; ml&#39;</span>, <span style="color:#d14">&#39;together&#39;</span>, <span style="color:#d14">&#39;fifth&#39;</span>, <span style="color:#d14">&#39;some&#39;</span>, <span style="color:#d14">&#39;when&#39;</span>, <span style="color:#d14">&#39;anywhere&#39;</span>, <span style="color:#d14">&#39;beginning&#39;</span>, <span style="color:#d14">&#39;werent&#39;</span>, <span style="color:#d14">&#39; therefore&#39;</span>, <span style="color:#d14">&#39;value&#39;</span>, <span style="color:#d14">&#39; that&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;previously&#39;</span>, <span style="color:#d14">&#39;rather&#39;</span>, <span style="color:#d14">&#39;ord&#39;</span>, <span style="color:#d14">&#39;might&#39;</span>, <span style="color:#d14">&#39; mg&#39;</span>, <span style="color:#d14">&#39;due&#39;</span>, <span style="color:#d14">&#39; what&#39;</span>, <span style="color:#d14">&#39;home&#39;</span>, <span style="color:#d14">&#39;he&#39;</span>, <span style="color:#d14">&#39;found&#39;</span>, <span style="color:#d14">&#39;after&#39;</span>, <span style="color:#d14">&#39;its&#39;</span>, <span style="color:#d14">&#39;et-al&#39;</span>, <span style="color:#d14">&#39;na&#39;</span>, <span style="color:#d14">&#39;ran&#39;</span>, <span style="color:#d14">&#39;run&#39;</span>, <span style="color:#d14">&#39;similar&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;readily&#39;</span>, <span style="color:#d14">&#39;rd&#39;</span>, <span style="color:#d14">&#39;over&#39;</span>, <span style="color:#d14">&#39;whomever&#39;</span>, <span style="color:#d14">&#39; several&#39;</span>, <span style="color:#d14">&#39;a&#39;</span>, <span style="color:#d14">&#39;thats&#39;</span>, <span style="color:#d14">&#39;moreover&#39;</span>, <span style="color:#d14">&#39;mg&#39;</span>, <span style="color:#d14">&#39;myself&#39;</span>, <span style="color:#d14">&#39;least&#39;</span>, <span style="color:#d14">&#39;miss&#39;</span>, <span style="color:#d14">&#39;r&#39;</span>, <span style="color:#d14">&#39;thereupon&#39;</span>, <span style="color:#d14">&#39;care&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;begins&#39;</span>, <span style="color:#d14">&#39;sup&#39;</span>, <span style="color:#d14">&#39; used&#39;</span>, <span style="color:#d14">&#39;during&#39;</span>, <span style="color:#d14">&#39; show&#39;</span>, <span style="color:#d14">&#39; really&#39;</span>, <span style="color:#d14">&#39;last&#39;</span>, <span style="color:#d14">&#39;d&#39;</span>, <span style="color:#d14">&#39;able&#39;</span>, <span style="color:#d14">&#39;outside&#39;</span>, <span style="color:#d14">&#39;fix&#39;</span>, <span style="color:#d14">&#39;results&#39;</span>, <span style="color:#d14">&#39;that&#39;</span>, <span style="color:#d14">&#39;if&#39;</span>, <span style="color:#d14">&#39;thereto&#39;</span>, <span style="color:#d14">&#39;covid&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;behind&#39;</span>, <span style="color:#d14">&#39;by&#39;</span>, <span style="color:#d14">&#39; mainly&#39;</span>, <span style="color:#d14">&#39;h&#39;</span>, <span style="color:#d14">&#39;certainly&#39;</span>, <span style="color:#d14">&#39; they&#39;</span>, <span style="color:#d14">&#39;several&#39;</span>, <span style="color:#d14">&#39;causes&#39;</span>, <span style="color:#d14">&#39;mrs&#39;</span>, <span style="color:#d14">&#39;qv&#39;</span>, <span style="color:#d14">&#39;noone&#39;</span>, <span style="color:#d14">&#39;say&#39;</span>, <span style="color:#d14">&#39;shed&#39;</span>, <span style="color:#d14">&#39; pmid&#39;</span>, <span style="color:#d14">&#39;kg&#39;</span>, <span style="color:#d14">&#39;following&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;different&#39;</span>, <span style="color:#d14">&#39;thence&#39;</span>, <span style="color:#d14">&#39; using&#39;</span>, <span style="color:#d14">&#39;four&#39;</span>, <span style="color:#d14">&#39;amongst&#39;</span>, <span style="color:#d14">&#34;it&#39;ll&#34;</span>, <span style="color:#d14">&#39;otherwise&#39;</span>, <span style="color:#d14">&#39;y&#39;</span>, <span style="color:#d14">&#39;did&#39;</span>, <span style="color:#d14">&#39;hereupon&#39;</span>, <span style="color:#d14">&#39;themselves&#39;</span>, <span style="color:#d14">&#39;nd&#39;</span>, <span style="color:#d14">&#39; done&#39;</span>, <span style="color:#d14">&#39;into&#39;</span>, 
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;its&#39;</span>, <span style="color:#d14">&#39;ex&#39;</span>, <span style="color:#d14">&#39;himself&#39;</span>, <span style="color:#d14">&#39;zero&#39;</span>, <span style="color:#d14">&#39;see&#39;</span>, <span style="color:#d14">&#39;ah&#39;</span>, <span style="color:#d14">&#34;you&#39;ve&#34;</span>, <span style="color:#d14">&#39;and&#39;</span>, <span style="color:#d14">&#39;next&#39;</span>, <span style="color:#d14">&#39;thanx&#39;</span>, <span style="color:#d14">&#39;both&#39;</span>, <span style="color:#d14">&#39;anybody&#39;</span>, <span style="color:#d14">&#39;would&#39;</span>, <span style="color:#d14">&#39;anyways&#39;</span>, <span style="color:#d14">&#39;too&#39;</span>, <span style="color:#d14">&#39;age&#39;</span>, <span style="color:#d14">&#39;still&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;mug&#39;</span>, <span style="color:#d14">&#39;patients&#39;</span>, <span style="color:#d14">&#39;less&#39;</span>, <span style="color:#d14">&#39;actually&#39;</span>, <span style="color:#d14">&#39;everyone&#39;</span>, <span style="color:#d14">&#39;regards&#39;</span>, <span style="color:#d14">&#34;they&#39;ll&#34;</span>, <span style="color:#d14">&#39;name&#39;</span>, <span style="color:#d14">&#39;oh&#39;</span>, <span style="color:#d14">&#39;until&#39;</span>, <span style="color:#d14">&#39;usually&#39;</span>, <span style="color:#d14">&#39;afterwards&#39;</span>, <span style="color:#d14">&#39;hid&#39;</span>, <span style="color:#d14">&#39;one&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;more&#39;</span>, <span style="color:#d14">&#39;specify&#39;</span>, <span style="color:#d14">&#39;beyond&#39;</span>, <span style="color:#d14">&#39;shows&#39;</span>, <span style="color:#d14">&#39;whole&#39;</span>, <span style="color:#d14">&#39;omitted&#39;</span>, <span style="color:#d14">&#39;known&#39;</span>, <span style="color:#d14">&#39;try&#39;</span>, <span style="color:#d14">&#39;especially&#39;</span>, <span style="color:#d14">&#39;itd&#39;</span>, <span style="color:#d14">&#39;suggest&#39;</span>, <span style="color:#d14">&#39; must&#39;</span>, <span style="color:#d14">&#39;km&#39;</span>, <span style="color:#d14">&#39;study&#39;</span>, <span style="color:#d14">&#39;z&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39; theirs&#39;</span>, <span style="color:#d14">&#39;already&#39;</span>, <span style="color:#d14">&#39;between&#39;</span>, <span style="color:#d14">&#39;to&#39;</span>, <span style="color:#d14">&#39;ie&#39;</span>, <span style="color:#d14">&#39;yourselves&#39;</span>, <span style="color:#d14">&#39;quite&#39;</span>, <span style="color:#d14">&#39;thus&#39;</span>, <span style="color:#d14">&#39;gone&#39;</span>, <span style="color:#d14">&#39;think&#39;</span>, <span style="color:#d14">&#39;whatever&#39;</span>, <span style="color:#d14">&#39;you&#39;</span>, <span style="color:#d14">&#39;up&#39;</span>, <span style="color:#d14">&#39; seen&#39;</span>, <span style="color:#d14">&#39;m&#39;</span>, <span style="color:#d14">&#39; any&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;th&#39;</span>, <span style="color:#d14">&#39; always&#39;</span>, <span style="color:#d14">&#39;irr&#39;</span>, <span style="color:#d14">&#39; etc&#39;</span>, <span style="color:#d14">&#39;anyone&#39;</span>, <span style="color:#d14">&#39;invention&#39;</span>, <span style="color:#d14">&#39;past&#39;</span>, <span style="color:#d14">&#39;suret&#39;</span>, <span style="color:#d14">&#39;right&#39;</span>, <span style="color:#d14">&#39;we&#39;</span>, <span style="color:#d14">&#39;were&#39;</span>, <span style="color:#d14">&#39;related&#39;</span>, <span style="color:#d14">&#39; but&#39;</span>, <span style="color:#d14">&#39; there&#39;</span>, <span style="color:#d14">&#39;gotten&#39;</span>, <span style="color:#d14">&#39; our&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;there&#39;ll&#34;</span>, <span style="color:#d14">&#39;sufficiently&#39;</span>, <span style="color:#d14">&#39;various&#39;</span>, <span style="color:#d14">&#39;obviously&#39;</span>, <span style="color:#d14">&#39;ff&#39;</span>, <span style="color:#d14">&#39;former&#39;</span>, <span style="color:#d14">&#39;poorly&#39;</span>, <span style="color:#d14">&#39; further&#39;</span>, <span style="color:#d14">&#39; been&#39;</span>, <span style="color:#d14">&#39;useful&#39;</span>, <span style="color:#d14">&#39;besides&#39;</span>, <span style="color:#d14">&#39;said&#39;</span>, <span style="color:#d14">&#39;seemed&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39; it&#39;</span>, <span style="color:#d14">&#34;don&#39;t&#34;</span>, <span style="color:#d14">&#39;pp&#39;</span>, <span style="color:#d14">&#34;you&#39;ll&#34;</span>, <span style="color:#d14">&#39;others&#39;</span>, <span style="color:#d14">&#39;makes&#39;</span>, <span style="color:#d14">&#39;hundred&#39;</span>, <span style="color:#d14">&#39;because&#39;</span>, <span style="color:#d14">&#39;nearly&#39;</span>, <span style="color:#d14">&#34;haven&#39;t&#34;</span>, <span style="color:#d14">&#39;l&#39;</span>, <span style="color:#d14">&#39;viz&#39;</span>, <span style="color:#d14">&#39;lets&#39;</span>, <span style="color:#d14">&#39;seeming&#39;</span>, <span style="color:#d14">&#39;present&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39; overall&#39;</span>, <span style="color:#d14">&#39;important&#39;</span>, <span style="color:#d14">&#39;somewhat&#39;</span>, <span style="color:#d14">&#39; most&#39;</span>, <span style="color:#d14">&#39;whod&#39;</span>, <span style="color:#d14">&#39;slightly&#39;</span>, <span style="color:#d14">&#39;ups&#39;</span>, <span style="color:#d14">&#39;nobody&#39;</span>, <span style="color:#d14">&#39;possibly&#39;</span>, <span style="color:#d14">&#39;significant&#39;</span>, <span style="color:#d14">&#39;at&#39;</span>, <span style="color:#d14">&#39;brief&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;somehow&#39;</span>, <span style="color:#d14">&#39;while&#39;</span>, <span style="color:#d14">&#39;o&#39;</span>, <span style="color:#d14">&#39;ed&#39;</span>, <span style="color:#d14">&#39;whether&#39;</span>, <span style="color:#d14">&#39;can&#39;</span>, <span style="color:#d14">&#39;was&#39;</span>, <span style="color:#d14">&#39;what&#39;</span>, <span style="color:#d14">&#39;abst&#39;</span>, <span style="color:#d14">&#39;everybody&#39;</span>, <span style="color:#d14">&#39;ci&#39;</span>, <span style="color:#d14">&#39;with&#39;</span>, <span style="color:#d14">&#39;resulting&#39;</span>, <span style="color:#d14">&#39;re&#39;</span>, <span style="color:#d14">&#39;cause&#39;</span>, <span style="color:#d14">&#39;hes&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;quickly&#39;</span>, <span style="color:#d14">&#39;unlike&#39;</span>, <span style="color:#d14">&#39;namely&#39;</span>, <span style="color:#d14">&#39;contain&#39;</span>, <span style="color:#d14">&#34;hasn&#39;t&#34;</span>, <span style="color:#d14">&#39;should&#39;</span>, <span style="color:#d14">&#39;ending&#39;</span>, <span style="color:#d14">&#39;just&#39;</span>, <span style="color:#d14">&#39;doing&#39;</span>, <span style="color:#d14">&#39;mr&#39;</span>, <span style="color:#d14">&#39;where&#39;</span>, <span style="color:#d14">&#39;part&#39;</span>, <span style="color:#d14">&#39;everywhere&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;corona&#39;</span>, <span style="color:#d14">&#39;my&#39;</span>, <span style="color:#d14">&#39; neither&#39;</span>, <span style="color:#d14">&#39;much&#39;</span>, <span style="color:#d14">&#39;obtained&#39;</span>, <span style="color:#d14">&#39; we&#39;</span>, <span style="color:#d14">&#39;sorry&#39;</span>, <span style="color:#d14">&#39; another&#39;</span>, <span style="color:#d14">&#39;use&#39;</span>, <span style="color:#d14">&#39;coronaviruse&#39;</span>, <span style="color:#d14">&#39;ninety&#39;</span>, <span style="color:#d14">&#39; again&#39;</span>, <span style="color:#d14">&#39;heres&#39;</span>, <span style="color:#d14">&#39;per&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;theres&#39;</span>, <span style="color:#d14">&#39;herein&#39;</span>, <span style="color:#d14">&#39; during&#39;</span>, <span style="color:#d14">&#39;become&#39;</span>, <span style="color:#d14">&#39;seem&#39;</span>, <span style="color:#d14">&#39;they&#39;</span>, <span style="color:#d14">&#39;now&#39;</span>, <span style="color:#d14">&#34;that&#39;ve&#34;</span>, <span style="color:#d14">&#39;words&#39;</span>, <span style="color:#d14">&#39;on&#39;</span>, <span style="color:#d14">&#39;particular&#39;</span>, <span style="color:#d14">&#39;are&#39;</span>, <span style="color:#d14">&#39;away&#39;</span>, <span style="color:#d14">&#39;such&#39;</span>, <span style="color:#d14">&#39;but&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;indeed&#39;</span>, <span style="color:#d14">&#39; nor&#39;</span>, <span style="color:#d14">&#39;whereafter&#39;</span>, <span style="color:#d14">&#39;ought&#39;</span>, <span style="color:#d14">&#39;possible&#39;</span>, <span style="color:#d14">&#39;wont&#39;</span>, <span style="color:#d14">&#39;believe&#39;</span>, <span style="color:#d14">&#39;elsewhere&#39;</span>, <span style="color:#d14">&#39;here&#39;</span>, <span style="color:#d14">&#39;which&#39;</span>, <span style="color:#d14">&#39;trying&#39;</span>, <span style="color:#d14">&#39;hardly&#39;</span>, <span style="color:#d14">&#39;once&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;couldnt&#39;</span>, <span style="color:#d14">&#39; their&#39;</span>, <span style="color:#d14">&#39;similarly&#39;</span>, <span style="color:#d14">&#39;particularly&#39;</span>, <span style="color:#d14">&#39;nevertheless&#39;</span>, <span style="color:#d14">&#34;there&#39;ve&#34;</span>, <span style="color:#d14">&#39;comes&#39;</span>, <span style="color:#d14">&#39;even&#39;</span>, <span style="color:#d14">&#39;immediate&#39;</span>, <span style="color:#d14">&#39;affecting&#39;</span>, <span style="color:#d14">&#39;non&#39;</span>, 
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;when&#39;</span>, <span style="color:#d14">&#39; without&#39;</span>, <span style="color:#d14">&#39;cannot&#39;</span>,<span style="color:#d14">&#39;c-bound&#39;</span>, <span style="color:#d14">&#39;else&#39;</span>, <span style="color:#d14">&#39;seen&#39;</span>, <span style="color:#d14">&#39;then&#39;</span>, <span style="color:#d14">&#39;throug&#39;</span>, <span style="color:#d14">&#39;nor&#39;</span>, <span style="color:#d14">&#39;under&#39;</span>, <span style="color:#d14">&#39;although&#39;</span>, <span style="color:#d14">&#39;or&#39;</span>, <span style="color:#d14">&#39;stop&#39;</span>, <span style="color:#d14">&#39;thanks&#39;</span>, <span style="color:#d14">&#39;must&#39;</span>, <span style="color:#d14">&#39;enough&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;old&#39;</span>, <span style="color:#d14">&#39;sec&#39;</span>, <span style="color:#d14">&#39;taking&#39;</span>, <span style="color:#d14">&#39;having&#39;</span>, <span style="color:#d14">&#39;she&#39;</span>, <span style="color:#d14">&#39;us&#39;</span>, <span style="color:#d14">&#39;maybe&#39;</span>, <span style="color:#d14">&#39;co&#39;</span>, <span style="color:#d14">&#39;importance&#39;</span>, <span style="color:#d14">&#39;upon&#39;</span>, <span style="color:#d14">&#39;against&#39;</span>, <span style="color:#d14">&#39;further&#39;</span>, <span style="color:#d14">&#39;neither&#39;</span>, <span style="color:#d14">&#39;nos&#39;</span>, <span style="color:#d14">&#39;nothing&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;not&#39;</span>, <span style="color:#d14">&#39;in&#39;</span>, <span style="color:#d14">&#39;little&#39;</span>, <span style="color:#d14">&#34;i&#39;ll&#34;</span>, <span style="color:#d14">&#39;whither&#39;</span>,<span style="color:#d14">&#39;rso2&#39;</span>, <span style="color:#d14">&#39;thou&#39;</span>, <span style="color:#d14">&#39;has&#39;</span>, <span style="color:#d14">&#39;adj&#39;</span>,<span style="color:#d14">&#39;f8&#39;</span>, <span style="color:#d14">&#39;2b8&#39;</span>, <span style="color:#d14">&#39;either&#39;</span>, <span style="color:#d14">&#39; use&#39;</span>, <span style="color:#d14">&#39;v&#39;</span>, <span style="color:#d14">&#39;regarding&#39;</span>, <span style="color:#d14">&#39;respectively&#39;</span>, <span style="color:#d14">&#39;please&#39;</span>, <span style="color:#d14">&#39; could&#39;</span>, <span style="color:#d14">&#39;gave&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;page&#39;</span>, <span style="color:#d14">&#39;alone&#39;</span>, <span style="color:#d14">&#39;seven&#39;</span>, <span style="color:#d14">&#39;seems&#39;</span>, <span style="color:#d14">&#39;mostly&#39;</span>, <span style="color:#d14">&#39; itself&#39;</span>, <span style="color:#d14">&#39;whereupon&#39;</span>, <span style="color:#d14">&#39;unlikely&#39;</span>, <span style="color:#d14">&#39;shes&#39;</span>, <span style="color:#d14">&#39; especially&#39;</span>, <span style="color:#d14">&#39;hereby&#39;</span>, <span style="color:#d14">&#39;j&#39;</span>, <span style="color:#d14">&#39;sars&#39;</span>, <span style="color:#d14">&#39;wasnt&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;along&#39;</span>, <span style="color:#d14">&#39;forth&#39;</span>, <span style="color:#d14">&#39;take&#39;</span>, <span style="color:#d14">&#39;x&#39;</span>, <span style="color:#d14">&#39;come&#39;</span>, <span style="color:#d14">&#39;sometime&#39;</span>, <span style="color:#d14">&#39;all&#39;</span>, <span style="color:#d14">&#39;really&#39;</span>, <span style="color:#d14">&#39;everything&#39;</span>, <span style="color:#d14">&#39;substantially&#39;</span>, <span style="color:#d14">&#39;never&#39;</span>, <span style="color:#d14">&#39;as&#39;</span>, <span style="color:#d14">&#39; shows&#39;</span>, <span style="color:#d14">&#39;since&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;beforehand&#39;</span>, <span style="color:#d14">&#39;u&#39;</span>, <span style="color:#d14">&#39;towards&#39;</span>, <span style="color:#d14">&#39;usefully&#39;</span>, <span style="color:#d14">&#39; because&#39;</span>, <span style="color:#d14">&#39;til&#39;</span>, <span style="color:#d14">&#34;they&#39;ve&#34;</span>, <span style="color:#d14">&#39;sometimes&#39;</span>, <span style="color:#d14">&#39;beginnings&#39;</span>, <span style="color:#d14">&#39;whence&#39;</span>, <span style="color:#d14">&#39; is&#39;</span>, <span style="color:#d14">&#39; on&#39;</span>, <span style="color:#d14">&#39;okay&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;edu&#39;</span>, <span style="color:#d14">&#39;me&#39;</span>, <span style="color:#d14">&#39;knows&#39;</span>, <span style="color:#d14">&#39;willing&#39;</span>, <span style="color:#d14">&#39;used&#39;</span>, <span style="color:#d14">&#39;happens&#39;</span>, <span style="color:#d14">&#39;median&#39;</span>, <span style="color:#d14">&#39;i&#39;</span>, <span style="color:#d14">&#39;pages&#39;</span>, <span style="color:#d14">&#34;we&#39;ll&#34;</span>, <span style="color:#d14">&#39;around&#39;</span>, <span style="color:#d14">&#39;own&#39;</span>, <span style="color:#d14">&#39;un&#39;</span>, <span style="color:#d14">&#39;than&#39;</span>, <span style="color:#d14">&#39;uses&#39;</span>, <span style="color:#d14">&#39;owing&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;thereby&#39;</span>, <span style="color:#d14">&#39;end&#39;</span>, <span style="color:#d14">&#39;says&#39;</span>, <span style="color:#d14">&#39;vs&#39;</span>, <span style="color:#d14">&#39;biol&#39;</span>, <span style="color:#d14">&#39;who&#39;</span>, <span style="color:#d14">&#39;becoming&#39;</span>, <span style="color:#d14">&#39;way&#39;</span>, <span style="color:#d14">&#39; being&#39;</span>, <span style="color:#d14">&#39;without&#39;</span>, <span style="color:#d14">&#39;wherein&#39;</span>, <span style="color:#d14">&#39;getting&#39;</span>, <span style="color:#d14">&#39; often&#39;</span>, <span style="color:#d14">&#39; if&#39;</span>, <span style="color:#d14">&#39;seeing&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39; regarding&#39;</span>, <span style="color:#d14">&#39; while&#39;</span>, <span style="color:#d14">&#39;inward&#39;</span>, <span style="color:#d14">&#39;got&#39;</span>, <span style="color:#d14">&#39;specifying&#39;</span>, <span style="color:#d14">&#39;down&#39;</span>, <span style="color:#d14">&#39;predominantly&#39;</span>, <span style="color:#d14">&#39;almost&#39;</span>, <span style="color:#d14">&#39;anymore&#39;</span>, <span style="color:#d14">&#39;nowhere&#39;</span>, <span style="color:#d14">&#39;com&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;provides&#39;</span>, <span style="color:#d14">&#39;whereby&#39;</span>, <span style="color:#d14">&#39;two&#39;</span>, <span style="color:#d14">&#39;every&#39;</span>, <span style="color:#d14">&#39;ref&#39;</span>, <span style="color:#d14">&#39;q&#39;</span>, <span style="color:#d14">&#39;ones&#39;</span>, <span style="color:#d14">&#39;liked&#39;</span>, <span style="color:#d14">&#39;any&#39;</span>, <span style="color:#d14">&#39;above&#39;</span>, <span style="color:#d14">&#39;tries&#39;</span>, <span style="color:#d14">&#39;sent&#39;</span>, <span style="color:#d14">&#39;again&#39;</span>, <span style="color:#d14">&#39;year&#39;</span>, <span style="color:#d14">&#39; how&#39;</span>, <span style="color:#d14">&#39;et&#39;</span>, <span style="color:#d14">&#39;que&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;am&#39;</span>, <span style="color:#d14">&#39;instead&#39;</span>, <span style="color:#d14">&#39;new&#39;</span>, <span style="color:#d14">&#39;nay&#39;</span>, <span style="color:#d14">&#34;that&#39;ll&#34;</span>, <span style="color:#d14">&#39; since&#39;</span>, <span style="color:#d14">&#39;later&#39;</span>, <span style="color:#d14">&#39;merely&#39;</span>, <span style="color:#d14">&#39;saying&#39;</span>, <span style="color:#d14">&#39; of&#39;</span>, <span style="color:#d14">&#39;lest&#39;</span>, <span style="color:#d14">&#39; are&#39;</span>, <span style="color:#d14">&#39;may&#39;</span>, <span style="color:#d14">&#39;is&#39;</span>, <span style="color:#d14">&#39;specifically&#39;</span>, <span style="color:#d14">&#39;youd&#39;</span>, 
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;should&#39;</span>, <span style="color:#d14">&#39;proud&#39;</span>, <span style="color:#d14">&#39;twice&#39;</span>, <span style="color:#d14">&#39;tends&#39;</span>, <span style="color:#d14">&#39;hospital&#39;</span>, <span style="color:#d14">&#39; from&#39;</span>, <span style="color:#d14">&#39;eg&#39;</span>, <span style="color:#d14">&#39; into&#39;</span>, <span style="color:#d14">&#39;using&#39;</span>, <span style="color:#d14">&#39;made&#39;</span>, <span style="color:#d14">&#39; the&#39;</span>, <span style="color:#d14">&#39;get&#39;</span>, <span style="color:#d14">&#39;e&#39;</span>, <span style="color:#d14">&#39;needs&#39;</span>, <span style="color:#d14">&#39; to&#39;</span>, <span style="color:#d14">&#39;characteristic&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;ml&#39;</span>, <span style="color:#d14">&#39;act&#39;</span>, <span style="color:#d14">&#39;wheres&#39;</span>, <span style="color:#d14">&#39;briefly&#39;</span>,<span style="color:#d14">&#39;sirnas&#39;</span>,<span style="color:#d14">&#39;(95%&#39;</span>, <span style="color:#d14">&#39;las&#39;</span>, <span style="color:#d14">&#39;para&#39;</span>, <span style="color:#d14">&#39; by&#39;</span>, <span style="color:#d14">&#39;recent&#39;</span>, <span style="color:#d14">&#39;latterly&#39;</span>, <span style="color:#d14">&#39;effect&#39;</span>, <span style="color:#d14">&#39;beside&#39;</span>, <span style="color:#d14">&#39; although&#39;</span>, <span style="color:#d14">&#39;her&#39;</span>, <span style="color:#d14">&#39;www&#39;</span>, <span style="color:#d14">&#39;know&#39;</span>, <span style="color:#d14">&#39;need&#39;</span>, <span style="color:#d14">&#39;announce&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;it&#39;</span>, <span style="color:#d14">&#39; through&#39;</span>, <span style="color:#d14">&#39;overall&#39;</span>, <span style="color:#d14">&#39;million&#39;</span>, <span style="color:#d14">&#34;what&#39;ll&#34;</span>, <span style="color:#d14">&#39;far&#39;</span>, <span style="color:#d14">&#39;have&#39;</span>, <span style="color:#d14">&#39; which&#39;</span>, <span style="color:#d14">&#39;line&#39;</span>, <span style="color:#d14">&#39;gets&#39;</span>, <span style="color:#d14">&#39;normally&#39;</span>, <span style="color:#d14">&#39;affected&#39;</span>, <span style="color:#d14">&#39;w&#39;</span>, <span style="color:#d14">&#39;k&#39;</span>, <span style="color:#d14">&#39; all&#39;</span>, <span style="color:#d14">&#39;hence&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39; have&#39;</span>, <span style="color:#d14">&#39;very&#39;</span>, <span style="color:#d14">&#39;vols&#39;</span>, <span style="color:#d14">&#39;wish&#39;</span>, <span style="color:#d14">&#39;f&#39;</span>, <span style="color:#d14">&#39;svcv-induced&#39;</span>, <span style="color:#d14">&#39;[formula:&#39;</span>, <span style="color:#d14">&#39; among&#39;</span>, <span style="color:#d14">&#39;thereafter&#39;</span>, <span style="color:#d14">&#39;taken&#39;</span>, <span style="color:#d14">&#39;became&#39;</span>, <span style="color:#d14">&#39;accordingly&#39;</span>, <span style="color:#d14">&#39;begin&#39;</span>, <span style="color:#d14">&#39;back&#39;</span>, <span style="color:#d14">&#39; about&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;immediately&#39;</span>, <span style="color:#d14">&#39;about&#39;</span>, <span style="color:#d14">&#39;anyway&#39;</span>, <span style="color:#d14">&#39; km&#39;</span>, <span style="color:#d14">&#39;how&#39;</span>, <span style="color:#d14">&#39;many&#39;</span>, <span style="color:#d14">&#39;only&#39;</span>, <span style="color:#d14">&#39; were&#39;</span>, <span style="color:#d14">&#39;followed&#39;</span>, <span style="color:#d14">&#39;no&#39;</span>, <span style="color:#d14">&#34;didn&#39;t&#34;</span>, <span style="color:#d14">&#39;off&#39;</span>, <span style="color:#d14">&#39; no&#39;</span>, <span style="color:#d14">&#39;ca&#39;</span>, <span style="color:#d14">&#39;few&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;show&#39;</span>, <span style="color:#d14">&#34;we&#39;ve&#34;</span>, <span style="color:#d14">&#39;whim&#39;</span>, <span style="color:#d14">&#39;ltd&#39;</span>, <span style="color:#d14">&#39;asking&#39;</span>, <span style="color:#d14">&#39;noted&#39;</span>, <span style="color:#d14">&#39;ourselves&#39;</span>, <span style="color:#d14">&#39; significantly&#39;</span>, <span style="color:#d14">&#39; mostly&#39;</span>, <span style="color:#d14">&#39;whose&#39;</span>, <span style="color:#d14">&#39;approximately&#39;</span>, <span style="color:#d14">&#39;does&#39;</span>, 
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;has&#39;</span>, <span style="color:#d14">&#39;s&#39;</span>, <span style="color:#d14">&#39;sub&#39;</span>, <span style="color:#d14">&#39;being&#39;</span>,<span style="color:#d14">&#39;être&#39;</span>,<span style="color:#d14">&#39;text]&#39;</span>, <span style="color:#d14">&#39;auf&#39;</span>, <span style="color:#d14">&#39;mit&#39;</span>, <span style="color:#d14">&#39;thoughh&#39;</span>, <span style="color:#d14">&#39;strongly&#39;</span>, <span style="color:#d14">&#39; thus&#39;</span>, <span style="color:#d14">&#39;had&#39;</span>, <span style="color:#d14">&#39;thru&#39;</span>, <span style="color:#d14">&#39;nonetheless&#39;</span>, <span style="color:#d14">&#39; within&#39;</span>, <span style="color:#d14">&#39;aren&#39;</span>, <span style="color:#d14">&#39;truly&#39;</span>, <span style="color:#d14">&#39;meanwhile&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;whenever&#39;</span>, <span style="color:#d14">&#39;necessary&#39;</span>, <span style="color:#d14">&#39; shown&#39;</span>, <span style="color:#d14">&#39;according&#39;</span>, <span style="color:#d14">&#39;specified&#39;</span>, <span style="color:#d14">&#39;hither&#39;</span>, <span style="color:#d14">&#39;could&#39;</span>, <span style="color:#d14">&#39;arent&#39;</span>, <span style="color:#d14">&#39;want&#39;</span>, <span style="color:#d14">&#39;of&#39;</span>, <span style="color:#d14">&#39;looking&#39;</span>, <span style="color:#d14">&#39;goes&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;unfortunately&#39;</span>, <span style="color:#d14">&#39;across&#39;</span>, <span style="color:#d14">&#39;index&#39;</span>, <span style="color:#d14">&#39;available&#39;</span>,<span style="color:#d14">&#39;il-13&#39;</span>, <span style="color:#d14">&#39;il-13/tgf-β(1)&#39;</span>, <span style="color:#d14">&#39;tell&#39;</span>, <span style="color:#d14">&#39; mm&#39;</span>, <span style="color:#d14">&#39;id&#39;</span>, <span style="color:#d14">&#39;however&#39;</span>, <span style="color:#d14">&#39;gives&#39;</span>, <span style="color:#d14">&#39;hers&#39;</span>, <span style="color:#d14">&#39;so&#39;</span>, <span style="color:#d14">&#39;g&#39;</span>, <span style="color:#d14">&#39;resulted&#39;</span>, <span style="color:#d14">&#39;throughout&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;p&#39;</span>, <span style="color:#d14">&#39;from&#39;</span>, <span style="color:#d14">&#39;done&#39;</span>, <span style="color:#d14">&#34;isn&#39;t&#34;</span>, <span style="color:#d14">&#39;let&#39;</span>,<span style="color:#d14">&#39;bei&#39;</span>, <span style="color:#d14">&#39;von&#39;</span>, <span style="color:#d14">&#39;los&#39;</span> <span style="color:#d14">&#39;ours&#39;</span>, <span style="color:#d14">&#39;do&#39;</span>, <span style="color:#d14">&#39; then&#39;</span>, <span style="color:#d14">&#39; might&#39;</span>, <span style="color:#d14">&#39;go&#39;</span>, <span style="color:#d14">&#39;primarily&#39;</span>, <span style="color:#d14">&#39; in&#39;</span>, <span style="color:#d14">&#34;can&#39;t&#34;</span>, <span style="color:#d14">&#39;those&#39;</span>, <span style="color:#d14">&#39;six&#39;</span>, <span style="color:#d14">&#39;within&#39;</span>, <span style="color:#d14">&#39;him&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;day&#39;</span>, <span style="color:#d14">&#39; may&#39;</span>, <span style="color:#d14">&#39;before&#39;</span>, <span style="color:#d14">&#39; them&#39;</span>, <span style="color:#d14">&#39;necessarily&#39;</span>, <span style="color:#d14">&#39;wants&#39;</span>, <span style="color:#d14">&#39; also&#39;</span>, <span style="color:#d14">&#39;our&#39;</span>, <span style="color:#d14">&#39;theyre&#39;</span>, <span style="color:#d14">&#39;containing&#39;</span>, <span style="color:#d14">&#39;auth&#39;</span>, <span style="color:#d14">&#39;yet&#39;</span>, <span style="color:#d14">&#39;regardless&#39;</span>, <span style="color:#d14">&#39; p&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;somethan&#39;</span>, <span style="color:#d14">&#39;given&#39;</span>, <span style="color:#d14">&#39;five&#39;</span>,<span style="color:#d14">&#39;2015&#39;</span>, <span style="color:#d14">&#39;information&#39;</span>, <span style="color:#d14">&#34;&#39;ll&#34;</span>, <span style="color:#d14">&#39;toward&#39;</span>, <span style="color:#d14">&#39;there&#39;</span>, <span style="color:#d14">&#39; having&#39;</span>, <span style="color:#d14">&#34;i&#39;ve&#34;</span>, <span style="color:#d14">&#39;like&#39;</span>, <span style="color:#d14">&#39; so&#39;</span>, <span style="color:#d14">&#39;them&#39;</span>, <span style="color:#d14">&#39;took&#39;</span>, <span style="color:#d14">&#39; very&#39;</span>, <span style="color:#d14">&#39;same&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;the&#39;</span>, <span style="color:#d14">&#39;most&#39;</span>, <span style="color:#d14">&#39;always&#39;</span>, <span style="color:#d14">&#39;keepkeeps&#39;</span>, <span style="color:#d14">&#39;respectively),&#39;</span>, <span style="color:#d14">&#39;fah&#39;</span>, <span style="color:#d14">&#39;promptly&#39;</span>, <span style="color:#d14">&#39;this&#39;</span>, <span style="color:#d14">&#39;hi&#39;</span>, <span style="color:#d14">&#39; an&#39;</span>, <span style="color:#d14">&#39;significantly&#39;</span>, <span style="color:#d14">&#39;research&#39;</span>, <span style="color:#d14">&#39;put&#39;</span>, <span style="color:#d14">&#39;anything&#39;</span>, <span style="color:#d14">&#39;thousand&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;potentially&#39;</span>, <span style="color:#d14">&#39;shown&#39;</span>, <span style="color:#d14">&#39;ts&#39;</span>,<span style="color:#d14">&#39;(or&#39;</span>, <span style="color:#d14">&#34;&#39;ve&#34;</span>, <span style="color:#d14">&#39;relatively&#39;</span>, <span style="color:#d14">&#39;howbeit&#39;</span>, <span style="color:#d14">&#39;perhaps&#39;</span>, <span style="color:#d14">&#39; between&#39;</span>, <span style="color:#d14">&#39;tip&#39;</span>, <span style="color:#d14">&#39; such&#39;</span>, <span style="color:#d14">&#39;thereof&#39;</span>, <span style="color:#d14">&#39; enough&#39;</span>, <span style="color:#d14">&#39; here&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;theirs&#39;</span>, <span style="color:#d14">&#39;often&#39;</span>, <span style="color:#d14">&#39;also&#39;</span>, <span style="color:#d14">&#39;self&#39;</span>, <span style="color:#d14">&#39;though&#39;</span>, <span style="color:#d14">&#39;wouldnt&#39;</span>,<span style="color:#d14">&#39;ssp.&#39;</span>, <span style="color:#d14">&#39; does&#39;</span>, <span style="color:#d14">&#39;eight&#39;</span>, <span style="color:#d14">&#39;refs&#39;</span>, <span style="color:#d14">&#39;ncov&#39;</span>, <span style="color:#d14">&#39; before&#39;</span>, <span style="color:#d14">&#39;likely&#39;</span>, <span style="color:#d14">&#39;unless&#39;</span>, <span style="color:#d14">&#39; showed&#39;</span>, <span style="color:#d14">&#39;thered&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;aside&#39;</span>, <span style="color:#d14">&#39; either&#39;</span>, <span style="color:#d14">&#39;whom&#39;</span>, <span style="color:#d14">&#39; these&#39;</span>, <span style="color:#d14">&#39;came&#39;</span>, <span style="color:#d14">&#39;ever&#39;</span>, <span style="color:#d14">&#34;who&#39;ll&#34;</span>, <span style="color:#d14">&#39;anyhow&#39;</span>, <span style="color:#d14">&#39;onto&#39;</span>, <span style="color:#d14">&#39;among&#39;</span>, <span style="color:#d14">&#39;formerly&#39;</span>, <span style="color:#d14">&#39;certain&#39;</span>, <span style="color:#d14">&#39;hed&#39;</span>, <span style="color:#d14">&#39;latter&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;looks&#39;</span>, <span style="color:#d14">&#39;via&#39;</span>, <span style="color:#d14">&#39;inc&#39;</span>, <span style="color:#d14">&#39;downwards&#39;</span>,<span style="color:#d14">&#39;1a5&#39;</span>,<span style="color:#d14">&#39;sr&#39;</span>,<span style="color:#d14">&#39;rsv&#39;</span>, <span style="color:#d14">&#39;near&#39;</span>, <span style="color:#d14">&#39;below&#39;</span>, <span style="color:#d14">&#39;therere&#39;</span>, <span style="color:#d14">&#39;youre&#39;</span>, <span style="color:#d14">&#39;yours&#39;</span>, <span style="color:#d14">&#39; however&#39;</span>, <span style="color:#d14">&#39;whos&#39;</span>, <span style="color:#d14">&#39;b&#39;</span>, <span style="color:#d14">&#39;something&#39;</span>, <span style="color:#d14">&#39; and&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;added&#39;</span>, <span style="color:#d14">&#39;another&#39;</span>, <span style="color:#d14">&#39;lately&#39;</span>, <span style="color:#d14">&#34;she&#39;ll&#34;</span>,<span style="color:#d14">&#39;tgf-β(1)&#39;</span>, <span style="color:#d14">&#39;tried&#39;</span>, <span style="color:#d14">&#39;wed&#39;</span>, <span style="color:#d14">&#39; found&#39;</span>, <span style="color:#d14">&#39;giving&#39;</span>, <span style="color:#d14">&#39;arise&#39;</span>, <span style="color:#d14">&#39;someone&#39;</span>, <span style="color:#d14">&#39;these&#39;</span>, <span style="color:#d14">&#39;widely&#39;</span>, <span style="color:#d14">&#39; with&#39;</span>, <span style="color:#d14">&#39;recently&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;meantime&#39;</span>, <span style="color:#d14">&#39;furthermore&#39;</span>, <span style="color:#d14">&#39;why&#39;</span>, <span style="color:#d14">&#39;c&#39;</span>, <span style="color:#d14">&#39;follows&#39;</span>, <span style="color:#d14">&#39;soon&#39;</span>,<span style="color:#d14">&#39;-&#39;</span>, <span style="color:#d14">&#39;placed&#39;</span>, <span style="color:#d14">&#39;somebody&#39;</span>, <span style="color:#d14">&#39; both&#39;</span>, <span style="color:#d14">&#39;showns&#39;</span>, <span style="color:#d14">&#39;whats&#39;</span>, <span style="color:#d14">&#39;wherever&#39;</span>, <span style="color:#d14">&#39;saw&#39;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#39;world&#39;</span>, <span style="color:#d14">&#39;arg&#39;</span>, <span style="color:#d14">&#39;svcv&#39;</span>,<span style="color:#d14">&#39;30&#39;</span>,<span style="color:#d14">&#39;il-13rα(2)&#39;</span>,<span style="color:#d14">&#39;und&#39;</span>,<span style="color:#d14">&#39;il&#39;</span>,<span style="color:#d14">&#39;svcv.&#39;</span>, <span style="color:#d14">&#39;2019-ncov&#39;</span>,<span style="color:#d14">&#39;-&#39;</span>,<span style="color:#d14">&#39;p=&#39;</span>,<span style="color:#d14">&#39;ps&#39;</span>, <span style="color:#d14">&#39;(i.e.,&#39;</span>, <span style="color:#d14">&#39;(md:&#39;</span>, <span style="color:#d14">&#39;95</span><span style="color:#d14">%c</span><span style="color:#d14">i:&#39;</span>, <span style="color:#d14">&#39;(arr:&#39;</span>, <span style="color:#d14">&#39;el&#39;</span>, <span style="color:#d14">&#39;del&#39;</span>,<span style="color:#d14">&#39;contains&#39;</span>,<span style="color:#d14">&#39;lamp&#39;</span>, <span style="color:#d14">&#39;di&#39;</span>, <span style="color:#d14">&#39;le&#39;</span>, <span style="color:#d14">&#39;bvdv&#39;</span>, <span style="color:#d14">&#39;therefore&#39;</span>, <span style="color:#d14">&#39;through&#39;</span>,<span style="color:#d14">&#39;http&#39;</span>,<span style="color:#d14">&#39;amp&#39;</span>,<span style="color:#d14">&#39;rt&#39;</span>,<span style="color:#d14">&#39;t&#39;</span>,<span style="color:#d14">&#39;(p&#39;</span>,<span style="color:#d14">&#39;m.&#39;</span>,<span style="color:#d14">&#39;c&#39;</span>,<span style="color:#d14">&#39;the&#39;</span>,<span style="color:#d14">&#39;y&#39;</span>,<span style="color:#d14">&#39;la&#39;</span>, <span style="color:#d14">&#39;en&#39;</span>, <span style="color:#d14">&#39;de&#39;</span>, <span style="color:#d14">&#39;=&#39;</span>, <span style="color:#d14">&#39;+/-&#39;</span>, <span style="color:#d14">&#39;ct&#39;</span>, <span style="color:#d14">&#39;der&#39;</span>, <span style="color:#d14">&#39;par&#39;</span>, <span style="color:#d14">&#39;des&#39;</span>,<span style="color:#d14">&#39;±&#39;</span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">##Feature Utilities</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.feature</span> <span style="color:#000;font-weight:bold">import</span> Tokenizer, StopWordsRemover, CountVectorizer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Tokenize</span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#000;font-weight:bold">=</span> Tokenizer(inputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;abstract&#39;</span>,outputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;words&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tokenized <span style="color:#000;font-weight:bold">=</span> tokenizer<span style="color:#000;font-weight:bold">.</span>transform(df_demo)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#StopWords</span>
+</span></span><span style="display:flex;"><span>stopwordList<span style="color:#000;font-weight:bold">.</span>extend(StopWordsRemover()<span style="color:#000;font-weight:bold">.</span>getStopWords())
+</span></span><span style="display:flex;"><span>stopwordList2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">list</span>(<span style="color:#0086b3">set</span>(stopwordList))
+</span></span><span style="display:flex;"><span>stopwords <span style="color:#000;font-weight:bold">=</span> StopWordsRemover(inputCol<span style="color:#000;font-weight:bold">=</span>tokenizer<span style="color:#000;font-weight:bold">.</span>getOutputCol(), outputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;input_stop&#34;</span>,stopWords<span style="color:#000;font-weight:bold">=</span>stopwordList2)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>removed <span style="color:#000;font-weight:bold">=</span> stopwords<span style="color:#000;font-weight:bold">.</span>transform(tokenized)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#CountVectorizer</span>
+</span></span><span style="display:flex;"><span>cv <span style="color:#000;font-weight:bold">=</span> CountVectorizer(inputCol<span style="color:#000;font-weight:bold">=</span>stopwords<span style="color:#000;font-weight:bold">.</span>getOutputCol(), outputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;features&#34;</span>)
+</span></span><span style="display:flex;"><span>cv_model <span style="color:#000;font-weight:bold">=</span> cv<span style="color:#000;font-weight:bold">.</span>fit(removed)
+</span></span><span style="display:flex;"><span>result <span style="color:#000;font-weight:bold">=</span> cv_model<span style="color:#000;font-weight:bold">.</span>transform(removed)
+</span></span></code></pre></div>
+
+
+
+<h4 id="model-evaluation">Model Evaluation
+  <a href="#model-evaluation"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#model evaluation using log perplexity and logliklihood</span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#you want the lowest perplexity value (not sure about logliklihood, I don&#39;t think you use that as an actual fit index)</span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.clustering</span> <span style="color:#000;font-weight:bold">import</span> LDA
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml</span> <span style="color:#000;font-weight:bold">import</span> Pipeline
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">2</span>,<span style="color:#099">13</span>):
+</span></span><span style="display:flex;"><span>    lda <span style="color:#000;font-weight:bold">=</span> LDA(k<span style="color:#000;font-weight:bold">=</span>i, featuresCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;features&#39;</span>)
+</span></span><span style="display:flex;"><span>    lda_model <span style="color:#000;font-weight:bold">=</span> lda<span style="color:#000;font-weight:bold">.</span>fit(result)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    ll <span style="color:#000;font-weight:bold">=</span> lda_model<span style="color:#000;font-weight:bold">.</span>logLikelihood(result)
+</span></span><span style="display:flex;"><span>    lp <span style="color:#000;font-weight:bold">=</span> lda_model<span style="color:#000;font-weight:bold">.</span>logPerplexity(result)
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;k=&#34;</span><span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">str</span>(i) <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;The lower bound on the log likelihood of the entire corpus: &#34;</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">str</span>(ll))    
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;k=&#34;</span><span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">str</span>(i) <span style="color:#000;font-weight:bold">+</span> <span style="color:#d14">&#34;The upper bound on perplexity: &#34;</span> <span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">str</span>(lp))
+</span></span></code></pre></div><pre><code>k=2The lower bound on the log likelihood of the entire corpus: -1232033.8796788356
+k=2The upper bound on perplexity: 9.5939344926633
+k=3The lower bound on the log likelihood of the entire corpus: -1250885.4843992703
+k=3The upper bound on perplexity: 9.740733264801431
+k=4The lower bound on the log likelihood of the entire corpus: -1264830.0362694783
+k=4The upper bound on perplexity: 9.849320471191565
+k=5The lower bound on the log likelihood of the entire corpus: -1289385.4159899985
+k=5The upper bound on perplexity: 10.04053494050677
+k=6The lower bound on the log likelihood of the entire corpus: -1323642.3012117401
+k=6The upper bound on perplexity: 10.307295715645315
+k=7The lower bound on the log likelihood of the entire corpus: -1355257.1486839715
+k=7The upper bound on perplexity: 10.553482756965312
+k=8The lower bound on the log likelihood of the entire corpus: -1392679.0231465516
+k=8The upper bound on perplexity: 10.844889525974175
+k=9The lower bound on the log likelihood of the entire corpus: -1435046.0331835593
+k=9The upper bound on perplexity: 11.174804413583448
+k=10The lower bound on the log likelihood of the entire corpus: -1479877.496895546
+k=10The upper bound on perplexity: 11.52391017533014
+k=11The lower bound on the log likelihood of the entire corpus: -1525509.2196417032
+k=11The upper bound on perplexity: 11.879247610472856
+k=12The lower bound on the log likelihood of the entire corpus: -1579501.9189508231
+k=12The upper bound on perplexity: 12.299692558292632
+</code></pre>
+
+
+
+
+<h4 id="topic-clusters">Topic Clusters
+  <a href="#topic-clusters"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Clustering 2-12 models</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.clustering</span> <span style="color:#000;font-weight:bold">import</span> LDA
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml</span> <span style="color:#000;font-weight:bold">import</span> Pipeline
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">for</span> i <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">range</span>(<span style="color:#099">2</span>,<span style="color:#099">13</span>):
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Train LDA model</span>
+</span></span><span style="display:flex;"><span>    lda <span style="color:#000;font-weight:bold">=</span> LDA(k<span style="color:#000;font-weight:bold">=</span>i, featuresCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;features&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    pipeline <span style="color:#000;font-weight:bold">=</span> Pipeline(stages<span style="color:#000;font-weight:bold">=</span>[tokenizer, stopwords, cv, lda])
+</span></span><span style="display:flex;"><span>    pipelineModel <span style="color:#000;font-weight:bold">=</span> pipeline<span style="color:#000;font-weight:bold">.</span>fit(df_demo)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    topivocab <span style="color:#000;font-weight:bold">=</span> pipelineModel<span style="color:#000;font-weight:bold">.</span>stages[<span style="color:#099">2</span>]<span style="color:#000;font-weight:bold">.</span>vocabulary
+</span></span><span style="display:flex;"><span>    topics <span style="color:#000;font-weight:bold">=</span> pipelineModel<span style="color:#000;font-weight:bold">.</span>stages[<span style="color:#099">3</span>]<span style="color:#000;font-weight:bold">.</span>describeTopics(<span style="color:#099">5</span>)
+</span></span><span style="display:flex;"><span>    topics_rdd <span style="color:#000;font-weight:bold">=</span> topics<span style="color:#000;font-weight:bold">.</span>rdd
+</span></span><span style="display:flex;"><span>    topics_words <span style="color:#000;font-weight:bold">=</span> topics_rdd\
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">.</span>map(<span style="color:#000;font-weight:bold">lambda</span> row: row[<span style="color:#d14">&#39;termIndices&#39;</span>])\
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">.</span>map(<span style="color:#000;font-weight:bold">lambda</span> idx_list: [topivocab[idx] <span style="color:#000;font-weight:bold">for</span> idx <span style="color:#000;font-weight:bold">in</span> idx_list])\
+</span></span><span style="display:flex;"><span>       <span style="color:#000;font-weight:bold">.</span>collect()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;k=&#34;</span><span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">str</span>(i) <span style="color:#000;font-weight:bold">+</span> <span style="color:#0086b3">str</span>(topics_words))
+</span></span></code></pre></div><pre><code>k=2[['clinical', 'respiratory', 'disease', 'health', 'virus'], ['kim,', 'lee,', 'park,', 'allergic', 'young']]
+k=3[['viral', 'respiratory', 'virus', 'viruses', 'samples'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['clinical', 'health', 'disease', 'infection', 'acute']]
+k=4[['kim,', 'lee,', 'park,', 'nasal', 'pig'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['frameshifting', 'protein', 'half', 'mitochondrial', 'hbx'], ['clinical', 'respiratory', 'disease', 'health', 'virus']]
+k=5[['pig', 'innovation', 'samples', 'nasal', 'processes'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['protein', 'frameshifting', 'mrna', 'half', 'mitochondrial'], ['clinical', 'respiratory', 'disease', 'health', 'virus'], ['kim,', 'lee,', 'park,', 'van', 'les']]
+k=6[['pig', 'innovation', 'samples', 'nasal', 'processes'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['protein', 'hbx', 'mitochondrial', 'aromatic', 'membrane'], ['clinical', 'respiratory', 'viral', 'virus', 'disease'], ['kim,', 'lee,', 'park,', 'van', 'ji'], ['health', 'covid-19', 'disease', 'pandemic', 'response']]
+k=7[['pig', 'samples', 'innovation', 'domain', 'viruses'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['aromatic', &quot;2'-o&quot;, 'herbal', 'cancer', 'protein'], ['clinical', 'respiratory', 'disease', 'health', 'virus'], ['kim,', 'lee,', 'park,', 'van', 'ji'], ['kim,', 'health', 'lee,', 'covid-19', 'extract'], ['les', 'delle', 'dei', 'lesions', 'brain']]
+k=8[['pig', 'innovation', 'nasal', 'samples', 'processes'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['aromatic', 'cancer', &quot;2'-o&quot;, 'herbal', 'quality'], ['health', 'clinical', 'data', 'disease', 'covid-19'], ['kim,', 'van', 'lee,', 'les', 'park,'], ['kim,', 'lee,', 'allergic', 'health', 'psoriasis'], ['delle', 'dei', 'lesions', 'loro', 'più'], ['respiratory', 'virus', 'viral', 'clinical', 'human']]
+k=9[['pig', 'innovation', 'samples', 'nasal', 'processes'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['aromatic', 'quality', &quot;2'-o&quot;, 'herbal', 'cancer'], ['laparoscopic', 'surgery', 'angle', 'femoral', 'surgical'], ['kim,', 'van', 'lee,', 'les', 'park,'], ['kim,', 'lee,', 'allergic', 'park,', 'choi,'], ['delle', 'dei', 'lesions', 'loro', 'più'], ['clinical', 'respiratory', 'disease', 'virus', 'health'], ['cerebral', 'map', '95%', 'cpb', 'autoregulation']]
+k=10[['pig', 'innovation', 'nasal', 'processes', 'samples'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['frameshifting', 'half', 'stem-loop', 'aromatic', 'top'], ['kim,', 'lee,', 'park,', 'cardiac', 'allergic'], ['les', 'kim,', 'te', 'sie', 'van'], ['kim,', 'lee,', 'allergic', 'park,', 'psoriasis'], ['delle', 'dei', 'lesions', 'loro', 'più'], ['ultrasound', 'respiratory', 'virus', 'human', 'carotid'], ['cerebral', 'map', '95%', 'autoregulation', 'cpb'], ['clinical', 'respiratory', 'disease', 'health', 'virus']]
+k=11[['pig', 'innovation', 'nasal', 'processes', 'samples'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['aromatic', &quot;2'-o&quot;, 'herbal', 'cancer', 'quality'], ['kim,', 'lee,', 'park,', 'allergic', 'atopic'], ['les', 'liver', 'sie', 'die', 'acute'], ['kim,', 'lee,', 'allergic', 'park,', 'choi,'], ['delle', 'dei', 'lesions', 'loro', 'più'], ['carotid', 'endovascular', 'occluded', 'ultrasound', 'infections'], ['plastic', 'pressure', 'cerebral', 'main', '95%'], ['respiratory', 'disease', 'clinical', 'virus', 'health'], ['clinical', 'methods', 'laparoscopic', 'performed', 'associated']]
+k=12[['pig', 'innovation', 'nasal', 'processes', 'samples'], ['kim,', 'lee,', 'park,', 'allergic', 'young'], ['aromatic', &quot;2'-o&quot;, 'region', 'conserved', 'mrna'], ['kim,', 'lee,', 'park,', 'allergic', 'atopic'], ['les', 'sie', 'die', 'liver', 'acute'], ['kim,', 'lee,', 'allergic', 'park,', 'choi,'], ['delle', 'dei', 'lesions', 'loro', 'più'], ['carotid', 'endovascular', 'ultrasound', 'occluded', 'guidance'], ['plastic', 'sars-cov-2', 'reaction', 'main', 'inhibitors'], ['virus', 'viral', 'disease', 'cell', 'human'], ['laparoscopic', 'methods', 'surgery', 'treatment', 'surgical'], ['health', 'clinical', 'respiratory', 'severe', 'covid-19']]
+</code></pre>
+
+
+
+
+<h4 id="evaluation-using-complete-dataset">Evaluation using complete dataset
+  <a href="#evaluation-using-complete-dataset"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Evaluation of the chosen LDA model using the df_noNull dataset</span>
+</span></span></code></pre></div>
+
+
+
+<h4 id="model-construction-1">Model Construction
+  <a href="#model-construction-1"></a>
+</h4>
+
+
+
+
+<h4 id="tokenize">Tokenize
+  <a href="#tokenize"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Tokenize using FULL DATASET</span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#000;font-weight:bold">=</span> Tokenizer(inputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;abstract&#39;</span>,outputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;words&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tokenized <span style="color:#000;font-weight:bold">=</span> tokenizer<span style="color:#000;font-weight:bold">.</span>transform(df_noNull)
+</span></span><span style="display:flex;"><span>tokenized<span style="color:#000;font-weight:bold">.</span>show(<span style="color:#099">2</span>)
+</span></span></code></pre></div><pre><code>+--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+
+|cord_uid|                 sha|source_x|               title|                 doi|   pmcid|pubmed_id|license|            abstract|publish_time|             authors|       journal|mag_id|who_covidence_id|arxiv_id|      pdf_json_files|      pmc_json_files|                 url|s2_id|               words|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+
+|ug7v899j|d1aafb70c066a2068...|     PMC|Clinical features...|10.1186/1471-2334...|PMC35282| 11472636|  no-cc|OBJECTIVE: This r...|  2001-07-04|Madani, Tariq A; ...|BMC Infect Dis|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|[objective:, this...|
+|02tnwd4m|6b0567729c2143a66...|     PMC|Nitric oxide: a p...|        10.1186/rr14|PMC59543| 11667967|  no-cc|Inflammatory dise...|  2000-08-15|Vliet, Albert van...|    Respir Res|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|[inflammatory, di...|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+
+only showing top 2 rows
+</code></pre>
+
+
+
+
+<h4 id="stopword-remover">StopWord Remover
+  <a href="#stopword-remover"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.feature</span> <span style="color:#000;font-weight:bold">import</span> StopWordsRemover
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Remove stopwords</span>
+</span></span><span style="display:flex;"><span>stopwordList<span style="color:#000;font-weight:bold">.</span>extend(StopWordsRemover()<span style="color:#000;font-weight:bold">.</span>getStopWords())
+</span></span><span style="display:flex;"><span>stopwordList2 <span style="color:#000;font-weight:bold">=</span> <span style="color:#0086b3">list</span>(<span style="color:#0086b3">set</span>(stopwordList))
+</span></span><span style="display:flex;"><span>stopwords <span style="color:#000;font-weight:bold">=</span> StopWordsRemover(inputCol<span style="color:#000;font-weight:bold">=</span>tokenizer<span style="color:#000;font-weight:bold">.</span>getOutputCol(), outputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;input_stop&#34;</span>,stopWords<span style="color:#000;font-weight:bold">=</span>stopwordList2)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>removed <span style="color:#000;font-weight:bold">=</span> stopwords<span style="color:#000;font-weight:bold">.</span>transform(tokenized)
+</span></span><span style="display:flex;"><span>removed<span style="color:#000;font-weight:bold">.</span>show(<span style="color:#099">2</span>)
+</span></span></code></pre></div><pre><code>+--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+--------------------+
+|cord_uid|                 sha|source_x|               title|                 doi|   pmcid|pubmed_id|license|            abstract|publish_time|             authors|       journal|mag_id|who_covidence_id|arxiv_id|      pdf_json_files|      pmc_json_files|                 url|s2_id|               words|          input_stop|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+--------------------+
+|ug7v899j|d1aafb70c066a2068...|     PMC|Clinical features...|10.1186/1471-2334...|PMC35282| 11472636|  no-cc|OBJECTIVE: This r...|  2001-07-04|Madani, Tariq A; ...|BMC Infect Dis|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|[objective:, this...|[objective:, retr...|
+|02tnwd4m|6b0567729c2143a66...|     PMC|Nitric oxide: a p...|        10.1186/rr14|PMC59543| 11667967|  no-cc|Inflammatory dise...|  2000-08-15|Vliet, Albert van...|    Respir Res|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|[inflammatory, di...|[inflammatory, di...|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+--------------------+
+only showing top 2 rows
+</code></pre>
+
+
+
+
+<h4 id="countvectorizer">CountVectorizer
+  <a href="#countvectorizer"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.feature</span> <span style="color:#000;font-weight:bold">import</span> CountVectorizer
+</span></span><span style="display:flex;"><span>cv <span style="color:#000;font-weight:bold">=</span> CountVectorizer(inputCol<span style="color:#000;font-weight:bold">=</span>stopwords<span style="color:#000;font-weight:bold">.</span>getOutputCol(), outputCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;features&#34;</span>)
+</span></span><span style="display:flex;"><span>cv_model <span style="color:#000;font-weight:bold">=</span> cv<span style="color:#000;font-weight:bold">.</span>fit(removed)
+</span></span><span style="display:flex;"><span>result <span style="color:#000;font-weight:bold">=</span> cv_model<span style="color:#000;font-weight:bold">.</span>transform(removed)
+</span></span><span style="display:flex;"><span>result<span style="color:#000;font-weight:bold">.</span>show(<span style="color:#099">2</span>)
+</span></span></code></pre></div><pre><code>+--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+--------------------+--------------------+
+|cord_uid|                 sha|source_x|               title|                 doi|   pmcid|pubmed_id|license|            abstract|publish_time|             authors|       journal|mag_id|who_covidence_id|arxiv_id|      pdf_json_files|      pmc_json_files|                 url|s2_id|               words|          input_stop|            features|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+--------------------+--------------------+
+|ug7v899j|d1aafb70c066a2068...|     PMC|Clinical features...|10.1186/1471-2334...|PMC35282| 11472636|  no-cc|OBJECTIVE: This r...|  2001-07-04|Madani, Tariq A; ...|BMC Infect Dis|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|[objective:, this...|[objective:, retr...|(262144,[1,3,5,8,...|
+|02tnwd4m|6b0567729c2143a66...|     PMC|Nitric oxide: a p...|        10.1186/rr14|PMC59543| 11667967|  no-cc|Inflammatory dise...|  2000-08-15|Vliet, Albert van...|    Respir Res|  null|            null|    null|document_parses/p...|document_parses/p...|https://www.ncbi....| null|[inflammatory, di...|[inflammatory, di...|(262144,[1,4,13,3...|
++--------+--------------------+--------+--------------------+--------------------+--------+---------+-------+--------------------+------------+--------------------+--------------+------+----------------+--------+--------------------+--------------------+--------------------+-----+--------------------+--------------------+--------------------+
+only showing top 2 rows
+</code></pre>
+
+
+
+
+<h4 id="model-evaluation-1">Model Evaluation
+  <a href="#model-evaluation-1"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Train LDA model</span>
+</span></span><span style="display:flex;"><span>lda <span style="color:#000;font-weight:bold">=</span> LDA(k<span style="color:#000;font-weight:bold">=</span><span style="color:#099">2</span>, featuresCol<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;features&#39;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Pipeline</span>
+</span></span><span style="display:flex;"><span>pipeline <span style="color:#000;font-weight:bold">=</span> Pipeline(stages<span style="color:#000;font-weight:bold">=</span>[tokenizer, stopwords, cv, lda])
+</span></span><span style="display:flex;"><span>pipelineModel <span style="color:#000;font-weight:bold">=</span> pipeline<span style="color:#000;font-weight:bold">.</span>fit(df_noNull)
+</span></span></code></pre></div>
+
+
+
+<h4 id="topic-clusters-1">Topic Clusters
+  <a href="#topic-clusters-1"></a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>topivocab <span style="color:#000;font-weight:bold">=</span> pipelineModel<span style="color:#000;font-weight:bold">.</span>stages[<span style="color:#099">2</span>]<span style="color:#000;font-weight:bold">.</span>vocabulary
+</span></span><span style="display:flex;"><span>topics <span style="color:#000;font-weight:bold">=</span> pipelineModel<span style="color:#000;font-weight:bold">.</span>stages[<span style="color:#099">3</span>]<span style="color:#000;font-weight:bold">.</span>describeTopics(<span style="color:#099">5</span>)
+</span></span><span style="display:flex;"><span>topics_rdd <span style="color:#000;font-weight:bold">=</span> topics<span style="color:#000;font-weight:bold">.</span>rdd
+</span></span><span style="display:flex;"><span>topics_words <span style="color:#000;font-weight:bold">=</span> topics_rdd\
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">.</span>map(<span style="color:#000;font-weight:bold">lambda</span> row: row[<span style="color:#d14">&#39;termIndices&#39;</span>])\
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">.</span>map(<span style="color:#000;font-weight:bold">lambda</span> idx_list: [topivocab[idx] <span style="color:#000;font-weight:bold">for</span> idx <span style="color:#000;font-weight:bold">in</span> idx_list])\
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">.</span>collect()
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">for</span> idx, topic <span style="color:#000;font-weight:bold">in</span> <span style="color:#0086b3">enumerate</span>(topics_words):
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;topic: &#34;</span>, idx)
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;----------&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">for</span> word <span style="color:#000;font-weight:bold">in</span> topic:
+</span></span><span style="display:flex;"><span>        <span style="color:#0086b3">print</span>(word)
+</span></span><span style="display:flex;"><span>        <span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;----------&#34;</span>)
+</span></span></code></pre></div><pre><code>topic:  0
+----------
+respiratory
+----------
+clinical
+----------
+disease
+----------
+health
+----------
+infection
+----------
+topic:  1
+----------
+virus
+----------
+viral
+----------
+protein
+----------
+rna
+----------
+cells
+----------
+</code></pre>
+
+
+
+
+<h2 id="classification-modeling-and-prediction">Classification Modeling and Prediction
+  <a href="#classification-modeling-and-prediction"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h2>
+
+
+
+
+<h3 id="data-cleaning-and-extraction">Data Cleaning and Extraction
+  <a href="#data-cleaning-and-extraction"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Dataframe Structure&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;----------------------------------&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(data_clean<span style="color:#000;font-weight:bold">.</span>printSchema())
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Dataframe preview&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(data_clean<span style="color:#000;font-weight:bold">.</span>show(<span style="color:#099">5</span>))
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;----------------------------------&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Total number of rows&#39;</span>, data_clean<span style="color:#000;font-weight:bold">.</span>count())
+</span></span></code></pre></div><pre><code>Dataframe Structure
+----------------------------------
+root
+ |-- Journal: string (nullable = true)
+ |-- Abstract: string (nullable = true)
+ |-- Publish_Time: string (nullable = true)
+
+None
+ 
+Dataframe preview
++--------------+--------------------+------------+
+|       Journal|            Abstract|Publish_Time|
++--------------+--------------------+------------+
+|bmc infect dis|objective: this r...|  2001-07-04|
+|    respir res|inflammatory dise...|  2000-08-15|
+|    respir res|surfactant protei...|  2000-08-25|
+|    respir res|endothelin-1 (et-...|  2001-02-22|
+|    respir res|respiratory syncy...|  2001-05-11|
++--------------+--------------------+------------+
+only showing top 5 rows
+
+None
+ 
+----------------------------------
+Total number of rows 100998
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">def</span> <span style="color:#900;font-weight:bold">top_n_list</span>(df,var, N):
+</span></span><span style="display:flex;"><span>    <span style="color:#d14">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#d14">    This function determine the top N numbers of the list
+</span></span></span><span style="display:flex;"><span><span style="color:#d14">    &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;Total number of unique value of&#34;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#39; &#39;</span><span style="color:#000;font-weight:bold">+</span>var<span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#39;&#39;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#39;:&#39;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#39; &#39;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#0086b3">str</span>(df<span style="color:#000;font-weight:bold">.</span>select(var)<span style="color:#000;font-weight:bold">.</span>distinct()<span style="color:#000;font-weight:bold">.</span>count()))
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;Top&#39;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#39; &#39;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#0086b3">str</span>(N)<span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#39; &#39;</span><span style="color:#000;font-weight:bold">+</span><span style="color:#d14">&#39; &#39;</span><span style="color:#000;font-weight:bold">+</span>var)
+</span></span><span style="display:flex;"><span>    df<span style="color:#000;font-weight:bold">.</span>groupBy(var)<span style="color:#000;font-weight:bold">.</span>count()<span style="color:#000;font-weight:bold">.</span>withColumnRenamed(<span style="color:#d14">&#39;count&#39;</span>,<span style="color:#d14">&#39;totalValue&#39;</span>)\
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">.</span>orderBy(col(<span style="color:#d14">&#39;totalValue&#39;</span>)<span style="color:#000;font-weight:bold">.</span>desc())<span style="color:#000;font-weight:bold">.</span>show(N)
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">return</span> (df<span style="color:#000;font-weight:bold">.</span>groupBy(var)<span style="color:#000;font-weight:bold">.</span>count()<span style="color:#000;font-weight:bold">.</span>withColumnRenamed(<span style="color:#d14">&#39;count&#39;</span>,<span style="color:#d14">&#39;totalValue&#39;</span>)\
+</span></span><span style="display:flex;"><span>    <span style="color:#000;font-weight:bold">.</span>orderBy(col(<span style="color:#d14">&#39;totalValue&#39;</span>)<span style="color:#000;font-weight:bold">.</span>desc()))
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>top_journals <span style="color:#000;font-weight:bold">=</span> top_n_list(data_clean, <span style="color:#d14">&#39;Journal&#39;</span>,<span style="color:#099">100</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span></code></pre></div><pre><code>Total number of unique value of Journal: 15400
+ 
+Top 100  Journal
++--------------------+----------+
+|             Journal|totalValue|
++--------------------+----------+
+|            plos one|      1974|
+| journal of virology|      1567|
+|            virology|      1273|
+|             biorxiv|      1202|
+|  surgical endoscopy|       823|
+|             sci rep|       758|
+|             viruses|       678|
+|          arch virol|       633|
+|    emerg infect dis|       606|
+|      virus research|       580|
+|the journal of ge...|       574|
+|             vaccine|       517|
+|veterinary microb...|       500|
+|journal of virolo...|       446|
+|         j med virol|       404|
+|             virol j|       398|
+|      bmc infect dis|       377|
+|         plos pathog|       349|
+|emerging infectio...|       334|
+|journal of clinic...|       325|
+|              nature|       312|
+|  antiviral research|       311|
+|proceedings of th...|       278|
+|                 bmj|       277|
+|     obesity surgery|       275|
+|        j clin virol|       271|
+|        j infect dis|       265|
+|journal of neuroi...|       255|
+|     clin infect dis|       255|
+|journal of medica...|       252|
+|ajnr. american jo...|       250|
+|american journal ...|       241|
+|       front immunol|       237|
+|archives of virology|       229|
+|biochemical and b...|       228|
+|    int j infect dis|       226|
+|            bmj open|       219|
+|         virus genes|       218|
+|     front microbiol|       211|
+|   bmc public health|       206|
+|              stroke|       201|
+|hernia : the jour...|       197|
+|surgical laparosc...|       197|
+|   nucleic acids res|       194|
+|             science|       193|
+|mmwr. morbidity a...|       191|
+|journal of veteri...|       189|
+|           crit care|       185|
+|       j. med. virol|       185|
+|  intensive care med|       181|
+|  scientific reports|       181|
+|    respiratory care|       179|
+|         bmc vet res|       178|
+|influenza other r...|       166|
+|advances in exper...|       164|
+|jsls : journal of...|       164|
+|            j infect|       163|
+|  systematic reviews|       159|
+|veterinary immuno...|       158|
+|the pediatric inf...|       158|
+|               chest|       157|
+|              lancet|       157|
+|the journal of bi...|       156|
+|the journal of in...|       155|
+|      avian diseases|       153|
+|                mbio|       149|
+|cardiovascular an...|       149|
+|  plos negl trop dis|       148|
+|clinical infectio...|       147|
+|advances in infor...|       144|
+|emerg microbes in...|       144|
+|     j virol methods|       143|
+|       int j mol sci|       139|
+|                cell|       138|
+|eur j clin microb...|       136|
+|advances in knowl...|       135|
+|journal of feline...|       132|
+|   sci total environ|       132|
+|open forum infect...|       130|
+|          the lancet|       130|
+|journal of laparo...|       129|
+|           molecules|       129|
+|int j environ res...|       128|
+|world journal of ...|       127|
+| surgical innovation|       121|
+|the cochrane data...|       117|
+|          nat commun|       116|
+|           virus res|       111|
+|american journal ...|       109|
+|journal of gastro...|       108|
+|journal of hospit...|       107|
+|journal of wildli...|       107|
+|interventional ne...|       105|
+|             vet res|       105|
+|       critical care|       104|
+|            medicine|       102|
+|critical care med...|       102|
+|           radiology|       101|
+|revue scientifiqu...|       100|
+|         res vet sci|        98|
++--------------------+----------+
+only showing top 100 rows
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>top_10 <span style="color:#000;font-weight:bold">=</span> [<span style="color:#d14">&#34;plos one&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;journal of virology&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;virology&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;biorxiv&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;surgical endoscopy&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;sci rep&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;viruses&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;arch virol&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;emerg infect dis&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;virus research&#34;</span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>top_100 <span style="color:#000;font-weight:bold">=</span> top_journals<span style="color:#000;font-weight:bold">.</span>select(<span style="color:#d14">&#39;Journal&#39;</span>)<span style="color:#000;font-weight:bold">.</span>rdd<span style="color:#000;font-weight:bold">.</span>map(<span style="color:#000;font-weight:bold">lambda</span> entry : entry[<span style="color:#099">0</span>])<span style="color:#000;font-weight:bold">.</span>collect()[:<span style="color:#099">100</span>]
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">F</span>
+</span></span><span style="display:flex;"><span>data_top100 <span style="color:#000;font-weight:bold">=</span> data_clean<span style="color:#000;font-weight:bold">.</span>filter(F<span style="color:#000;font-weight:bold">.</span>col(<span style="color:#d14">&#34;Journal&#34;</span>)<span style="color:#000;font-weight:bold">.</span>isin(top_100))
+</span></span></code></pre></div>
+
+
+
+<h3 id="partition-the-dataset-into-training-and-test-dataset">Partition the dataset into Training and Test dataset
+  <a href="#partition-the-dataset-into-training-and-test-dataset"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>training, test <span style="color:#000;font-weight:bold">=</span> data_top100<span style="color:#000;font-weight:bold">.</span>randomSplit([<span style="color:#099">0.7</span>,<span style="color:#099">0.3</span>], seed<span style="color:#000;font-weight:bold">=</span><span style="color:#099">42</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;Training Dataset Count:&#34;</span>, training<span style="color:#000;font-weight:bold">.</span>count())
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#34;Test Dataset Count:&#34;</span>, test<span style="color:#000;font-weight:bold">.</span>count())
+</span></span></code></pre></div><pre><code>Training Dataset Count: 19698
+Test Dataset Count: 8319
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.feature</span> <span style="color:#000;font-weight:bold">import</span> RegexTokenizer, StopWordsRemover, CountVectorizer, OneHotEncoder, StringIndexer, VectorAssembler, HashingTF, IDF, Word2Vec
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml</span> <span style="color:#000;font-weight:bold">import</span> Pipeline
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.classification</span> <span style="color:#000;font-weight:bold">import</span> LogisticRegression, NaiveBayes 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#----------------Define tokenizer with regextokenizer()------------------</span>
+</span></span><span style="display:flex;"><span>regex_tokenizer <span style="color:#000;font-weight:bold">=</span> RegexTokenizer(pattern<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;</span><span style="color:#d14">\\</span><span style="color:#d14">W&#39;</span>)\
+</span></span><span style="display:flex;"><span>                  <span style="color:#000;font-weight:bold">.</span>setInputCol(<span style="color:#d14">&#34;Abstract&#34;</span>)\
+</span></span><span style="display:flex;"><span>                  <span style="color:#000;font-weight:bold">.</span>setOutputCol(<span style="color:#d14">&#34;tokens&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#----------------Define stopwords with stopwordsremover()---------------------</span>
+</span></span><span style="display:flex;"><span>extra_stopwords <span style="color:#000;font-weight:bold">=</span> [<span style="color:#d14">&#39;http&#39;</span>,<span style="color:#d14">&#39;amp&#39;</span>,<span style="color:#d14">&#39;rt&#39;</span>,<span style="color:#d14">&#39;t&#39;</span>,<span style="color:#d14">&#39;c&#39;</span>,<span style="color:#d14">&#39;the&#39;</span>]
+</span></span><span style="display:flex;"><span>stopwords_remover <span style="color:#000;font-weight:bold">=</span> StopWordsRemover()\
+</span></span><span style="display:flex;"><span>                    <span style="color:#000;font-weight:bold">.</span>setInputCol(<span style="color:#d14">&#39;tokens&#39;</span>)\
+</span></span><span style="display:flex;"><span>                    <span style="color:#000;font-weight:bold">.</span>setOutputCol(<span style="color:#d14">&#39;filtered_words&#39;</span>)\
+</span></span><span style="display:flex;"><span>                    <span style="color:#000;font-weight:bold">.</span>setStopWords(extra_stopwords)
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#----------Define bags of words using countVectorizer()---------------------------</span>
+</span></span><span style="display:flex;"><span>count_vectors <span style="color:#000;font-weight:bold">=</span> CountVectorizer(vocabSize<span style="color:#000;font-weight:bold">=</span><span style="color:#099">10000</span>, minDF<span style="color:#000;font-weight:bold">=</span><span style="color:#099">5</span>)\
+</span></span><span style="display:flex;"><span>               <span style="color:#000;font-weight:bold">.</span>setInputCol(<span style="color:#d14">&#34;filtered_words&#34;</span>)\
+</span></span><span style="display:flex;"><span>               <span style="color:#000;font-weight:bold">.</span>setOutputCol(<span style="color:#d14">&#34;features&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#-----------Using TF-IDF to vectorise features instead of countVectoriser-----------------</span>
+</span></span><span style="display:flex;"><span>hashingTf <span style="color:#000;font-weight:bold">=</span> HashingTF(numFeatures<span style="color:#000;font-weight:bold">=</span><span style="color:#099">10000</span>)\
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">.</span>setInputCol(<span style="color:#d14">&#34;filtered_words&#34;</span>)\
+</span></span><span style="display:flex;"><span>            <span style="color:#000;font-weight:bold">.</span>setOutputCol(<span style="color:#d14">&#34;raw_features&#34;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Use minDocFreq to remove sparse terms</span>
+</span></span><span style="display:flex;"><span>idf <span style="color:#000;font-weight:bold">=</span> IDF(minDocFreq<span style="color:#000;font-weight:bold">=</span><span style="color:#099">5</span>)\
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">.</span>setInputCol(<span style="color:#d14">&#34;raw_features&#34;</span>)\
+</span></span><span style="display:flex;"><span>        <span style="color:#000;font-weight:bold">.</span>setOutputCol(<span style="color:#d14">&#34;features&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#---------------Define bag of words using Word2Vec---------------------------</span>
+</span></span><span style="display:flex;"><span>word2Vec <span style="color:#000;font-weight:bold">=</span> Word2Vec(vectorSize<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1000</span>, minCount<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>)\
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">.</span>setInputCol(<span style="color:#d14">&#34;filtered_words&#34;</span>)\
+</span></span><span style="display:flex;"><span>           <span style="color:#000;font-weight:bold">.</span>setOutputCol(<span style="color:#d14">&#34;features&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#-----------Encode the Category variable into label using StringIndexer-----------</span>
+</span></span><span style="display:flex;"><span>label_string_idx <span style="color:#000;font-weight:bold">=</span> StringIndexer()\
+</span></span><span style="display:flex;"><span>                  <span style="color:#000;font-weight:bold">.</span>setInputCol(<span style="color:#d14">&#34;Journal&#34;</span>)\
+</span></span><span style="display:flex;"><span>                  <span style="color:#000;font-weight:bold">.</span>setOutputCol(<span style="color:#d14">&#34;label&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#-----------Define classifier structure for logistic Regression--------------</span>
+</span></span><span style="display:flex;"><span>lr <span style="color:#000;font-weight:bold">=</span> LogisticRegression(maxIter<span style="color:#000;font-weight:bold">=</span><span style="color:#099">20</span>, regParam<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0.3</span>, elasticNetParam<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#---------Define classifier structure for Naive Bayes----------</span>
+</span></span><span style="display:flex;"><span>nb <span style="color:#000;font-weight:bold">=</span> NaiveBayes(smoothing<span style="color:#000;font-weight:bold">=</span><span style="color:#099">1</span>)
+</span></span></code></pre></div><ul>
+<li>
+<p>Define tokenization function using RegexTokenizer: RegexTokenizer allows more advanced tokenization based on regular expression (regex) matching. By  default, the parameter “pattern” (regex,  default: “\s+”) is used as delimiters to split the input text. Alternatively, users can set parameter “gaps” to false indicating the regex “pattern” denotes “tokens” rather than splitting gaps, and find all matching occurrences as the tokenization result.</p>
+</li>
+<li>
+<p>Define stop remover function using StopWordsRemover: StopWordsRemover takes as input a sequence of strings (e.g. the output of a Tokenizer) and drops all the stop words from the input sequences. The list of stopwords is specified by the stopWords parameter.</p>
+</li>
+<li>
+<p>Define bag of words function for Descript variable using CountVectorizer: CountVectorizer can be used as an estimator to extract the vocabulary, and generates a CountVectorizerModel. The model produces sparse representations for the documents over the vocabulary, which can then be passed to other algorithms like LDA. During the fitting process, CountVectorizer will select the top vocabSize words ordered by term frequency across the corpus. An optional parameter minDF also affects the fitting process by specifying the minimum number (or fraction if &lt; 1.0) of documents a term must appear in to be included in the vocabulary.</p>
+</li>
+<li>
+<p>Define function to Encode the values of category variable using StringIndexer: StringIndexer encodes a string column of labels to a column of label indices. The indices are in (0, numLabels), ordered by label frequencies, so the most frequent label gets index 0. In our case, the label colum(Category) will be encoded to label indices, from 0 to 38; the most frequent label (LARCENY/THEFT) will be indexed as 0.</p>
+</li>
+<li>
+<p>Define a pipeline to call these functions: ML Pipelines provide a uniform set of high-level APIs built on top of DataFrames that help users create and tune practical machine learning pipelines.</p>
+</li>
+</ul>
+
+
+
+
+<h3 id="distribution-of-number-of-papers-in-the-top-10-journals">Distribution of Number of Papers in the Top 10 Journals
+  <a href="#distribution-of-number-of-papers-in-the-top-10-journals"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.sql.functions</span> <span style="color:#000;font-weight:bold">import</span> desc
+</span></span><span style="display:flex;"><span>data_viz <span style="color:#000;font-weight:bold">=</span> data_top10<span style="color:#000;font-weight:bold">.</span>groupby(<span style="color:#d14">&#39;journal&#39;</span>)<span style="color:#000;font-weight:bold">.</span>count()<span style="color:#000;font-weight:bold">.</span>orderBy(desc(<span style="color:#d14">&#39;count&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">%</span>matplotlib inline
+</span></span><span style="display:flex;"><span><span style="color:#000;font-weight:bold">import</span> <span style="color:#555">matplotlib.pyplot</span> <span style="color:#000;font-weight:bold">as</span> <span style="color:#555">plt</span>
+</span></span><span style="display:flex;"><span>plt<span style="color:#000;font-weight:bold">.</span>style<span style="color:#000;font-weight:bold">.</span>use(<span style="color:#d14">&#39;ggplot&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df_pd <span style="color:#000;font-weight:bold">=</span> data_viz<span style="color:#000;font-weight:bold">.</span>toPandas()
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_pd<span style="color:#000;font-weight:bold">.</span>plot<span style="color:#000;font-weight:bold">.</span>bar(x<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;journal&#39;</span>, y<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#39;count&#39;</span>, rot<span style="color:#000;font-weight:bold">=</span><span style="color:#099">0</span>, stacked<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">True</span>)
+</span></span><span style="display:flex;"><span>plt<span style="color:#000;font-weight:bold">.</span>xticks(rotation<span style="color:#000;font-weight:bold">=</span><span style="color:#099">90</span>)
+</span></span></code></pre></div><pre><code>(array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), &lt;a list of 10 Text xticklabel objects&gt;)
+</code></pre>
+<p><img src="Group3_FinalCode_files/Group3_FinalCode_73_1.png" alt="png"></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>data_top10 <span style="color:#000;font-weight:bold">=</span> data_clean<span style="color:#000;font-weight:bold">.</span>filter(F<span style="color:#000;font-weight:bold">.</span>col(<span style="color:#d14">&#34;Journal&#34;</span>)<span style="color:#000;font-weight:bold">.</span>isin(top_10))
+</span></span></code></pre></div>
+
+
+
+<h3 id="baseline-model-logistic-regression-with-count-vector-features">BASELINE MODEL Logistic Regression with Count Vector Features
+  <a href="#baseline-model-logistic-regression-with-count-vector-features"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pipeline_cv_lr <span style="color:#000;font-weight:bold">=</span> Pipeline()<span style="color:#000;font-weight:bold">.</span>setStages([regex_tokenizer,stopwords_remover,count_vectors,label_string_idx, lr])
+</span></span><span style="display:flex;"><span>model_cv_lr <span style="color:#000;font-weight:bold">=</span> pipeline_cv_lr<span style="color:#000;font-weight:bold">.</span>fit(training)
+</span></span><span style="display:flex;"><span>predictions_cv_lr <span style="color:#000;font-weight:bold">=</span> model_cv_lr<span style="color:#000;font-weight:bold">.</span>transform(test)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;-----------------------------Check Top 5 predictions----------------------------------&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span>predictions_cv_lr<span style="color:#000;font-weight:bold">.</span>select(<span style="color:#d14">&#39;Abstract&#39;</span>,<span style="color:#d14">&#39;Journal&#39;</span>,<span style="color:#d14">&#34;probability&#34;</span>,<span style="color:#d14">&#34;label&#34;</span>,<span style="color:#d14">&#34;prediction&#34;</span>)\
+</span></span><span style="display:flex;"><span>                                        <span style="color:#000;font-weight:bold">.</span>orderBy(<span style="color:#d14">&#34;probability&#34;</span>, ascending<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">False</span>)\
+</span></span><span style="display:flex;"><span>                                        <span style="color:#000;font-weight:bold">.</span>show(n<span style="color:#000;font-weight:bold">=</span><span style="color:#099">5</span>, truncate<span style="color:#000;font-weight:bold">=</span><span style="color:#099">30</span>)
+</span></span></code></pre></div><pre><code>-----------------------------Check Top 5 predictions----------------------------------
+ 
++------------------------------+--------+------------------------------+-----+----------+
+|                      Abstract| Journal|                   probability|label|prediction|
++------------------------------+--------+------------------------------+-----+----------+
+|background: the white backe...|plos one|[0.8865895210202326,0.00232...|  0.0|       0.0|
+|the epithelial-mesenchymal ...|plos one|[0.8811483028847181,0.00190...|  0.0|       0.0|
+|background: it is a commonl...|plos one|[0.8291103648226354,0.00362...|  0.0|       0.0|
+|transcription factor 7-like...| biorxiv|[0.8091226923933745,0.01012...|  3.0|       0.0|
+|andalusia (southern spain) ...|plos one|[0.8018967425747101,0.00217...|  0.0|       0.0|
++------------------------------+--------+------------------------------+-----+----------+
+only showing top 5 rows
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#000;font-weight:bold">from</span> <span style="color:#555">pyspark.ml.evaluation</span> <span style="color:#000;font-weight:bold">import</span> MulticlassClassificationEvaluator 
+</span></span><span style="display:flex;"><span>evaluator_cv_lr <span style="color:#000;font-weight:bold">=</span> MulticlassClassificationEvaluator()<span style="color:#000;font-weight:bold">.</span>setPredictionCol(<span style="color:#d14">&#34;prediction&#34;</span>)<span style="color:#000;font-weight:bold">.</span>evaluate(predictions_cv_lr)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;------------------------------Accuracy----------------------------------&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;                       accuracy:</span><span style="color:#d14">{}</span><span style="color:#d14">:&#39;</span><span style="color:#000;font-weight:bold">.</span>format(evaluator_cv_lr))
+</span></span></code></pre></div><pre><code>------------------------------Accuracy----------------------------------
+ 
+                       accuracy:0.3049739185075633:
+</code></pre>
+
+
+
+
+<h3 id="baseline-model-naive-bayes-with-count-vector-features">BASELINE MODEL Naive Bayes with Count Vector Features
+  <a href="#baseline-model-naive-bayes-with-count-vector-features"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pipeline_cv_nb <span style="color:#000;font-weight:bold">=</span> Pipeline()<span style="color:#000;font-weight:bold">.</span>setStages([regex_tokenizer,stopwords_remover,count_vectors,label_string_idx, nb])
+</span></span><span style="display:flex;"><span>model_cv_nb <span style="color:#000;font-weight:bold">=</span> pipeline_cv_nb<span style="color:#000;font-weight:bold">.</span>fit(training)
+</span></span><span style="display:flex;"><span>predictions_cv_nb <span style="color:#000;font-weight:bold">=</span> model_cv_nb<span style="color:#000;font-weight:bold">.</span>transform(test)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>evaluator_cv_nb <span style="color:#000;font-weight:bold">=</span> MulticlassClassificationEvaluator()<span style="color:#000;font-weight:bold">.</span>setPredictionCol(<span style="color:#d14">&#34;prediction&#34;</span>)<span style="color:#000;font-weight:bold">.</span>evaluate(predictions_cv_nb)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;--------------------------Accuracy-----------------------------&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;                      accuracy:</span><span style="color:#d14">{}</span><span style="color:#d14">:&#39;</span><span style="color:#000;font-weight:bold">.</span>format(evaluator_cv_nb))
+</span></span></code></pre></div><pre><code>--------------------------Accuracy-----------------------------
+ 
+                      accuracy:0.3206948342902863:
+</code></pre>
+
+
+
+
+<h3 id="logistic-regression-using-tf-idf-features">Logistic Regression Using TF-IDF Features
+  <a href="#logistic-regression-using-tf-idf-features"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pipeline_idf_lr <span style="color:#000;font-weight:bold">=</span> Pipeline()<span style="color:#000;font-weight:bold">.</span>setStages([regex_tokenizer,stopwords_remover,hashingTf, idf, label_string_idx, lr])
+</span></span><span style="display:flex;"><span>model_idf_lr <span style="color:#000;font-weight:bold">=</span> pipeline_idf_lr<span style="color:#000;font-weight:bold">.</span>fit(training)
+</span></span><span style="display:flex;"><span>predictions_idf_lr <span style="color:#000;font-weight:bold">=</span> model_idf_lr<span style="color:#000;font-weight:bold">.</span>transform(test)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>evaluator_idf_lr <span style="color:#000;font-weight:bold">=</span> MulticlassClassificationEvaluator()<span style="color:#000;font-weight:bold">.</span>setPredictionCol(<span style="color:#d14">&#34;prediction&#34;</span>)<span style="color:#000;font-weight:bold">.</span>evaluate(predictions_idf_lr)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;-------------------------------Accuracy---------------------------------&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;                        accuracy:</span><span style="color:#d14">{}</span><span style="color:#d14">:&#39;</span><span style="color:#000;font-weight:bold">.</span>format(evaluator_idf_lr))
+</span></span></code></pre></div><pre><code>-------------------------------Accuracy---------------------------------
+ 
+                        accuracy:0.26977707536164813:
+</code></pre>
+
+
+
+
+<h3 id="naive-bayes-with-tf-idf-features">Naive Bayes with TF-IDF Features
+  <a href="#naive-bayes-with-tf-idf-features"><svg class="anchor-symbol" aria-hidden="true" height="26" width="26" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h24v24H0z" fill="currentColor"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg></a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pipeline_idf_nb <span style="color:#000;font-weight:bold">=</span> Pipeline()<span style="color:#000;font-weight:bold">.</span>setStages([regex_tokenizer,stopwords_remover,hashingTf, idf, label_string_idx, nb])
+</span></span><span style="display:flex;"><span>model_idf_nb <span style="color:#000;font-weight:bold">=</span> pipeline_idf_nb<span style="color:#000;font-weight:bold">.</span>fit(training)
+</span></span><span style="display:flex;"><span>predictions_idf_nb <span style="color:#000;font-weight:bold">=</span> model_idf_nb<span style="color:#000;font-weight:bold">.</span>transform(test)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>evaluator_idf_nb <span style="color:#000;font-weight:bold">=</span> MulticlassClassificationEvaluator()<span style="color:#000;font-weight:bold">.</span>setPredictionCol(<span style="color:#d14">&#34;prediction&#34;</span>)<span style="color:#000;font-weight:bold">.</span>evaluate(predictions_idf_nb)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;-----------------------------Accuracy-----------------------------&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39; &#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#0086b3">print</span>(<span style="color:#d14">&#39;                          accuracy:</span><span style="color:#d14">{}</span><span style="color:#d14">:&#39;</span><span style="color:#000;font-weight:bold">.</span>format(evaluator_idf_nb))
+</span></span></code></pre></div><pre><code>-----------------------------Accuracy-----------------------------
+ 
+                          accuracy:0.32809008909122866:
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"></code></pre></div>
+      </section>
+      <footer class="post-footer">
+        <div class="post-pagination dt w-100 mt4 mb2">
+  
+  
+    <a class="prev dtc pr2 tl v-top fw6"
+    href="https://www.dina-arch.com/collection/machine_learning/">&larr; Machine Learning Course Project</a>
+  
+  
+  
+</div>
+
+      </footer>
+    </article>
+    
+  </section>
+</main>
+
+<aside class="page-sidebar" role="complementary">
+                         
+ 
+
+
+
+
+
+
+
+
+
+
+
+  <img src="/collection/featured-sidebar.jpg" class="db ma0">
+
+                         
+ 
+
+
+
+<div class="flex items-start sticky ph4 pb4 flex-row">
+  <div class="w-two-thirds w-50-l ph0">
+    <h2 class="mv3 f5 fw7 ttu tracked">
+      <a class="no-underline dim" href="/collection/">Outline</a></h2>
+    <nav id="SectionTableOfContents" aria-label="SectionTableOfContents">
+        <ul>
+        
+          
+          
+          
+          <details  class="">
+            <summary class="" hugo-nav="/collection/linear-models/"><a href="https://www.dina-arch.com/collection/linear-models/">Linear Models for Data Analysis</a></summary>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/01-data-cleaning/"><a href="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/">Lab 1: Data Screening and Cleaning</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/02-slr/"><a href="https://www.dina-arch.com/collection/linear-models/02-slr/">Lab 2: Simple Linear Regression</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/03-moderation/"><a href="https://www.dina-arch.com/collection/linear-models/03-moderation/">Lab 3: Moderation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/04-mediation/"><a href="https://www.dina-arch.com/collection/linear-models/04-mediation/">Lab 4: Mediation</a></li>
+            
+              
+              <li class="" hugo-nav="/collection/linear-models/05-blr/"><a href="https://www.dina-arch.com/collection/linear-models/05-blr/">Lab 5: Binary Logistic Regression</a></li>
+            
+          </details>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/intro-r-mplus/">
+            <a href="https://www.dina-arch.com/collection/intro-r-mplus/">Introduction to R, Mplus, and MplusAutomation</a></li>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/tips-and-tricks-in-r/">
+            <a href="https://www.dina-arch.com/collection/tips-and-tricks-in-r/">Data Wrangling in R</a></li>
+          
+          </li>
+        
+          
+          
+          <li class="" hugo-nav="/collection/machine_learning/">
+            <a href="https://www.dina-arch.com/collection/machine_learning/">Machine Learning Course Project</a></li>
+          
+          </li>
+        
+          
+          
+          <li class="active" hugo-nav="/collection/covid-19/final_code/">
+            <a href="https://www.dina-arch.com/collection/covid-19/final_code/"></a></li>
+          
+          </li>
+        
+        </ul>
+    </nav>
+  </div>
+  <details id="PageTableOfContents">
+    <summary><h2 class="mv0 f5 fw7 ttu tracked dib">On this page<h2></summary>
+    <div class="pl2 pr0 mh0">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#dina-arch-jeremy-knox-theo-velikov-roupen-khanjian">Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian</a></li>
+    <li><a href="#classification-modeling-and-prediction">Classification Modeling and Prediction</a></li>
+  </ul>
+</nav>
+    </div>
+  </details>
+  
+</div>
+
+</aside>
+
+<footer class="site-footer pv4 bt b--transparent ph5" role="contentinfo">
+  <nav class="db dt-l w-100">
+    <p class="site-copyright f7 db dtc-l v-mid w-100 w-33-l tc tl-l pv2 pv0-l mv0 lh-copy">
+      &copy; 2023 Dina Arch
+      <span class="middot-divider"></span>
+      Made with <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/hugo-apero/" rel="dct:source">Hugo Apéro</a></span>.
+      <br />
+      
+Based on <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/formspree/blogophonic-hugo" rel="dct:source">Blogophonic</a></span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://formspree.io" property="cc:attributionName" rel="cc:attributionURL">Formspree</a>.
+    </p>
+    
+    <div class="site-social-links db dtc-l v-mid w-100 w-33-l tc pv2 pv0-l mv0">
+      <div class="social-icon-links" aria-hidden="true">
+  
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="mailto:dnaji@ucsb.edu" title="envelope" >
+      <i class="fas fa-envelope fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://github.com/dinanajiarch" title="github" target="_blank" rel="noopener">
+      <i class="fab fa-github fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://twitter.com/dnajiarch" title="twitter" target="_blank" rel="noopener">
+      <i class="fab fa-twitter fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://www.linkedin.com/in/dina-naji-arch-22649396/" title="linkedin" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin fa-lg fa-fw"></i>
+    </a>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <a class="link dib h1 w1 ml0 mr2 f6 o-90 glow" href="https://orcid.org/0000-0002-2716-0798" title="orcid" target="_blank" rel="noopener">
+      <i class="ai ai-orcid fa-lg fa-fw"></i>
+    </a>
+  
+</div>
+
+    </div>
+    
+    <div class="site-links f6 db dtc-l v-mid w-100 w-67-l tc tr-l pv2 pv0-l mv0">
+      
+    </div>
+  </nav>
+  
+    <script>
+
+    var i, text, code, codes = document.getElementsByTagName('code');
+    for (let i = 0; i < codes.length;) {
+      code = codes[i];
+      if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+        text = code.textContent;
+        if (/^\$[^$]/.test(text) && /[^$]\$$/.test(text)) {
+          text = text.replace(/^\$/, '\\(').replace(/\$$/, '\\)');
+          code.textContent = text;
+        }
+        if (/^\\\((.|\s)+\\\)$/.test(text) ||
+            /^\\\[(.|\s)+\\\]$/.test(text) ||
+            /^\$(.|\s)+\$$/.test(text) ||
+            /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+          code.outerHTML = code.innerHTML;  
+          continue;
+        }
+      }
+      i++;
+    }
+</script>
+
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css" integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js" integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js" integrity="sha384-vZTG03m+2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
+
+
+    
+  
+  
+</footer>
+
+      </div>
+    </body>
+</html>
