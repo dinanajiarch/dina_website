@@ -3,6 +3,7 @@ title: "Introduction to R, Mplus, and MplusAutomation"
 date: 2022-03-28
 author: 'Dina Arch'
 subtitle: An overview of using the MplusAutomation package in R. 
+excerpt: An overview of using the MplusAutomation package in R.
 weight: 2
 draft: false
 images: 

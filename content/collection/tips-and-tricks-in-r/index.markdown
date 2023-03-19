@@ -3,6 +3,7 @@ title: "Data Wrangling in R"
 date: 2021-12-14
 author: 'Dina Arch'
 subtitle: A series of functions that could be useful when preparing your dataset for analysis.
+excerpt: A series of R functions that could be useful when preparing your dataset for analysis.
 weight: 3
 draft: false
 images: 

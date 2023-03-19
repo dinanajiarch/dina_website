@@ -3,6 +3,7 @@ title: "Machine Learning Course Project"
 date: 2021-05-06
 author: 'Dina Arch'
 subtitle: Completion of a final project for PSTAT 231 at UC Santa Barbara.
+excerpt: The final Machine Learning project that covers visualization, exploratory analysis, and classification techniques using R. 
 weight: 4
 draft: false
 images: 

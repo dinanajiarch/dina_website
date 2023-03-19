@@ -13,7 +13,7 @@ cascade:
     text_link_url: "https://twitter.com/allison_horst"
     text_series_label: Outline
     title: A series of Markdowns
-description: "Here you can find projects I have worked as a graduate student at UC Santa Barbara."
+description: "Here you can find projects using R and Python I have worked as a graduate student at UC Santa Barbara."
 layout: list-sidebar
 show_author_byline: false
 show_post_date: true

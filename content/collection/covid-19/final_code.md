@@ -3,6 +3,7 @@ title: "Big Data Analytics Course Project"
 date: 2020-12-11
 author: 'Dina Arch'
 subtitle: A collaborative project for Big Data Analytics at UC Santa Barbara using COVID-19 data.
+excerpt: This project used Natural Language Processing (NLP) techniques to analyze the text from the abstracts within the CORD-19 dataset and used Machine Learning methods to train and fit models. Specifically, Latent Dirichlet Allocation was used to see what topics are described in the abstracts of these papers. Logistic Regression and Naïve Bayes were used in conjunction with some NLP and machine learning techniques to predict Journal based on the text from the abstracts.
 weight: 4
 draft: false
 images: 
