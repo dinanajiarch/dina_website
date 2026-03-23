@@ -1,6 +1,6 @@
 ---
 author: Dina Arch
-date: "2022-011-15"
+date: "2022-11-15"
 description: |
   I created these handouts for graduate students in ED 214C (Linear Models for Data Analysis) at UC Santa Barabara.
 excerpt: null

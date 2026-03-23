@@ -50,7 +50,7 @@ here::i_am("dinnerparty.txt")
 
 ## Read in the text transcript
 
-Source: https://www.officequotes.net/no4-09.php
+Source: https://quotes.maxwiseman.io/episodes/dinner-party
 
 ```{r, cache = TRUE, warning=FALSE, message=FALSE}
 dinner_text <- read_delim(here("dinnerparty.txt"), 

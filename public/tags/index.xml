@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>data visualization</title>
+      <link>https://www.dina-arch.com/tags/data-visualization/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/data-visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>r markdown</title>
+      <link>https://www.dina-arch.com/tags/r-markdown/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sentiment analysis</title>
+      <link>https://www.dina-arch.com/tags/sentiment-analysis/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/sentiment-analysis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>text mining</title>
+      <link>https://www.dina-arch.com/tags/text-mining/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/text-mining/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>introduction</title>
       <link>https://www.dina-arch.com/tags/introduction/</link>
@@ -22,15 +58,6 @@
       <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/mplus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>r markdown</title>
-      <link>https://www.dina-arch.com/tags/r-markdown/</link>
-      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
       <description></description>
     </item>
     
@@ -184,6 +211,24 @@
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/tags/hugo-site/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://www.dina-arch.com/tags/python/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>spark</title>
+      <link>https://www.dina-arch.com/tags/spark/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/tags/spark/</guid>
       <description></description>
     </item>
     

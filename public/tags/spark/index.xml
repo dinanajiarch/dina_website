@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spark on Dina Arch</title>
+    <link>https://www.dina-arch.com/tags/spark/</link>
+    <description>Recent content in spark on Dina Arch</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Big Data Analytics Course Project</title>
+      <link>https://www.dina-arch.com/collection/covid-19/final_code/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/covid-19/final_code/</guid>
+      <description>Final Project: Big Data Analytics Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian Data Import from pyspark.sql import SparkSession spark = SparkSession.builder.getOrCreate() CORD-19: The COVID-19 Open Research Dataset
+#Import COVID-19 dataset filename = &amp;#39;/home/jovyan/Project/metadata.csv&amp;#39; df = spark.read.csv(filename, inferSchema=True, header = True) df.printSchema() root|-- cord_uid: string (nullable = true)|-- sha: string (nullable = true)|-- source_x: string (nullable = true)|-- title: string (nullable = true)|-- doi: string (nullable = true)|-- pmcid: string (nullable = true)|-- pubmed_id: string (nullable = true)|-- license: string (nullable = true)|-- abstract: string (nullable = true)|-- publish_time: string (nullable = true)|-- authors: string (nullable = true)|-- journal: string (nullable = true)|-- mag_id: string (nullable = true)|-- who_covidence_id: string (nullable = true)|-- arxiv_id: string (nullable = true)|-- pdf_json_files: string (nullable = true)|-- pmc_json_files: string (nullable = true)|-- url: string (nullable = true)|-- s2_id: string (nullable = true)Source: https://github.</description>
+    </item>
+    
+  </channel>
+</rss>

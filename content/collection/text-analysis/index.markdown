@@ -28,7 +28,7 @@ links:
 
 
 
-```r
+``` r
 library(tidyverse)
 library(tidytext)
 library(textdata)
@@ -47,7 +47,7 @@ here::i_am("dinnerparty.txt")
 
 ## Read in the text transcript
 
-Source: https://www.officequotes.net/no4-09.php
+Source: https://quotes.maxwiseman.io/episodes/dinner-party
 
 
 ```r
@@ -62,7 +62,7 @@ dinner_text <- read_delim(here("dinnerparty.txt"),
 Example: First line from the episode is from Stanley Hudson: 
 
 
-```r
+``` r
 dinner_line1 <- dinner_text[1,]
 
 dinner_line1 %>% 
@@ -83,7 +83,7 @@ dinner_line1 %>%
   3. I  filtered the characters to include the characters that spoke the most words.
 
 
-```r
+``` r
 dinner_tidy <- dinner_text %>% 
   separate(col = lines, into = c("character", "line"), sep = ":") %>% 
   slice(-(283:288)) %>% 
@@ -95,13 +95,13 @@ dinner_tidy <- dinner_text %>%
 Here, we get word counts for each character for the episode. 
 
 
-```r
+``` r
 dinner_tokens <- dinner_tidy %>% 
   unnest_tokens(word, line) 
 ```
 
 
-```r
+``` r
 dinner_wordcount <- dinner_tokens %>% 
   count(character, word)
 ```
@@ -112,14 +112,14 @@ dinner_wordcount <- dinner_tokens %>%
 Most of the words in the transcript are stop words. To remove them, we use `anti_join` and the `stop_words` function. 
 
 
-```r
+``` r
 dinner_nonstop_words <- dinner_tokens %>% 
   anti_join(stop_words)
 ```
 
 We then recount with the stopwords removed. 
 
-```r
+``` r
 nonstop_counts <- dinner_nonstop_words %>% 
   count(character, word) 
 ```
@@ -129,7 +129,7 @@ nonstop_counts <- dinner_nonstop_words %>%
 Here, we find the top 10 words that each character said during that episode. 
 
 
-```r
+``` r
 top_10_words <- nonstop_counts %>% 
   group_by(character) %>% 
   arrange(-n) %>% 
@@ -154,7 +154,7 @@ Let's make a word cloud for the top 5 characters who spoke the most:
 
 Michael, Jan, Jim, Pam, Dwight
 
-```r
+``` r
 nonstop_counts %>% 
   group_by(character) %>% 
   count() %>% 
@@ -185,7 +185,7 @@ nonstop_counts %>%
 
 
 
-```r
+``` r
 dinner_top5 <- nonstop_counts %>% 
   filter(character %in% c("Michael", "Jan", "Jim", "Pam", "Dwight")) %>% 
   group_by(character) %>% 
@@ -194,7 +194,7 @@ dinner_top5 <- nonstop_counts %>%
 ```
 
 
-```r
+``` r
 cloud <- ggplot(data = dinner_top5, aes(label = word)) +
   geom_text_wordcloud(aes(color = n, size = n), shape = "diamond") +
   scale_size_area(max_size = 6) +
@@ -210,7 +210,7 @@ cloud
 ## Sentiment Analysis
 
 
-```r
+``` r
 #afinn lexicon
 get_sentiments(lexicon = "afinn")
 ```
@@ -220,14 +220,14 @@ get_sentiments(lexicon = "afinn")
 
 First, bind words in `dinner_nonstop_words` to `afinn` lexicon:
 
-```r
+``` r
 dinner_afinn <- dinner_nonstop_words %>% 
   inner_join(get_sentiments("afinn"))
 ```
 
 Then, we find counts based on `afinn` lexicon and plot them:
 
-```r
+``` r
 afinn_counts <- dinner_afinn %>% 
   count(character, value)
 
@@ -241,7 +241,7 @@ ggplot(data = afinn_counts, aes(x = value, y = n)) +
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
-```r
+``` r
 # Find the mean afinn score by characeter: 
 afinn_means <- dinner_afinn %>% 
   group_by(character) %>% 

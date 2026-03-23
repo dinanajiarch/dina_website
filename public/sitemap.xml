@@ -20,6 +20,9 @@
     <loc>https://www.dina-arch.com/blog/spoonful-series/02-spoonful/</loc>
     <lastmod>2021-01-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://www.dina-arch.com/collection/text-analysis/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.dina-arch.com/collection/tips-and-tricks-in-r/</loc>
     <lastmod>2021-12-14T00:00:00+00:00</lastmod>
   </url><url>
@@ -38,28 +41,40 @@
     <loc>https://www.dina-arch.com/collection/linear-models/05-blr/</loc>
     <lastmod>2021-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/</loc>
-    <lastmod>2022-11-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/collection/</loc>
-    <lastmod>2022-11-15T00:00:00+00:00</lastmod>
+    <loc>https://www.dina-arch.com/collection/covid-19/final_code/</loc>
+    <lastmod>2020-12-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/categories/</loc>
-    <lastmod>2022-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/data-visualization/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/collection/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/r-markdown/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/categories/r-project/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/sentiment-analysis/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/text-mining/</loc>
+    <lastmod>2024-01-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/tags/introduction/</loc>
     <lastmod>2022-03-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/tags/mplus/</loc>
-    <lastmod>2022-03-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/r-markdown/</loc>
-    <lastmod>2022-03-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/categories/r-project/</loc>
-    <lastmod>2022-03-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/tags/</loc>
     <lastmod>2022-03-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/tags/classification/</loc>
@@ -179,6 +194,15 @@
     <loc>https://www.dina-arch.com/blog/rmarkdown/</loc>
     <lastmod>2020-12-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://www.dina-arch.com/tags/python/</loc>
+    <lastmod>2020-12-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/categories/python/</loc>
+    <lastmod>2020-12-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://www.dina-arch.com/tags/spark/</loc>
+    <lastmod>2020-12-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://www.dina-arch.com/talk/seedling/</loc>
     <lastmod>2020-01-13T14:15:59-06:00</lastmod>
   </url><url>
@@ -208,8 +232,6 @@
   </url><url>
     <loc>https://www.dina-arch.com/elements/</loc>
     <lastmod>2019-02-18T12:27:33-06:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/collection/covid-19/final_code/</loc>
   </url><url>
     <loc>https://www.dina-arch.com/about/</loc>
   </url><url>

@@ -6,11 +6,11 @@
     <description>Recent content in Categories on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>r project</title>
       <link>https://www.dina-arch.com/categories/r-project/</link>
-      <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>https://www.dina-arch.com/categories/r-project/</guid>
       <description></description>
@@ -76,6 +76,15 @@
       <pubDate>Fri, 01 Jan 2021 14:15:59 -0600</pubDate>
       
       <guid>https://www.dina-arch.com/categories/meetup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://www.dina-arch.com/categories/python/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/categories/python/</guid>
       <description></description>
     </item>
     

@@ -2,7 +2,7 @@
 action_label: Portfolio &rarr;
 action_link: /collection
 action_type: text
-description: My name is Dina Arch and I am a fourth-year PhD student emphasizing in quantitative methods in the social sciences under the guidance of Dr. Karen Nylund-Gibson. My research interests include latent variable analyses, data visualization methods using R. 
+description: I am a Postdoctoral Scholar at UC Santa Barbara, where I architect and develop open-source R resources for research fellows as part of the [IMMERSE](https://mixture-modeling.netlify.app/) project. My role focuses on bridging the gap between statistical theory and applied research. I work closely with a cohort of research fellows to help them navigate complex data patterns and apply advanced modeling techniques to their own datasets.
 image_left: true
 images:
 - img/dina2.jpg
@@ -10,7 +10,7 @@ show_action_link: true
 show_social_links: true
 subtitle: 
 text_align_left: false
-title: Dina Naji Arch
+title: Dina Naji Arch, Ph.D.
 type: home
 ---
 

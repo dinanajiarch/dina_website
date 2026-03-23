@@ -25,12 +25,12 @@ enableEmoji = true
     ordered = false
   [markup.highlight]
     # one of: https://xyproto.github.io/splash/docs/ 
-    style = "github"
+    style = "github-dark"
     
 [params]
   orgName = "Dina Arch"
   orgLocal = ""
-  description = "A modern, beautiful, and easily configurable blog theme for Hugo."
+  description = "Quantitative Researcher specializing in Latent Variable Analysis."
   favicon = "/img/cat.ico"
   logo = "/img/cat.ico"
   mainSections = ["blog", "project", "talk"]
@@ -125,15 +125,20 @@ enableEmoji = true
 #    url = "/blog/"
 #    weight = 2
   [[menu.header]]
+    name = "IMMERSE"
+    title = "IMMERSE"
+    url = "https://mixture-modeling.netlify.app/"
+    weight = 2
+  [[menu.header]]
     name = "Portfolio"
     title = "Project Portfolio"
     url = "/collection/"
-    weight = 2
+    weight = 3
   [[menu.header]]
     name = "CV"
     title = "CV"
     url = "https://ucsb.box.com/s/ihm263kmu5wm2ko9ar0eju849qdqwb73"
-    weight = 3
+    weight = 4
 #  [[menu.header]]
 #    name = "A collection"
 #    title = "A collection"
@@ -173,7 +178,7 @@ enableEmoji = true
   [privacy.instagram]
     disable = false
     simple = true
-  [privacy.twitter]
+  [privacy.x]
     disable = false
     enableDNT = true
     simple = false

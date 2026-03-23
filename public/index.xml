@@ -6,7 +6,7 @@
     <description>Recent content in Dina Naji Arch on Dina Arch</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 15 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lab 1: Data Screening and Cleaning</title>
       <link>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</link>
@@ -60,6 +60,17 @@ When we are predicting Y, we express the prediction equation as this:</descripti
       <description> Hi, I&#39;m the here-bot cat! Use me to find your way in your website.
 Here I am: content/blog\spoonful-series\02-spoonful\index.md To remove me, delete this line inside that file: {{&amp;lt; here &amp;gt;}}
 My content section is: blog My layout is: single-series Images in this page bundle: /blog/spoonful-series/02-spoonful/sidebar-inverse.jpg part 2! does this work? now for some very cool things more get ready! </description>
+    </item>
+    
+    <item>
+      <title>Text Data Analysis - Michael Scott Version</title>
+      <link>https://www.dina-arch.com/collection/text-analysis/</link>
+      <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/text-analysis/</guid>
+      <description>library(tidyverse) library(tidytext) library(textdata) library(pdftools) library(ggwordcloud) library(here) library(pander) library(ggthemes) here::i_am(&amp;#34;dinnerparty.txt&amp;#34;) The Office - Season 4 x Episode 9: The Dinner Party Read in the text transcript Source: https://www.officequotes.net/no4-09.php
+dinner_text &amp;lt;- read_delim(here(&amp;#34;dinnerparty.txt&amp;#34;), &amp;#34;\t&amp;#34;, escape_double = FALSE, col_names = FALSE, trim_ws = TRUE) %&amp;gt;% rename(lines = X1) Each row is a a line of the transcript for each character. Example: First line from the episode is from Stanley Hudson:
+dinner_line1 &amp;lt;- dinner_text[1,] dinner_line1 %&amp;gt;% pander() lines Stanley: This is ridiculous.</description>
     </item>
     
     <item>
@@ -124,6 +135,16 @@ Despite the success in 2012, the 2016 presidential election came as a big surpri
       <guid>https://www.dina-arch.com/collection/linear-models/05-blr/</guid>
       <description>library(pander) #pander() library(psych) # describe() library(gtsummary) #tbl_summary() library(equatiomatic) # extract_eq() library(sjPlot) # tab_xtab(), tab_model() library(tidyverse) This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.
 What is Binary Logistic Regression? It is a regression with an outcome variable (or dependent variable) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose).</description>
+    </item>
+    
+    <item>
+      <title>Big Data Analytics Course Project</title>
+      <link>https://www.dina-arch.com/collection/covid-19/final_code/</link>
+      <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.dina-arch.com/collection/covid-19/final_code/</guid>
+      <description>Final Project: Big Data Analytics Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian Data Import from pyspark.sql import SparkSession spark = SparkSession.builder.getOrCreate() CORD-19: The COVID-19 Open Research Dataset
+#Import COVID-19 dataset filename = &amp;#39;/home/jovyan/Project/metadata.csv&amp;#39; df = spark.read.csv(filename, inferSchema=True, header = True) df.printSchema() root|-- cord_uid: string (nullable = true)|-- sha: string (nullable = true)|-- source_x: string (nullable = true)|-- title: string (nullable = true)|-- doi: string (nullable = true)|-- pmcid: string (nullable = true)|-- pubmed_id: string (nullable = true)|-- license: string (nullable = true)|-- abstract: string (nullable = true)|-- publish_time: string (nullable = true)|-- authors: string (nullable = true)|-- journal: string (nullable = true)|-- mag_id: string (nullable = true)|-- who_covidence_id: string (nullable = true)|-- arxiv_id: string (nullable = true)|-- pdf_json_files: string (nullable = true)|-- pmc_json_files: string (nullable = true)|-- url: string (nullable = true)|-- s2_id: string (nullable = true)Source: https://github.</description>
     </item>
     
     <item>
@@ -304,16 +325,6 @@ Formspree requires a (free) account and new form to be set up. The link is made 
 (20px) 1rem
 (16px) .875rem
 (14px) Type Samples Head&amp;shy;line Sub&amp;shy;head&amp;shy;line Level 1 Heading One page to rule them all...well, not really. This page displays sample typography and page elements to illustrate their style. Things like headings and paragraphs showing the beautiful type scale, form elements, tabular data, and image layouts just to name a few.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://www.dina-arch.com/collection/covid-19/final_code/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.dina-arch.com/collection/covid-19/final_code/</guid>
-      <description>Final Project: Big Data Analytics Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian Data Import from pyspark.sql import SparkSession spark = SparkSession.builder.getOrCreate() CORD-19: The COVID-19 Open Research Dataset
-#Import COVID-19 dataset filename = &amp;#39;/home/jovyan/Project/metadata.csv&amp;#39; df = spark.read.csv(filename, inferSchema=True, header = True) df.printSchema() root|-- cord_uid: string (nullable = true)|-- sha: string (nullable = true)|-- source_x: string (nullable = true)|-- title: string (nullable = true)|-- doi: string (nullable = true)|-- pmcid: string (nullable = true)|-- pubmed_id: string (nullable = true)|-- license: string (nullable = true)|-- abstract: string (nullable = true)|-- publish_time: string (nullable = true)|-- authors: string (nullable = true)|-- journal: string (nullable = true)|-- mag_id: string (nullable = true)|-- who_covidence_id: string (nullable = true)|-- arxiv_id: string (nullable = true)|-- pdf_json_files: string (nullable = true)|-- pmc_json_files: string (nullable = true)|-- url: string (nullable = true)|-- s2_id: string (nullable = true)Source: https://github.</description>
     </item>
     
     <item>
