@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.102.1" />
+<meta name="generator" content="Hugo 0.159.0">
 <title>Lab 1: Data Screening and Cleaning | Dina Arch</title>
 
 
@@ -38,59 +38,50 @@
 
 
     
-        <meta property="og:image" content="https://www.dina-arch.com" >
+        <meta property="og:image" content="https://www.dina-arch.com/" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://www.dina-arch.com" >
+        <meta name="twitter:image" content="https://www.dina-arch.com/" >
     
+  
   <meta itemprop="name" content="Lab 1: Data Screening and Cleaning">
-<meta itemprop="description" content="#Load packages here library(haven) #for read_sav() function library(psych) # describe() library(ggpubr) # ggdensity() and ggqqplot() library(apaTables) # apa.cor.table() library(tidyverse) Data Screening &amp; Cleaning The data sets used in this lab are used in Chapter 4 of Tabachnick &amp; Fidell (2012; I believe there is a new version from 2019 now). The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results."><meta itemprop="datePublished" content="2021-03-30T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-03-30T00:00:00+00:00" />
-<meta itemprop="wordCount" content="4562">
-<meta itemprop="keywords" content="r markdown,data cleaning,data screening,tidy data,regression," />
+  <meta itemprop="description" content="#Load packages here library(haven) #for read_sav() function library(psych) # describe() library(ggpubr) # ggdensity() and ggqqplot() library(apaTables) # apa.cor.table() library(tidyverse) Data Screening &amp; Cleaning The data sets used in this lab are used in Chapter 4 of Tabachnick &amp; Fidell (2012; I believe there is a new version from 2019 now). The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.">
+  <meta itemprop="datePublished" content="2021-03-30T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2021-03-30T00:00:00+00:00">
+  <meta itemprop="wordCount" content="4562">
+  <meta itemprop="keywords" content="R Markdown,Data Cleaning,Data Screening,Tidy Data,Regression">
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
-<script>
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-XV6Y72XCTJ', { 'anonymize_ip': true });
-}
-</script>
-
-  
-<script type="application/javascript">
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-XV6Y72XCTJ', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XV6Y72XCTJ');
+        }
+      </script>
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
   <link rel="icon" href="/img/cat.ico" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.9d8de99f4c94aff7a77ce5b4714ffdbee5bdfcdff4330362f854eedade6d8a27.css" integrity="sha256-nY3pn0yUr/enfOW0cU/9vuW9/N/0MwNi&#43;FTu2t5tiic=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.9ae41e138f4f62c165cf7ebd6bc9d8c44682584e7f1797a679ee0f23718e83a5.js" type="text/javascript"></script>
+  <script src="/main.min.f7862fe64e701541b0a2baa66974e6debf4a7ffe0f0e2167785554cdf97bca97.js" type="text/javascript"></script>
 </head>
 <body>
       <div class="grid-container single-series">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com/" title="Home">
       <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -99,6 +90,11 @@ if (!doNotTrack) {
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://mixture-modeling.netlify.app/" title="IMMERSE">IMMERSE</a>
       
         
         
@@ -167,12 +163,12 @@ if (!doNotTrack) {
         
       </header>
       <section class="post-body pt5 pb4">
-        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Load packages here</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(haven) <span style="color:#998;font-style:italic">#for read_sav() function</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic"># describe()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ggpubr) <span style="color:#998;font-style:italic"># ggdensity() and ggqqplot()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(apaTables) <span style="color:#998;font-style:italic"># apa.cor.table()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+        <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Load packages here</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(haven) <span style="color:#8b949e;font-style:italic">#for read_sav() function</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(psych) <span style="color:#8b949e;font-style:italic"># describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ggpubr) <span style="color:#8b949e;font-style:italic"># ggdensity() and ggqqplot()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(apaTables) <span style="color:#8b949e;font-style:italic"># apa.cor.table()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
 </span></span></code></pre></div>
 
 
@@ -187,50 +183,50 @@ if (!doNotTrack) {
 The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.</p>
 <p>Here is a table of the variables and their description:</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Variable</strong></td>
-<td><strong>Description</strong></td>
-</tr>
-<tr>
-<td>subno</td>
-<td>Subject number</td>
-</tr>
-<tr>
-<td>timedrs</td>
-<td>Visits to health professionals</td>
-</tr>
-<tr>
-<td>attdrug</td>
-<td>Attitudes toward medication</td>
-</tr>
-<tr>
-<td>atthouse</td>
-<td>Attitudes toward housework</td>
-</tr>
-<tr>
-<td>income</td>
-<td>Ordinal income variable</td>
-</tr>
-<tr>
-<td>emplmnt</td>
-<td>Whether currently employed</td>
-</tr>
-<tr>
-<td>mstatus</td>
-<td>Whether currently married</td>
-</tr>
-<tr>
-<td>race</td>
-<td>Binary race variable</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Variable</strong></td>
+          <td><strong>Description</strong></td>
+      </tr>
+      <tr>
+          <td>subno</td>
+          <td>Subject number</td>
+      </tr>
+      <tr>
+          <td>timedrs</td>
+          <td>Visits to health professionals</td>
+      </tr>
+      <tr>
+          <td>attdrug</td>
+          <td>Attitudes toward medication</td>
+      </tr>
+      <tr>
+          <td>atthouse</td>
+          <td>Attitudes toward housework</td>
+      </tr>
+      <tr>
+          <td>income</td>
+          <td>Ordinal income variable</td>
+      </tr>
+      <tr>
+          <td>emplmnt</td>
+          <td>Whether currently employed</td>
+      </tr>
+      <tr>
+          <td>mstatus</td>
+          <td>Whether currently married</td>
+      </tr>
+      <tr>
+          <td>race</td>
+          <td>Binary race variable</td>
+      </tr>
+  </tbody>
 </table>
 <p>The style of code and package we will be using for this class is called 
 <a href="https://www.tidyverse.org/" target="_blank" rel="noopener"><code>tidyverse</code></a> .
@@ -249,32 +245,32 @@ Once you have installed the package you will <em>never</em> need to install it a
     </svg></a>
 </h3>
 <p>Let&rsquo;s read in a data set called <code>screen1.sav</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Notice this is an SPSS dataset</span>
-</span></span><span style="display:flex;"><span>screen1 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#d14">&#34;screen1.sav&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Notice this is an SPSS dataset</span>
+</span></span><span style="display:flex;"><span>screen1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_sav</span>(<span style="color:#a5d6ff">&#34;screen1.sav&#34;</span>)
 </span></span></code></pre></div><p>Usually, we want to work with .csv files, so let&rsquo;s convert this data set from <em>.sav</em> to <em>.csv</em> and save it to our computers.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># write_csv saves a .csv version of your dataset to your working directory.</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Enter the name of the object that contains your data set (in this case, &#34;screen1&#34;), then enter the name you want to save your dataset as. We can call it the same thing: &#34;screen1.csv&#34;</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># write_csv saves a .csv version of your dataset to your working directory.</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Enter the name of the object that contains your data set (in this case, &#34;screen1&#34;), then enter the name you want to save your dataset as. We can call it the same thing: &#34;screen1.csv&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write_csv</span>(screen1, <span style="color:#d14">&#34;screen1.csv&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">write_csv</span>(screen1, <span style="color:#a5d6ff">&#34;screen1.csv&#34;</span>)
 </span></span></code></pre></div><p>Let&rsquo;s read in the new <em>.csv</em> data set:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># If you get an error, you might need to wait a few seconds for the .csv to save to your folder before running this. </span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># If you get an error, you might need to wait a few seconds for the .csv to save to your folder before running this. </span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>screen1 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;screen1.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>screen1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_csv</span>(<span style="color:#a5d6ff">&#34;screen1.csv&#34;</span>)
 </span></span></code></pre></div><p>Use <code>names()</code> to view the variable names in the data set:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(screen1)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">names</span>(screen1)
 </span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;subno&#34;    &#34;timedrs&#34;  &#34;atthouse&#34;
 </code></pre><p>Let&rsquo;s read in another data set <code>screen2.sav</code> and convert it to a <em>.csv</em> like we did before:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Read in .sav</span>
-</span></span><span style="display:flex;"><span>screen2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#d14">&#34;screen2.sav&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Read in .sav</span>
+</span></span><span style="display:flex;"><span>screen2 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_sav</span>(<span style="color:#a5d6ff">&#34;screen2.sav&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Convert and save a .csv version</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write.csv</span>(screen2, <span style="color:#d14">&#34;screen2.csv&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Convert and save a .csv version</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">write.csv</span>(screen2, <span style="color:#a5d6ff">&#34;screen2.csv&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Read in the new .csv version</span>
-</span></span><span style="display:flex;"><span>screen2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;screen2.csv&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Read in the new .csv version</span>
+</span></span><span style="display:flex;"><span>screen2 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_csv</span>(<span style="color:#a5d6ff">&#34;screen2.csv&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Look at variable names</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(screen2)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Look at variable names</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">names</span>(screen2)
 </span></span></code></pre></div><pre tabindex="0"><code>## [1] &#34;...1&#34;    &#34;income&#34;  &#34;mstatus&#34; &#34;race&#34;
 </code></pre>
 
@@ -292,9 +288,9 @@ Here is probably the most efficient way to merge data sets using <code>tidyverse
 This will join two data sets based on a &ldquo;join&rdquo; variable and return all rows and columns from both data sets.
 Because we are joining two data sets that have different variable names to join them by (i.e., the ID or Subject number) , we use <code>by</code> shown below to let R know that there are different names.
 As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of functions.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Here we created a new dataset called `merged_screen`</span>
-</span></span><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">&lt;-</span> screen1 <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">full_join</span>(screen2, by <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;subno&#34;</span> <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;...1&#34;</span>)) 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Here we created a new dataset called `merged_screen`</span>
+</span></span><span style="display:flex;"><span>merged_screen <span style="color:#ff7b72;font-weight:bold">&lt;-</span> screen1 <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">full_join</span>(screen2, by <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;subno&#34;</span> <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;...1&#34;</span>)) 
 </span></span></code></pre></div>
 
 
@@ -306,8 +302,8 @@ As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of
     </svg></a>
 </h3>
 <p>Let&rsquo;s examine the data set:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># View the first 5 rows</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(merged_screen)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># View the first 5 rows</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">head</span>(merged_screen)
 </span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 6
 ##   subno timedrs atthouse income mstatus  race
 ##   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -319,9 +315,9 @@ As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of
 ## 6     6       3       25      4       2     1
 </code></pre><p>Let&rsquo;s look at descriptive statistics for each variable.
 Because looking at the ID variable&rsquo;s (<code>subno</code>) descriptives is unnecessary, we use <code>select()</code> to remove the variable by using the minus (<code>-</code>) sign:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>subno) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(<span style="color:#ff7b72;font-weight:bold">-</span>subno) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##     timedrs          atthouse         income         mstatus     
 ##  Min.   : 0.000   Min.   : 2.00   Min.   : 1.00   Min.   :1.000  
 ##  1st Qu.: 2.000   1st Qu.:21.00   1st Qu.: 2.50   1st Qu.:2.000  
@@ -339,9 +335,9 @@ Because looking at the ID variable&rsquo;s (<code>subno</code>) descriptives is 
 ##  Max.   :2.000  
 ##  NA&#39;s   :128
 </code></pre><p>Alternatively, we can use the <code>psych::describe()</code> function to give more information:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>subno) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(<span style="color:#ff7b72;font-weight:bold">-</span>subno) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">describe</span>()
 </span></span></code></pre></div><pre tabindex="0"><code>##          vars   n  mean    sd median trimmed  mad min max range  skew kurtosis
 ## timedrs     1 465  7.90 10.95      4    5.61 4.45   0  81    81  3.23    12.88
 ## atthouse    2 465 23.54  4.48     24   23.62 4.45   2  35    33 -0.45     1.52
@@ -357,9 +353,9 @@ Because looking at the ID variable&rsquo;s (<code>subno</code>) descriptives is 
 </code></pre><p>What if we want to look at a subset of the data?
 For example, what if we want to subset the data to see whose been to the doctor more than 10 times?
 We can use <code>tidyverse::filter()</code> to subset the data using certain criteria.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(timedrs <span style="color:#000;font-weight:bold">&gt;</span> <span style="color:#099">10</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">filter</span>(timedrs <span style="color:#ff7b72;font-weight:bold">&gt;</span> <span style="color:#a5d6ff">10</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">describe</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##          vars   n   mean     sd median trimmed    mad min max range  skew
 ## subno       1 107 324.25 199.63    292  320.41 269.83   4 756   752  0.14
 ## timedrs     2 107  22.49  14.90     16   19.40   5.93  11  81    70  1.88
@@ -374,7 +370,7 @@ We can use <code>tidyverse::filter()</code> to subset the data using certain cri
 ## income      -0.42  0.28
 ## mstatus      0.29  0.05
 ## race         3.93  0.04
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#You can use any operator to filter: &gt;, &lt;, ==, &gt;=, etc.</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#You can use any operator to filter: &gt;, &lt;, ==, &gt;=, etc.</span>
 </span></span></code></pre></div>
 
 
@@ -392,9 +388,9 @@ The simplest way to do this is to look back at the <code>summary()</code> functi
 We can see that they are identified as <code>NA</code>.
 Because, for example, <code>timedrs</code> has 128 <code>NA</code>&rsquo;s.
 We also know that it&rsquo;s not <code>-999</code> because the <em>min</em> and <em>max</em> values look normal.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>subno) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(<span style="color:#ff7b72;font-weight:bold">-</span>subno) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##     timedrs          atthouse         income         mstatus     
 ##  Min.   : 0.000   Min.   : 2.00   Min.   : 1.00   Min.   :1.000  
 ##  1st Qu.: 2.000   1st Qu.:21.00   1st Qu.: 2.50   1st Qu.:2.000  
@@ -413,7 +409,7 @@ We also know that it&rsquo;s not <code>-999</code> because the <em>min</em> and 
 ##  NA&#39;s   :128
 </code></pre><p>Additionally, we can look at the unique values (using <code>unique()</code>) for each variable to see if there are any unusual values or multiple missing values were coded.
 For example, for <code>timedrs</code> (Visits to health professionals), we can see that the unique values don&rsquo;t look unusual, and there is <code>NA</code>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">unique</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">unique</span>(merged_screen<span style="color:#ff7b72;font-weight:bold">$</span>timedrs)
 </span></span></code></pre></div><pre tabindex="0"><code>##  [1]  1  3  0 13 15  2  7  4  5 12  6 14 60 20  8  9 10 23 39 16 33 38 22 11 34
 ## [26] 27 30 17 25 19 49 52 18 24 57 21 58 43 37 75 29 56 81 NA
 </code></pre><p>Usually, we want our missing values to be identified as <code>NA</code> since that&rsquo;s what R understands as missing by default.
@@ -421,14 +417,14 @@ What if your dataset doesn&rsquo;t have missing as <code>NA</code>?
 What if the missing values are <code>-999</code>?
 Or vise versa?
 Here is how you would recode the values from <code>NA</code> to <code>-999</code> (but usually, you would never do this since you want the missing to be labeled as <code>NA</code>):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Use tidyverse::mutate() adjust an existing variable</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Then use tidyverse::replace_na() to replace -999 with NA for the timedrs variable</span>
-</span></span><span style="display:flex;"><span>new_data_with_NA <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(timedrs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">replace_na</span>(timedrs, <span style="color:#099">-999</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Use tidyverse::mutate() adjust an existing variable</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Then use tidyverse::replace_na() to replace -999 with NA for the timedrs variable</span>
+</span></span><span style="display:flex;"><span>new_data_with_NA <span style="color:#ff7b72;font-weight:bold">&lt;-</span> merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(timedrs <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">replace_na</span>(timedrs, <span style="color:#a5d6ff">-999</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Recode back to `NA` using tidyverse::na_if()</span>
-</span></span><span style="display:flex;"><span>new_data_with_NA <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(timedrs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">na_if</span>(timedrs, <span style="color:#d14">&#34;-999&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Recode back to `NA` using tidyverse::na_if()</span>
+</span></span><span style="display:flex;"><span>new_data_with_NA <span style="color:#ff7b72;font-weight:bold">&lt;-</span> merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(timedrs <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">na_if</span>(timedrs, <span style="color:#a5d6ff">&#34;-999&#34;</span>))
 </span></span></code></pre></div>
 
 
@@ -442,9 +438,9 @@ Here is how you would recode the values from <code>NA</code> to <code>-999</code
 <p>What if you want to recode a continuous variable into different levels (e.g., high, medium, and low)?
 Let&rsquo;s use the variable <code>income</code> as an example.
 First, let&rsquo;s recall the descriptives:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(income) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(income) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##      income     
 ##  Min.   : 1.00  
 ##  1st Qu.: 2.50  
@@ -456,36 +452,36 @@ First, let&rsquo;s recall the descriptives:</p>
 </code></pre><p>Here, we can see that the values range from 1 - 10.
 Lets recode the variable to look like this:</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Low</td>
-<td>1 - 3</td>
-</tr>
-<tr>
-<td>Medium</td>
-<td>4 - 6</td>
-</tr>
-<tr>
-<td>High</td>
-<td>7 - 10</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Low</td>
+          <td>1 - 3</td>
+      </tr>
+      <tr>
+          <td>Medium</td>
+          <td>4 - 6</td>
+      </tr>
+      <tr>
+          <td>High</td>
+          <td>7 - 10</td>
+      </tr>
+  </tbody>
 </table>
 <p>We use <code>cut()</code> to divide continuous variables into intervals:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>income_factor <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(income_factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cut</span>(income,
-</span></span><span style="display:flex;"><span>                      breaks <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">0</span>, <span style="color:#099">3</span>, <span style="color:#099">6</span>, <span style="color:#099">10</span>), <span style="color:#998;font-style:italic">#Use 0 at the beginning to ensure that 1 is included in the first break, then break by last number in each section (3, 6, 10) </span>
-</span></span><span style="display:flex;"><span>                      labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;low&#34;</span>, <span style="color:#d14">&#34;medium&#34;</span>, <span style="color:#d14">&#34;high&#34;</span>)))
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># View summary</span>
-</span></span><span style="display:flex;"><span>income_factor <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(income, income_factor) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>income_factor <span style="color:#ff7b72;font-weight:bold">&lt;-</span> merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(income_factor <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">cut</span>(income,
+</span></span><span style="display:flex;"><span>                      breaks <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">6</span>, <span style="color:#a5d6ff">10</span>), <span style="color:#8b949e;font-style:italic">#Use 0 at the beginning to ensure that 1 is included in the first break, then break by last number in each section (3, 6, 10) </span>
+</span></span><span style="display:flex;"><span>                      labels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;low&#34;</span>, <span style="color:#a5d6ff">&#34;medium&#34;</span>, <span style="color:#a5d6ff">&#34;high&#34;</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># View summary</span>
+</span></span><span style="display:flex;"><span>income_factor <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(income, income_factor) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##      income      income_factor
 ##  Min.   : 1.00   low   :189   
 ##  1st Qu.: 2.50   medium:166   
@@ -517,7 +513,7 @@ Normally, we would want to inspect every variable, but for demonstration purpose
 <p>A density plot is a visualization of the data over a continuous interval.
 As we can see by this density plot, the variable <code>timedrs</code> is positively skewed.
 There are more people that make less doctor visits than those who make more doctor visits.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggdensity</span>(merged_screen<span style="color:#ff7b72;font-weight:bold">$</span>timedrs, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightgray&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 
@@ -527,7 +523,7 @@ There are more people that make less doctor visits than those who make more doct
   <a href="#histogram"></a>
 </h4>
 <p>A histogram provides the same information as the density plot but provides a count instead of density on the x-axis.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">gghistogram</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">gghistogram</span>(merged_screen<span style="color:#ff7b72;font-weight:bold">$</span>timedrs, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightgray&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 
@@ -540,7 +536,7 @@ There are more people that make less doctor visits than those who make more doct
 In a QQ plot, each observation is plotted as a single dot.
 If the data are normal, the dots should form a straight line.
 If the data are skewed, you will see either a downward curve (negatively skewed) or upward curve (positively skewed).</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggqqplot</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggqqplot</span>(merged_screen<span style="color:#ff7b72;font-weight:bold">$</span>timedrs)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 <p>As you can see in this QQ plot, there is an upward curve, which further tells us that we have a positively skewed variable.</p>
 
@@ -557,9 +553,9 @@ As in there is no significant difference between the sample and a normal distrib
 If the test is significant, then the distribution is <em>not</em> normal.
 As in, there is a significant difference between the sample and a normal distribution.
 We can use <code>shapiro_test</code> to test this.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#library(rstatix) </span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#merged_screen %&gt;% </span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  shapiro_test(timedrs)</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#library(rstatix) </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#merged_screen %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  shapiro_test(timedrs)</span>
 </span></span></code></pre></div><p>To no one&rsquo;s surprise, the Shapiro-Wilk&rsquo;s Test of Normality was significant for the <code>timedrs</code> variable.</p>
 
 
@@ -573,7 +569,7 @@ There are many different sources that provide different cut-off values, but as a
 Positive skew values indicate positively skewed variables and negative skew values indicate negatively skewed variables.
 Positive values of kurtosis indicate leptokurtic distributions, or higher peaks with taller tails than a normal distribution.
 Negative values of kurtosis indicate platykurtic distributions, or flat peaks with thin tails.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">describe</span>(merged_screen<span style="color:#ff7b72;font-weight:bold">$</span>timedrs)
 </span></span></code></pre></div><pre tabindex="0"><code>##    vars   n mean    sd median trimmed  mad min max range skew kurtosis   se
 ## X1    1 465  7.9 10.95      4    5.61 4.45   0  81    81 3.23    12.88 0.51
 </code></pre><p>Here we can see that the <em>skew</em> value is greater than 3 and positive, indicating a positive distribution.
@@ -595,18 +591,18 @@ There are many different ways to do this, the one we will use is logarithmic tra
 
 <a href="https://en.wikipedia.org/wiki/Data_transformation_%28statistics%29" target="_blank" rel="noopener">Here</a> is an in-depth look at how transformations work.</p>
 <p>Log transform <code>timedrs</code> using <code>log()</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>log <span style="color:#000;font-weight:bold">&lt;-</span> merged_screen <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#droping NA values</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(log_timedrs <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">log</span>(timedrs <span style="color:#000;font-weight:bold">+</span> <span style="color:#099">1</span>)) <span style="color:#998;font-style:italic"># Adding a constant (1) here because there were zeros&#39;s. Log(0) is undefined. You do not need to add 1 if there are no zeros.</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>log <span style="color:#ff7b72;font-weight:bold">&lt;-</span> merged_screen <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">drop_na</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#8b949e;font-style:italic">#droping NA values</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(log_timedrs <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">log</span>(timedrs <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#a5d6ff">1</span>)) <span style="color:#8b949e;font-style:italic"># Adding a constant (1) here because there were zeros&#39;s. Log(0) is undefined. You do not need to add 1 if there are no zeros.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Before transformation</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(merged_screen<span style="color:#000;font-weight:bold">$</span>timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Before transformation</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggdensity</span>(merged_screen<span style="color:#ff7b72;font-weight:bold">$</span>timedrs, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightgray&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-22-1.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#After transformation</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(log<span style="color:#000;font-weight:bold">$</span>log_timedrs, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#After transformation</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggdensity</span>(log<span style="color:#ff7b72;font-weight:bold">$</span>log_timedrs, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightgray&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-22-2.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Let&#39;s also look at changes in descriptives</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(log<span style="color:#000;font-weight:bold">$</span>log_timedrs)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Let&#39;s also look at changes in descriptives</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">describe</span>(log<span style="color:#ff7b72;font-weight:bold">$</span>log_timedrs)
 </span></span></code></pre></div><pre tabindex="0"><code>##    vars   n mean   sd median trimmed  mad min  max range skew kurtosis   se
 ## X1    1 321 1.66 0.97   1.61    1.65 0.76   0 4.33  4.33 0.26    -0.21 0.05
 </code></pre><p>Here, we can see a big improvement in the distribution compared to the previous, untransformed variable.</p>
@@ -624,16 +620,16 @@ There are many different ways to do this, the one we will use is logarithmic tra
 <p><strong>Simple Linear Regression</strong>: Predict <strong>physics</strong> scores from <strong>math SAT scores</strong>.
 $$\hat Y = \beta_0 + \beta_1x $$ $$ physics = \beta_0 + \beta_1 (msat) $$ <strong>Multiple Regression</strong>: Predict <strong>physics</strong> scores from: <strong>emotional intelligence, IQ, verbal SAT, math SAT, creativity, and abstract thinking.</strong> $$ \hat Y = \beta_0 + \beta_1x + \beta_2x &hellip; \beta_ix_i  $$ $$physics = \beta_0 + \beta_1(ei) + \beta_2(iq) + \beta_3(vsat) + \beta_4(msat) + \beta_5(creativity) + \beta_6(abstract)  $$</p>
 <p>Read in data:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#d14">&#34;physics.sav&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_sav</span>(<span style="color:#a5d6ff">&#34;physics.sav&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write.csv</span>(physics, <span style="color:#d14">&#34;physics.csv&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">write.csv</span>(physics, <span style="color:#a5d6ff">&#34;physics.csv&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#d14">&#34;physics.csv&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#099">-.</span><span style="color:#000;font-weight:bold">..1</span>, <span style="color:#000;font-weight:bold">-</span>idno) 
+</span></span><span style="display:flex;"><span>physics <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_csv</span>(<span style="color:#a5d6ff">&#34;physics.csv&#34;</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(<span style="color:#a5d6ff">-.</span><span style="color:#79c0ff">..1</span>, <span style="color:#ff7b72;font-weight:bold">-</span>idno) 
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Descriptive Statistics</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(physics) 
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Descriptive Statistics</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">describe</span>(physics) 
 </span></span></code></pre></div><pre tabindex="0"><code>##          vars   n   mean     sd median trimmed    mad   min max range  skew
 ## ei          1 199 107.59  12.17  108.0  107.82  10.38  75.0 139  64.0 -0.15
 ## iq          2 199  99.99  14.59  100.0   99.89  14.83  57.0 134  77.0  0.01
@@ -685,9 +681,9 @@ $$\hat Y = \beta_0 + \beta_1x $$ $$ physics = \beta_0 + \beta_1 (msat) $$ <stron
 For the most part, most variables are (positively) correlated with each other, implying linear relationships.</p>
 <p>To assess <strong>multicollinearity</strong>, we want to see if there are predictors that are too highly correlated (<em>r</em> &gt; .90)</p>
 <p>Use <code>cor()</code> to look at bivariate correlations for the entire data set (Note: Missing values are not allowed in correlation analyses, use <code>drop_na()</code> to do listwise deletion):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#remove missing data</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">cor</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;pearson&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">drop_na</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#8b949e;font-style:italic">#remove missing data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">cor</span>(method <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;pearson&#34;</span>)
 </span></span></code></pre></div><pre tabindex="0"><code>##                   ei         iq        vsat       msat      create   abstract
 ## ei        1.00000000 0.03400695  0.53927222 0.04823131 -0.02356759 0.02311522
 ## iq        0.03400695 1.00000000  0.64810303 0.70635708  0.64281265 0.57259750
@@ -704,13 +700,13 @@ For the most part, most variables are (positively) correlated with each other, i
 ## create    0.35328045
 ## abstract  0.25249211
 ## physics   1.00000000
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Fun tip: `apa.cor.table()` creates an APA formated correlation matrix and saves it to your computer</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#apa.cor.table(physics, filename = &#34;cor_table.doc&#34;)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Fun tip: `apa.cor.table()` creates an APA formated correlation matrix and saves it to your computer</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#apa.cor.table(physics, filename = &#34;cor_table.doc&#34;)</span>
 </span></span></code></pre></div><p>You can also subset the data set to include only the variables of interest:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(ei, iq, physics) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#remove missing data</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">cor</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>physics <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(ei, iq, physics) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">drop_na</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#8b949e;font-style:italic">#remove missing data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">cor</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##                 ei        iq    physics
 ## ei       1.0000000 0.0360554 -0.3941978
 ## iq       0.0360554 1.0000000  0.3440316
@@ -718,11 +714,11 @@ For the most part, most variables are (positively) correlated with each other, i
 </code></pre><p>[Correlation Interpretation:]{.ul}</p>
 <p>Among the students in the sample, IQ and physics test scores were positively correlated, <em>r</em> = 0.34, <em>p</em> &lt; .001.</p>
 <p>We can also look at partial-correlations using <code>ppcor::pcor()</code> to see how the predictors relate to the outcome after controlling for the other correlations and semi-partial correlations using <code>ppcor::spcor()</code> to see how predictors relate to the outcome after controlling for <em>X</em> but not <em>Y</em>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ppcor) 
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Partial Correlation</span>
-</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">pcor</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ppcor) 
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Partial Correlation</span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">drop_na</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">pcor</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>## $estimate
 ##                   ei          iq       vsat       msat      create    abstract
 ## ei        1.00000000 -0.32568951  0.4650756 0.16441386 -0.12115000  0.01488448
@@ -785,10 +781,10 @@ For the most part, most variables are (positively) correlated with each other, i
 ## 
 ## $method
 ## [1] &#34;pearson&#34;
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Semi-Parial Correlation</span>
-</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">spcor</span>()
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Semi-Parial Correlation</span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">drop_na</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">spcor</span>()
 </span></span></code></pre></div><pre tabindex="0"><code>## $estimate
 ##                   ei          iq       vsat       msat      create    abstract
 ## ei        1.00000000 -0.24386511  0.3719153 0.11800106 -0.08640342  0.01053850
@@ -851,17 +847,17 @@ For the most part, most variables are (positively) correlated with each other, i
 ## 
 ## $method
 ## [1] &#34;pearson&#34;
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">detach</span>(<span style="color:#d14">&#34;package:ppcor&#34;</span>, unload <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">detach</span>(<span style="color:#a5d6ff">&#34;package:ppcor&#34;</span>, unload <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
 </span></span></code></pre></div><p>Finally, use <code>pairs()</code> to look at bivariate scatterplots.
 Do the relationships look linear?:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">pairs</span>(physics)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">pairs</span>(physics)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-27-1.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Or we can look at individual scatterplots:</span>
-</span></span><span style="display:flex;"><span>physics <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(physics, ei)) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_smooth</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lm&#34;</span>, se <span style="color:#000;font-weight:bold">=</span><span style="color:#999">F</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_minimal</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Or we can look at individual scatterplots:</span>
+</span></span><span style="display:flex;"><span>physics <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">ggplot</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(physics, ei)) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_point</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_smooth</span>(method <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lm&#34;</span>, se <span style="color:#ff7b72;font-weight:bold">=</span>F) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>()
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-27-2.png" width="672" />
 
 
@@ -871,7 +867,7 @@ Do the relationships look linear?:</p>
   <a href="#normality"></a>
 </h4>
 <p>Density Plot:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">lapply</span>(physics, ggdensity, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">lapply</span>(physics, ggdensity, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightgray&#34;</span>)
 </span></span></code></pre></div><pre tabindex="0"><code>## $ei
 </code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 <pre tabindex="0"><code>## 
@@ -892,10 +888,10 @@ Do the relationships look linear?:</p>
 <pre tabindex="0"><code>## 
 ## $physics
 </code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-28-7.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># alternatively, you may look at each one individually like this:</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># ggdensity(physics$ei, fill = &#34;lightgray&#34;)</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># alternatively, you may look at each one individually like this:</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># ggdensity(physics$ei, fill = &#34;lightgray&#34;)</span>
 </span></span></code></pre></div><p>QQ Plots for individual predictors (Later, we will want to look at the QQ plot of the entire model, which looks at the normality of residuals):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">lapply</span>(physics, ggqqplot, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">lapply</span>(physics, ggqqplot, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightgray&#34;</span>)
 </span></span></code></pre></div><pre tabindex="0"><code>## $ei
 </code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 <pre tabindex="0"><code>## 
@@ -917,11 +913,11 @@ Do the relationships look linear?:</p>
 ## $physics
 </code></pre><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-29-7.png" width="672" />
 <p>Shapiro-Wilk&rsquo;s Test of Normality:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#physics %&gt;% </span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#  shapiro_test(ei, iq, vsat, msat, create, abstract, physics)</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Here, abstract and msat is significant. However, Shapiro-Wilk&#39;s test is very sensitive to minor deviations from normality. Our density plot suggests normality.</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#physics %&gt;% </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#  shapiro_test(ei, iq, vsat, msat, create, abstract, physics)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Here, abstract and msat is significant. However, Shapiro-Wilk&#39;s test is very sensitive to minor deviations from normality. Our density plot suggests normality.</span>
 </span></span></code></pre></div><p>Skewness and Kurtosis:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(physics)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">describe</span>(physics)
 </span></span></code></pre></div><pre tabindex="0"><code>##          vars   n   mean     sd median trimmed    mad   min max range  skew
 ## ei          1 199 107.59  12.17  108.0  107.82  10.38  75.0 139  64.0 -0.15
 ## iq          2 199  99.99  14.59  100.0   99.89  14.83  57.0 134  77.0  0.01
@@ -954,9 +950,9 @@ It&rsquo;s important to clean and screen the data before analyses.</p>
 <p>Recall our research hypothesis:</p>
 <p><strong>Research Example</strong>: Predict <strong>physics</strong> scores from <strong>math SAT</strong> scores.
 Run a simple linear regression model using <code>lm()</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#`msat` predicting `physics`</span>
-</span></span><span style="display:flex;"><span>slr_model <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(physics<span style="color:#000;font-weight:bold">~</span>msat,data<span style="color:#000;font-weight:bold">=</span>physics)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(slr_model)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#`msat` predicting `physics`</span>
+</span></span><span style="display:flex;"><span>slr_model <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(physics<span style="color:#ff7b72;font-weight:bold">~</span>msat,data<span style="color:#ff7b72;font-weight:bold">=</span>physics)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(slr_model)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Call:
 ## lm(formula = physics ~ msat, data = physics)
@@ -981,12 +977,12 @@ Run a simple linear regression model using <code>lm()</code>:</p>
 <p>$$ physics = -58.54 + 0.28 (msat) $$</p>
 <p>Looking at the <strong>homoscedasticity</strong> assumption, we use the <code>plot()</code> function.
 To assess for constant variance, we want to see a straight, horizontal red line across this plot.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(slr_model, <span style="color:#099">3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(slr_model, <span style="color:#a5d6ff">3</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 <p>Looking at the <strong>normality of residuals</strong> assumption (whereas before, we were looking at normality of each predictor), we again use <code>plot()</code> function.:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. </span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(slr_model, <span style="color:#099">2</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. </span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(slr_model, <span style="color:#a5d6ff">2</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 
@@ -1001,11 +997,11 @@ To assess for constant variance, we want to see a straight, horizontal red line 
 <p>Recall our research hypothesis:</p>
 <p><strong>Research Example</strong>: Predict <strong>physics</strong> scores from: emotional intelligence, IQ, verbal SAT, math SAT, creativity, and abstract thinking.</p>
 <p>Run a multiple regression model using <code>lm()</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># using the period (.) tells R you want ALL the variables except the outcome (`physics`)</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># alternatively, you can type out all the variables by doing this:</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># lm(physics~ei+iq+vsat+msat+create+abstract, data=physics)</span>
-</span></span><span style="display:flex;"><span>mr_model <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(physics<span style="color:#000;font-weight:bold">~</span>.,data<span style="color:#000;font-weight:bold">=</span>physics)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(mr_model)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># using the period (.) tells R you want ALL the variables except the outcome (`physics`)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># alternatively, you can type out all the variables by doing this:</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># lm(physics~ei+iq+vsat+msat+create+abstract, data=physics)</span>
+</span></span><span style="display:flex;"><span>mr_model <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(physics<span style="color:#ff7b72;font-weight:bold">~</span>.,data<span style="color:#ff7b72;font-weight:bold">=</span>physics)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(mr_model)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Call:
 ## lm(formula = physics ~ ., data = physics)
@@ -1036,13 +1032,13 @@ To assess for constant variance, we want to see a straight, horizontal red line 
 For non-significant predictors, &ldquo;IQ was not found to be a significant predictor of the model&rdquo; is sufficient.</p>
 <p><strong>Homoscedasticity</strong></p>
 <p>Scale-Location plot:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(mr_model, <span style="color:#099">3</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 3 is for the Scale-Location plot. This shows if residuals are spread equally along the ranges of preditors. A straight line means constant variance.</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(mr_model, <span style="color:#a5d6ff">3</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 <p><strong>Normality of Residuals</strong></p>
 <p>QQ plot:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. </span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(mr_model, <span style="color:#099">2</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 2 is to assess the normality of residuals (QQ plot for the model) We want to see the points on the diagonal. </span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(mr_model, <span style="color:#a5d6ff">2</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/01-data-cleaning/index_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
       </section>

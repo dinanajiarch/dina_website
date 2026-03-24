@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.102.1" />
+<meta name="generator" content="Hugo 0.159.0">
 <title>Lab 5: Binary Logistic Regression | Dina Arch</title>
 
 
@@ -38,60 +38,51 @@
 
 
     
-        <meta property="og:image" content="https://www.dina-arch.com" >
+        <meta property="og:image" content="https://www.dina-arch.com/" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://www.dina-arch.com" >
+        <meta name="twitter:image" content="https://www.dina-arch.com/" >
     
+  
   <meta itemprop="name" content="Lab 5: Binary Logistic Regression">
-<meta itemprop="description" content="library(pander) #pander() library(psych) # describe() library(gtsummary) #tbl_summary() library(equatiomatic) # extract_eq() library(sjPlot) # tab_xtab(), tab_model() library(tidyverse) This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.
-What is Binary Logistic Regression? It is a regression with an outcome variable (or dependent variable) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose)."><meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00" />
-<meta itemprop="wordCount" content="3655">
-<meta itemprop="keywords" content="r markdown,tidy data,logistic regression," />
+  <meta itemprop="description" content="library(pander) #pander() library(psych) # describe() library(gtsummary) #tbl_summary() library(equatiomatic) # extract_eq() library(sjPlot) # tab_xtab(), tab_model() library(tidyverse) This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.
+What is Binary Logistic Regression? It is a regression with an outcome variable (or dependent variable) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose).">
+  <meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3655">
+  <meta itemprop="keywords" content="R Markdown,Tidy Data,Logistic Regression">
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
-<script>
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-XV6Y72XCTJ', { 'anonymize_ip': true });
-}
-</script>
-
-  
-<script type="application/javascript">
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-XV6Y72XCTJ', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XV6Y72XCTJ');
+        }
+      </script>
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
   <link rel="icon" href="/img/cat.ico" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.9d8de99f4c94aff7a77ce5b4714ffdbee5bdfcdff4330362f854eedade6d8a27.css" integrity="sha256-nY3pn0yUr/enfOW0cU/9vuW9/N/0MwNi&#43;FTu2t5tiic=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.9ae41e138f4f62c165cf7ebd6bc9d8c44682584e7f1797a679ee0f23718e83a5.js" type="text/javascript"></script>
+  <script src="/main.min.f7862fe64e701541b0a2baa66974e6debf4a7ffe0f0e2167785554cdf97bca97.js" type="text/javascript"></script>
 </head>
 <body>
       <div class="grid-container single-series">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com/" title="Home">
       <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -100,6 +91,11 @@ if (!doNotTrack) {
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://mixture-modeling.netlify.app/" title="IMMERSE">IMMERSE</a>
       
         
         
@@ -168,12 +164,12 @@ if (!doNotTrack) {
         
       </header>
       <section class="post-body pt5 pb4">
-        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(pander) <span style="color:#998;font-style:italic">#pander()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic"># describe()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(gtsummary) <span style="color:#998;font-style:italic">#tbl_summary()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(equatiomatic) <span style="color:#998;font-style:italic"># extract_eq()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(sjPlot) <span style="color:#998;font-style:italic"># tab_xtab(), tab_model()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+        <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(pander) <span style="color:#8b949e;font-style:italic">#pander()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(psych) <span style="color:#8b949e;font-style:italic"># describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gtsummary) <span style="color:#8b949e;font-style:italic">#tbl_summary()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(equatiomatic) <span style="color:#8b949e;font-style:italic"># extract_eq()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sjPlot) <span style="color:#8b949e;font-style:italic"># tab_xtab(), tab_model()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
 </span></span></code></pre></div><p>This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.</p>
 
 
@@ -219,30 +215,30 @@ if (!doNotTrack) {
 <a href="https://stats.idre.ucla.edu/r/dae/logit-regression/" target="_blank" rel="noopener">here</a>.
 This example assesses how GRE, GPA, and prestige of the undergraduate institutions effect graduate school admission.</p>
 <table>
-<thead>
-<tr>
-<th><strong>Variable</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>gre</td>
-<td>Graduate Record Exam (GRE) scores, <em>continuous</em></td>
-</tr>
-<tr>
-<td>gpa</td>
-<td>Grade point average, <em>continuous</em></td>
-</tr>
-<tr>
-<td>rank</td>
-<td>Rank of undergraduate institutions, 1 = highest prestige, 4 = lowest, <em>categorical</em></td>
-</tr>
-<tr>
-<td>admit</td>
-<td>Admission decision, 0 = did not admit, 1 = admitted, <em>binary</em></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th><strong>Variable</strong></th>
+          <th><strong>Description</strong></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>gre</td>
+          <td>Graduate Record Exam (GRE) scores, <em>continuous</em></td>
+      </tr>
+      <tr>
+          <td>gpa</td>
+          <td>Grade point average, <em>continuous</em></td>
+      </tr>
+      <tr>
+          <td>rank</td>
+          <td>Rank of undergraduate institutions, 1 = highest prestige, 4 = lowest, <em>categorical</em></td>
+      </tr>
+      <tr>
+          <td>admit</td>
+          <td>Admission decision, 0 = did not admit, 1 = admitted, <em>binary</em></td>
+      </tr>
+  </tbody>
 </table>
 <p><strong>References</strong></p>
 <p>Hosmer, D.
@@ -255,128 +251,128 @@ Regression Models for Categorical and Limited Dependent Variables.
 Thousand Oaks, CA: Sage Publications.</p>
 <hr>
 <p>Read in data</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>log <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read.csv</span>(<span style="color:#d14">&#34;https://stats.idre.ucla.edu/stat/data/binary.csv&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(rank <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">factor</span>(rank),  <span style="color:#998;font-style:italic">#we need to convert this variable to a factor</span>
-</span></span><span style="display:flex;"><span>         admit <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">factor</span>(admit, levels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;0&#34;</span>, <span style="color:#d14">&#34;1&#34;</span>), labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;Not Admitted&#34;</span>, <span style="color:#d14">&#34;Admitted&#34;</span>))) <span style="color:#998;font-style:italic"># add labels to outcome</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>log <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read.csv</span>(<span style="color:#a5d6ff">&#34;https://stats.idre.ucla.edu/stat/data/binary.csv&#34;</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(rank <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">factor</span>(rank),  <span style="color:#8b949e;font-style:italic">#we need to convert this variable to a factor</span>
+</span></span><span style="display:flex;"><span>         admit <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">factor</span>(admit, levels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;0&#34;</span>, <span style="color:#a5d6ff">&#34;1&#34;</span>), labels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Not Admitted&#34;</span>, <span style="color:#a5d6ff">&#34;Admitted&#34;</span>))) <span style="color:#8b949e;font-style:italic"># add labels to outcome</span>
 </span></span></code></pre></div><hr>
 <p>Summary</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># psych::describe()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">round</span>(<span style="color:#900;font-weight:bold">describe</span>(log),<span style="color:#099">2</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">pander</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># psych::describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">round</span>(<span style="color:#d2a8ff;font-weight:bold">describe</span>(log),<span style="color:#a5d6ff">2</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">pander</span>() 
 </span></span></code></pre></div><table>
-<thead>
-<tr>
-<th style="text-align:center"> </th>
-<th style="text-align:center">vars</th>
-<th style="text-align:center">n</th>
-<th style="text-align:center">mean</th>
-<th style="text-align:center">sd</th>
-<th style="text-align:center">median</th>
-<th style="text-align:center">trimmed</th>
-<th style="text-align:center">mad</th>
-<th style="text-align:center">min</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>admit</strong>*</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">1.32</td>
-<td style="text-align:center">0.47</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1.27</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>gre</strong></td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">587.7</td>
-<td style="text-align:center">115.5</td>
-<td style="text-align:center">580</td>
-<td style="text-align:center">589.1</td>
-<td style="text-align:center">118.6</td>
-<td style="text-align:center">220</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>gpa</strong></td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">3.39</td>
-<td style="text-align:center">0.38</td>
-<td style="text-align:center">3.4</td>
-<td style="text-align:center">3.4</td>
-<td style="text-align:center">0.4</td>
-<td style="text-align:center">2.26</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>rank</strong>*</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">2.48</td>
-<td style="text-align:center">0.94</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">2.48</td>
-<td style="text-align:center">1.48</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"> </th>
+          <th style="text-align: center">vars</th>
+          <th style="text-align: center">n</th>
+          <th style="text-align: center">mean</th>
+          <th style="text-align: center">sd</th>
+          <th style="text-align: center">median</th>
+          <th style="text-align: center">trimmed</th>
+          <th style="text-align: center">mad</th>
+          <th style="text-align: center">min</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>admit</strong>*</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">1.32</td>
+          <td style="text-align: center">0.47</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">1.27</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">1</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>gre</strong></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">587.7</td>
+          <td style="text-align: center">115.5</td>
+          <td style="text-align: center">580</td>
+          <td style="text-align: center">589.1</td>
+          <td style="text-align: center">118.6</td>
+          <td style="text-align: center">220</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>gpa</strong></td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">3.39</td>
+          <td style="text-align: center">0.38</td>
+          <td style="text-align: center">3.4</td>
+          <td style="text-align: center">3.4</td>
+          <td style="text-align: center">0.4</td>
+          <td style="text-align: center">2.26</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>rank</strong>*</td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">2.48</td>
+          <td style="text-align: center">0.94</td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">2.48</td>
+          <td style="text-align: center">1.48</td>
+          <td style="text-align: center">1</td>
+      </tr>
+  </tbody>
 </table>
 <p>Table continues below</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"> </th>
-<th style="text-align:center">max</th>
-<th style="text-align:center">range</th>
-<th style="text-align:center">skew</th>
-<th style="text-align:center">kurtosis</th>
-<th style="text-align:center">se</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>admit</strong>*</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0.78</td>
-<td style="text-align:center">-1.39</td>
-<td style="text-align:center">0.02</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>gre</strong></td>
-<td style="text-align:center">800</td>
-<td style="text-align:center">580</td>
-<td style="text-align:center">-0.14</td>
-<td style="text-align:center">-0.36</td>
-<td style="text-align:center">5.78</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>gpa</strong></td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">1.74</td>
-<td style="text-align:center">-0.21</td>
-<td style="text-align:center">-0.6</td>
-<td style="text-align:center">0.02</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>rank</strong>*</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">0.1</td>
-<td style="text-align:center">-0.91</td>
-<td style="text-align:center">0.05</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"> </th>
+          <th style="text-align: center">max</th>
+          <th style="text-align: center">range</th>
+          <th style="text-align: center">skew</th>
+          <th style="text-align: center">kurtosis</th>
+          <th style="text-align: center">se</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>admit</strong>*</td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">0.78</td>
+          <td style="text-align: center">-1.39</td>
+          <td style="text-align: center">0.02</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>gre</strong></td>
+          <td style="text-align: center">800</td>
+          <td style="text-align: center">580</td>
+          <td style="text-align: center">-0.14</td>
+          <td style="text-align: center">-0.36</td>
+          <td style="text-align: center">5.78</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>gpa</strong></td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">1.74</td>
+          <td style="text-align: center">-0.21</td>
+          <td style="text-align: center">-0.6</td>
+          <td style="text-align: center">0.02</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>rank</strong>*</td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">0.1</td>
+          <td style="text-align: center">-0.91</td>
+          <td style="text-align: center">0.05</td>
+      </tr>
+  </tbody>
 </table>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># I like this table more, but you can do either! Especially if you&#39;re getting some errors with gtsummary(). </span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># I like this table more, but you can do either! Especially if you&#39;re getting some errors with gtsummary(). </span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># gtsummary::tbl_summary()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tbl_summary</span>(log,
-</span></span><span style="display:flex;"><span>            statistic <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">list</span>(<span style="color:#900;font-weight:bold">all_continuous</span>() <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#34;{mean} ({sd})&#34;</span>),
-</span></span><span style="display:flex;"><span>                             missing <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;no&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># gtsummary::tbl_summary()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tbl_summary</span>(log,
+</span></span><span style="display:flex;"><span>            statistic <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">list</span>(<span style="color:#d2a8ff;font-weight:bold">all_continuous</span>() <span style="color:#ff7b72;font-weight:bold">~</span> <span style="color:#a5d6ff">&#34;{mean} ({sd})&#34;</span>),
+</span></span><span style="display:flex;"><span>                             missing <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;no&#34;</span>)
 </span></span></code></pre></div><div id="sjuwjdsdoz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -786,7 +782,7 @@ vertical-align: -0.05em;
 In R, we use <code>sjPlot::tab_xtabs()</code> (Found by Karen!).
 We want to check the contingency table to make sure there are values in each cell.
 Since we only have one categorical variable, <code>rank</code>, we only need to check one contingency table.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>sjPlot<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">tab_xtab</span>(var.row <span style="color:#000;font-weight:bold">=</span> log<span style="color:#000;font-weight:bold">$</span>rank, var.col <span style="color:#000;font-weight:bold">=</span> log<span style="color:#000;font-weight:bold">$</span>admit, title <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Cross tab of Admit rate by Rank of Undergraduate Insitute&#34;</span>, show.row.prc <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.summary<span style="color:#000;font-weight:bold">=</span><span style="color:#999">F</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>sjPlot<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">tab_xtab</span>(var.row <span style="color:#ff7b72;font-weight:bold">=</span> log<span style="color:#ff7b72;font-weight:bold">$</span>rank, var.col <span style="color:#ff7b72;font-weight:bold">=</span> log<span style="color:#ff7b72;font-weight:bold">$</span>admit, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Cross tab of Admit rate by Rank of Undergraduate Insitute&#34;</span>, show.row.prc <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, show.summary<span style="color:#ff7b72;font-weight:bold">=</span>F)
 </span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">
 Cross tab of Admit rate by Rank of Undergraduate Insitute
@@ -900,8 +896,8 @@ The set up is similar to linear regression, however.
 One important note is to make sure we identify the type of “family function,” or the description of the error distribution used in the model.
 For logistic regression, it’s <code>family = &quot;binomial&quot;</code>.</p>
 <p>In our example, the predictors are GRE scores, GPA, and university rank related to graduate school admission status.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mylogit <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">glm</span>(admit <span style="color:#000;font-weight:bold">~</span> gre <span style="color:#000;font-weight:bold">+</span> gpa <span style="color:#000;font-weight:bold">+</span> rank, data <span style="color:#000;font-weight:bold">=</span> log, family <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;binomial&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(mylogit)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mylogit <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">glm</span>(admit <span style="color:#ff7b72;font-weight:bold">~</span> gre <span style="color:#ff7b72;font-weight:bold">+</span> gpa <span style="color:#ff7b72;font-weight:bold">+</span> rank, data <span style="color:#ff7b72;font-weight:bold">=</span> log, family <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;binomial&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(mylogit)
 </span></span></code></pre></div><pre><code>## 
 ## Call:
 ## glm(formula = admit ~ gre + gpa + rank, family = &quot;binomial&quot;, 
@@ -962,13 +958,13 @@ To convert them to odd ratios, we take the exponent of the coefficients (Slide 2
 <p>$$
 odds ratio = e^{\beta}
 $$</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#coverting the log odds (logits) to odds ratios</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">exp</span>(<span style="color:#900;font-weight:bold">coef</span>(mylogit))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#coverting the log odds (logits) to odds ratios</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">exp</span>(<span style="color:#d2a8ff;font-weight:bold">coef</span>(mylogit))
 </span></span></code></pre></div><pre><code>## (Intercept)         gre         gpa       rank2       rank3       rank4 
 ##   0.0185001   1.0022670   2.2345448   0.5089310   0.2617923   0.2119375
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">## odds ratios and 95% CI</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">exp</span>(<span style="color:#900;font-weight:bold">cbind</span>(OR <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">coef</span>(mylogit), <span style="color:#900;font-weight:bold">confint</span>(mylogit)))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## odds ratios and 95% CI</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">exp</span>(<span style="color:#d2a8ff;font-weight:bold">cbind</span>(OR <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">coef</span>(mylogit), <span style="color:#d2a8ff;font-weight:bold">confint</span>(mylogit)))
 </span></span></code></pre></div><pre><code>##                    OR       2.5 %    97.5 %
 ## (Intercept) 0.0185001 0.001889165 0.1665354
 ## gre         1.0022670 1.000137602 1.0044457
@@ -1004,7 +1000,7 @@ probability = \frac{odds}{odds + 1}
 $$</p>
 <p>Before we dive right into conversions, we could also calculate the <strong>predicted probabilities</strong> of admission for specific values of the the predictors.
 Recall in lecture (Slide 23) to find the log odds of an x-value, we want to plug it into our regression equation:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mylogit, use_coefs <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">extract_eq</span>(mylogit, use_coefs <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
 </span></span></code></pre></div><p>$$
 \log\left[ \frac { \widehat{P( \operatorname{admit} = \operatorname{Admitted} )} }{ 1 - \widehat{P( \operatorname{admit} = \operatorname{Admitted} )} } \right] = -3.99 + 0(\operatorname{gre}) + 0.8(\operatorname{gpa}) - 0.68(\operatorname{rank}<em>{\operatorname{2}}) - 1.34(\operatorname{rank}</em>{\operatorname{3}}) - 1.55(\operatorname{rank}_{\operatorname{4}})
 $$</p>
@@ -1014,7 +1010,7 @@ And since we have a <strong>categorical</strong> predictor, <code>rank</code>, l
 We could, of course, do all the calculations by hand.
 But R is easier :)</p>
 <p>Let’s first create the data frame using <code>with</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>pred_prob <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">with</span>(log, <span style="color:#900;font-weight:bold">data.frame</span>(gre <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">mean</span>(gre), gpa <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">mean</span>(gpa), rank <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">factor</span>(<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">4</span>)))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>pred_prob <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">with</span>(log, <span style="color:#d2a8ff;font-weight:bold">data.frame</span>(gre <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">mean</span>(gre), gpa <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">mean</span>(gpa), rank <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">factor</span>(<span style="color:#a5d6ff">1</span><span style="color:#ff7b72;font-weight:bold">:</span><span style="color:#a5d6ff">4</span>)))
 </span></span><span style="display:flex;"><span>pred_prob
 </span></span></code></pre></div><pre><code>##     gre    gpa rank
 ## 1 587.7 3.3899    1
@@ -1028,7 +1024,7 @@ If we did not have a categorical predictor, we would only have <em>one.</em></p>
 <p>Now let’s create the predicted probabilities using the mean of <code>gre</code> and <code>gpa</code> and each level of <code>rank</code> using the <code>predict()</code> function.
 What R is doing here is taking the logits from <code>mylogit</code> and converting them to predicted probabilities based on the values we provided in <code>pred_prob</code>.
 We identify the object as <code>pred_prob$rankP</code> to create a new column of the within the <code>pred_prob</code> dataset called <code>rankP</code>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>pred_prob<span style="color:#000;font-weight:bold">$</span>rankP <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(mylogit, newdata <span style="color:#000;font-weight:bold">=</span> pred_prob, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;response&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>pred_prob<span style="color:#ff7b72;font-weight:bold">$</span>rankP <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">predict</span>(mylogit, newdata <span style="color:#ff7b72;font-weight:bold">=</span> pred_prob, type <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;response&#34;</span>)
 </span></span><span style="display:flex;"><span>pred_prob
 </span></span></code></pre></div><pre><code>##     gre    gpa rank     rankP
 ## 1 587.7 3.3899    1 0.5166016
@@ -1058,19 +1054,19 @@ This is a way to see how well the model did at predicting the outcome of being a
 <p>In this code, we take actual fitted values from the model (<code>mylogit$fitted.values</code>), and separate them by a cut off of <em>p</em> = .5.
 Those who had a fitted value of above .50 were assigned “Admitted.” We are comparing the values given by the model (fitted values) and whether or not they actually got admitted.
 The purpose of this is to see how effective our model is at predicting admission status</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Converting from probability to actual output</span>
-</span></span><span style="display:flex;"><span>log<span style="color:#000;font-weight:bold">$</span>fitted_admit <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">ifelse</span>(mylogit<span style="color:#000;font-weight:bold">$</span>fitted.values <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">0.5</span>, <span style="color:#d14">&#34;1&#34;</span>, <span style="color:#d14">&#34;0&#34;</span>) <span style="color:#998;font-style:italic">#1 = Admitted, 0 = Not Admitted</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Converting from probability to actual output</span>
+</span></span><span style="display:flex;"><span>log<span style="color:#ff7b72;font-weight:bold">$</span>fitted_admit <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ifelse</span>(mylogit<span style="color:#ff7b72;font-weight:bold">$</span>fitted.values <span style="color:#ff7b72;font-weight:bold">&gt;=</span> <span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">&#34;1&#34;</span>, <span style="color:#a5d6ff">&#34;0&#34;</span>) <span style="color:#8b949e;font-style:italic">#1 = Admitted, 0 = Not Admitted</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Generating the classification table</span>
-</span></span><span style="display:flex;"><span>ctab <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(log<span style="color:#000;font-weight:bold">$</span>admit, log<span style="color:#000;font-weight:bold">$</span>fitted_admit)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Generating the classification table</span>
+</span></span><span style="display:flex;"><span>ctab <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(log<span style="color:#ff7b72;font-weight:bold">$</span>admit, log<span style="color:#ff7b72;font-weight:bold">$</span>fitted_admit)
 </span></span><span style="display:flex;"><span>ctab
 </span></span></code></pre></div><pre><code>##               
 ##                  0   1
 ##   Not Admitted 254  19
 ##   Admitted      97  30
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#I (Karen) like this table better because it include row and column totals</span>
-</span></span><span style="display:flex;"><span>sjPlot<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">tab_xtab</span>(var.row <span style="color:#000;font-weight:bold">=</span> log<span style="color:#000;font-weight:bold">$</span>admit, var.col <span style="color:#000;font-weight:bold">=</span> log<span style="color:#000;font-weight:bold">$</span>fitted_admit, title <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Observed Admission versus Predited Admission counts&#34;</span>, show.row.prc <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.summary <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">F</span> )
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#I (Karen) like this table better because it include row and column totals</span>
+</span></span><span style="display:flex;"><span>sjPlot<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">tab_xtab</span>(var.row <span style="color:#ff7b72;font-weight:bold">=</span> log<span style="color:#ff7b72;font-weight:bold">$</span>admit, var.col <span style="color:#ff7b72;font-weight:bold">=</span> log<span style="color:#ff7b72;font-weight:bold">$</span>fitted_admit, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Observed Admission versus Predited Admission counts&#34;</span>, show.row.prc <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, show.summary <span style="color:#ff7b72;font-weight:bold">=</span> F )
 </span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">
 Observed Admission versus Predited Admission counts
@@ -1152,7 +1148,7 @@ Thus this model did a better job at predicting who was not admitted than those w
     </svg></a>
 </h3>
 <p>We can check the accuracy percentage:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>accuracy <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">sum</span>(<span style="color:#900;font-weight:bold">diag</span>(ctab))<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">sum</span>(ctab)<span style="color:#000;font-weight:bold">*</span><span style="color:#099">100</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>accuracy <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">sum</span>(<span style="color:#d2a8ff;font-weight:bold">diag</span>(ctab))<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#d2a8ff;font-weight:bold">sum</span>(ctab)<span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#a5d6ff">100</span>
 </span></span><span style="display:flex;"><span>accuracy
 </span></span></code></pre></div><pre><code>## [1] 71
 </code></pre>
@@ -1189,11 +1185,11 @@ In logistic regression models, we test if the residual deviance significant decr
 We are using the ANOVA function, but it’s not an ANOVA test like you may have done before.
 In this case, we are using ANOVA to compare the deviance for each model to the subsequent model.
 If the chi-square value is significant we can interpret that the addition of the extra variables (going from log1 to log 2, for example) significantly improves the model prediction (e.g., lowers the residual variance).</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>log1 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">glm</span>(admit <span style="color:#000;font-weight:bold">~</span> gpa , data <span style="color:#000;font-weight:bold">=</span> log, family <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;binomial&#34;</span>)
-</span></span><span style="display:flex;"><span>log2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">glm</span>(admit <span style="color:#000;font-weight:bold">~</span> gpa <span style="color:#000;font-weight:bold">+</span> gre , data <span style="color:#000;font-weight:bold">=</span> log, family <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;binomial&#34;</span>)
-</span></span><span style="display:flex;"><span>log3 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">glm</span>(admit <span style="color:#000;font-weight:bold">~</span> gpa <span style="color:#000;font-weight:bold">+</span> gre <span style="color:#000;font-weight:bold">+</span> rank, data <span style="color:#000;font-weight:bold">=</span> log, family <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;binomial&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>log1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">glm</span>(admit <span style="color:#ff7b72;font-weight:bold">~</span> gpa , data <span style="color:#ff7b72;font-weight:bold">=</span> log, family <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;binomial&#34;</span>)
+</span></span><span style="display:flex;"><span>log2 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">glm</span>(admit <span style="color:#ff7b72;font-weight:bold">~</span> gpa <span style="color:#ff7b72;font-weight:bold">+</span> gre , data <span style="color:#ff7b72;font-weight:bold">=</span> log, family <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;binomial&#34;</span>)
+</span></span><span style="display:flex;"><span>log3 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">glm</span>(admit <span style="color:#ff7b72;font-weight:bold">~</span> gpa <span style="color:#ff7b72;font-weight:bold">+</span> gre <span style="color:#ff7b72;font-weight:bold">+</span> rank, data <span style="color:#ff7b72;font-weight:bold">=</span> log, family <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;binomial&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(log1, log2, log3)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tab_model</span>(log1, log2, log3)
 </span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1441,7 +1437,7 @@ R<sup>2</sup> Tjur
 </td>
 </tr>
 </table>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">anova</span>(log1, log2, log3, test<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;Chisq&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">anova</span>(log1, log2, log3, test<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Chisq&#34;</span>)
 </span></span></code></pre></div><pre><code>## Analysis of Deviance Table
 ## 
 ## Model 1: admit ~ gpa
@@ -1473,185 +1469,185 @@ Note: This is the same example as the simple linear regression lab (Lab 5).
 However, we are changing the model to have a binary outcome for logistic regression.
 Below is the list of variables we used in this analysis for lab, noting that there are more variables in the API dataset.</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Variable</strong></td>
-<td><strong>Description</strong></td>
-</tr>
-<tr>
-<td>api00</td>
-<td>Academic Performance Index, 0 = under statewide target of 800, 1 = above 800, <em>binary</em></td>
-</tr>
-<tr>
-<td>enroll</td>
-<td>School enrollment, <em>continuous</em></td>
-</tr>
-<tr>
-<td>Meals</td>
-<td>Number of free and reduced lunch, <em>continuous</em></td>
-</tr>
-<tr>
-<td>full</td>
-<td>Percentage of teachers will full credentials, <em>continuous</em></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Variable</strong></td>
+          <td><strong>Description</strong></td>
+      </tr>
+      <tr>
+          <td>api00</td>
+          <td>Academic Performance Index, 0 = under statewide target of 800, 1 = above 800, <em>binary</em></td>
+      </tr>
+      <tr>
+          <td>enroll</td>
+          <td>School enrollment, <em>continuous</em></td>
+      </tr>
+      <tr>
+          <td>Meals</td>
+          <td>Number of free and reduced lunch, <em>continuous</em></td>
+      </tr>
+      <tr>
+          <td>full</td>
+          <td>Percentage of teachers will full credentials, <em>continuous</em></td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 <p>Here, we are reading in the data directly from the UCLA website.
 Additionally, we are dichotomizing the API (<code>api00</code>) variable to separate schools above statewide target of 800 and below.
 This cut-off may be outdated and/or controversial, however, we are going to use this for the purpose of providing an example of how to do logistic regression in R.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>api <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read.csv</span>(
-</span></span><span style="display:flex;"><span><span style="color:#d14">&#34;https://stats.idre.ucla.edu/wp-content/uploads/2019/02/elemapi2v2.csv&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(api00, full, enroll, meals) <span style="color:#000;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(api_factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cut</span>(api00,
-</span></span><span style="display:flex;"><span>                     levels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;0&#34;</span>, <span style="color:#d14">&#34;1&#34;</span>),
-</span></span><span style="display:flex;"><span>                     breaks <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">0</span>, <span style="color:#099">800</span>, <span style="color:#099">940</span>),
-</span></span><span style="display:flex;"><span>                     labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;Below Target&#34;</span>, <span style="color:#d14">&#34;At or Above Target&#34;</span>))) <span style="color:#998;font-style:italic"># here we are dichotomizing API, see lab 1 for a refresher on what this all does.</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>api <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read.csv</span>(
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">&#34;https://stats.idre.ucla.edu/wp-content/uploads/2019/02/elemapi2v2.csv&#34;</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(api00, full, enroll, meals) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(api_factor <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">cut</span>(api00,
+</span></span><span style="display:flex;"><span>                     levels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;0&#34;</span>, <span style="color:#a5d6ff">&#34;1&#34;</span>),
+</span></span><span style="display:flex;"><span>                     breaks <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">800</span>, <span style="color:#a5d6ff">940</span>),
+</span></span><span style="display:flex;"><span>                     labels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Below Target&#34;</span>, <span style="color:#a5d6ff">&#34;At or Above Target&#34;</span>))) <span style="color:#8b949e;font-style:italic"># here we are dichotomizing API, see lab 1 for a refresher on what this all does.</span>
 </span></span></code></pre></div><hr>
 <p>For a short descriptor of each variable, scroll down 
 <a href="https://stats.idre.ucla.edu/spss/webbooks/reg/chapter1/regressionwith-spsschapter-1-simple-and-multiple-regression/" target="_blank" rel="noopener">here</a>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># psych::describe()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">round</span>(<span style="color:#900;font-weight:bold">describe</span>(api),<span style="color:#099">2</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">pander</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># psych::describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">round</span>(<span style="color:#d2a8ff;font-weight:bold">describe</span>(api),<span style="color:#a5d6ff">2</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">pander</span>() 
 </span></span></code></pre></div><table>
-<thead>
-<tr>
-<th style="text-align:center"> </th>
-<th style="text-align:center">vars</th>
-<th style="text-align:center">n</th>
-<th style="text-align:center">mean</th>
-<th style="text-align:center">sd</th>
-<th style="text-align:center">median</th>
-<th style="text-align:center">trimmed</th>
-<th style="text-align:center">mad</th>
-<th style="text-align:center">min</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>api00</strong></td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">647.6</td>
-<td style="text-align:center">142.2</td>
-<td style="text-align:center">643</td>
-<td style="text-align:center">645.8</td>
-<td style="text-align:center">177.2</td>
-<td style="text-align:center">369</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>full</strong></td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">84.55</td>
-<td style="text-align:center">14.95</td>
-<td style="text-align:center">88</td>
-<td style="text-align:center">86.6</td>
-<td style="text-align:center">14.83</td>
-<td style="text-align:center">37</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>enroll</strong></td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">483.5</td>
-<td style="text-align:center">226.4</td>
-<td style="text-align:center">435</td>
-<td style="text-align:center">459.4</td>
-<td style="text-align:center">202.4</td>
-<td style="text-align:center">130</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>meals</strong></td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">60.31</td>
-<td style="text-align:center">31.91</td>
-<td style="text-align:center">67.5</td>
-<td style="text-align:center">62.18</td>
-<td style="text-align:center">37.81</td>
-<td style="text-align:center">0</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>api_factor</strong>*</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">400</td>
-<td style="text-align:center">1.19</td>
-<td style="text-align:center">0.39</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1.12</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"> </th>
+          <th style="text-align: center">vars</th>
+          <th style="text-align: center">n</th>
+          <th style="text-align: center">mean</th>
+          <th style="text-align: center">sd</th>
+          <th style="text-align: center">median</th>
+          <th style="text-align: center">trimmed</th>
+          <th style="text-align: center">mad</th>
+          <th style="text-align: center">min</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>api00</strong></td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">647.6</td>
+          <td style="text-align: center">142.2</td>
+          <td style="text-align: center">643</td>
+          <td style="text-align: center">645.8</td>
+          <td style="text-align: center">177.2</td>
+          <td style="text-align: center">369</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>full</strong></td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">84.55</td>
+          <td style="text-align: center">14.95</td>
+          <td style="text-align: center">88</td>
+          <td style="text-align: center">86.6</td>
+          <td style="text-align: center">14.83</td>
+          <td style="text-align: center">37</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>enroll</strong></td>
+          <td style="text-align: center">3</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">483.5</td>
+          <td style="text-align: center">226.4</td>
+          <td style="text-align: center">435</td>
+          <td style="text-align: center">459.4</td>
+          <td style="text-align: center">202.4</td>
+          <td style="text-align: center">130</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>meals</strong></td>
+          <td style="text-align: center">4</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">60.31</td>
+          <td style="text-align: center">31.91</td>
+          <td style="text-align: center">67.5</td>
+          <td style="text-align: center">62.18</td>
+          <td style="text-align: center">37.81</td>
+          <td style="text-align: center">0</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>api_factor</strong>*</td>
+          <td style="text-align: center">5</td>
+          <td style="text-align: center">400</td>
+          <td style="text-align: center">1.19</td>
+          <td style="text-align: center">0.39</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">1.12</td>
+          <td style="text-align: center">0</td>
+          <td style="text-align: center">1</td>
+      </tr>
+  </tbody>
 </table>
 <p>Table continues below</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center"> </th>
-<th style="text-align:center">max</th>
-<th style="text-align:center">range</th>
-<th style="text-align:center">skew</th>
-<th style="text-align:center">kurtosis</th>
-<th style="text-align:center">se</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>api00</strong></td>
-<td style="text-align:center">940</td>
-<td style="text-align:center">571</td>
-<td style="text-align:center">0.1</td>
-<td style="text-align:center">-1.13</td>
-<td style="text-align:center">7.11</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>full</strong></td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">63</td>
-<td style="text-align:center">-0.97</td>
-<td style="text-align:center">0.17</td>
-<td style="text-align:center">0.75</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>enroll</strong></td>
-<td style="text-align:center">1570</td>
-<td style="text-align:center">1440</td>
-<td style="text-align:center">1.34</td>
-<td style="text-align:center">3.02</td>
-<td style="text-align:center">11.32</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>meals</strong></td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">100</td>
-<td style="text-align:center">-0.41</td>
-<td style="text-align:center">-1.2</td>
-<td style="text-align:center">1.6</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>api_factor</strong>*</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1.55</td>
-<td style="text-align:center">0.42</td>
-<td style="text-align:center">0.02</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center"> </th>
+          <th style="text-align: center">max</th>
+          <th style="text-align: center">range</th>
+          <th style="text-align: center">skew</th>
+          <th style="text-align: center">kurtosis</th>
+          <th style="text-align: center">se</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center"><strong>api00</strong></td>
+          <td style="text-align: center">940</td>
+          <td style="text-align: center">571</td>
+          <td style="text-align: center">0.1</td>
+          <td style="text-align: center">-1.13</td>
+          <td style="text-align: center">7.11</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>full</strong></td>
+          <td style="text-align: center">100</td>
+          <td style="text-align: center">63</td>
+          <td style="text-align: center">-0.97</td>
+          <td style="text-align: center">0.17</td>
+          <td style="text-align: center">0.75</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>enroll</strong></td>
+          <td style="text-align: center">1570</td>
+          <td style="text-align: center">1440</td>
+          <td style="text-align: center">1.34</td>
+          <td style="text-align: center">3.02</td>
+          <td style="text-align: center">11.32</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>meals</strong></td>
+          <td style="text-align: center">100</td>
+          <td style="text-align: center">100</td>
+          <td style="text-align: center">-0.41</td>
+          <td style="text-align: center">-1.2</td>
+          <td style="text-align: center">1.6</td>
+      </tr>
+      <tr>
+          <td style="text-align: center"><strong>api_factor</strong>*</td>
+          <td style="text-align: center">2</td>
+          <td style="text-align: center">1</td>
+          <td style="text-align: center">1.55</td>
+          <td style="text-align: center">0.42</td>
+          <td style="text-align: center">0.02</td>
+      </tr>
+  </tbody>
 </table>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># I like this table more, but you can do either! Especially if you&#39;re getting some errors with gtsummary(). Useful when you have a subset, but here we left all variables in the sample so it&#39;s a long table. </span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># I like this table more, but you can do either! Especially if you&#39;re getting some errors with gtsummary(). Useful when you have a subset, but here we left all variables in the sample so it&#39;s a long table. </span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># gtsummary::gtsummary()</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#tbl_summary(api,</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#            statistic = list(all_continuous() ~ &#34;{mean} ({sd})&#34;),</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#                             missing = &#34;no&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># gtsummary::gtsummary()</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#tbl_summary(api,</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#            statistic = list(all_continuous() ~ &#34;{mean} ({sd})&#34;),</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#                             missing = &#34;no&#34;)</span>
 </span></span></code></pre></div><p>There is no contingency table in this example because all of our predictors are continuous.</p>
 
 
@@ -1665,8 +1661,8 @@ This cut-off may be outdated and/or controversial, however, we are going to use 
 </h3>
 <p>We are using a binary logistic regression model to see how school characteristics relate to a school making adequate progress (api=1) or not (api=0).</p>
 <p>Binary outcome: API adequate progress =1, not adequate progress=0 Predictors: % fully credential teachers, student enrollment, and % on free and reduced lunch</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mylogit <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">glm</span>(api_factor <span style="color:#000;font-weight:bold">~</span> full <span style="color:#000;font-weight:bold">+</span> enroll <span style="color:#000;font-weight:bold">+</span> meals, data <span style="color:#000;font-weight:bold">=</span> api, family <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;binomial&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(mylogit)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mylogit <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">glm</span>(api_factor <span style="color:#ff7b72;font-weight:bold">~</span> full <span style="color:#ff7b72;font-weight:bold">+</span> enroll <span style="color:#ff7b72;font-weight:bold">+</span> meals, data <span style="color:#ff7b72;font-weight:bold">=</span> api, family <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;binomial&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(mylogit)
 </span></span></code></pre></div><pre><code>## 
 ## Call:
 ## glm(formula = api_factor ~ full + enroll + meals, family = &quot;binomial&quot;, 
@@ -1703,12 +1699,12 @@ This cut-off may be outdated and/or controversial, however, we are going to use 
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">exp</span>(<span style="color:#900;font-weight:bold">coef</span>(mylogit))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">exp</span>(<span style="color:#d2a8ff;font-weight:bold">coef</span>(mylogit))
 </span></span></code></pre></div><pre><code>## (Intercept)        full      enroll       meals 
 ##  0.04620768  1.05999495  1.00045932  0.89617604
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">## odds ratios and 95% CI</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">exp</span>(<span style="color:#900;font-weight:bold">cbind</span>(OR <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">coef</span>(mylogit), <span style="color:#900;font-weight:bold">confint</span>(mylogit)))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">## odds ratios and 95% CI</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">exp</span>(<span style="color:#d2a8ff;font-weight:bold">cbind</span>(OR <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">coef</span>(mylogit), <span style="color:#d2a8ff;font-weight:bold">confint</span>(mylogit)))
 </span></span></code></pre></div><pre><code>##                     OR        2.5 %    97.5 %
 ## (Intercept) 0.04620768 0.0001656294 7.8435280
 ## full        1.05999495 1.0055761469 1.1237801
@@ -1725,13 +1721,13 @@ This cut-off may be outdated and/or controversial, however, we are going to use 
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#creating the means of each variable</span>
-</span></span><span style="display:flex;"><span>pred_prob_api<span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">with</span>(api, <span style="color:#900;font-weight:bold">data.frame</span>(full <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">mean</span>(full), enroll <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">mean</span>(enroll), meals <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">mean</span>(meals)))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#creating the means of each variable</span>
+</span></span><span style="display:flex;"><span>pred_prob_api<span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">with</span>(api, <span style="color:#d2a8ff;font-weight:bold">data.frame</span>(full <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">mean</span>(full), enroll <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">mean</span>(enroll), meals <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">mean</span>(meals)))
 </span></span><span style="display:flex;"><span>pred_prob_api
 </span></span></code></pre></div><pre><code>##    full  enroll  meals
 ## 1 84.55 483.465 60.315
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>pred_prob_api<span style="color:#000;font-weight:bold">$</span>apiP<span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">predict</span>(mylogit, newdata <span style="color:#000;font-weight:bold">=</span> pred_prob_api, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;response&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>pred_prob_api<span style="color:#ff7b72;font-weight:bold">$</span>apiP<span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">predict</span>(mylogit, newdata <span style="color:#ff7b72;font-weight:bold">=</span> pred_prob_api, type <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;response&#34;</span>)
 </span></span><span style="display:flex;"><span>pred_prob_api
 </span></span></code></pre></div><pre><code>##    full  enroll  meals       apiP
 ## 1 84.55 483.465 60.315 0.01058167
@@ -1748,19 +1744,19 @@ This cut-off may be outdated and/or controversial, however, we are going to use 
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Converting from probability to actual output</span>
-</span></span><span style="display:flex;"><span>api<span style="color:#000;font-weight:bold">$</span>fitted_api <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">ifelse</span>(mylogit<span style="color:#000;font-weight:bold">$</span>fitted.values <span style="color:#000;font-weight:bold">&gt;=</span> <span style="color:#099">0.5</span>, <span style="color:#d14">&#34;1&#34;</span>, <span style="color:#d14">&#34;0&#34;</span>) <span style="color:#998;font-style:italic">#1 = Above Average, 0 = Below</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Converting from probability to actual output</span>
+</span></span><span style="display:flex;"><span>api<span style="color:#ff7b72;font-weight:bold">$</span>fitted_api <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ifelse</span>(mylogit<span style="color:#ff7b72;font-weight:bold">$</span>fitted.values <span style="color:#ff7b72;font-weight:bold">&gt;=</span> <span style="color:#a5d6ff">0.5</span>, <span style="color:#a5d6ff">&#34;1&#34;</span>, <span style="color:#a5d6ff">&#34;0&#34;</span>) <span style="color:#8b949e;font-style:italic">#1 = Above Average, 0 = Below</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Generating the classification table</span>
-</span></span><span style="display:flex;"><span>ctab <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">table</span>(api<span style="color:#000;font-weight:bold">$</span>api_factor, api<span style="color:#000;font-weight:bold">$</span>fitted_api)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Generating the classification table</span>
+</span></span><span style="display:flex;"><span>ctab <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">table</span>(api<span style="color:#ff7b72;font-weight:bold">$</span>api_factor, api<span style="color:#ff7b72;font-weight:bold">$</span>fitted_api)
 </span></span><span style="display:flex;"><span>ctab
 </span></span></code></pre></div><pre><code>##                     
 ##                        0   1
 ##   Below Target       304  19
 ##   At or Above Target  15  62
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#I (Karen) like this table better because it include row and column totals</span>
-</span></span><span style="display:flex;"><span>sjPlot<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">tab_xtab</span>(var.row <span style="color:#000;font-weight:bold">=</span> api<span style="color:#000;font-weight:bold">$</span>api_factor, var.col <span style="color:#000;font-weight:bold">=</span> api<span style="color:#000;font-weight:bold">$</span>fitted_api, title <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Observed Progress versus Predited progress counts&#34;</span>, show.row.prc <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.summary <span style="color:#000;font-weight:bold">=</span> <span style="color:#999">F</span> )
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#I (Karen) like this table better because it include row and column totals</span>
+</span></span><span style="display:flex;"><span>sjPlot<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">tab_xtab</span>(var.row <span style="color:#ff7b72;font-weight:bold">=</span> api<span style="color:#ff7b72;font-weight:bold">$</span>api_factor, var.col <span style="color:#ff7b72;font-weight:bold">=</span> api<span style="color:#ff7b72;font-weight:bold">$</span>fitted_api, title <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Observed Progress versus Predited progress counts&#34;</span>, show.row.prc <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, show.summary <span style="color:#ff7b72;font-weight:bold">=</span> F )
 </span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
 <caption style="font-weight: bold; text-align:left;">
 Observed Progress versus Predited progress counts
@@ -1837,7 +1833,7 @@ Total
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>accuracy <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">sum</span>(<span style="color:#900;font-weight:bold">diag</span>(ctab))<span style="color:#000;font-weight:bold">/</span><span style="color:#900;font-weight:bold">sum</span>(ctab)<span style="color:#000;font-weight:bold">*</span><span style="color:#099">100</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>accuracy <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">sum</span>(<span style="color:#d2a8ff;font-weight:bold">diag</span>(ctab))<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#d2a8ff;font-weight:bold">sum</span>(ctab)<span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#a5d6ff">100</span>
 </span></span><span style="display:flex;"><span>accuracy
 </span></span></code></pre></div><pre><code>## [1] 91.5
 </code></pre>

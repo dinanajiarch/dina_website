@@ -4,98 +4,79 @@
     <title>Categories on Dina Arch</title>
     <link>https://www.dina-arch.com/categories/</link>
     <description>Recent content in Categories on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>r project</title>
+      <title>R Project</title>
       <link>https://www.dina-arch.com/categories/r-project/</link>
       <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/r-project/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>R</title>
       <link>https://www.dina-arch.com/categories/r/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/r/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>statistics</title>
+      <title>Statistics</title>
       <link>https://www.dina-arch.com/categories/statistics/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/statistics/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>data analysis</title>
+      <title>Data Analysis</title>
       <link>https://www.dina-arch.com/categories/data-analysis/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/data-analysis/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>Theme Features</title>
       <link>https://www.dina-arch.com/categories/theme-features/</link>
       <pubDate>Thu, 28 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/theme-features/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>evergreen</title>
+      <title>Evergreen</title>
       <link>https://www.dina-arch.com/categories/evergreen/</link>
       <pubDate>Wed, 20 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/evergreen/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>workshop</title>
+      <title>Workshop</title>
       <link>https://www.dina-arch.com/categories/workshop/</link>
       <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/workshop/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>meetup</title>
+      <title>Meetup</title>
       <link>https://www.dina-arch.com/categories/meetup/</link>
       <pubDate>Fri, 01 Jan 2021 14:15:59 -0600</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/meetup/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>python</title>
+      <title>Python</title>
       <link>https://www.dina-arch.com/categories/python/</link>
       <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/python/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>package</title>
+      <title>Package</title>
       <link>https://www.dina-arch.com/categories/package/</link>
       <pubDate>Wed, 03 Jul 2019 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/categories/package/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

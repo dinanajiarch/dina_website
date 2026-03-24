@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.102.1" />
+<meta name="generator" content="Hugo 0.159.0">
 <title>Lab 3: Moderation | Dina Arch</title>
 
 
@@ -38,63 +38,54 @@
 
 
     
-        <meta property="og:image" content="https://www.dina-arch.com" >
+        <meta property="og:image" content="https://www.dina-arch.com/" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://www.dina-arch.com" >
+        <meta name="twitter:image" content="https://www.dina-arch.com/" >
     
+  
   <meta itemprop="name" content="Lab 3: Moderation">
-<meta itemprop="description" content="library(knitr) #include_graphics() library(equatiomatic) # extract_eq() library(psych) #describe() library(gtsummary) #tbl_summary() library(summarytools) #descr() library(stargazer) #stargazer() library(sjPlot) #tab_model() library(interactions) #interact_plot(), sim_slopes() library(jtools) #summ() library(tidyverse) Moderation When the research hypotheses state that different categories, or levels of another variable, may have differing responses to other independent variables, we need to use interaction terms
+  <meta itemprop="description" content="library(knitr) #include_graphics() library(equatiomatic) # extract_eq() library(psych) #describe() library(gtsummary) #tbl_summary() library(summarytools) #descr() library(stargazer) #stargazer() library(sjPlot) #tab_model() library(interactions) #interact_plot(), sim_slopes() library(jtools) #summ() library(tidyverse) Moderation When the research hypotheses state that different categories, or levels of another variable, may have differing responses to other independent variables, we need to use interaction terms
 - Also called moderation
 Example: The relationship between discrimination and grades depends on prog.
 Graph drawn using draw.io.
-Moderation Example Suppose you are doing a simple study on weight loss and notice that people who spend more time exercising lose more weight."><meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00" />
-<meta itemprop="wordCount" content="2582">
-<meta itemprop="keywords" content="r markdown,tidy data,regression,moderation," />
+Moderation Example Suppose you are doing a simple study on weight loss and notice that people who spend more time exercising lose more weight. Upon further analysis you notice that those who spend the same amount of time exercising lose more weight if they are more effortful. The more effort people put into their workouts, the less time they need to spend exercising. This is popular in workouts like high intensity interval training (HIIT).">
+  <meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2582">
+  <meta itemprop="keywords" content="R Markdown,Tidy Data,Regression,Moderation">
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
-<script>
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-XV6Y72XCTJ', { 'anonymize_ip': true });
-}
-</script>
-
-  
-<script type="application/javascript">
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-XV6Y72XCTJ', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XV6Y72XCTJ');
+        }
+      </script>
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
   <link rel="icon" href="/img/cat.ico" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.9d8de99f4c94aff7a77ce5b4714ffdbee5bdfcdff4330362f854eedade6d8a27.css" integrity="sha256-nY3pn0yUr/enfOW0cU/9vuW9/N/0MwNi&#43;FTu2t5tiic=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.9ae41e138f4f62c165cf7ebd6bc9d8c44682584e7f1797a679ee0f23718e83a5.js" type="text/javascript"></script>
+  <script src="/main.min.f7862fe64e701541b0a2baa66974e6debf4a7ffe0f0e2167785554cdf97bca97.js" type="text/javascript"></script>
 </head>
 <body>
       <div class="grid-container single-series">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com/" title="Home">
       <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -103,6 +94,11 @@ if (!doNotTrack) {
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://mixture-modeling.netlify.app/" title="IMMERSE">IMMERSE</a>
       
         
         
@@ -171,16 +167,16 @@ if (!doNotTrack) {
         
       </header>
       <section class="post-body pt5 pb4">
-        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(knitr) <span style="color:#998;font-style:italic">#include_graphics()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(equatiomatic) <span style="color:#998;font-style:italic"># extract_eq()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic">#describe()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(gtsummary) <span style="color:#998;font-style:italic">#tbl_summary()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(summarytools) <span style="color:#998;font-style:italic">#descr()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(stargazer) <span style="color:#998;font-style:italic">#stargazer()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(sjPlot) <span style="color:#998;font-style:italic">#tab_model()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(interactions) <span style="color:#998;font-style:italic">#interact_plot(), sim_slopes()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(jtools) <span style="color:#998;font-style:italic">#summ()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+        <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(knitr) <span style="color:#8b949e;font-style:italic">#include_graphics()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(equatiomatic) <span style="color:#8b949e;font-style:italic"># extract_eq()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(psych) <span style="color:#8b949e;font-style:italic">#describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gtsummary) <span style="color:#8b949e;font-style:italic">#tbl_summary()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(summarytools) <span style="color:#8b949e;font-style:italic">#descr()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(stargazer) <span style="color:#8b949e;font-style:italic">#stargazer()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(sjPlot) <span style="color:#8b949e;font-style:italic">#tab_model()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(interactions) <span style="color:#8b949e;font-style:italic">#interact_plot(), sim_slopes()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(jtools) <span style="color:#8b949e;font-style:italic">#summ()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
 </span></span></code></pre></div>
 
 
@@ -212,10 +208,10 @@ This is popular in workouts like high intensity interval training (HIIT).</p>
 <p>Example adapted from UCLA’s 
 <a href="https://stats.idre.ucla.edu/r/seminars/interactions-r/#s4" target="_blank" rel="noopener">seminar</a> on decomposing, probing, and plotting interactions in R.</p>
 <p>Read in data:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>exercise <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read.csv</span>(<span style="color:#d14">&#34;https://stats.idre.ucla.edu/wp-content/uploads/2019/03/exercise.csv&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(<span style="color:#000;font-weight:bold">-</span>gender) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(prog <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">factor</span>(prog, labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;Jogging&#34;</span>, <span style="color:#d14">&#34;Swimming&#34;</span>, <span style="color:#d14">&#34;Reading&#34;</span>)),
-</span></span><span style="display:flex;"><span>         hours_scaled <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">as.numeric</span>(<span style="color:#900;font-weight:bold">scale</span>(hours)))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>exercise <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read.csv</span>(<span style="color:#a5d6ff">&#34;https://stats.idre.ucla.edu/wp-content/uploads/2019/03/exercise.csv&#34;</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(<span style="color:#ff7b72;font-weight:bold">-</span>gender) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(prog <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">factor</span>(prog, labels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Jogging&#34;</span>, <span style="color:#a5d6ff">&#34;Swimming&#34;</span>, <span style="color:#a5d6ff">&#34;Reading&#34;</span>)),
+</span></span><span style="display:flex;"><span>         hours_scaled <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">as.numeric</span>(<span style="color:#d2a8ff;font-weight:bold">scale</span>(hours)))
 </span></span></code></pre></div><hr>
 
 
@@ -228,34 +224,34 @@ This is popular in workouts like high intensity interval training (HIIT).</p>
     </svg></a>
 </h3>
 <table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Name</strong></td>
-<td><strong>Labels</strong></td>
-</tr>
-<tr>
-<td>prog</td>
-<td></td>
-</tr>
-<tr>
-<td>loss</td>
-<td>Weight loss (continuous), positive = weight loss, negative scores = weight gain</td>
-</tr>
-<tr>
-<td>hours</td>
-<td>Hours spent exercising (continuous)</td>
-</tr>
-<tr>
-<td>effort</td>
-<td>Effort during exercise (continuous), 0 = minimal physical effort and 50 = maximum effort</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>Name</strong></td>
+          <td><strong>Labels</strong></td>
+      </tr>
+      <tr>
+          <td>prog</td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>loss</td>
+          <td>Weight loss (continuous), positive = weight loss, negative scores = weight gain</td>
+      </tr>
+      <tr>
+          <td>hours</td>
+          <td>Hours spent exercising (continuous)</td>
+      </tr>
+      <tr>
+          <td>effort</td>
+          <td>Effort during exercise (continuous), 0 = minimal physical effort and 50 = maximum effort</td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 
@@ -268,10 +264,10 @@ This is popular in workouts like high intensity interval training (HIIT).</p>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Three ways of presenting descriptives:</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Three ways of presenting descriptives:</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># psych::describe()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">round</span>(<span style="color:#900;font-weight:bold">describe</span>(exercise),<span style="color:#099">2</span>) 
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># psych::describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">round</span>(<span style="color:#d2a8ff;font-weight:bold">describe</span>(exercise),<span style="color:#a5d6ff">2</span>) 
 </span></span></code></pre></div><pre><code>##              vars   n   mean     sd median trimmed    mad    min    max  range
 ## id              1 900 450.50 259.95 450.50  450.50 333.58   1.00 900.00 899.00
 ## loss            2 900  10.02  14.10   7.88    9.06  15.42 -17.14  54.15  71.29
@@ -287,10 +283,10 @@ This is popular in workouts like high intensity interval training (HIIT).</p>
 ## prog*        0.00    -1.50 0.03
 ## hours_scaled 0.07     0.47 0.03
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># gtsummary::gtsummary()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tbl_summary</span>(exercise,
-</span></span><span style="display:flex;"><span>            statistic <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">list</span>(<span style="color:#900;font-weight:bold">all_continuous</span>() <span style="color:#000;font-weight:bold">~</span> <span style="color:#d14">&#34;{mean} ({sd})&#34;</span>),
-</span></span><span style="display:flex;"><span>                             missing <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;no&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># gtsummary::gtsummary()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tbl_summary</span>(exercise,
+</span></span><span style="display:flex;"><span>            statistic <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">list</span>(<span style="color:#d2a8ff;font-weight:bold">all_continuous</span>() <span style="color:#ff7b72;font-weight:bold">~</span> <span style="color:#a5d6ff">&#34;{mean} ({sd})&#34;</span>),
+</span></span><span style="display:flex;"><span>                             missing <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;no&#34;</span>)
 </span></span></code></pre></div><div id="sghigmuysv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
@@ -693,8 +689,8 @@ vertical-align: -0.05em;
   </tfoot>
 </table>
 </div>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># summarytools::descr()</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#print(descr(exercise), method = &#39;render&#39;)</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># summarytools::descr()</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#print(descr(exercise), method = &#39;render&#39;)</span>
 </span></span></code></pre></div><hr>
 
 
@@ -708,13 +704,13 @@ vertical-align: -0.05em;
 </h2>
 <p><strong>Research Question:</strong> Does <em>exercise program</em> moderate the relationship between <em>hours spent exercising</em> and <em>weight loss</em>?
 Or, said differently, Does the relationship between the <em>hours spent exercising</em> and <em>weight loss</em> differ based on the type of exercise you do (e.g., <em>exercise program</em>)?</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>reg <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">+</span>prog, 
-</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
-</span></span><span style="display:flex;"><span>mod <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">*</span>prog, 
-</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>reg <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(loss <span style="color:#ff7b72;font-weight:bold">~</span> <span style="color:#d2a8ff;font-weight:bold">scale</span>(hours)<span style="color:#ff7b72;font-weight:bold">+</span>prog, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#ff7b72;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>mod <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(loss <span style="color:#ff7b72;font-weight:bold">~</span> <span style="color:#d2a8ff;font-weight:bold">scale</span>(hours)<span style="color:#ff7b72;font-weight:bold">*</span>prog, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#ff7b72;font-weight:bold">=</span>exercise)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Compare regression and moderation models</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(reg, mod,show.std <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.zeroinf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span> )
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Compare regression and moderation models</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tab_model</span>(reg, mod,show.std <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, show.stat <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, show.zeroinf <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span> )
 </span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1025,8 +1021,8 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
 </tr>
 </table>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Can also use stargazer::stargazer()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">stargazer</span>(reg, mod, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;text&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Can also use stargazer::stargazer()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">stargazer</span>(reg, mod, type <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;text&#34;</span>)
 </span></span></code></pre></div><pre><code>## 
 ## ===========================================================================
 ##                                          Dependent variable:               
@@ -1061,9 +1057,9 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 ## ===========================================================================
 ## Note:                                           *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Only looks at moderation </span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># and jtools:summ()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summ</span>(mod)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Only looks at moderation </span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># and jtools:summ()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summ</span>(mod)
 </span></span></code></pre></div><table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
@@ -1265,11 +1261,11 @@ scale(hours):progReading
 The estimate of -5.15 is not that useful on it’s own.
 The best way to understand is to use the estimates above and create a simple slope equation for each of the exercise programs (reading, swimming, and jogging).
 We do this below.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">extract_eq</span>(mod)
 </span></span></code></pre></div><p>$$
 \operatorname{loss} = \alpha + \beta_{1}(\operatorname{scale(hours)}) + \beta_{2}(\operatorname{prog}<em>{\operatorname{Swimming}}) + \beta</em>{3}(\operatorname{prog}<em>{\operatorname{Reading}}) + \beta</em>{4}(\operatorname{scale(hours)} \times \operatorname{prog}<em>{\operatorname{Swimming}}) + \beta</em>{5}(\operatorname{scale(hours)} \times \operatorname{prog}_{\operatorname{Reading}}) + \epsilon
 $$</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod, use_coefs <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">extract_eq</span>(mod, use_coefs <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
 </span></span></code></pre></div><p>$$
 \operatorname{\widehat{loss}} = 8.14 + 3.69(\operatorname{scale(hours)}) + 17.77(\operatorname{prog}<em>{\operatorname{Swimming}}) - 11.85(\operatorname{prog}</em>{\operatorname{Reading}}) - 0.29(\operatorname{scale(hours)} \times \operatorname{prog}<em>{\operatorname{Swimming}}) - 5.15(\operatorname{scale(hours)} \times \operatorname{prog}</em>{\operatorname{Reading}})
 $$</p>
@@ -1280,19 +1276,19 @@ $$ By dropping the terms that have a zero in it and adding the constant terms (e
 This is the simple slope for the reading program.
 Another way to say it, this is the relationship between hours spent exercising and the outcome of weight loss for those who were in the reading program.</p>
 <p>$$
-y_{reading} = -3.71 - 1.46 (hours) 
+y_{reading} = -3.71 - 1.46 (hours)
 $$</p>
 <p>Swimming: $$
 y_{swimming} = 8.14 + 3.69(hours) + 17.77(1) - 11.85(0) - 0.29(hours * 1) - 5.15 (hours * 0)
 $$ The simple slope for those who were in the swimming program is below:</p>
 <p>$$
-y_{swimming} = 25.91 + 3.40(hours) 
+y_{swimming} = 25.91 + 3.40(hours)
 $$</p>
 <p>Jogging: $$
 y_{jogging} = 8.14 + 3.69(hours) + 17.77(0) - 11.85(0) - 0.29(hours * 0) - 5.15 (hours * 0)
 $$ The simple slope for those who were in the jogging program is below:</p>
 <p>$$
-y_{jogging} = 8.14 + 3.69(hours) 
+y_{jogging} = 8.14 + 3.69(hours)
 $$</p>
 <p>Looking at those three equations for each of the program time, we can see they vary both in their intercepts and their slopes.
 It is not directly evident just by looking at the point estimates in the table above how the combination of parameter estimates leads to the difference across the exercise programs– but simple slopes helps us!</p>
@@ -1311,10 +1307,10 @@ It is not directly evident just by looking at the point estimates in the table a
 <a href="https://cran.r-project.org/web/packages/interactions/vignettes/interactions.html#simple_slopes_analysis_and_johnson-neyman_intervals" target="_blank" rel="noopener">here</a> (Long, 2020).</p>
 <p>Here, we plot the interaction or simple slope plots between <code>hours</code> and <code>loss</code> and levels of <code>prog</code>.
 The <code>interact_plot()</code> also plots the confidence intervals at 90%.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">interact_plot</span>(mod, pred <span style="color:#000;font-weight:bold">=</span> hours, modx <span style="color:#000;font-weight:bold">=</span> prog, interval <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, int.width <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.9</span>, data <span style="color:#000;font-weight:bold">=</span> exercise) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">theme_apa</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">interact_plot</span>(mod, pred <span style="color:#ff7b72;font-weight:bold">=</span> hours, modx <span style="color:#ff7b72;font-weight:bold">=</span> prog, interval <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, int.width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.9</span>, data <span style="color:#ff7b72;font-weight:bold">=</span> exercise) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">theme_apa</span>()
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/03-moderation/index_files/figure-html/unnamed-chunk-6-1.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mod_adj <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> hours_scaled<span style="color:#000;font-weight:bold">*</span>prog, data<span style="color:#000;font-weight:bold">=</span>exercise)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">interact_plot</span>(mod_adj, pred <span style="color:#000;font-weight:bold">=</span> hours_scaled, modx <span style="color:#000;font-weight:bold">=</span> prog, interval <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, int.width <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.9</span>, data <span style="color:#000;font-weight:bold">=</span> exercise) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">theme_apa</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mod_adj <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(loss <span style="color:#ff7b72;font-weight:bold">~</span> hours_scaled<span style="color:#ff7b72;font-weight:bold">*</span>prog, data<span style="color:#ff7b72;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">interact_plot</span>(mod_adj, pred <span style="color:#ff7b72;font-weight:bold">=</span> hours_scaled, modx <span style="color:#ff7b72;font-weight:bold">=</span> prog, interval <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, int.width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.9</span>, data <span style="color:#ff7b72;font-weight:bold">=</span> exercise) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">theme_apa</span>()
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/03-moderation/index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 <p>Note that the only difference between the two interaction plots above is the scale of the x variable, <em>hours</em>.
 In the top plot, the hours variable is not scaled and in the bottom one it is.
@@ -1332,10 +1328,10 @@ This does not change the slope, but it does change the intercept since we are mo
 <p>Here, we can test the simple slopes at each level of <em>hours spend exercising</em>.
 The results show us that for all levels of <code>prog</code>, there a significant association between <em>hours spent exercising</em> and <em>weight loss</em>.
 Note that the slope is different for each program.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># The moderation needs to be adjusted a bit for this function to work (it doesn&#39;t like when we scale the hours variable directly in the lm function)</span>
-</span></span><span style="display:flex;"><span>mod_adj <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> hours_scaled<span style="color:#000;font-weight:bold">*</span>prog, data<span style="color:#000;font-weight:bold">=</span>exercise)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># The moderation needs to be adjusted a bit for this function to work (it doesn&#39;t like when we scale the hours variable directly in the lm function)</span>
+</span></span><span style="display:flex;"><span>mod_adj <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(loss <span style="color:#ff7b72;font-weight:bold">~</span> hours_scaled<span style="color:#ff7b72;font-weight:bold">*</span>prog, data<span style="color:#ff7b72;font-weight:bold">=</span>exercise)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">sim_slopes</span>(mod_adj, pred <span style="color:#000;font-weight:bold">=</span> hours_scaled, modx <span style="color:#000;font-weight:bold">=</span> prog, johnson_neyman <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">sim_slopes</span>(mod_adj, pred <span style="color:#ff7b72;font-weight:bold">=</span> hours_scaled, modx <span style="color:#ff7b72;font-weight:bold">=</span> prog, johnson_neyman <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
 </span></span></code></pre></div><pre><code>## SIMPLE SLOPES ANALYSIS 
 ## 
 ## Slope of hours_scaled when prog = Reading: 
@@ -1369,12 +1365,12 @@ Note that the slope is different for each program.</p>
 </h2>
 <p><strong>Research Question:</strong> Does <em>effort during exercise</em> moderate the relationship between <em>hours spent exercising</em> and <em>weight loss</em>?
 Said differently (and equivalently), Does the relationship between the <em>hours spent</em> exercising and weight loss vary by the <em>effort during exercise</em>?</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>reg2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">+</span>effort, 
-</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
-</span></span><span style="display:flex;"><span>mod2 <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> <span style="color:#900;font-weight:bold">scale</span>(hours)<span style="color:#000;font-weight:bold">*</span>effort, 
-</span></span><span style="display:flex;"><span>                  data<span style="color:#000;font-weight:bold">=</span>exercise)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>reg2 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(loss <span style="color:#ff7b72;font-weight:bold">~</span> <span style="color:#d2a8ff;font-weight:bold">scale</span>(hours)<span style="color:#ff7b72;font-weight:bold">+</span>effort, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#ff7b72;font-weight:bold">=</span>exercise)
+</span></span><span style="display:flex;"><span>mod2 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(loss <span style="color:#ff7b72;font-weight:bold">~</span> <span style="color:#d2a8ff;font-weight:bold">scale</span>(hours)<span style="color:#ff7b72;font-weight:bold">*</span>effort, 
+</span></span><span style="display:flex;"><span>                  data<span style="color:#ff7b72;font-weight:bold">=</span>exercise)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">tab_model</span>(reg2, mod2,show.std <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, show.zeroinf <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span> )
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">tab_model</span>(reg2, mod2,show.std <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, show.stat <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, show.zeroinf <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span> )
 </span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
 <tr>
 <th style="border-top: double; text-align:center; font-style:normal; font-weight:bold; padding:0.2cm;  text-align:left; ">
@@ -1639,8 +1635,8 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 </td>
 </tr>
 </table>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Can also use stargazer::stargazer()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">stargazer</span>(reg2, mod2, type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;text&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Can also use stargazer::stargazer()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">stargazer</span>(reg2, mod2, type <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;text&#34;</span>)
 </span></span></code></pre></div><pre><code>## 
 ## ===================================================================
 ##                                   Dependent variable:              
@@ -1669,8 +1665,8 @@ R<sup>2</sup> / R<sup>2</sup> adjusted
 ## ===================================================================
 ## Note:                                   *p&lt;0.1; **p&lt;0.05; ***p&lt;0.01
 </code></pre>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># and jtools:summ()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summ</span>(mod2)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># and jtools:summ()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summ</span>(mod2)
 </span></span></code></pre></div><table class="table table-striped table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <tbody>
 <tr>
@@ -1834,11 +1830,11 @@ scale(hours):effort
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod2)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">extract_eq</span>(mod2)
 </span></span></code></pre></div><p>$$
 \operatorname{loss} = \alpha + \beta_{1}(\operatorname{scale(hours)}) + \beta_{2}(\operatorname{effort}) + \beta_{3}(\operatorname{scale(hours)} \times \operatorname{effort}) + \epsilon
 $$</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">extract_eq</span>(mod2, use_coefs <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">extract_eq</span>(mod2, use_coefs <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
 </span></span></code></pre></div><p>$$
 \operatorname{\widehat{loss}} = -10.98 - 4.64(\operatorname{scale(hours)}) + 0.71(\operatorname{effort}) + 0.19(\operatorname{scale(hours)} \times \operatorname{effort})
 $$</p>
@@ -1856,7 +1852,7 @@ $$</p>
 <p>Plot code adapted from 
 <a href="https://cran.r-project.org/web/packages/interactions/vignettes/interactions.html#simple_slopes_analysis_and_johnson-neyman_intervals" target="_blank" rel="noopener">here</a> (Long, 2020).</p>
 <p>Here, we plot the interaction between <code>hours</code> and <code>loss</code> for +1 SD, mean, and -2 SD of <code>effort</code>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">interact_plot</span>(mod2, pred <span style="color:#000;font-weight:bold">=</span> hours, modx <span style="color:#000;font-weight:bold">=</span> effort, interval <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, int.width <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">0.9</span>, data <span style="color:#000;font-weight:bold">=</span> exercise) <span style="color:#000;font-weight:bold">+</span> <span style="color:#900;font-weight:bold">theme_apa</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">interact_plot</span>(mod2, pred <span style="color:#ff7b72;font-weight:bold">=</span> hours, modx <span style="color:#ff7b72;font-weight:bold">=</span> effort, interval <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, int.width <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0.9</span>, data <span style="color:#ff7b72;font-weight:bold">=</span> exercise) <span style="color:#ff7b72;font-weight:bold">+</span> <span style="color:#d2a8ff;font-weight:bold">theme_apa</span>()
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/03-moderation/index_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 <hr>
 
@@ -1873,10 +1869,10 @@ $$</p>
 <p><em>NOTE</em>: There is a difference in the way we interpret continuous by continuous interactions.
 We use the Johnson-Neyman approach (<code>johnson_neyman=TRUE</code>) will tell us the exact values of the moderator for which the slope of the predictor will be statistically significant.
 We can also plot the Johnson Neyman test by using <code>jnplot=TRUE</code>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># The moderation needs to be adjusted a bit for this function to work (it doesn&#39;t like when we scale the hours variable directly in the lm function)</span>
-</span></span><span style="display:flex;"><span>mod_adj <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(loss <span style="color:#000;font-weight:bold">~</span> hours_scaled<span style="color:#000;font-weight:bold">*</span>effort, data<span style="color:#000;font-weight:bold">=</span>exercise)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># The moderation needs to be adjusted a bit for this function to work (it doesn&#39;t like when we scale the hours variable directly in the lm function)</span>
+</span></span><span style="display:flex;"><span>mod_adj <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(loss <span style="color:#ff7b72;font-weight:bold">~</span> hours_scaled<span style="color:#ff7b72;font-weight:bold">*</span>effort, data<span style="color:#ff7b72;font-weight:bold">=</span>exercise)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">sim_slopes</span>(mod_adj, pred <span style="color:#000;font-weight:bold">=</span> hours_scaled, modx <span style="color:#000;font-weight:bold">=</span> effort, johnson_neyman <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, jnplot <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">sim_slopes</span>(mod_adj, pred <span style="color:#ff7b72;font-weight:bold">=</span> hours_scaled, modx <span style="color:#ff7b72;font-weight:bold">=</span> effort, johnson_neyman <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, jnplot <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>)
 </span></span></code></pre></div><pre><code>## JOHNSON-NEYMAN INTERVAL 
 ## 
 ## When effort is OUTSIDE the interval [-64.73, 28.55], the slope of

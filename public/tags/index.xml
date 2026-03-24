@@ -4,233 +4,184 @@
     <title>Tags on Dina Arch</title>
     <link>https://www.dina-arch.com/tags/</link>
     <description>Recent content in Tags on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Jan 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>data visualization</title>
+      <title>Data Visualization</title>
       <link>https://www.dina-arch.com/tags/data-visualization/</link>
       <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/data-visualization/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>r markdown</title>
+      <title>R Markdown</title>
       <link>https://www.dina-arch.com/tags/r-markdown/</link>
       <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/r-markdown/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>sentiment analysis</title>
+      <title>Sentiment Analysis</title>
       <link>https://www.dina-arch.com/tags/sentiment-analysis/</link>
       <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/sentiment-analysis/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>text mining</title>
+      <title>Text Mining</title>
       <link>https://www.dina-arch.com/tags/text-mining/</link>
       <pubDate>Tue, 09 Jan 2024 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/text-mining/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>introduction</title>
+      <title>Introduction</title>
       <link>https://www.dina-arch.com/tags/introduction/</link>
       <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/introduction/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mplus</title>
+      <title>Mplus</title>
       <link>https://www.dina-arch.com/tags/mplus/</link>
       <pubDate>Mon, 28 Mar 2022 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/mplus/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>classification</title>
+      <title>Classification</title>
       <link>https://www.dina-arch.com/tags/classification/</link>
       <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/classification/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>machine learning</title>
+      <title>Machine Learning</title>
       <link>https://www.dina-arch.com/tags/machine-learning/</link>
       <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/machine-learning/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>principal components</title>
+      <title>Principal Components</title>
       <link>https://www.dina-arch.com/tags/principal-components/</link>
       <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/principal-components/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>visualization</title>
+      <title>Visualization</title>
       <link>https://www.dina-arch.com/tags/visualization/</link>
       <pubDate>Tue, 14 Dec 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/visualization/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>binary regression</title>
+      <title>Binary Regression</title>
       <link>https://www.dina-arch.com/tags/binary-regression/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/binary-regression/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>labs</title>
+      <title>Labs</title>
       <link>https://www.dina-arch.com/tags/labs/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/labs/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>odds ratios</title>
+      <title>Odds Ratios</title>
       <link>https://www.dina-arch.com/tags/odds-ratios/</link>
       <pubDate>Sun, 30 May 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/odds-ratios/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>logistic regression</title>
+      <title>Logistic Regression</title>
       <link>https://www.dina-arch.com/tags/logistic-regression/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/logistic-regression/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>mediation</title>
+      <title>Mediation</title>
       <link>https://www.dina-arch.com/tags/mediation/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/mediation/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>moderation</title>
+      <title>Moderation</title>
       <link>https://www.dina-arch.com/tags/moderation/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/moderation/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>outliers</title>
+      <title>Outliers</title>
       <link>https://www.dina-arch.com/tags/outliers/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/outliers/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>regression</title>
+      <title>Regression</title>
       <link>https://www.dina-arch.com/tags/regression/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/regression/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>tidy data</title>
+      <title>Tidy Data</title>
       <link>https://www.dina-arch.com/tags/tidy-data/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/tidy-data/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>data cleaning</title>
+      <title>Data Cleaning</title>
       <link>https://www.dina-arch.com/tags/data-cleaning/</link>
       <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/data-cleaning/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>data screening</title>
+      <title>Data Screening</title>
       <link>https://www.dina-arch.com/tags/data-screening/</link>
       <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/data-screening/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>style</title>
+      <title>Style</title>
       <link>https://www.dina-arch.com/tags/style/</link>
       <pubDate>Wed, 27 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/style/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>hugo-site</title>
+      <title>Hugo-Site</title>
       <link>https://www.dina-arch.com/tags/hugo-site/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/hugo-site/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>python</title>
+      <title>Python</title>
       <link>https://www.dina-arch.com/tags/python/</link>
       <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/python/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>spark</title>
+      <title>Spark</title>
       <link>https://www.dina-arch.com/tags/spark/</link>
       <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/tags/spark/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

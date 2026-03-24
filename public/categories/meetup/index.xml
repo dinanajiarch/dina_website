@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>meetup on Dina Arch</title>
+    <title>Meetup on Dina Arch</title>
     <link>https://www.dina-arch.com/categories/meetup/</link>
-    <description>Recent content in meetup on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Meetup on Dina Arch</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 01 Jan 2021 14:15:59 -0600</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/meetup/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 01 Jan 2021 14:15:59 -0600</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/categories/meetup/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A seedling</title>
       <link>https://www.dina-arch.com/talk/second-seedling/</link>
       <pubDate>Fri, 01 Jan 2021 14:15:59 -0600</pubDate>
-      
       <guid>https://www.dina-arch.com/talk/second-seedling/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>A seedling</title>
       <link>https://www.dina-arch.com/talk/seedling/</link>
       <pubDate>Mon, 13 Jan 2020 14:15:59 -0600</pubDate>
-      
       <guid>https://www.dina-arch.com/talk/seedling/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>

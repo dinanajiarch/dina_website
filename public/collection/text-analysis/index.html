@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.102.1" />
+<meta name="generator" content="Hugo 0.159.0">
 <title>Text Data Analysis - Michael Scott Version | Dina Arch</title>
 
 
@@ -38,62 +38,52 @@
 
 
     
-        <meta property="og:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+        <meta property="og:image" content="https://www.dina-arch.com/collection/text-analysis/The-Office-Dinner-Party-featured-image.jpg" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
+        <meta name="twitter:image" content="https://www.dina-arch.com/collection/text-analysis/The-Office-Dinner-Party-featured-image.jpg" >
     
     
+  
   <meta itemprop="name" content="Text Data Analysis - Michael Scott Version">
-<meta itemprop="description" content="library(tidyverse) library(tidytext) library(textdata) library(pdftools) library(ggwordcloud) library(here) library(pander) library(ggthemes) here::i_am(&#34;dinnerparty.txt&#34;) The Office - Season 4 x Episode 9: The Dinner Party Read in the text transcript Source: https://www.officequotes.net/no4-09.php
-dinner_text &lt;- read_delim(here(&#34;dinnerparty.txt&#34;), &#34;\t&#34;, escape_double = FALSE, col_names = FALSE, trim_ws = TRUE) %&gt;% rename(lines = X1) Each row is a a line of the transcript for each character. Example: First line from the episode is from Stanley Hudson:
-dinner_line1 &lt;- dinner_text[1,] dinner_line1 %&gt;% pander() lines Stanley: This is ridiculous."><meta itemprop="datePublished" content="2024-01-09T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2024-01-09T00:00:00+00:00" />
-<meta itemprop="wordCount" content="476">
-<meta itemprop="keywords" content="r markdown,text mining,sentiment analysis,data visualization," />
+  <meta itemprop="description" content="library(tidyverse) library(tidytext) library(textdata) library(pdftools) library(ggwordcloud) library(here) library(pander) library(ggthemes) here::i_am(&#34;dinnerparty.txt&#34;) The Office - Season 4 x Episode 9: The Dinner Party Read in the text transcript Source: https://quotes.maxwiseman.io/episodes/dinner-party">
+  <meta itemprop="datePublished" content="2024-01-09T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-01-09T00:00:00+00:00">
+  <meta itemprop="wordCount" content="476">
+  <meta itemprop="image" content="https://www.dina-arch.com/collection/text-analysis/The-Office-Dinner-Party-featured-image.jpg">
+  <meta itemprop="keywords" content="R Markdown,Text Mining,Sentiment Analysis,Data Visualization">
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
-<script>
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-XV6Y72XCTJ', { 'anonymize_ip': true });
-}
-</script>
-
-  
-<script type="application/javascript">
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-XV6Y72XCTJ', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XV6Y72XCTJ');
+        }
+      </script>
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
   <link rel="icon" href="/img/cat.ico" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.9d8de99f4c94aff7a77ce5b4714ffdbee5bdfcdff4330362f854eedade6d8a27.css" integrity="sha256-nY3pn0yUr/enfOW0cU/9vuW9/N/0MwNi&#43;FTu2t5tiic=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.9ae41e138f4f62c165cf7ebd6bc9d8c44682584e7f1797a679ee0f23718e83a5.js" type="text/javascript"></script>
+  <script src="/main.min.f7862fe64e701541b0a2baa66974e6debf4a7ffe0f0e2167785554cdf97bca97.js" type="text/javascript"></script>
 </head>
 <body>
       <div class="grid-container single-series">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com/" title="Home">
       <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -102,6 +92,11 @@ if (!doNotTrack) {
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://mixture-modeling.netlify.app/" title="IMMERSE">IMMERSE</a>
       
         
         
@@ -179,15 +174,15 @@ if (!doNotTrack) {
         
       </header>
       <section class="post-body pt5 pb4">
-        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidytext)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(textdata)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(pdftools)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ggwordcloud)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(here)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(pander)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ggthemes)
-</span></span><span style="display:flex;"><span>here<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">i_am</span>(<span style="color:#d14">&#34;dinnerparty.txt&#34;</span>)
+        <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidytext)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(textdata)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(pdftools)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ggwordcloud)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(here)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(pander)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ggthemes)
+</span></span><span style="display:flex;"><span>here<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">i_am</span>(<span style="color:#a5d6ff">&#34;dinnerparty.txt&#34;</span>)
 </span></span></code></pre></div>
 
 
@@ -210,19 +205,19 @@ if (!doNotTrack) {
     </svg></a>
 </h2>
 <p>Source: 
-<a href="https://www.officequotes.net/no4-09.php" target="_blank" rel="noopener">https://www.officequotes.net/no4-09.php</a></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_text <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_delim</span>(<span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;dinnerparty.txt&#34;</span>), 
-</span></span><span style="display:flex;"><span>                          <span style="color:#d14">&#34;\t&#34;</span>, escape_double <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>, col_names <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>, 
-</span></span><span style="display:flex;"><span>                          trim_ws <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">rename</span>(lines <span style="color:#000;font-weight:bold">=</span> X1)
+<a href="https://quotes.maxwiseman.io/episodes/dinner-party" target="_blank" rel="noopener">https://quotes.maxwiseman.io/episodes/dinner-party</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_text <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_delim</span>(<span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;dinnerparty.txt&#34;</span>), 
+</span></span><span style="display:flex;"><span>                          <span style="color:#a5d6ff">&#34;\t&#34;</span>, escape_double <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>, col_names <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>, 
+</span></span><span style="display:flex;"><span>                          trim_ws <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">rename</span>(lines <span style="color:#ff7b72;font-weight:bold">=</span> X1)
 </span></span></code></pre></div><ul>
 <li>Each row is a a line of the transcript for each character.</li>
 </ul>
 <p>Example: First line from the episode is from Stanley Hudson:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_line1 <span style="color:#000;font-weight:bold">&lt;-</span> dinner_text[1,]
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_line1 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_text[1,]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>dinner_line1 <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">pander</span>()
+</span></span><span style="display:flex;"><span>dinner_line1 <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">pander</span>()
 </span></span></code></pre></div><hr>
 <pre><code>        lines             
 </code></pre>
@@ -252,10 +247,10 @@ if (!doNotTrack) {
 <li>Removed the last four rows that are not character&rsquo;s lines but stage direction.</li>
 <li>I  filtered the characters to include the characters that spoke the most words.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_tidy <span style="color:#000;font-weight:bold">&lt;-</span> dinner_text <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">separate</span>(col <span style="color:#000;font-weight:bold">=</span> lines, into <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;character&#34;</span>, <span style="color:#d14">&#34;line&#34;</span>), sep <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;:&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice</span>(<span style="color:#000;font-weight:bold">-</span>(<span style="color:#099">283</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">288</span>)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(character <span style="color:#000;font-weight:bold">%in%</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;Andy&#34;</span>, <span style="color:#d14">&#34;Angela&#34;</span>, <span style="color:#d14">&#34;Dwight&#34;</span>, <span style="color:#d14">&#34;Michael&#34;</span>, <span style="color:#d14">&#34;Hunter&#39;s CD&#34;</span>, <span style="color:#d14">&#34;Jan&#34;</span>, <span style="color:#d14">&#34;Jim&#34;</span>, <span style="color:#d14">&#34;Pam&#34;</span>)) 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_tidy <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_text <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">separate</span>(col <span style="color:#ff7b72;font-weight:bold">=</span> lines, into <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;character&#34;</span>, <span style="color:#a5d6ff">&#34;line&#34;</span>), sep <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;:&#34;</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">slice</span>(<span style="color:#ff7b72;font-weight:bold">-</span>(<span style="color:#a5d6ff">283</span><span style="color:#ff7b72;font-weight:bold">:</span><span style="color:#a5d6ff">288</span>)) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">filter</span>(character <span style="color:#ff7b72;font-weight:bold">%in%</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Andy&#34;</span>, <span style="color:#a5d6ff">&#34;Angela&#34;</span>, <span style="color:#a5d6ff">&#34;Dwight&#34;</span>, <span style="color:#a5d6ff">&#34;Michael&#34;</span>, <span style="color:#a5d6ff">&#34;Hunter&#39;s CD&#34;</span>, <span style="color:#a5d6ff">&#34;Jan&#34;</span>, <span style="color:#a5d6ff">&#34;Jim&#34;</span>, <span style="color:#a5d6ff">&#34;Pam&#34;</span>)) 
 </span></span></code></pre></div>
 
 
@@ -267,10 +262,10 @@ if (!doNotTrack) {
     </svg></a>
 </h2>
 <p>Here, we get word counts for each character for the episode.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_tokens <span style="color:#000;font-weight:bold">&lt;-</span> dinner_tidy <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">unnest_tokens</span>(word, line) 
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_wordcount <span style="color:#000;font-weight:bold">&lt;-</span> dinner_tokens <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">count</span>(character, word)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_tokens <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_tidy <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">unnest_tokens</span>(word, line) 
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_wordcount <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_tokens <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">count</span>(character, word)
 </span></span></code></pre></div>
 
 
@@ -282,11 +277,11 @@ if (!doNotTrack) {
     </svg></a>
 </h2>
 <p>Most of the words in the transcript are stop words. To remove them, we use <code>anti_join</code> and the <code>stop_words</code> function.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_nonstop_words <span style="color:#000;font-weight:bold">&lt;-</span> dinner_tokens <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">anti_join</span>(stop_words)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_nonstop_words <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_tokens <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">anti_join</span>(stop_words)
 </span></span></code></pre></div><p>We then recount with the stopwords removed.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>nonstop_counts <span style="color:#000;font-weight:bold">&lt;-</span> dinner_nonstop_words <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">count</span>(character, word) 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>nonstop_counts <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_nonstop_words <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">count</span>(character, word) 
 </span></span></code></pre></div>
 
 
@@ -298,20 +293,20 @@ if (!doNotTrack) {
     </svg></a>
 </h2>
 <p>Here, we find the top 10 words that each character said during that episode.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>top_10_words <span style="color:#000;font-weight:bold">&lt;-</span> nonstop_counts <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(character) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(<span style="color:#000;font-weight:bold">-</span>n) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice</span>(<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">10</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>top_10_words <span style="color:#ff7b72;font-weight:bold">&lt;-</span> nonstop_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(character) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">arrange</span>(<span style="color:#ff7b72;font-weight:bold">-</span>n) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">slice</span>(<span style="color:#a5d6ff">1</span><span style="color:#ff7b72;font-weight:bold">:</span><span style="color:#a5d6ff">10</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>top_10_words <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(word) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_bar</span>(<span style="color:#900;font-weight:bold">aes</span>(<span style="color:#900;font-weight:bold">reorder</span>(word, n), n), stat <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;identity&#39;</span>, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;red&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span>character, scales <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;free&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">coord_flip</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_calc</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;word&#39;</span>)
+</span></span><span style="display:flex;"><span>top_10_words <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(word) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">ggplot</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_bar</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(<span style="color:#d2a8ff;font-weight:bold">reorder</span>(word, n), n), stat <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;identity&#39;</span>, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;red&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">facet_wrap</span>(<span style="color:#ff7b72;font-weight:bold">~</span>character, scales <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;free&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">coord_flip</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_calc</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;word&#39;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/text-analysis/index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 
@@ -325,11 +320,11 @@ if (!doNotTrack) {
 </h2>
 <p>Let&rsquo;s make a word cloud for the top 5 characters who spoke the most:</p>
 <p>Michael, Jan, Jim, Pam, Dwight</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>nonstop_counts <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(character) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">count</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(<span style="color:#900;font-weight:bold">desc</span>(n)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">pander</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>nonstop_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(character) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">count</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">arrange</span>(<span style="color:#d2a8ff;font-weight:bold">desc</span>(n)) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">pander</span>()
 </span></span></code></pre></div><hr>
 <p>character     n</p>
 <hr>
@@ -354,17 +349,17 @@ if (!doNotTrack) {
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_top5 <span style="color:#000;font-weight:bold">&lt;-</span> nonstop_counts <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(character <span style="color:#000;font-weight:bold">%in%</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;Michael&#34;</span>, <span style="color:#d14">&#34;Jan&#34;</span>, <span style="color:#d14">&#34;Jim&#34;</span>, <span style="color:#d14">&#34;Pam&#34;</span>, <span style="color:#d14">&#34;Dwight&#34;</span>)) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(character) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">arrange</span>(<span style="color:#000;font-weight:bold">-</span>n) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">slice</span>(<span style="color:#099">1</span><span style="color:#000;font-weight:bold">:</span><span style="color:#099">20</span>)
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>cloud <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">ggplot</span>(data <span style="color:#000;font-weight:bold">=</span> dinner_top5, <span style="color:#900;font-weight:bold">aes</span>(label <span style="color:#000;font-weight:bold">=</span> word)) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_text_wordcloud</span>(<span style="color:#900;font-weight:bold">aes</span>(color <span style="color:#000;font-weight:bold">=</span> n, size <span style="color:#000;font-weight:bold">=</span> n), shape <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;diamond&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">scale_size_area</span>(max_size <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">6</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">scale_color_gradientn</span>(colors <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;red&#34;</span>,<span style="color:#d14">&#34;blue&#34;</span>,<span style="color:#d14">&#34;darkgreen&#34;</span>)) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span>character) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_calc</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_top5 <span style="color:#ff7b72;font-weight:bold">&lt;-</span> nonstop_counts <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">filter</span>(character <span style="color:#ff7b72;font-weight:bold">%in%</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;Michael&#34;</span>, <span style="color:#a5d6ff">&#34;Jan&#34;</span>, <span style="color:#a5d6ff">&#34;Jim&#34;</span>, <span style="color:#a5d6ff">&#34;Pam&#34;</span>, <span style="color:#a5d6ff">&#34;Dwight&#34;</span>)) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(character) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">arrange</span>(<span style="color:#ff7b72;font-weight:bold">-</span>n) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">slice</span>(<span style="color:#a5d6ff">1</span><span style="color:#ff7b72;font-weight:bold">:</span><span style="color:#a5d6ff">20</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>cloud <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">ggplot</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> dinner_top5, <span style="color:#d2a8ff;font-weight:bold">aes</span>(label <span style="color:#ff7b72;font-weight:bold">=</span> word)) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_text_wordcloud</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(color <span style="color:#ff7b72;font-weight:bold">=</span> n, size <span style="color:#ff7b72;font-weight:bold">=</span> n), shape <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;diamond&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">scale_size_area</span>(max_size <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">6</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">scale_color_gradientn</span>(colors <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;red&#34;</span>,<span style="color:#a5d6ff">&#34;blue&#34;</span>,<span style="color:#a5d6ff">&#34;darkgreen&#34;</span>)) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">facet_wrap</span>(<span style="color:#ff7b72;font-weight:bold">~</span>character) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_calc</span>()
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>cloud
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/text-analysis/index_files/figure-html/unnamed-chunk-12-1.png" width="672" />
@@ -378,8 +373,8 @@ if (!doNotTrack) {
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h2>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#afinn lexicon</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">get_sentiments</span>(lexicon <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;afinn&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#afinn lexicon</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">get_sentiments</span>(lexicon <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;afinn&#34;</span>)
 </span></span></code></pre></div>
 
 
@@ -391,31 +386,31 @@ if (!doNotTrack) {
     </svg></a>
 </h3>
 <p>First, bind words in <code>dinner_nonstop_words</code> to <code>afinn</code> lexicon:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_afinn <span style="color:#000;font-weight:bold">&lt;-</span> dinner_nonstop_words <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">inner_join</span>(<span style="color:#900;font-weight:bold">get_sentiments</span>(<span style="color:#d14">&#34;afinn&#34;</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>dinner_afinn <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_nonstop_words <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">inner_join</span>(<span style="color:#d2a8ff;font-weight:bold">get_sentiments</span>(<span style="color:#a5d6ff">&#34;afinn&#34;</span>))
 </span></span></code></pre></div><p>Then, we find counts based on <code>afinn</code> lexicon and plot them:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>afinn_counts <span style="color:#000;font-weight:bold">&lt;-</span> dinner_afinn <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">count</span>(character, value)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>afinn_counts <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_afinn <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">count</span>(character, value)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Plot them: </span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggplot</span>(data <span style="color:#000;font-weight:bold">=</span> afinn_counts, <span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> value, y <span style="color:#000;font-weight:bold">=</span> n)) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_col</span>(fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;blue&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">facet_wrap</span>(<span style="color:#000;font-weight:bold">~</span>character) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_calc</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(y <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;&#34;</span>, x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Lexicon Value&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Plot them: </span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> afinn_counts, <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> value, y <span style="color:#ff7b72;font-weight:bold">=</span> n)) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_col</span>(fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;blue&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">facet_wrap</span>(<span style="color:#ff7b72;font-weight:bold">~</span>character) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_calc</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;&#34;</span>, x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Lexicon Value&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/text-analysis/index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Find the mean afinn score by characeter: </span>
-</span></span><span style="display:flex;"><span>afinn_means <span style="color:#000;font-weight:bold">&lt;-</span> dinner_afinn <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">group_by</span>(character) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summarize</span>(mean_afinn <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">mean</span>(value))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Find the mean afinn score by characeter: </span>
+</span></span><span style="display:flex;"><span>afinn_means <span style="color:#ff7b72;font-weight:bold">&lt;-</span> dinner_afinn <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">group_by</span>(character) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summarize</span>(mean_afinn <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">mean</span>(value))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggplot</span>(data <span style="color:#000;font-weight:bold">=</span> afinn_means, 
-</span></span><span style="display:flex;"><span>       <span style="color:#900;font-weight:bold">aes</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">fct_rev</span>(<span style="color:#900;font-weight:bold">as.factor</span>(character)), 
-</span></span><span style="display:flex;"><span>           y <span style="color:#000;font-weight:bold">=</span> mean_afinn)) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_col</span>(fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;blue&#34;</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">coord_flip</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_calc</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">labs</span>(x <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Character&#34;</span>, y <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;Mean&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggplot</span>(data <span style="color:#ff7b72;font-weight:bold">=</span> afinn_means, 
+</span></span><span style="display:flex;"><span>       <span style="color:#d2a8ff;font-weight:bold">aes</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">fct_rev</span>(<span style="color:#d2a8ff;font-weight:bold">as.factor</span>(character)), 
+</span></span><span style="display:flex;"><span>           y <span style="color:#ff7b72;font-weight:bold">=</span> mean_afinn)) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_col</span>(fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;blue&#34;</span>) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">coord_flip</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_calc</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">labs</span>(x <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Character&#34;</span>, y <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;Mean&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/text-analysis/index_files/figure-html/unnamed-chunk-15-2.png" width="672" />
 
       </section>

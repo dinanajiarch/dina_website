@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>mediation on Dina Arch</title>
+    <title>Mediation on Dina Arch</title>
     <link>https://www.dina-arch.com/tags/mediation/</link>
-    <description>Recent content in mediation on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Mediation on Dina Arch</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/mediation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/tags/mediation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lab 4: Mediation</title>
       <link>https://www.dina-arch.com/collection/linear-models/04-mediation/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/collection/linear-models/04-mediation/</guid>
-      <description>library(haven) #read_sav() library(mediation) # mediate() (Tingley, Yamamoto, Hirose, Keele, &amp;amp; Imai, 2014) library(gvlma) # gvlma() library(kableExtra) #kable() library(corrr) #correlate() library(psych) #mediate() library(tidyverse) Mediation in R This examples comes from a tutorial paper on mediation found here. This is an open source paper that shared the data set used in this example. The following is code and interpretation are based on this paper. Note that they use a different package to estimate the model and you will see that our estimates are very close, though not exact.</description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(haven) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#read_sav()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(mediation) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# mediate() (Tingley, Yamamoto, Hirose, Keele, &amp;amp; Imai, 2014)&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(gvlma) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# gvlma()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(kableExtra) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#kable()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(corrr) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#correlate()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(psych) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#mediate()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&#xA;&#xA;&#xA;&lt;h1 id=&#34;mediation-in-r&#34;&gt;Mediation in R&#xA;  &lt;a href=&#34;#mediation-in-r&#34;&gt;&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;This examples comes from a tutorial paper on mediation found &#xA;&lt;a href=&#34;https://www.tqmp.org/RegularArticles/vol13-3/p148/p148.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&#xA;This is an open source paper that shared the data set used in this example.&#xA;The following is code and interpretation are based on this paper.&#xA;Note that they use a different package to estimate the model and you will see that our estimates are very close, though not exact.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

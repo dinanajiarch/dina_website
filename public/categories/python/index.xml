@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>python on Dina Arch</title>
+    <title>Python on Dina Arch</title>
     <link>https://www.dina-arch.com/categories/python/</link>
-    <description>Recent content in python on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Python on Dina Arch</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Dec 2020 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/categories/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Big Data Analytics Course Project</title>
       <link>https://www.dina-arch.com/collection/covid-19/final_code/</link>
       <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/collection/covid-19/final_code/</guid>
-      <description>Final Project: Big Data Analytics Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian Data Import from pyspark.sql import SparkSession spark = SparkSession.builder.getOrCreate() CORD-19: The COVID-19 Open Research Dataset
-#Import COVID-19 dataset filename = &amp;#39;/home/jovyan/Project/metadata.csv&amp;#39; df = spark.read.csv(filename, inferSchema=True, header = True) df.printSchema() root|-- cord_uid: string (nullable = true)|-- sha: string (nullable = true)|-- source_x: string (nullable = true)|-- title: string (nullable = true)|-- doi: string (nullable = true)|-- pmcid: string (nullable = true)|-- pubmed_id: string (nullable = true)|-- license: string (nullable = true)|-- abstract: string (nullable = true)|-- publish_time: string (nullable = true)|-- authors: string (nullable = true)|-- journal: string (nullable = true)|-- mag_id: string (nullable = true)|-- who_covidence_id: string (nullable = true)|-- arxiv_id: string (nullable = true)|-- pdf_json_files: string (nullable = true)|-- pmc_json_files: string (nullable = true)|-- url: string (nullable = true)|-- s2_id: string (nullable = true)Source: https://github.</description>
+      <description>&lt;h1 id=&#34;final-project-big-data-analytics&#34;&gt;Final Project: Big Data Analytics&#xA;  &lt;a href=&#34;#final-project-big-data-analytics&#34;&gt;&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;h2 id=&#34;dina-arch-jeremy-knox-theo-velikov-roupen-khanjian&#34;&gt;Dina Arch, Jeremy Knox, Theo Velikov, Roupen Khanjian&#xA;  &lt;a href=&#34;#dina-arch-jeremy-knox-theo-velikov-roupen-khanjian&#34;&gt;&lt;svg class=&#34;anchor-symbol&#34; aria-hidden=&#34;true&#34; height=&#34;26&#34; width=&#34;26&#34; viewBox=&#34;0 0 22 22&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&#xA;      &lt;path d=&#34;M0 0h24v24H0z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&#xA;      &lt;path d=&#34;M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z&#34;&gt;&lt;/path&gt;&#xA;    &lt;/svg&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;h3 id=&#34;data-import&#34;&gt;Data Import&#xA;  &lt;a href=&#34;#data-import&#34;&gt;&lt;svg class=&#34;anchor-symbol&#34; aria-hidden=&#34;true&#34; height=&#34;26&#34; width=&#34;26&#34; viewBox=&#34;0 0 22 22&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&#xA;      &lt;path d=&#34;M0 0h24v24H0z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&#xA;      &lt;path d=&#34;M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z&#34;&gt;&lt;/path&gt;&#xA;    &lt;/svg&gt;&lt;/a&gt;&#xA;&lt;/h3&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#ff7b72&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;pyspark.sql&lt;/span&gt; &lt;span style=&#34;color:#ff7b72&#34;&gt;import&lt;/span&gt; SparkSession&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;spark &lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;=&lt;/span&gt; SparkSession&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;.&lt;/span&gt;builder&lt;span style=&#34;color:#ff7b72;font-weight:bold&#34;&gt;.&lt;/span&gt;getOrCreate()&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&#xA;&lt;a href=&#34;https://arxiv.org/abs/2004.10706&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CORD-19: The COVID-19 Open Research Dataset&lt;/a&gt;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

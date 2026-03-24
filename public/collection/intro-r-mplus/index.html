@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.102.1" />
+<meta name="generator" content="Hugo 0.159.0">
 <title>Introduction to R, Mplus, and MplusAutomation | Dina Arch</title>
 
 
@@ -43,56 +43,47 @@
         <meta name="twitter:image" content="https://www.dina-arch.com/collection/featured-sidebar.jpg" >
     
     
+  
   <meta itemprop="name" content="Introduction to R, Mplus, and MplusAutomation">
-<meta itemprop="description" content="Please note that this document walks through AppStream which provides to access Mplus at UC Santa Barbara. If you already own Mplus, then you can ignore that part (i.e., you do not need to link your Google Drive to AppStream).
-For Part 1, we will first walk through how to run basic descriptive statistics using only Mplus. Then in the in the second part, we will use an R package called MplusAutomation to run the same analysis as part 1, only this time using only RStudio."><meta itemprop="datePublished" content="2022-03-28T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2022-03-28T00:00:00+00:00" />
-<meta itemprop="wordCount" content="4336">
-<meta itemprop="keywords" content="r markdown,introduction,mplus," />
+  <meta itemprop="description" content="Please note that this document walks through AppStream which provides to access Mplus at UC Santa Barbara. If you already own Mplus, then you can ignore that part (i.e., you do not need to link your Google Drive to AppStream).
+For Part 1, we will first walk through how to run basic descriptive statistics using only Mplus. Then in the in the second part, we will use an R package called MplusAutomation to run the same analysis as part 1, only this time using only RStudio.">
+  <meta itemprop="datePublished" content="2022-03-28T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2022-03-28T00:00:00+00:00">
+  <meta itemprop="wordCount" content="4336">
+  <meta itemprop="keywords" content="R Markdown,Introduction,Mplus">
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
-<script>
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-XV6Y72XCTJ', { 'anonymize_ip': true });
-}
-</script>
-
-  
-<script type="application/javascript">
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-XV6Y72XCTJ', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XV6Y72XCTJ');
+        }
+      </script>
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
   <link rel="icon" href="/img/cat.ico" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.9d8de99f4c94aff7a77ce5b4714ffdbee5bdfcdff4330362f854eedade6d8a27.css" integrity="sha256-nY3pn0yUr/enfOW0cU/9vuW9/N/0MwNi&#43;FTu2t5tiic=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.9ae41e138f4f62c165cf7ebd6bc9d8c44682584e7f1797a679ee0f23718e83a5.js" type="text/javascript"></script>
+  <script src="/main.min.f7862fe64e701541b0a2baa66974e6debf4a7ffe0f0e2167785554cdf97bca97.js" type="text/javascript"></script>
 </head>
 <body>
       <div class="grid-container single-series">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com/" title="Home">
       <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -101,6 +92,11 @@ if (!doNotTrack) {
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://mixture-modeling.netlify.app/" title="IMMERSE">IMMERSE</a>
       
         
         
@@ -430,14 +426,14 @@ Go ahead and save this document to your Google Drive folder.</p>
 <p>Your first code chunk in any given markdown should be the packages you will be using.
 To insert a code chunk, etiher use the keyboard shortcut ctrl + alt + i or Code &ndash;&gt; Insert Chunk or click the green box with the letter C on it.
 There are a few packages we want our markdown to read in:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(MplusAutomation)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse) <span style="color:#998;font-style:italic">#collection of R packages designed for data science</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(here) <span style="color:#998;font-style:italic">#helps with filepaths</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(haven) <span style="color:#998;font-style:italic"># read_sav()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic"># describe()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(ggpubr) <span style="color:#998;font-style:italic"># ggdensity() and ggqqplot()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(corrplot) <span style="color:#998;font-style:italic"># corrplot()</span>
-</span></span><span style="display:flex;"><span>here<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">i_am</span>(<span style="color:#d14">&#34;index.Rmarkdown&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(MplusAutomation)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse) <span style="color:#8b949e;font-style:italic">#collection of R packages designed for data science</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(here) <span style="color:#8b949e;font-style:italic">#helps with filepaths</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(haven) <span style="color:#8b949e;font-style:italic"># read_sav()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(psych) <span style="color:#8b949e;font-style:italic"># describe()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(ggpubr) <span style="color:#8b949e;font-style:italic"># ggdensity() and ggqqplot()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(corrplot) <span style="color:#8b949e;font-style:italic"># corrplot()</span>
+</span></span><span style="display:flex;"><span>here<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">i_am</span>(<span style="color:#a5d6ff">&#34;index.Rmarkdown&#34;</span>)
 </span></span></code></pre></div><p>As a reminder, if a function does not work and you receive an error like this: <code>could not find function &quot;random_function&quot;</code>; or if you try to load a package and you receive an error like this: <code>there is no package called `random_package`</code> , then you will need to install the package using <code>install.packages(&quot;random_package&quot;)</code> in the console (the bottom-left window in R studio).
 Once you have installed the package you will <em>never</em> need to install it again, however you must <em>always</em> load in the packages at the beginning of your R markdown using <code>library(random_package)</code>, as shown in this document.</p>
 <p><strong>NOTE</strong>: With AppStream, we pre-installed most packages.
@@ -456,14 +452,14 @@ If you are using R studio on your personal computer, then once it is installed, 
 <p>Recall that our data set that we used earlier is a <em>.dat</em> file with no variable names.
 Remember that this is a data set specifically designed for Mplus.
 Let grab the original one (an SPSS file) in the <code>data</code> folder within the <code>part2_rstudio</code> folder.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>data <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;explore_lab_data.sav&#34;</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>data <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_sav</span>(<span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;data&#34;</span>, <span style="color:#a5d6ff">&#34;explore_lab_data.sav&#34;</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Ways to view data in R:</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 1. click on the data in your Global Environment (upper right pane) or use...</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">View</span>(data)
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 2. summary() gives basic summary statistics &amp; shows number of NA values</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># *great for checking that data has been read in correctly*</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(data)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Ways to view data in R:</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 1. click on the data in your Global Environment (upper right pane) or use...</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">View</span>(data)
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 2. summary() gives basic summary statistics &amp; shows number of NA values</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># *great for checking that data has been read in correctly*</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(data)
 </span></span></code></pre></div><pre tabindex="0"><code>##      item1            item2            item3            item4       
 ##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
 ##  1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000  
@@ -488,12 +484,12 @@ Let grab the original one (an SPSS file) in the <code>data</code> folder within 
 ##  3rd Qu.: 8.000   3rd Qu.:1.0000  
 ##  Max.   :10.000   Max.   :1.0000  
 ## 
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 3. names() provides a list of column names. Very useful if you don&#39;t have them memorized!</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">names</span>(data)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 3. names() provides a list of column names. Very useful if you don&#39;t have them memorized!</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">names</span>(data)
 </span></span></code></pre></div><pre tabindex="0"><code>##  [1] &#34;item1&#34;  &#34;item2&#34;  &#34;item3&#34;  &#34;item4&#34;  &#34;item5&#34;  &#34;item6&#34;  &#34;item7&#34;  &#34;item8&#34; 
 ##  [9] &#34;item9&#34;  &#34;female&#34;
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># 4. head() prints the top x rows of the dataframe</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">head</span>(data)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># 4. head() prints the top x rows of the dataframe</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">head</span>(data)
 </span></span></code></pre></div><pre tabindex="0"><code>## # A tibble: 6 × 10
 ##   item1 item2 item3 item4 item5 item6 item7 item8 item9     female
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl+lbl&gt;
@@ -504,7 +500,7 @@ Let grab the original one (an SPSS file) in the <code>data</code> folder within 
 ## 5     2     1     1     3     1     1     2     1     1 1 [female]
 ## 6     3     1     2     1     3     2     2     2     1 1 [female]
 </code></pre><p>You can also look at the dataframe with labels and response scale meta-data:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>sjPlot<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">view_df</span>(data)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>sjPlot<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">view_df</span>(data)
 </span></span></code></pre></div><table style="border-collapse:collapse; border:none;">
 <caption>Data frame: data</caption>
 <tr>
@@ -577,16 +573,16 @@ We are able to see the variable names, and descriptions.</p>
 <p><strong>Convert from <em>.sav</em> to <em>.csv</em></strong></p>
 <p>It&rsquo;s a good idea to convert <em>.sav</em> files to <em>.csv</em>.
 Here is how to convert the <em><strong>.sav</strong></em> <strong>to <em>.csv</em></strong>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># write_csv saves a .csv version of your dataset to your working directory.</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Enter the name of the object that contains your data set (in this case, &#34;exp_lab1_data.csv&#34;), then enter the name you want to save your dataset as. We can call it the same thing: &#34;screen1.csv&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">write_csv</span>(data, <span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;exp_lab1_data.csv&#34;</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># write_csv saves a .csv version of your dataset to your working directory.</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Enter the name of the object that contains your data set (in this case, &#34;exp_lab1_data.csv&#34;), then enter the name you want to save your dataset as. We can call it the same thing: &#34;screen1.csv&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">write_csv</span>(data, <span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;data&#34;</span>, <span style="color:#a5d6ff">&#34;exp_lab1_data.csv&#34;</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># read the unlabeled data back into R</span>
-</span></span><span style="display:flex;"><span>data_csv <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_csv</span>(<span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;exp_lab1_data.csv&#34;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># read the unlabeled data back into R</span>
+</span></span><span style="display:flex;"><span>data_csv <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_csv</span>(<span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;data&#34;</span>, <span style="color:#a5d6ff">&#34;exp_lab1_data.csv&#34;</span>))
 </span></span></code></pre></div><p><strong>Optional: Convert from <em>.csv</em> to Mplus <em>.dat</em> file</strong></p>
 <p>Say you want an Mplus .dat file and don&rsquo;t want to go through the hassle of deleting rows and manual conversion to <em>.dat</em>.
 You can use the <code>prepareMplusData()</code> function to convert from <em>.csv</em> to <em>.dat</em>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">prepareMplusData</span>(data_csv, <span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;data&#34;</span>, <span style="color:#d14">&#34;exp_lab1_data.dat&#34;</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">prepareMplusData</span>(data_csv, <span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;data&#34;</span>, <span style="color:#a5d6ff">&#34;exp_lab1_data.dat&#34;</span>))
 </span></span></code></pre></div><pre tabindex="0"><code>## TITLE: Your title goes here
 ## DATA: FILE = &#34;C:/Users/Dina Arch/Box/Dina&#39;s Website/dina_website/content/collection/intro-r-mplus/part2_rstudio/data/exp_lab1_data.dat&#34;;
 ## VARIABLE: 
@@ -615,46 +611,46 @@ Always check!</p>
 <li>You can specify where you want the <em>.out</em> file saved</li>
 <li><code>check=TRUE</code> checks for missing semicolons, <code>run=TRUE</code> runs the model, <code>hashfilename=FALSE</code> does not add a hash of the raw data to the datafile name.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m_basic  <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusObject</span>(
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>m_basic  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">mplusObject</span>(
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  TITLE <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;PRACTICE 01 - Explore TYPE = BASIC;&#34;</span>,
+</span></span><span style="display:flex;"><span>  TITLE <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;PRACTICE 01 - Explore TYPE = BASIC;&#34;</span>,
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  VARIABLE <span style="color:#000;font-weight:bold">=</span> 
-</span></span><span style="display:flex;"><span> <span style="color:#d14">&#34;usevar= item1 item2 item3 item4 item5 item6 item7 item8 item9 female;&#34;</span>,
+</span></span><span style="display:flex;"><span>  VARIABLE <span style="color:#ff7b72;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span> <span style="color:#a5d6ff">&#34;usevar= item1 item2 item3 item4 item5 item6 item7 item8 item9 female;&#34;</span>,
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  ANALYSIS <span style="color:#000;font-weight:bold">=</span> 
-</span></span><span style="display:flex;"><span> <span style="color:#d14">&#34;type = basic; &#34;</span>,
+</span></span><span style="display:flex;"><span>  ANALYSIS <span style="color:#ff7b72;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span> <span style="color:#a5d6ff">&#34;type = basic; &#34;</span>,
 </span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  usevariables <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(data_csv), 
-</span></span><span style="display:flex;"><span>  rdata <span style="color:#000;font-weight:bold">=</span> data_csv)
+</span></span><span style="display:flex;"><span>  usevariables <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">colnames</span>(data_csv), 
+</span></span><span style="display:flex;"><span>  rdata <span style="color:#ff7b72;font-weight:bold">=</span> data_csv)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>m_basic_fit <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusModeler</span>(m_basic, 
-</span></span><span style="display:flex;"><span>               dataout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;basic.dat&#34;</span>),
-</span></span><span style="display:flex;"><span>               modelout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;basic.inp&#34;</span>),
-</span></span><span style="display:flex;"><span>               check<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">TRUE</span>, run <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, hashfilename <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>)
+</span></span><span style="display:flex;"><span>m_basic_fit <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">mplusModeler</span>(m_basic, 
+</span></span><span style="display:flex;"><span>               dataout<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;basic.dat&#34;</span>),
+</span></span><span style="display:flex;"><span>               modelout<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;basic.inp&#34;</span>),
+</span></span><span style="display:flex;"><span>               check<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">TRUE</span>, run <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, hashfilename <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
 </span></span></code></pre></div><p><strong>NOTE</strong>: You don&rsquo;t need to specify <code>MISSING</code> here since it automatically detects the missing value from the data set.
 You also don&rsquo;t need <code>NAMES</code> as it detects the names from the data set.</p>
 <p><strong>Optional: Subsetting observations</strong></p>
 <p>You can use Mplus syntax to explore descriptives for observations reported as &ldquo;female.&rdquo;</p>
 <p>Add line of syntax: <code>useobs = female == 1;</code></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fem_basic  <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusObject</span>(
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fem_basic  <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">mplusObject</span>(
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  TITLE <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;PRACTICE 02 - Explore female observations only;&#34;</span>, 
+</span></span><span style="display:flex;"><span>  TITLE <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;PRACTICE 02 - Explore female observations only;&#34;</span>, 
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  VARIABLE <span style="color:#000;font-weight:bold">=</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#d14">&#34;usevar = item1 item2 item3 item4 item5 item6 item7 item8 item9;
-</span></span></span><span style="display:flex;"><span><span style="color:#d14">  useobs = female == 1; !include observations that report female in analysis&#34;</span>,
+</span></span><span style="display:flex;"><span>  VARIABLE <span style="color:#ff7b72;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#a5d6ff">&#34;usevar = item1 item2 item3 item4 item5 item6 item7 item8 item9;
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">  useobs = female == 1; !include observations that report female in analysis&#34;</span>,
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>  ANALYSIS <span style="color:#000;font-weight:bold">=</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#d14">&#34;type = basic;&#34;</span>,
+</span></span><span style="display:flex;"><span>  ANALYSIS <span style="color:#ff7b72;font-weight:bold">=</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;type = basic;&#34;</span>,
 </span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span>  usevariables <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">colnames</span>(data_csv), 
-</span></span><span style="display:flex;"><span>  rdata <span style="color:#000;font-weight:bold">=</span> data_csv)
+</span></span><span style="display:flex;"><span>  usevariables <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">colnames</span>(data_csv), 
+</span></span><span style="display:flex;"><span>  rdata <span style="color:#ff7b72;font-weight:bold">=</span> data_csv)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>fem_basic_fit <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">mplusModeler</span>(fem_basic, 
-</span></span><span style="display:flex;"><span>               dataout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;fem_basic.dat&#34;</span>),
-</span></span><span style="display:flex;"><span>               modelout<span style="color:#000;font-weight:bold">=</span><span style="color:#900;font-weight:bold">here</span>(<span style="color:#d14">&#34;part2_rstudio&#34;</span>, <span style="color:#d14">&#34;fem_basic.inp&#34;</span>),
-</span></span><span style="display:flex;"><span>               check<span style="color:#000;font-weight:bold">=</span><span style="color:#000;font-weight:bold">TRUE</span>, run <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>, hashfilename <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>)
+</span></span><span style="display:flex;"><span>fem_basic_fit <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">mplusModeler</span>(fem_basic, 
+</span></span><span style="display:flex;"><span>               dataout<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;fem_basic.dat&#34;</span>),
+</span></span><span style="display:flex;"><span>               modelout<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#d2a8ff;font-weight:bold">here</span>(<span style="color:#a5d6ff">&#34;part2_rstudio&#34;</span>, <span style="color:#a5d6ff">&#34;fem_basic.inp&#34;</span>),
+</span></span><span style="display:flex;"><span>               check<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">TRUE</span>, run <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>, hashfilename <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
 </span></span></code></pre></div><hr>
 
 
@@ -669,16 +665,16 @@ You also don&rsquo;t need <code>NAMES</code> as it detects the names from the da
 <p>It&rsquo;s important to explore your variables before running a factor analysis.
 First, lets rename our variables to something more meaningful using <code>rename()</code>.
 As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of functions, you can use the shortcut crt + shift + m:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">&lt;-</span> data_csv <span style="color:#000;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">rename</span>(school_motiv1 <span style="color:#000;font-weight:bold">=</span> item1,
-</span></span><span style="display:flex;"><span>         school_motiv2 <span style="color:#000;font-weight:bold">=</span> item2,
-</span></span><span style="display:flex;"><span>         school_motiv3 <span style="color:#000;font-weight:bold">=</span> item3,
-</span></span><span style="display:flex;"><span>         school_comp1 <span style="color:#000;font-weight:bold">=</span> item4,
-</span></span><span style="display:flex;"><span>         school_comp2 <span style="color:#000;font-weight:bold">=</span> item5,
-</span></span><span style="display:flex;"><span>         school_comp3 <span style="color:#000;font-weight:bold">=</span> item6,
-</span></span><span style="display:flex;"><span>         school_belif1 <span style="color:#000;font-weight:bold">=</span> item7,
-</span></span><span style="display:flex;"><span>         school_belif2 <span style="color:#000;font-weight:bold">=</span> item8,
-</span></span><span style="display:flex;"><span>         school_belif3 <span style="color:#000;font-weight:bold">=</span> item9)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">&lt;-</span> data_csv <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">rename</span>(school_motiv1 <span style="color:#ff7b72;font-weight:bold">=</span> item1,
+</span></span><span style="display:flex;"><span>         school_motiv2 <span style="color:#ff7b72;font-weight:bold">=</span> item2,
+</span></span><span style="display:flex;"><span>         school_motiv3 <span style="color:#ff7b72;font-weight:bold">=</span> item3,
+</span></span><span style="display:flex;"><span>         school_comp1 <span style="color:#ff7b72;font-weight:bold">=</span> item4,
+</span></span><span style="display:flex;"><span>         school_comp2 <span style="color:#ff7b72;font-weight:bold">=</span> item5,
+</span></span><span style="display:flex;"><span>         school_comp3 <span style="color:#ff7b72;font-weight:bold">=</span> item6,
+</span></span><span style="display:flex;"><span>         school_belif1 <span style="color:#ff7b72;font-weight:bold">=</span> item7,
+</span></span><span style="display:flex;"><span>         school_belif2 <span style="color:#ff7b72;font-weight:bold">=</span> item8,
+</span></span><span style="display:flex;"><span>         school_belif3 <span style="color:#ff7b72;font-weight:bold">=</span> item9)
 </span></span></code></pre></div>
 
 
@@ -690,8 +686,8 @@ As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of
     </svg></a>
 </h3>
 <p>Let&rsquo;s look at descriptive statistics for each variable using <code>summary()</code>:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##  school_motiv1    school_motiv2    school_motiv3     school_comp1   
 ##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
 ##  1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000  
@@ -717,8 +713,8 @@ As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of
 ##  Max.   :10.000   Max.   :1.0000  
 ## 
 </code></pre><p>Alternatively, we can use the <code>psych::describe()</code> function to give more information:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">describe</span>()
 </span></span></code></pre></div><pre tabindex="0"><code>##               vars   n mean   sd median trimmed  mad min max range  skew
 ## school_motiv1    1 119 4.51 2.64      4    4.36 2.97   1  10     9  0.31
 ## school_motiv2    2 118 4.86 2.72      5    4.76 2.97   1  10     9  0.14
@@ -744,9 +740,9 @@ As a reminder, use the pipe operator <code>%&gt;%</code> to create a sequence of
 </code></pre><p>What if we want to look at a subset of the data?
 For example, what if we want to see those who identify as female?
 We can use <code>tidyverse::filter()</code> to subset the data using certain criteria.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">filter</span>(female <span style="color:#000;font-weight:bold">==</span> <span style="color:#099">1</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">describe</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">filter</span>(female <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">1</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">describe</span>()
 </span></span></code></pre></div><pre tabindex="0"><code>##               vars  n mean   sd median trimmed  mad min max range  skew
 ## school_motiv1    1 81 4.61 2.60    4.5    4.48 3.71   1  10     9  0.29
 ## school_motiv2    2 80 4.92 2.62    5.0    4.88 2.97   1  10     9  0.06
@@ -769,7 +765,7 @@ We can use <code>tidyverse::filter()</code> to subset the data using certain cri
 ## school_belif2    -0.97 0.32
 ## school_belif3    -1.27 0.32
 ## female             NaN 0.00
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#You can use any operator to filter: &gt;, &lt;, ==, &gt;=, etc.</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#You can use any operator to filter: &gt;, &lt;, ==, &gt;=, etc.</span>
 </span></span></code></pre></div>
 
 
@@ -785,8 +781,8 @@ First, how are missing values identified?
 They could be <code>-999</code>, <code>NA</code>, or literally anything else.
 The simplest way to do this is to look back at the <code>summary()</code> function.
 There are four variables with one missing value.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##  school_motiv1    school_motiv2    school_motiv3     school_comp1   
 ##  Min.   : 1.000   Min.   : 1.000   Min.   : 1.000   Min.   : 1.000  
 ##  1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000   1st Qu.: 2.000  
@@ -811,7 +807,7 @@ There are four variables with one missing value.</p>
 ##  3rd Qu.: 8.000   3rd Qu.:1.0000  
 ##  Max.   :10.000   Max.   :1.0000  
 ## 
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># summary(new_names)</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># summary(new_names)</span>
 </span></span></code></pre></div>
 
 
@@ -825,9 +821,9 @@ There are four variables with one missing value.</p>
 <p>What if you want to recode a continuous variable into different levels (e.g., high, medium, and low)?
 Let&rsquo;s use the variable <code>school_belief1</code> as an example.
 First, let&rsquo;s recall the descriptives:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(school_belif1) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(school_belif1) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##  school_belif1   
 ##  Min.   : 1.000  
 ##  1st Qu.: 1.000  
@@ -838,36 +834,36 @@ First, let&rsquo;s recall the descriptives:</p>
 </code></pre><p>Here, we can see that the values range from 1 - 10.
 Lets recode the variable to look like this:</p>
 <table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Low</td>
-<td>1 - 3</td>
-</tr>
-<tr>
-<td>Medium</td>
-<td>4 - 6</td>
-</tr>
-<tr>
-<td>High</td>
-<td>7 - 10</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Low</td>
+          <td>1 - 3</td>
+      </tr>
+      <tr>
+          <td>Medium</td>
+          <td>4 - 6</td>
+      </tr>
+      <tr>
+          <td>High</td>
+          <td>7 - 10</td>
+      </tr>
+  </tbody>
 </table>
 <p>We use <code>cut()</code> to divide continuous variables into intervals:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>school_factor <span style="color:#000;font-weight:bold">&lt;-</span> new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">mutate</span>(school_factor <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">cut</span>(school_belif1,
-</span></span><span style="display:flex;"><span>                      breaks <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">0</span>, <span style="color:#099">3</span>, <span style="color:#099">6</span>, <span style="color:#099">10</span>), <span style="color:#998;font-style:italic">#Use 0 at the beginning to ensure that 1 is included in the first break, then break by last number in each section (3, 6, 10) </span>
-</span></span><span style="display:flex;"><span>                      labels <span style="color:#000;font-weight:bold">=</span> <span style="color:#900;font-weight:bold">c</span>(<span style="color:#d14">&#34;low&#34;</span>, <span style="color:#d14">&#34;medium&#34;</span>, <span style="color:#d14">&#34;high&#34;</span>)))
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic"># View summary</span>
-</span></span><span style="display:flex;"><span>school_factor <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">select</span>(school_belif1, school_factor) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">summary</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>school_factor <span style="color:#ff7b72;font-weight:bold">&lt;-</span> new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">mutate</span>(school_factor <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">cut</span>(school_belif1,
+</span></span><span style="display:flex;"><span>                      breaks <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">3</span>, <span style="color:#a5d6ff">6</span>, <span style="color:#a5d6ff">10</span>), <span style="color:#8b949e;font-style:italic">#Use 0 at the beginning to ensure that 1 is included in the first break, then break by last number in each section (3, 6, 10) </span>
+</span></span><span style="display:flex;"><span>                      labels <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">&#34;low&#34;</span>, <span style="color:#a5d6ff">&#34;medium&#34;</span>, <span style="color:#a5d6ff">&#34;high&#34;</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># View summary</span>
+</span></span><span style="display:flex;"><span>school_factor <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">select</span>(school_belif1, school_factor) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">summary</span>() 
 </span></span></code></pre></div><pre tabindex="0"><code>##  school_belif1    school_factor
 ##  Min.   : 1.000   low   :72    
 ##  1st Qu.: 1.000   medium:21    
@@ -897,7 +893,7 @@ Normally, we would want to inspect every variable, but for demonstration purpose
 </h4>
 <p>A density plot is a visualization of the data over a continuous interval.
 As we can see by this density plot, the variable <code>school_belif1</code> is positively skewed.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggdensity</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1, fill <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lightgray&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggdensity</span>(new_names<span style="color:#ff7b72;font-weight:bold">$</span>school_belif1, fill <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lightgray&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
 
@@ -907,7 +903,7 @@ As we can see by this density plot, the variable <code>school_belif1</code> is p
   <a href="#histogram"></a>
 </h4>
 <p>A histogram provides the same information as the density plot but provides a count instead of density on the x-axis.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">hist</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1, col <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#39;lightgray&#39;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">hist</span>(new_names<span style="color:#ff7b72;font-weight:bold">$</span>school_belif1, col <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;lightgray&#39;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
 
@@ -920,7 +916,7 @@ As we can see by this density plot, the variable <code>school_belif1</code> is p
 In a QQ plot, each observation is plotted as a single dot.
 If the data are normal, the dots should form a straight line.
 If the data are skewed, you will see either a downward curve (negatively skewed) or upward curve (positively skewed).</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">ggqqplot</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">ggqqplot</span>(new_names<span style="color:#ff7b72;font-weight:bold">$</span>school_belif1)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 <p>As you can see in this QQ plot, there is an upward curve, which further tells us that we have a positively skewed variable.</p>
 
@@ -931,9 +927,9 @@ If the data are skewed, you will see either a downward curve (negatively skewed)
   <a href="#box-plots"></a>
 </h4>
 <p>Box plot can show us distributions, specifically the minimum, first quartile, median, third quartile, and maximum.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic"># </span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(y <span style="color:#000;font-weight:bold">=</span> school_belif1)) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_boxplot</span>() 
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#8b949e;font-style:italic"># </span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">ggplot</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(y <span style="color:#ff7b72;font-weight:bold">=</span> school_belif1)) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_boxplot</span>() 
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
 
@@ -944,20 +940,20 @@ If the data are skewed, you will see either a downward curve (negatively skewed)
 </h4>
 <p>We can use <code>pairs()</code> to look at bivariate scatterplots.
 Do the relationships look linear?:</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">pairs</span>(new_names)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">pairs</span>(new_names)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-19-1.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Or we can look at individual scatterplots:</span>
-</span></span><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">ggplot</span>(<span style="color:#900;font-weight:bold">aes</span>(school_belif1, school_belif2)) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_point</span>() <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">geom_smooth</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;lm&#34;</span>, se <span style="color:#000;font-weight:bold">=</span><span style="color:#999">F</span>) <span style="color:#000;font-weight:bold">+</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">theme_minimal</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Or we can look at individual scatterplots:</span>
+</span></span><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">ggplot</span>(<span style="color:#d2a8ff;font-weight:bold">aes</span>(school_belif1, school_belif2)) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_point</span>() <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">geom_smooth</span>(method <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;lm&#34;</span>, se <span style="color:#ff7b72;font-weight:bold">=</span>F) <span style="color:#ff7b72;font-weight:bold">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">theme_minimal</span>()
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-19-2.png" width="672" />
 <p>We can also use <code>cor()</code> to look at bivariate correlations for the entire data set (Note: Missing values are not allowed in correlation analyses, use <code>drop_na()</code> to do listwise deletion):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">drop_na</span>() <span style="color:#000;font-weight:bold">%&gt;%</span> <span style="color:#998;font-style:italic">#remove missing data</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">cor</span>(method <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;pearson&#34;</span>) <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">round</span>(<span style="color:#099">2</span>) <span style="color:#998;font-style:italic"># round to 2 decimal places </span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>new_names <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">drop_na</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> <span style="color:#8b949e;font-style:italic">#remove missing data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">cor</span>(method <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;pearson&#34;</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">round</span>(<span style="color:#a5d6ff">2</span>) <span style="color:#8b949e;font-style:italic"># round to 2 decimal places </span>
 </span></span></code></pre></div><pre tabindex="0"><code>##               school_motiv1 school_motiv2 school_motiv3 school_comp1
 ## school_motiv1          1.00          0.82          0.74         0.64
 ## school_motiv2          0.82          1.00          0.60         0.68
@@ -991,14 +987,14 @@ Do the relationships look linear?:</p>
 ## school_belif2          0.39   0.00
 ## school_belif3          1.00  -0.09
 ## female                -0.09   1.00
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># A colorful plot:</span>
-</span></span><span style="display:flex;"><span>f_cor <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">cor</span>(new_names, use <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;pairwise.complete.obs&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">corrplot</span>(f_cor,
-</span></span><span style="display:flex;"><span>         method<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;number&#34;</span>,
-</span></span><span style="display:flex;"><span>         type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;upper&#34;</span>)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># A colorful plot:</span>
+</span></span><span style="display:flex;"><span>f_cor <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">cor</span>(new_names, use <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;pairwise.complete.obs&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">corrplot</span>(f_cor,
+</span></span><span style="display:flex;"><span>         method<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;number&#34;</span>,
+</span></span><span style="display:flex;"><span>         type <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;upper&#34;</span>)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/intro-r-mplus/index_files/figure-html/unnamed-chunk-20-1.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Fun tip: `apa.cor.table()` creates an APA formated correlation matrix and saves it to your computer</span>
-</span></span><span style="display:flex;"><span><span style="color:#998;font-style:italic">#apa.cor.table(physics, filename = &#34;cor_table.doc&#34;)</span>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Fun tip: `apa.cor.table()` creates an APA formated correlation matrix and saves it to your computer</span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#apa.cor.table(physics, filename = &#34;cor_table.doc&#34;)</span>
 </span></span></code></pre></div>
 
 
@@ -1011,7 +1007,7 @@ There are many different sources that provide different cut-off values, but as a
 Positive skew values indicate positively skewed variables and negative skew values indicate negatively skewed variables.
 Positive values of kurtosis indicate leptokurtic distributions, or higher peaks with taller tails than a normal distribution.
 Negative values of kurtosis indicate platykurtic distributions, or flat peaks with thin tails.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">describe</span>(new_names<span style="color:#000;font-weight:bold">$</span>school_belif1)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">describe</span>(new_names<span style="color:#ff7b72;font-weight:bold">$</span>school_belif1)
 </span></span></code></pre></div><pre tabindex="0"><code>##    vars   n mean  sd median trimmed  mad min max range skew kurtosis   se
 ## X1    1 119 3.69 2.8      3    3.36 2.97   1  10     9 0.87    -0.58 0.26
 </code></pre><p>Here we can see that the <em>skew</em> value is less than 3 and the <em>kurtosis</em> value is less than 3, indicating a normal distribution.</p>

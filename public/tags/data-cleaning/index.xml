@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>data cleaning on Dina Arch</title>
+    <title>Data Cleaning on Dina Arch</title>
     <link>https://www.dina-arch.com/tags/data-cleaning/</link>
-    <description>Recent content in data cleaning on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Data Cleaning on Dina Arch</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 30 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/data-cleaning/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/tags/data-cleaning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lab 1: Data Screening and Cleaning</title>
       <link>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</link>
       <pubDate>Tue, 30 Mar 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/collection/linear-models/01-data-cleaning/</guid>
-      <description>#Load packages here library(haven) #for read_sav() function library(psych) # describe() library(ggpubr) # ggdensity() and ggqqplot() library(apaTables) # apa.cor.table() library(tidyverse) Data Screening &amp;amp; Cleaning The data sets used in this lab are used in Chapter 4 of Tabachnick &amp;amp; Fidell (2012; I believe there is a new version from 2019 now). The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.</description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#Load packages here&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(haven) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#for read_sav() function&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(psych) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# describe()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(ggpubr) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# ggdensity() and ggqqplot()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(apaTables) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# apa.cor.table()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&#xA;&#xA;&#xA;&#xA;&lt;h2 id=&#34;data-screening--cleaning&#34;&gt;Data Screening &amp;amp; Cleaning&#xA;  &lt;a href=&#34;#data-screening--cleaning&#34;&gt;&lt;svg class=&#34;anchor-symbol&#34; aria-hidden=&#34;true&#34; height=&#34;26&#34; width=&#34;26&#34; viewBox=&#34;0 0 22 22&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34;&gt;&#xA;      &lt;path d=&#34;M0 0h24v24H0z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&#xA;      &lt;path d=&#34;M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z&#34;&gt;&lt;/path&gt;&#xA;    &lt;/svg&gt;&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;The data sets used in this lab are used in Chapter 4 of Tabachnick &amp;amp; Fidell (2012; I believe there is a new version from 2019 now).&#xA;The chapter is provided in GauchoSpace and is a useful resource if you need more information on how to clean and screen your data and write up the results.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

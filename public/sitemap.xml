@@ -170,10 +170,10 @@
     <loc>https://www.dina-arch.com/categories/workshop/</loc>
     <lastmod>2021-01-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/series/a-spoonful-of-hugo/</loc>
+    <loc>https://www.dina-arch.com/blog/spoonful-series/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/blog/spoonful-series/</loc>
+    <loc>https://www.dina-arch.com/series/a-spoonful-of-hugo/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/tags/hugo-site/</loc>
@@ -194,10 +194,10 @@
     <loc>https://www.dina-arch.com/blog/rmarkdown/</loc>
     <lastmod>2020-12-30T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/tags/python/</loc>
+    <loc>https://www.dina-arch.com/categories/python/</loc>
     <lastmod>2020-12-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.dina-arch.com/categories/python/</loc>
+    <loc>https://www.dina-arch.com/tags/python/</loc>
     <lastmod>2020-12-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://www.dina-arch.com/tags/spark/</loc>
@@ -232,8 +232,6 @@
   </url><url>
     <loc>https://www.dina-arch.com/elements/</loc>
     <lastmod>2019-02-18T12:27:33-06:00</lastmod>
-  </url><url>
-    <loc>https://www.dina-arch.com/about/</loc>
   </url><url>
     <loc>https://www.dina-arch.com/contributors/</loc>
   </url><url>

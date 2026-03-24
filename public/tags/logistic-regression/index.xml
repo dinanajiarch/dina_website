@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>logistic regression on Dina Arch</title>
+    <title>Logistic Regression on Dina Arch</title>
     <link>https://www.dina-arch.com/tags/logistic-regression/</link>
-    <description>Recent content in logistic regression on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Logistic Regression on Dina Arch</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/tags/logistic-regression/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/tags/logistic-regression/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Lab 5: Binary Logistic Regression</title>
       <link>https://www.dina-arch.com/collection/linear-models/05-blr/</link>
       <pubDate>Fri, 16 Apr 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/collection/linear-models/05-blr/</guid>
-      <description>library(pander) #pander() library(psych) # describe() library(gtsummary) #tbl_summary() library(equatiomatic) # extract_eq() library(sjPlot) # tab_xtab(), tab_model() library(tidyverse) This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.
-What is Binary Logistic Regression? It is a regression with an outcome variable (or dependent variable) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose).</description>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(pander) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#pander()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(psych) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# describe()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(gtsummary) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;#tbl_summary()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(equatiomatic) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# extract_eq()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(sjPlot) &lt;span style=&#34;color:#8b949e;font-style:italic&#34;&gt;# tab_xtab(), tab_model()&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#d2a8ff;font-weight:bold&#34;&gt;library&lt;/span&gt;(tidyverse)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This lab follows along the logistic regression lecture presented in class and provides two examples to demonstrate the models and their interpretation.&lt;/p&gt;&#xA;&#xA;&#xA;&#xA;&#xA;&lt;h1 id=&#34;what-is-binary-logistic-regression&#34;&gt;What is Binary Logistic Regression?&#xA;  &lt;a href=&#34;#what-is-binary-logistic-regression&#34;&gt;&lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;It is a regression with an &lt;strong&gt;outcome&lt;/strong&gt; &lt;strong&gt;variable&lt;/strong&gt; (or &lt;strong&gt;dependent variable&lt;/strong&gt;) that is dichotomous/binary (i.e., only two categories, such as Yes or No, 0 or 1, Disorder or No Disorder, Win or Lose).&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="generator" content="Hugo 0.102.1" />
+<meta name="generator" content="Hugo 0.159.0">
 <title>Lab 4: Mediation | Dina Arch</title>
 
 
@@ -38,59 +38,50 @@
 
 
     
-        <meta property="og:image" content="https://www.dina-arch.com" >
+        <meta property="og:image" content="https://www.dina-arch.com/" >
         <meta property="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="https://www.dina-arch.com" >
+        <meta name="twitter:image" content="https://www.dina-arch.com/" >
     
+  
   <meta itemprop="name" content="Lab 4: Mediation">
-<meta itemprop="description" content="library(haven) #read_sav() library(mediation) # mediate() (Tingley, Yamamoto, Hirose, Keele, &amp; Imai, 2014) library(gvlma) # gvlma() library(kableExtra) #kable() library(corrr) #correlate() library(psych) #mediate() library(tidyverse) Mediation in R This examples comes from a tutorial paper on mediation found here. This is an open source paper that shared the data set used in this example. The following is code and interpretation are based on this paper. Note that they use a different package to estimate the model and you will see that our estimates are very close, though not exact."><meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00" />
-<meta itemprop="wordCount" content="2576">
-<meta itemprop="keywords" content="r markdown,tidy data,regression,mediation," />
+  <meta itemprop="description" content="library(haven) #read_sav() library(mediation) # mediate() (Tingley, Yamamoto, Hirose, Keele, &amp; Imai, 2014) library(gvlma) # gvlma() library(kableExtra) #kable() library(corrr) #correlate() library(psych) #mediate() library(tidyverse) Mediation in R This examples comes from a tutorial paper on mediation found here. This is an open source paper that shared the data set used in this example. The following is code and interpretation are based on this paper. Note that they use a different package to estimate the model and you will see that our estimates are very close, though not exact.">
+  <meta itemprop="datePublished" content="2021-04-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2021-04-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2576">
+  <meta itemprop="keywords" content="R Markdown,Tidy Data,Regression,Mediation">
   
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
-<script>
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-	gtag('config', 'G-XV6Y72XCTJ', { 'anonymize_ip': true });
-}
-</script>
-
-  
-<script type="application/javascript">
-var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
-var doNotTrack = (dnt == "1" || dnt == "yes");
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'G-XV6Y72XCTJ', 'auto');
-	ga('set', 'anonymizeIp', true);
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XV6Y72XCTJ"></script>
+      <script>
+        var doNotTrack = false;
+        if ( true ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XV6Y72XCTJ');
+        }
+      </script>
   <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <link rel="shortcut icon" href="/img/cat.ico" type="image/x-icon">
   <link rel="icon" href="/img/cat.ico" type="image/x-icon">
   
   
-  <link rel="stylesheet" href="/style.main.min.51ef9a26ed5e31959c31ea456a050c05fbf3938c97c284a4438715138fcb2e8d.css" integrity="sha256-Ue&#43;aJu1eMZWcMepFagUMBfvzk4yXwoSkQ4cVE4/LLo0=" media="screen">
+  <link rel="stylesheet" href="/style.main.min.9d8de99f4c94aff7a77ce5b4714ffdbee5bdfcdff4330362f854eedade6d8a27.css" integrity="sha256-nY3pn0yUr/enfOW0cU/9vuW9/N/0MwNi&#43;FTu2t5tiic=" media="screen">
   
   
   <script src="/panelset.min.ed1ac24b6e16f4e2481e3d1d098ae66f5bc77438aef619e6e266d8ac5b00dc72.js" type="text/javascript"></script>
   
   
-  <script src="/main.min.9ae41e138f4f62c165cf7ebd6bc9d8c44682584e7f1797a679ee0f23718e83a5.js" type="text/javascript"></script>
+  <script src="/main.min.f7862fe64e701541b0a2baa66974e6debf4a7ffe0f0e2167785554cdf97bca97.js" type="text/javascript"></script>
 </head>
 <body>
       <div class="grid-container single-series">
 <header class="site-header pt4 pb2 mb4 bb b--transparent ph5 headroom z-max" role="banner">
   <nav class="site-nav db dt-l w-100" role="navigation">
-    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com" title="Home">
+    <a class="site-brand db dtc-l v-mid link no-underline w-100 w-33-l tc tl-l" href="https://www.dina-arch.com/" title="Home">
       <img src="/img/cat.ico" class="dib db-l h2 w-auto" alt="Dina Arch">
     </a>
     <div class="site-links db dtc-l v-mid w-100 w-47-l tc tr-l mt3 mt0-l ttu tracked">
@@ -99,6 +90,11 @@ if (!doNotTrack) {
         
         
       <a class="link f6 f5-l dib pv1 ph2 " href="/" title="Home">Home</a>
+      
+        
+        
+        
+      <a class="link f6 f5-l dib pv1 ph2 " href="https://mixture-modeling.netlify.app/" title="IMMERSE">IMMERSE</a>
       
         
         
@@ -167,13 +163,13 @@ if (!doNotTrack) {
         
       </header>
       <section class="post-body pt5 pb4">
-        <div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(haven) <span style="color:#998;font-style:italic">#read_sav()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(mediation) <span style="color:#998;font-style:italic"># mediate() (Tingley, Yamamoto, Hirose, Keele, &amp; Imai, 2014)</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(gvlma) <span style="color:#998;font-style:italic"># gvlma()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(kableExtra) <span style="color:#998;font-style:italic">#kable()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(corrr) <span style="color:#998;font-style:italic">#correlate()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(psych) <span style="color:#998;font-style:italic">#mediate()</span>
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">library</span>(tidyverse)
+        <div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(haven) <span style="color:#8b949e;font-style:italic">#read_sav()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(mediation) <span style="color:#8b949e;font-style:italic"># mediate() (Tingley, Yamamoto, Hirose, Keele, &amp; Imai, 2014)</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(gvlma) <span style="color:#8b949e;font-style:italic"># gvlma()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(kableExtra) <span style="color:#8b949e;font-style:italic">#kable()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(corrr) <span style="color:#8b949e;font-style:italic">#correlate()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(psych) <span style="color:#8b949e;font-style:italic">#mediate()</span>
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">library</span>(tidyverse)
 </span></span></code></pre></div>
 
 
@@ -196,63 +192,63 @@ Simple and parallel mediation: A tutorial exploring anxiety sensitivity, sensati
 <hr>
 <p>Downloaded from the journal 
 <a href="https://www.tqmp.org/RegularArticles/vol13-3/p148/index.html" target="_blank" rel="noopener">website</a>.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Read in data</span>
-</span></span><span style="display:flex;"><span>tqmp <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">read_sav</span>(<span style="color:#d14">&#34;p148.sav&#34;</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Read in data</span>
+</span></span><span style="display:flex;"><span>tqmp <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">read_sav</span>(<span style="color:#a5d6ff">&#34;p148.sav&#34;</span>)
 </span></span></code></pre></div><table>
-<thead>
-<tr>
-<th>Variable Name</th>
-<th>Description</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Gender</td>
-<td>Gender</td>
-<td>0 = female, 1= male</td>
-</tr>
-<tr>
-<td>ASI.TOT</td>
-<td>Anxiety sensitivity index total scale score</td>
-<td>higher scores mean more anxiety</td>
-</tr>
-<tr>
-<td>ASI.PHY</td>
-<td>ASI-3 physical concerns subscale</td>
-<td>higher values means more concerns</td>
-</tr>
-<tr>
-<td>ASI.SOC</td>
-<td>ASI-3 social concerns subscale</td>
-<td>higher values means more concerns</td>
-</tr>
-<tr>
-<td>ASI.COG</td>
-<td>ASI-3 cognitive concerns subscale</td>
-<td>higher values means more concerns</td>
-</tr>
-<tr>
-<td>SSs</td>
-<td>UPPS-P sensation seeking subscale</td>
-<td>higher values means more sensation seeking</td>
-</tr>
-<tr>
-<td>NUs</td>
-<td>UPPS-P negative urgency subscale</td>
-<td>higher values means more negative urgency</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>Variable Name</th>
+          <th>Description</th>
+          <th>Notes</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Gender</td>
+          <td>Gender</td>
+          <td>0 = female, 1= male</td>
+      </tr>
+      <tr>
+          <td>ASI.TOT</td>
+          <td>Anxiety sensitivity index total scale score</td>
+          <td>higher scores mean more anxiety</td>
+      </tr>
+      <tr>
+          <td>ASI.PHY</td>
+          <td>ASI-3 physical concerns subscale</td>
+          <td>higher values means more concerns</td>
+      </tr>
+      <tr>
+          <td>ASI.SOC</td>
+          <td>ASI-3 social concerns subscale</td>
+          <td>higher values means more concerns</td>
+      </tr>
+      <tr>
+          <td>ASI.COG</td>
+          <td>ASI-3 cognitive concerns subscale</td>
+          <td>higher values means more concerns</td>
+      </tr>
+      <tr>
+          <td>SSs</td>
+          <td>UPPS-P sensation seeking subscale</td>
+          <td>higher values means more sensation seeking</td>
+      </tr>
+      <tr>
+          <td>NUs</td>
+          <td>UPPS-P negative urgency subscale</td>
+          <td>higher values means more negative urgency</td>
+      </tr>
+  </tbody>
 </table>
 <hr>
 <p>Just to explore the variables and their relationships we look at a correlation table.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic">#Pretty correlation table:</span>
-</span></span><span style="display:flex;"><span>tab_02 <span style="color:#000;font-weight:bold">=</span> tqmp<span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">correlate</span>() <span style="color:#000;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">shave</span>(upper <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>) <span style="color:#000;font-weight:bold">%&gt;%</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">fashion</span>(decimals <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">2</span>, na_print <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;—&#34;</span>) 
-</span></span><span style="display:flex;"><span>tab_02 <span style="color:#000;font-weight:bold">%&gt;%</span> 
-</span></span><span style="display:flex;"><span>  <span style="color:#900;font-weight:bold">kable</span>()
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic">#Pretty correlation table:</span>
+</span></span><span style="display:flex;"><span>tab_02 <span style="color:#ff7b72;font-weight:bold">=</span> tqmp<span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">correlate</span>() <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">shave</span>(upper <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>) <span style="color:#ff7b72;font-weight:bold">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">fashion</span>(decimals <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">2</span>, na_print <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;—&#34;</span>) 
+</span></span><span style="display:flex;"><span>tab_02 <span style="color:#ff7b72;font-weight:bold">%&gt;%</span> 
+</span></span><span style="display:flex;"><span>  <span style="color:#d2a8ff;font-weight:bold">kable</span>()
 </span></span></code></pre></div><table>
  <thead>
   <tr>
@@ -381,21 +377,21 @@ Please follow along on page 151 in the tutorial paper to see how they interprete
 <p><em>Homoscedasticity</em>: &ldquo;To check homoscedasticity, return to the same plot that we created to examine linearity, but this time look for consistency in vertical range across the X axis. In other words, see if the data spreads on the Y axis consistently and equally throughout the plot, resembling a rectangle.&rdquo; (pg. 152)</p>
 <p><em>Normality of estimation error</em>: &ldquo;To examine this assumption, we can create a Q-Q plot with the residuals we saved from the regression&rdquo; (pg. 152)</p>
 <p>In R, <strong>plot 1</strong> creates a plot of the residuals against the predicted values and <strong>plot 2</strong> creates a Q-Q plot of the residuals.</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># X predicting Y (path c) </span>
-</span></span><span style="display:flex;"><span>fit_c <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(SSs <span style="color:#000;font-weight:bold">~</span> Gender, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(fit_c, <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">1</span>,<span style="color:#099">2</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># X predicting Y (path c) </span>
+</span></span><span style="display:flex;"><span>fit_c <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(SSs <span style="color:#ff7b72;font-weight:bold">~</span> Gender, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(fit_c, <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">1</span>,<span style="color:#a5d6ff">2</span>))
 </span></span></code></pre></div><p><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># X predicting M (path a)</span>
-</span></span><span style="display:flex;"><span>fit_a <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(ASI.TOT <span style="color:#000;font-weight:bold">~</span> Gender, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(fit_a, <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">1</span>,<span style="color:#099">2</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># X predicting M (path a)</span>
+</span></span><span style="display:flex;"><span>fit_a <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(ASI.TOT <span style="color:#ff7b72;font-weight:bold">~</span> Gender, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(fit_a, <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">1</span>,<span style="color:#a5d6ff">2</span>))
 </span></span></code></pre></div><p><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-3.png" width="672" /><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># M predicting Y (path b)</span>
-</span></span><span style="display:flex;"><span>fit_b <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(SSs <span style="color:#000;font-weight:bold">~</span> ASI.TOT, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(fit_b, <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">1</span>,<span style="color:#099">2</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># M predicting Y (path b)</span>
+</span></span><span style="display:flex;"><span>fit_b <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(SSs <span style="color:#ff7b72;font-weight:bold">~</span> ASI.TOT, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(fit_b, <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">1</span>,<span style="color:#a5d6ff">2</span>))
 </span></span></code></pre></div><p><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-5.png" width="672" /><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-6.png" width="672" /></p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># X and M predicting Y (b and c&#39;)</span>
-</span></span><span style="display:flex;"><span>fit_cb <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(SSs <span style="color:#000;font-weight:bold">~</span>  Gender <span style="color:#000;font-weight:bold">+</span> ASI.TOT, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">plot</span>(fit_cb, <span style="color:#900;font-weight:bold">c</span>(<span style="color:#099">1</span>,<span style="color:#099">2</span>))
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># X and M predicting Y (b and c&#39;)</span>
+</span></span><span style="display:flex;"><span>fit_cb <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(SSs <span style="color:#ff7b72;font-weight:bold">~</span>  Gender <span style="color:#ff7b72;font-weight:bold">+</span> ASI.TOT, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">plot</span>(fit_cb, <span style="color:#d2a8ff;font-weight:bold">c</span>(<span style="color:#a5d6ff">1</span>,<span style="color:#a5d6ff">2</span>))
 </span></span></code></pre></div><p><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-7.png" width="672" /><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-4-8.png" width="672" /></p>
 <hr>
 <p><strong>Important note!</strong> There are <strong>two</strong> <code>mediate()</code> functions used in this lab.
@@ -406,9 +402,9 @@ For simple mediation with one mediator, we use
 For multiple mediators, we use 
 <a href="http://personality-project.org/r/psych/HowTo/mediation.pdf" target="_blank" rel="noopener"><code>psych::mediate()</code></a> shown in the next example.</p>
 <p>Recall the steps to test for a mediation effect using one mediator (See slide 15 in lecture):</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Model 1: M regressed on X, path a</span>
-</span></span><span style="display:flex;"><span>fit_a <span style="color:#000;font-weight:bold">&lt;-</span>  <span style="color:#900;font-weight:bold">lm</span>(ASI.TOT <span style="color:#000;font-weight:bold">~</span> Gender, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(fit_a)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Model 1: M regressed on X, path a</span>
+</span></span><span style="display:flex;"><span>fit_a <span style="color:#ff7b72;font-weight:bold">&lt;-</span>  <span style="color:#d2a8ff;font-weight:bold">lm</span>(ASI.TOT <span style="color:#ff7b72;font-weight:bold">~</span> Gender, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(fit_a)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Call:
 ## lm(formula = ASI.TOT ~ Gender, data = tqmp)
@@ -427,9 +423,9 @@ For multiple mediators, we use
 ## Residual standard error: 15.03 on 293 degrees of freedom
 ## Multiple R-squared:  0.01411,	Adjusted R-squared:  0.01074 
 ## F-statistic: 4.192 on 1 and 293 DF,  p-value: 0.0415
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Model 2: Y is regressed on X, path c</span>
-</span></span><span style="display:flex;"><span>fit_c <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(SSs <span style="color:#000;font-weight:bold">~</span> Gender, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(fit_c)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Model 2: Y is regressed on X, path c</span>
+</span></span><span style="display:flex;"><span>fit_c <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(SSs <span style="color:#ff7b72;font-weight:bold">~</span> Gender, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(fit_c)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Call:
 ## lm(formula = SSs ~ Gender, data = tqmp)
@@ -448,9 +444,9 @@ For multiple mediators, we use
 ## Residual standard error: 0.5813 on 293 degrees of freedom
 ## Multiple R-squared:  0.03793,	Adjusted R-squared:  0.03465 
 ## F-statistic: 11.55 on 1 and 293 DF,  p-value: 0.0007702
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Model 3: Y is regressed on X and M (paths c&#39; and b)</span>
-</span></span><span style="display:flex;"><span>fit_cb <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(SSs <span style="color:#000;font-weight:bold">~</span> Gender<span style="color:#000;font-weight:bold">+</span> ASI.TOT, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(fit_cb)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Model 3: Y is regressed on X and M (paths c&#39; and b)</span>
+</span></span><span style="display:flex;"><span>fit_cb <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(SSs <span style="color:#ff7b72;font-weight:bold">~</span> Gender<span style="color:#ff7b72;font-weight:bold">+</span> ASI.TOT, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(fit_cb)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Call:
 ## lm(formula = SSs ~ Gender + ASI.TOT, data = tqmp)
@@ -470,9 +466,9 @@ For multiple mediators, we use
 ## Residual standard error: 0.5695 on 292 degrees of freedom
 ## Multiple R-squared:  0.07961,	Adjusted R-squared:  0.07331 
 ## F-statistic: 12.63 on 2 and 292 DF,  p-value: 5.49e-06
-</code></pre><div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#998;font-style:italic"># Path b (not a required step to test for mediation but will be used in the write up)</span>
-</span></span><span style="display:flex;"><span>fit_b <span style="color:#000;font-weight:bold">&lt;-</span> <span style="color:#900;font-weight:bold">lm</span>(SSs <span style="color:#000;font-weight:bold">~</span> ASI.TOT, data<span style="color:#000;font-weight:bold">=</span>tqmp) 
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(fit_b)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># Path b (not a required step to test for mediation but will be used in the write up)</span>
+</span></span><span style="display:flex;"><span>fit_b <span style="color:#ff7b72;font-weight:bold">&lt;-</span> <span style="color:#d2a8ff;font-weight:bold">lm</span>(SSs <span style="color:#ff7b72;font-weight:bold">~</span> ASI.TOT, data<span style="color:#ff7b72;font-weight:bold">=</span>tqmp) 
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(fit_b)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Call:
 ## lm(formula = SSs ~ ASI.TOT, data = tqmp)
@@ -512,8 +508,8 @@ You may decrease the number to 1,000 if you find that&rsquo;s taking too long to
 <p>In the output, we look at the <em>ACME</em> (or Average Causal Mediation Effect) to evaluate the indirect effect of the mediator.
 The <em>ADE</em> (or Average Direct Effects) provides the direct effect estimate, and the <em>Total Effect</em> provides the combined indirect and direct effects estimate.
 <em>Prop. Mediated</em> is the ratio of these estimates (which we will not be using).</p>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fitMed <span style="color:#000;font-weight:bold">&lt;-</span> mediation<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">mediate</span>(fit_a, fit_cb, treat<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;Gender&#34;</span>, mediator<span style="color:#000;font-weight:bold">=</span><span style="color:#d14">&#34;ASI.TOT&#34;</span>, boot<span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">TRUE</span>,  boot.ci.type <span style="color:#000;font-weight:bold">=</span> <span style="color:#d14">&#34;perc&#34;</span>, sims <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">10000</span>)
-</span></span><span style="display:flex;"><span><span style="color:#900;font-weight:bold">summary</span>(fitMed)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fitMed <span style="color:#ff7b72;font-weight:bold">&lt;-</span> mediation<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">mediate</span>(fit_a, fit_cb, treat<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;Gender&#34;</span>, mediator<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#34;ASI.TOT&#34;</span>, boot<span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">TRUE</span>,  boot.ci.type <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;perc&#34;</span>, sims <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">10000</span>)
+</span></span><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">summary</span>(fitMed)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Causal Mediation Analysis 
 ## 
@@ -624,9 +620,9 @@ We spent <em>many, many</em> hours on this only to find that knitting reveals th
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg></a>
 </h3>
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fitComplex <span style="color:#000;font-weight:bold">&lt;-</span> psych<span style="color:#000;font-weight:bold">::</span><span style="color:#900;font-weight:bold">mediate</span>(SSs <span style="color:#000;font-weight:bold">~</span> Gender <span style="color:#000;font-weight:bold">+</span> (ASI.PHY) <span style="color:#000;font-weight:bold">+</span> (ASI.SOC)<span style="color:#000;font-weight:bold">+</span> (ASI.COG), n.iter <span style="color:#000;font-weight:bold">=</span> <span style="color:#099">10000</span>, data <span style="color:#000;font-weight:bold">=</span> tqmp)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>fitComplex <span style="color:#ff7b72;font-weight:bold">&lt;-</span> psych<span style="color:#ff7b72;font-weight:bold">::</span><span style="color:#d2a8ff;font-weight:bold">mediate</span>(SSs <span style="color:#ff7b72;font-weight:bold">~</span> Gender <span style="color:#ff7b72;font-weight:bold">+</span> (ASI.PHY) <span style="color:#ff7b72;font-weight:bold">+</span> (ASI.SOC)<span style="color:#ff7b72;font-weight:bold">+</span> (ASI.COG), n.iter <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">10000</span>, data <span style="color:#ff7b72;font-weight:bold">=</span> tqmp)
 </span></span></code></pre></div><img src="https://www.dina-arch.com/collection/linear-models/04-mediation/index_files/figure-html/unnamed-chunk-7-1.png" width="672" />
-<div class="highlight"><pre tabindex="0" style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#900;font-weight:bold">print</span>(fitComplex, short <span style="color:#000;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">FALSE</span>)
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#d2a8ff;font-weight:bold">print</span>(fitComplex, short <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">FALSE</span>)
 </span></span></code></pre></div><pre tabindex="0"><code>## 
 ## Mediation/Moderation Analysis 
 ## Call: psych::mediate(y = SSs ~ Gender + (ASI.PHY) + (ASI.SOC) + (ASI.COG), 

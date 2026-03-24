@@ -4,35 +4,30 @@
     <title>Talks that Last on Dina Arch</title>
     <link>https://www.dina-arch.com/talk/</link>
     <description>Recent content in Talks that Last on Dina Arch</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 12 Jan 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://www.dina-arch.com/talk/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Jan 2021 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.dina-arch.com/talk/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A campfire</title>
       <link>https://www.dina-arch.com/talk/campfire/</link>
       <pubDate>Tue, 12 Jan 2021 00:00:00 +0000</pubDate>
-      
       <guid>https://www.dina-arch.com/talk/campfire/</guid>
-      <description>I&amp;rsquo;m really excited to give this talk! Stay tuned for video and slides.</description>
+      <description>&lt;p&gt;I&amp;rsquo;m really excited to give this talk! Stay tuned for video and slides.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>A seedling</title>
       <link>https://www.dina-arch.com/talk/second-seedling/</link>
       <pubDate>Fri, 01 Jan 2021 14:15:59 -0600</pubDate>
-      
       <guid>https://www.dina-arch.com/talk/second-seedling/</guid>
       <description></description>
     </item>
-    
     <item>
       <title>A seedling</title>
       <link>https://www.dina-arch.com/talk/seedling/</link>
       <pubDate>Mon, 13 Jan 2020 14:15:59 -0600</pubDate>
-      
       <guid>https://www.dina-arch.com/talk/seedling/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
